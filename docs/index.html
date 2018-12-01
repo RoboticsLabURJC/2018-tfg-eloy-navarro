@@ -19,9 +19,14 @@
         <br>
         <button id="readButton">Leer</button>
         <br><br>
-        <textarea id="editor">x=["eso", "eso2"]
+        
+        <!--textarea id="editor">x=["eso", "eso2"]
 for cosa in x
-  print(cosa)</textarea>
+  print(cosa)</textarea-->
+        
+        <textarea id="editor">alert(textoTest)</textarea>
+        
+        
         <p id="Log1"><br></p>
         <p id="Log2"><br></p>
         <script>
@@ -37,10 +42,20 @@ for cosa in x
             
             
             
+            
+            
             readButton.onclick = function Lectura() {
-                document.getElementById("Log1").innerHTML = editor.getValue();
+                var textoTest = editor.getValue();
+                document.getElementById("Log1").innerHTML = textoTest;
                 document.getElementById("Log2").innerHTML = test;
                 test++;
+                
+                
+                
+                
+                //alert("hola12");
+                //eval(alert(textoTest));
+                eval(textoTest);
             }
             
             
