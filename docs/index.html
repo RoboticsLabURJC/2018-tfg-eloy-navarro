@@ -1,68 +1,138 @@
 ﻿<!DOCTYPE html>
 <meta charset="utf-8">
 <html lang="en">
-    
-    
+
     <head>
-        <title>Try GitServe</title>
+        <title>Tests Skulpt</title>
+        <!-- Imports para CodeMirror -->
         <script src="codemirror/lib/codemirror.js"></script>
         <link href="codemirror/lib/codemirror.css" rel="stylesheet"/>
+        <script src="codemirror/mode/javascript/javascript.js"></script>
         <script src="codemirror/mode/python/python.js"></script>
         <!--Los addons permiten el uso de parámetros adicionales><-->
         <!--El addon 1 concretamente permite el uso del auto cierre de etiquetado><-->
         <script src="codemirror/addon/edit/closetag.js"></script><!--Addon 1><-->
         <link href="codemirror/theme/dracula.css" rel="stylesheet"/>
+        
+        <!-- Imports para sculpt -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+        <script src="http://www.skulpt.org/static/skulpt.min.js" type="text/javascript"></script>
+        <script src="http://www.skulpt.org/static/skulpt-stdlib.js" type="text/javascript"></script>
     </head>
 
-    <body id="cuerpo">
+    <body id="cuerpo_JS">
         <!--button onclick="Lectura()">Leer</button-->
-        <br>
-        <button id="readButton">Leer</button>
+        <!--br>
         <br><br>
-        
         <!--textarea id="editor">x=["eso", "eso2"]
 for cosa in x
   print(cosa)</textarea-->
-        
-        <textarea id="editor">alert(textoTest)</textarea>
-        
-        
+        <h3>JS editor</h3>
+        <textarea id="editor_JS">alert(JS_Code)</textarea>
+        <br>
+        <button id="readButton">Run JS</button>
         <p id="Log1"><br></p>
         <p id="Log2"><br></p>
         <script>
             var test = 10;
             var readButton = document.getElementById("readButton");
-            var editor = CodeMirror.fromTextArea
-            (document.getElementById("editor"), {
+            var editor_JS = CodeMirror.fromTextArea
+            (document.getElementById("editor_JS"), {
+            mode: "javascript",
+            theme: "dracula",
+            lineNumbers: true
+            });
+            editor_JS.setSize("400", "150");
+            
+            console.log(test);
+            
+            readButton.onclick = function Lectura() {
+                var JS_Code = editor_JS.getValue();
+                document.getElementById("Log1").innerHTML = JS_Code;
+                document.getElementById("Log2").innerHTML = test;
+                test++;
+                eval(JS_Code);
+            }
+            //document.write("<br><br><br>Job Done!");
+        </script>
+    </body>
+    First JS Done!<br><br>
+    
+    
+    <body id="cuerpo_Python">
+        
+        <h3>Python editor</h3>
+        <form>
+            <textarea id="editor_Python" cols="40" rows="10">import turtle
+t = turtle.Turtle()
+t.forward(100)
+print "Hello World"</textarea><br />
+            <br><button type="button" onclick="run_python()">Run Python</button>
+        </form>
+        <p id="output" ></p>
+        <div id="mycanvas"></div>
+        
+        
+        
+        <script type="text/javascript"> 
+            
+            var editor_Python = CodeMirror.fromTextArea
+            (document.getElementById("editor_Python"), {
             mode: "python",
             theme: "dracula",
             lineNumbers: true
             });
-            editor.setSize("350", "150");
+            editor_Python.setSize("400", "150");
             
             
-            
-            
-            
-            readButton.onclick = function Lectura() {
-                var textoTest = editor.getValue();
-                document.getElementById("Log1").innerHTML = textoTest;
-                document.getElementById("Log2").innerHTML = test;
-                test++;
-                
-                
-                
-                
-                //alert("hola12");
-                //eval(alert(textoTest));
-                eval(textoTest);
+            // output functions are configurable.  This one just appends some text
+            // to a pre element.
+            function outf(text) { 
+                var mypre = document.getElementById("output"); 
+                mypre.innerHTML = mypre.innerHTML + text; 
+            } 
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                return Sk.builtinFiles["files"][x];
             }
             
-            
-            
-            document.write("<br><br><br>Job Done!");
+            // Run the Python program:
+            function run_python() {
+                // grab the code from your textarea
+                //var Python_Code = document.getElementById("editor_Python").value;
+                var Python_Code = editor_Python.getValue();
+                // get a reference to your pre element for output
+                var mypre = document.getElementById("output");
+                mypre.innerHTML = '';
+                // configure the output function
+                // Output paragraph assign
+                Sk.pre = "output";
+                // ...¿?
+                Sk.configure({output:outf, read:builtinRead});
+                // Output canvas assign
+                (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+                var myPromise = Sk.misceval.asyncToPromise(function() {
+                    // call Sk.importMainWithBody()
+                    return Sk.importMainWithBody("<stdin>", false, Python_Code, true);
+                });
+                // Python interp result plot at console
+                myPromise.then(
+                    function(mod){
+                        console.log('success');
+                    },
+                    function(err){
+                        console.log(err.toString());
+                    }
+                );
+            } 
         </script>
+        
+        
+        
     </body>
+    Second JS Done!
+    
 </html>
 
 
