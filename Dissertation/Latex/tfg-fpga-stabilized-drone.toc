@@ -1,0 +1,73 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{4}% 
+\contentsline {subsection}{\numberline {1.1}Aplicaciones para drones}{4}% 
+\contentsline {subsection}{\numberline {1.2}Sistemas b\IeC {\'a}sicos del drone}{4}% 
+\contentsline {subsubsection}{\numberline {1.2.1}Hardware}{4}% 
+\contentsline {paragraph}{Comunicaciones}{4}% 
+\contentsline {paragraph}{Electr\IeC {\'o}nica de Control}{4}% 
+\contentsline {paragraph}{Drivers}{4}% 
+\contentsline {subsubsection}{\numberline {1.2.2}Software}{4}% 
+\contentsline {subsection}{\numberline {1.3}FPGA}{4}% 
+\contentsline {subsubsection}{\numberline {1.3.1}Concepto}{4}% 
+\contentsline {subsubsection}{\numberline {1.3.2}Aplicaciones}{4}% 
+\contentsline {subsubsection}{\numberline {1.3.3}FPGAs Libres}{4}% 
+\contentsline {subsection}{\numberline {1.4}Sistemas de control}{4}% 
+\contentsline {subsubsection}{\numberline {1.4.1}Bucle abierto}{4}% 
+\contentsline {subsubsection}{\numberline {1.4.2}Bucle cerrado}{4}% 
+\contentsline {section}{\numberline {2}Objetivos}{4}% 
+\contentsline {subsection}{\numberline {2.1}Objetivo principal}{4}% 
+\contentsline {subsection}{\numberline {2.2}Requisitos}{5}% 
+\contentsline {subsubsection}{\numberline {2.2.1}Estabilizaci\IeC {\'o}n de un drone de bajo coste}{5}% 
+\contentsline {subsubsection}{\numberline {2.2.2}Dise\IeC {\~n}o de un sistema de control basado en FPGAs libres}{5}% 
+\contentsline {subsubsection}{\numberline {2.2.3}Dise\IeC {\~n}o de electr\IeC {\'o}nica perif\IeC {\'e}rica para comunicaciones entre PC, Drone y Electr\IeC {\'o}nica de control}{5}% 
+\contentsline {subsubsection}{\numberline {2.2.4}Implementaci\IeC {\'o}n de librer\IeC {\'\i }a de control del drone para PC}{5}% 
+\contentsline {paragraph}{Par\IeC {\'a}metros reconfigurables}{5}% 
+\contentsline {paragraph}{Control de Posici\IeC {\'o}n}{5}% 
+\contentsline {paragraph}{Control de Trayectoria}{5}% 
+\contentsline {subsubsection}{\numberline {2.2.5}Software}{5}% 
+\contentsline {subsection}{\numberline {2.3}Metodolog\IeC {\'\i }a}{5}% 
+\contentsline {subsection}{\numberline {2.4}Plan de trabajo}{5}% 
+\contentsline {section}{\numberline {3}Arquitectura del sistema}{6}% 
+\contentsline {subsection}{\numberline {3.1}Estaci\IeC {\'o}n de tierra}{6}% 
+\contentsline {subsubsection}{\numberline {3.1.1}Descripci\IeC {\'o}n}{6}% 
+\contentsline {subsubsection}{\numberline {3.1.2}Objetivo}{6}% 
+\contentsline {subsubsection}{\numberline {3.1.3}Subsistemas}{6}% 
+\contentsline {paragraph}{Radio}{6}% 
+\contentsline {paragraph}{Procesador principal FPGA}{6}% 
+\contentsline {paragraph}{Procesador secundario ATMEL}{6}% 
+\contentsline {subsubsection}{\numberline {3.1.4}Interfaces externos}{6}% 
+\contentsline {paragraph}{Enlaces Radio}{6}% 
+\contentsline {paragraph}{USB}{6}% 
+\contentsline {paragraph}{Programaci\IeC {\'o}n}{6}% 
+\contentsline {subsubsection}{\numberline {3.1.5}Interfaces internos}{6}% 
+\contentsline {paragraph}{SPI}{6}% 
+\contentsline {paragraph}{RS232}{6}% 
+\contentsline {subsection}{\numberline {3.2}Sistemas embarcados}{6}% 
+\contentsline {subsubsection}{\numberline {3.2.1}Descripci\IeC {\'o}n}{6}% 
+\contentsline {subsubsection}{\numberline {3.2.2}Objetivo}{6}% 
+\contentsline {subsubsection}{\numberline {3.2.3}Subsistemas}{6}% 
+\contentsline {paragraph}{Radio}{6}% 
+\contentsline {paragraph}{Procesador}{6}% 
+\contentsline {paragraph}{Sensores}{7}% 
+\contentsline {subsubsection}{\numberline {3.2.4}Interfaces externos}{7}% 
+\contentsline {paragraph}{Radio }{7}% 
+\contentsline {paragraph}{Programaci\IeC {\'o}n}{7}% 
+\contentsline {subsubsection}{\numberline {3.2.5}Interfaces internos}{7}% 
+\contentsline {paragraph}{I2C}{7}% 
+\contentsline {paragraph}{SPI}{7}% 
+\contentsline {section}{\numberline {4}Algoritmos de control}{8}% 
+\contentsline {subsection}{\numberline {4.1}Controles de bucle abierto}{8}% 
+\contentsline {subsubsection}{\numberline {4.1.1}Directo}{8}% 
+\contentsline {subsubsection}{\numberline {4.1.2}Pre-\IeC {\'e}nfasis}{8}% 
+\contentsline {subsection}{\numberline {4.2}Controles de bucle cerrado}{8}% 
+\contentsline {subsubsection}{\numberline {4.2.1}PID en plano vertical retroalimentado}{8}% 
+\contentsline {subsubsection}{\numberline {4.2.2}PIDs en plano horizontal retroalimentados}{8}% 
+\contentsline {section}{\numberline {5}Experimentos}{8}% 
+\contentsline {subsection}{\numberline {5.1}Eachine E010}{8}% 
+\contentsline {subsection}{\numberline {5.2}Syma X5C en Bucle abierto}{8}% 
+\contentsline {section}{\numberline {6}Trabajo futuro}{8}% 
+\contentsline {subsection}{\numberline {6.1}Mejoras hardware}{8}% 
+\contentsline {subsection}{\numberline {6.2}Mejoras software}{8}% 
+\contentsline {subsection}{\numberline {6.3}Cambios a mejor en la arquitectura del sistema}{8}% 
+\contentsline {section}{\numberline {7}7. Conclusiones}{8}% 
+\contentsline {section}{\numberline {8}8. Bibliograf\IeC {\'\i }a}{8}% 
