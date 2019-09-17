@@ -1,0 +1,44 @@
+\babel@toc {spanish}{}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Sentido de rotaci\'on en cuadric\'optero}}{2}% 
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Error de rotaci\'on}}{3}% 
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Masa y capac\IeC {\'\i }metros de STMicroelectronics}}{3}% 
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Bloques Hardware del sistema de control y drivers de un cuadric\'optero}}{5}% 
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Altura (Uz), cabeceo (pitch), gui\~nada (yaw) y alabeo (roll)}}{6}% 
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Sensor \'optico Sequoia+}}{7}% 
+\contentsline {figure}{\numberline {1.7}{\ignorespaces M\'odulo LifeSeeker de Centum}}{8}% 
+\contentsline {figure}{\numberline {1.8}{\ignorespaces Drone de Amazon en prueba real de env\IeC {\'\i }o}}{9}% 
+\contentsline {figure}{\numberline {1.9}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{10}% 
+\contentsline {figure}{\numberline {1.10}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{11}% 
+\contentsline {figure}{\numberline {1.11}{\ignorespaces Esquema de un controlador PID}}{13}% 
+\contentsline {figure}{\numberline {1.12}{\ignorespaces Logo de Icestudio, IDE para desarrollo de software en FPGAs libres}}{16}% 
+\contentsline {figure}{\numberline {1.13}{\ignorespaces Captura del entorno Icestudio}}{16}% 
+\contentsline {figure}{\numberline {1.14}{\ignorespaces Formato de paquete UART}}{17}% 
+\contentsline {figure}{\numberline {1.15}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{18}% 
+\contentsline {figure}{\numberline {1.16}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{19}% 
+\contentsline {figure}{\numberline {1.17}{\ignorespaces Arquitectura hardware de un bus I2C}}{19}% 
+\contentsline {figure}{\numberline {1.18}{\ignorespaces Formato de trama I2C}}{20}% 
+\contentsline {figure}{\numberline {1.19}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{21}% 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Arquitectura de sistema y su bucle de control}}{32}% 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura e interfaces de la estaci\'on de tierra}}{33}% 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Montaje de la estaci\'on de tierra}}{34}% 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Arquitectura e interfaces del sistema sensor de posici\'on ubicado en el drone}}{40}% 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Sistema de sensores embarcado}}{41}% 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Formato de trama de mando, primera mitad de la trama}}{47}% 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Formato de trama de mando, segunda mitad de la trama}}{47}% 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Formato de trama de downlink}}{52}% 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Formato de trama de uplink}}{53}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Arquitectura del firmware programado sobre la FPGA}}{57}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Captura de medidas con sensores de a bordo}}{63}% 
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando}}{65}% 
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores}}{66}% 
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Simulaci\'on funcional del m\'odulo de conversi\'on de pulsaciones}}{66}% 
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{67}% 
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{68}% 
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{68}% 
+\addvspace {10\p@ }

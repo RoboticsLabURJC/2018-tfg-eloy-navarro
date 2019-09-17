@@ -83,9 +83,9 @@ Trabajo Fin de Grado/Máster
 \vspace{2.5cm}
 
 \LARGE
-ESTABILIZACIÓN DE UN DRONE MEADIANTE FPGAs LIBRES
+HACIENDO PROGRAMABLE Y ESTABLE UN DRONE COMERCIAL ENRIQUECIDO Y CONTROLADO CON FPGA
 
-\vspace{4cm}
+\vspace{3cm}
 
 \large
 Autor : Eloy Navarro Morales \\
@@ -679,7 +679,7 @@ El trabajo se organizará segmentando el objetivo semanal en tareas más simples. 
 \section{Plan de trabajo}
 \label{sec:Plan de trabajo}
 
-En base a las herramientas de desarrollo disponibles, mencionadas más adelante en el Capítulo~\ref{chap:Infraestructura utilizada},  se planteará una arquitectura de sistema, definida en el Capítulo~\ref{chap:Arquitectura del sistema}. Dicha arquitectura deberá ser capaz de alcanzar el objetivo principal, cubriendo los requisitos mínimos, dentro de las limitaciones impuestas por la propia arquitectura, a su vez limitada por factores como las herramientas disponibles, tiempo de desarrollo y dificultad. El desarrollo se hará en gran medida los fines de semana, añadiendo horas disponibles por las tardes, tras el horario laboral, dependiendo de las exigencias de este. Se cubrirán los sub-objetivos en orden, hasta alcanzar el objetivo principal. 
+En base a las herramientas de desarrollo disponibles, mencionadas más adelante en el Capítulo~\ref{chap:Infraestructura utilizada},  se planteará una arquitectura de sistema, definida en la Sección~\ref{sec:Arquitectura del sistema}. Dicha arquitectura deberá ser capaz de alcanzar el objetivo principal, cubriendo los requisitos mínimos, dentro de las limitaciones impuestas por la propia arquitectura, a su vez limitada por factores como las herramientas disponibles, tiempo de desarrollo y dificultad. El desarrollo se hará en gran medida los fines de semana, añadiendo horas disponibles por las tardes, tras el horario laboral, dependiendo de las exigencias de este. Se cubrirán los sub-objetivos en orden, hasta alcanzar el objetivo principal. 
 
 
 
@@ -765,14 +765,17 @@ Se trata de un módulo de BitCraze que integra un sensor de medida de distancias 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Arquitectura del sistema %
+% Drone enriquecido controlado por FPGA %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage % empezamos en página impar
-\chapter{Arquitectura del sistema}
-\label{chap:Arquitectura del sistema}
+\chapter{Drone enriquecido controlado por FPGA}
+\label{Drone enriquecido controlado por FPGA}
 
-La arquitectura del sistema se ha planteado con el propósito de cubrir los objetivos propuestos en el apartado Capítulo~\ref{chap:objetivos}, haciendo uso de la infraestructura disponible, mencionada en el Capítulo~\ref{chap:Infraestructura utilizada}. El sistema se compone de cuatro módulos principales y dos interfaces de alto nivel. Los cuatro módulos principales que lo componen son:
+\section{Arquitectura del sistema}
+\label{sec:Arquitectura del sistema}
+
+La arquitectura del sistema se ha planteado con el propósito de cubrir los objetivos propuestos en el Capítulo~\ref{chap:objetivos}, haciendo uso de la infraestructura disponible, mencionada en el Capítulo~\ref{chap:Infraestructura utilizada}. El sistema se compone de cuatro módulos principales y dos interfaces de alto nivel. Los cuatro módulos principales que lo componen son:
 
 \begin{itemize}
   \item Un ordenador para enviar las órdenes de mando.
@@ -802,168 +805,7 @@ En la Figura~\ref{fig:SystArq} se muestra la estructura de más alto nivel de la 
 \end{figure}
 
 La arquitectura del sistema propuesto, se basa en que la estación de tierra atiende los comandos que puedan llegar desde el ordenador de mando, de manera simultánea a las tramas que provengan de los sensores a bordo del drone. El drone, capaz de ubicar de manera local su posición relativa en base a las medidas entregadas por sus sensores, transmite eventualmente por radio su posición hacia la estación de tierra. Ésta calcula el vector de error de posición como la diferencia entre las medidas de posición indicadas por los sensores de posición, y las órdenes recibidas desde el ordenador de mando. En base al vector de error, la estación de tierra computa las correcciones y se las envía por radio al drone en forma de órdenes de movimiento. El drone entonces, obedece dichas órdenes, a continuación vuelve a medir su posición y envía la información de nuevo a la estación de tierra, cerrando así el bucle de control principal del sistema.\\
-A continuación se detallan los interfaces que conectan los cuatro módulos de nivel superior que toman partido en la arquitectura del sistema de la Figura~\ref{fig:SystArq}; estación de tierra, drone, sensores de a bordo y ordenador de mando. Más adelante se  detallan también su construcción, funciones y sub-sistemas.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Interfaces del sistema %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\cleardoublepage % empezamos en página impar
-\chapter{Interfaces del sistema}
-\label{chap:Interfaces del sistema}
-
-\section{Interfaz de mando}
-\label{sec:Interfaz de mando}
-
-Se encarga de comunicar únicamente el ordenador de mando con la estación de tierra. Porta información de las instrucciones de posición, que se espera el drone obedezca, y parámetros para los bucles de control. Este interfaz tiene dos objetivos principales: Facilitar la comunicación con la estación de tierra, al mismo tiempo que proveer al sistema de una alta capacidad de reconfiguración para disminuir el tiempo entre pruebas. Por este motivo se incluyen los parámetros de los bucles de control como parte de los datos. Esto facilita realizar múltiples ensayos de vuelo consecutivos, con mucha diferencia en el comportamiento de cada uno de ellos.
-
-\subsection{Características}
-\label{subsec:Características}
-
-Se trata de una comunicación unidireccional con origen en el ordenador de mando y destino en la estación de tierra. La comunicación se realiza por puerto serie, y se basa en el uso de los estándares USB 2.0 y UART y RS232. Para la conversión del estándar eléctrico desde USB a RS232, se hace uso de un driver de USB de FTDI Chip. El cual también convierte del protocolo de comunicaciones USB a UART. Concretamente el canal B del integrado FT232HL. Dicho driver se encuentra integrado en la placa de desarrollo de la FPGA de Lattice. El canal A se reserva para otras tareas comentadas más adelante en la descripción de los interfaces de la propia estación de tierra. El puerto de comunicaciones se configura en tiempo de ejecución por la herramienta software ejecutada en el ordenador de mando. En ella se indica el número del puerto, el cual depende de la asignación que realice el ordenador en uso y la velocidad de transferencia, la cual se fija en 500Kbps. Esta velocidad irá acorde con la tasa de transferencia del mismo interfaz, del lado de la FPGA, explicado en más adelante. Las tramas se envían desde el ordenador de mando a través del USB con la información adecuada para encapsular cada byte en el formato de comunicaciones propio de una UART. De esta conversión también se encarga el módulo FT232HL a través de la información provista en tiempo de ejecución. Una vez abierto el puerto a la velocidad indicada anteriormente, se envía cada byte sin control de flujo, ni paridad. Se hace uso de diez bits por byte. Bit de inicio, 8 bits de datos y bit de parada.
-
-\subsection{Formato de tramas}
-\label{subsec:Formato de tramas}
-
-Se hace uso de un formato de tramas fijas. La longitud es conocida y siempre la misma, 16 bytes. Y la posición de cada valor tampoco varía durante toda la ejecución, lo que facilita las tareas de decodificación y sincronía. A lo largo del trabajo, se han ido añadiendo o modificando campos de la información transmitida por este interfaz, según las necesidades puntuales de pruebas o mejoras a lo largo de la evolución por los distintos objetivos secundarios, hasta alcanzar el objetivo principal.
-Cada trama es enviada en el instante de ejecución de cada instrucción en el ordenador de mando. Cada instrucción dispone también de un lapso de tiempo indicado al ejecutarla. De esta manera cada instrucción esta activa el tiempo indicado, hasta que se produzca la ejecución de la siguiente instrucción, o se termine el programa.
-En su versión final, las tramas componen sus 16 bytes con la construcción fija mostrada en las Figuras~\ref{fig:tramam1} y \ref{fig:tramam2}: 
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_1.png}
-	\caption{Formato de trama de mando, primera mitad de la trama}
-	\label{fig:tramam1}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_2.png}
-	\caption{Formato de trama de mando, segunda mitad de la trama}
-	\label{fig:tramam2}
-\end{figure}
-
-\begin{itemize}
-  \item Los dos primeros se usan de etapa de sincronía. Campos Stx1 y Stx2. Tienen los valores fijos 255 y 90 en base decimal. Siempre son transmitidos de esta manera. Así, la etapa receptora espera por una secuencia de dos bytes consecutivos con valores 255 y 90 para sincronizar con la trama entrante. Tras esto, el receptor comenzará a decodificar los valores de los siguientes 14 bytes con el orden indicado en la trama. Asumiendo que no se produzca un error de comunicaciones, el equipo receptor asociará cada valor a su campo adecuadamente. 
-  
-  \item Cmd\_ALT: Comando de vertical, o altura. Representa el valor de la consigna de posición de altura deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de altura como su consigna.
-  
-  \item Cmd\_L/R: Comando de desplazamiento horizontal lateral. Representa el valor de la consigna de posición lateral deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento lateral, como su valor de consigna. Se trata del eje de libertad asociado al alabeo.
-  
-  \item  Cmd\_F/B: Comando de desplazamiento horizontal frontal. Representa el valor de la consigna de posición frontal deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento frontal, como su valor de consigna. Se trata del eje de libertad asociado al cabeceo.
-  
-  \item Cmd\_T\_CW: Comando de giro en sentido horario. Representa el valor deseado de la velocidad de giro del drone, sobre sí mismo. Este valor será decodificado por la estación de tierra y enviado directamente al constructor de tramas, ya que este grado de libertad no se controla con un bucle cerrado de alto nivel. Se le deja su control exclusivamente a la electrónica propia del drone y su giróscopo interno. Se trata del eje de libertad asociado a la guiñada.
-  
-  \item PID\_Alt\_Kp: Parámetro de la constante proporcional de altura. Representa el valor deseado para la constante proporcional del bucle de control PID de altura. La diferencia  entre el valor de consigna de altura, Cmd\_ALT, y valor de altura medido por los sensores de a bordo, genera el valor de error de altura, componente del vector de error. Esta componente del error se multiplicará por el valor recibido en este campo para conseguir así la componente ``P'' del bucle de control de altura.
-  
-  \item  PID\_XY\_Kp: Parámetro de la constante proporcional de los ejes horizontales. Representa el valor deseado para las constantes proporcionales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica la misma tensión a ambos bucles de control. La diferencia  entre los valores de las consignas Cmd\_L/R y Cmd\_F/B y sus medidas por los sensores de posición de a bordo, generan los errores de posición horizontales, componentes del vector de error de posición. Estos errores se multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``P'' de los bucles de control de los ejes horizontales: Frontal y latera.
-  
-  \item RSV: Los bytes de las posiciones 9, 15 y 16 están reservados para posibles usos futuros. Tienen valores constantes a cero.
-  
-  \item T\_CW\_Trimm: Parámetro de corrección de giro del drone sobre sí mismo. Representa el valor del offset a añadir al valor del comando ``Cmd\_T\_CW'' a enviar hacia el drone. El objetivo de este parámetro es corregir de manera constante el valor de la velocidad de giro sobré si mismo enviado hacia el drone. Ya que este valor se encuentra controlado por un bucle abierto en la electrónica de la estación de tierra, si la electrónica propia del drone, tiene un error constante de giro que no pueda corregir, se aplicará la corrección necesaria a través del valor de este parámetro.
-  
-  \item  PID\_Alt\_Ki: Parámetro de la constante integral de altura. Representa el valor deseado para la constante integral del bucle de control PID de altura. El valor del error de altura comentado anteriormente, se integrará y multiplicará por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``I'' del  bucle de control de altura.
-  
-  \item PID\_Alt\_Kd: Parámetro de la constante derivativa de altura. Representa el valor deseado para la constante derivativa del bucle de control PID de altura. El valor del error de altura comentado anteriormente, se derivará y multiplicará por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``D'' del  bucle de control de altura. Este campo junto con los valores de los campos de las posiciones 7 y 11, completan los valores de los parámetros para el bucle de control cerrado PID de la altura.
-  
-  \item PID\_XY\_Ki: Parámetro de la constante integral de los ejes horizontales. Representa el valor deseado para las constantes integrales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes integrales de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se integrarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``I'' de los bucles de control de los ejes horizontales: Frontal y latera.
-  
-  \item PID\_XY\_Kd: Parámetro de la constante derivativo de los ejes horizontales. Representa el valor deseado para las constantes derivativas de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes derivativas de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se derivarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``D'' de los bucles de control de los ejes horizontales: Frontal y latera. Este campo junto con los valores de los campos de las posiciones 8 y 13, completan los valores de los parámetros para los bucles de control cerrado PID del plano horizontal, Controlador de posición Frontal y Controlador de posición lateral.
-\end{itemize}
-
-\section{Interfaz radio}
-\label{sec:Interfaz radio}
-
-Se encarga de comunicar la estación de tierra con la electrónica del drone, y los sensores de a bordo, tal como se muestra en la figura 20. Este interfaz porta información fundamental para el desempeño de la tarea de control de posición del drone. Se transmite información tanto de la posición del drone, como de las órdenes de velocidad que este deberá ejecutar. El objetivo de este interfaz es que la estación de tierra conozca la posición relativa del drone, y en base a esto, y a las instrucciones de mando que reciba, trate de dirigir y corregir en caso de error, dicha posición.\\
-Se trata de un enlace radio bidireccional entre la estación de tierra y el drone. Dividiremos este enlace en dos partes; la bajada, o downlink, que transmite información desde el drone hacia la estación de tierra. Y la subida, o uplink, que transmite información desde la estación de tierra hacia el drone.\\
-Ambos trabajan en la banda libre de 2.4GHz, pero en distintas frecuencias (canales). Así se consigue un enlace bidireccional full-duplex, en base a separación en frecuencia, o FDM. De esta manera ambos pueden estar transmitiendo información simultáneamente, sin colisionar, ni preocuparse de la complejidad y la bajada en la tasa de transferencia propia de un sistema de multiplexación por división en código, CDM.
-
-\subsection{Downlink}
-\label{subsec:Downlink}
-
-Se encarga de enlazar por radio los sensores de posición a bordo del drone con la estación de tierra. Porta la información medida por dichos sensores. Esta información se compone de una medida de distancia al suelo, o altura, tomada desde la parte media del drone. Una medida del desplazamiento frontal relativa al punto de despegue. Y una medida del desplazamiento lateral relativa también al punto de despegue.\\
-Las tres medidas se miden y transmiten por el interfaz radio en milímetros, considerando como origen de coordenadas, tanto para la altura como para los desplazamientos horizontales, la posición de despegue inicial.
-
-\subsubsection{Características}
-\label{subsubsec:Down_Car}
-
-Ocupa el canal 0x66 dentro de la banda libre de 2.4GHz utilizada por el transceptor NRF24L01. Se trata de una transmisión de baja potencia, con un alcance de unos 30 metros, transmitiendo a 1Mbps.
-
-\subsubsection{Formato de trama}
-\label{subsubsec:Down_FT}
-
-Se hace uso de un formato de tramas fijas, como para el caso de las tramas de mando. En este caso la longitud de la trama es de seis bytes. Y la posición de cada valor tampoco varía durante toda la ejecución.
-Cada trama es enviada en el instante inmediatamente posterior a la ejecución de las tres medidas de posición; altura, desplazamiento frontal y desplazamiento lateral. El formato de las tramas se muestra en la Figura~\ref{fig:down_frame}.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Downlink.png}
-	\caption{Formato de trama de downlink}
-	\label{fig:down_frame}
-\end{figure}
-
-En estas tramas la sincronía está garantizada como parte del diseño de la transmisión realizada por la radio NRF24L01 y la forma en que esta se comunica con la electrónica de la estación de tierra, que se detallará más adelante. Por tanto los seis bytes de la trama son tres campos útiles de dos bytes cada uno.
-
-\begin{itemize}
-  \item H\_Pos\_F/B: Valor de la medida del desplazamiento frontal. Representa los milímetros de desplazamiento frontal desde el origen de coordenadas definido anteriormente. Se almacena en 16 bits consecutivos, y se codifica en complemento a dos.
-  
-  \item H\_Pos\_L/R: Homólogo al campo ``H\_Pos\_F/B'' con la salvedad de que este representa los milímetros de desplazamiento lateral desde el origen de coordenadas. Codificado también de la misma manera.
-  
-  \item Alt: Valor de la medida de altura. Representa los milímetros de desplazamiento vertical desde el origen de coordenadas. Se almacena en 16 bits consecutivos, y se codifica en binario plano, ya que no se contemplan alturas negativas para el marco de este TFG.
-  
-\end{itemize}
-
-Con estas tres medidas, la estación de tierra puede ubicar de manera relativa el drone, generando así el vector de posición necesario para realizar posteriormente las correcciones de posición respecto de las órdenes comandadas.
-
-\subsection{Uplink}
-\label{subsec:Uplink}
-
-Se encarga de enlazar por radio la estación de tierra con la electrónica del drone. Comunica las indicaciones de velocidad para cada eje, junto con canales auxiliares cuya función depende de cada drone. En este TFG no se hará uso de dichos canales auxiliares. 
-
-\subsubsection{Características}
-\label{subsubsec:Up_Car}
-
-De igual  manera que el interfaz de bajada, hace uso de una radio NRF24L01 en la banda de 2.4GHz. El módulo que gestiona este interfaz, controla la radio NRF24L01. Este módulo está diseñado para recibir los canales a codificar en la trama radio, desde una señal modulada por posición de pulso, PPM. Dicha modulación y sus características se describen más adelante en el apartado de interfaces de la estación de tierra, junto con el módulo que gestiona la radio del uplink. 
-
-\subsubsection{Formato de trama}
-\label{subsubsec:Up_FT}
-
-Este interfaz se compone de una transmisión de doce canales, de los cuales se hará uso exclusivamente de los cuatro primeros. Los ocho canales restantes portan comandos auxiliares, como la velocidad de reacción deseada para el drone, la cual se mantiene en su valor por defecto, y dependiendo del modelo exacto del drone utilizado, a veces se utilizan para disparar fotografías o video de la cámara instalada. El subsistema radio se encarga de transmitir la información contenida en la trama de la Figura~\ref{fig:up_frame} por radio hacia la electrónica del drone.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Uplink.png}
-	\caption{Formato de trama de uplink}
-	\label{fig:up_frame}
-\end{figure}
-
-\begin{itemize}
-  \item Cmd\_THR: Valor de velocidad de altura. Ocupa la primera posición en la trama. Representa el impulso deseado para el eje vertical del drone. Un valor de cero no tiene por qué implicar el apagado de los motores, depende de los valores de los siguientes dos canales. 
-  
-  \item Cmd\_R/L: Valor de velocidad de desplazamiento latera. Representa la velocidad de desplazamiento lateral deseada para el drone. Está asociado al grado de libertad del alabeo.
-  
-  \item Cmd\_F/B: Valor de velocidad de desplazamiento frontal. Representa la velocidad de desplazamiento frontal deseada para el drone. Está asociado al grado de libertad del cabeceo.
-  
-  \item Cmd\_T\_CW: Valor de velocidad de giro. Representa la velocidad de giro sobre sí mismo deseada para el drone. Está asociado al grado de libertad de la guiñada. 
-  
-  \item Aux: Algunos de los ocho canales adicionales tienen valores fijos y otros variables, dependiendo de su funcionalidad y del drone utilizado. Para este trabajo, estos canales se mantendrán con su valor por defecto.
-\end{itemize}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Módulos del sistema %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\cleardoublepage % empezamos en página impar
-\chapter{Módulos del sistema}
-\label{chap:Módulos del sistema}
-
-A continuación se describen los dos sistemas diseñados que junto con el ordenador de mando, componen el sistema completo de este trabajo.
+A continuación se describen los dos sistemas diseñados, junto con el ordenador de mando. Estos componen el sistema completo de este trabajo, con la arquitectura mostrada el la Figura~\ref{fig:SystArq}.
 
 \section{Estación de tierra}
 \label{sec:Estación de tierra}
@@ -1200,12 +1042,183 @@ Puerto serie SPI utilizado para la configuración inicial de la radio NRF24L01, y
 
 
 
+\section{Ordenador de mando}
+\label{sec:Ordenador de mando}
+
+Se trata del ordenador ubicado en el módulo de tierra de la Figura~\ref{fig:SystArq}. Dicho hardware se encarga de ejecutar el código python que dirigirá el vuelo del drone.
+
+\subsection{Objetivo}
+\label{subsec:OM_Obj}
+
+El objetivo de este módulo será permitir el control del drone desde PC, ofreciendo la menor cantidad de limitaciones posibles en cuanto a su manejo y configuración. Para ello incluirá la transmisión de tramas que contengan información para el control de los cuatro grados de libertad del drone y los parámetros de sus bucles de control.
+
+\subsection{Funciones}
+\label{subsec:OM_Func}
+
+
+\begin{itemize}
+  \item Para alcanzar su objetivo, este módulo ofrecerá la ejecución de instrucciones en python.
+  
+  \item El resultado de dichas instrucciones deberá ser comunicado hacia la estación de tierra a través de un puerto de comunicaciones serie USB.
+\end{itemize}
+
+
+\subsection{Interfaces}
+\label{subsec:OM_Int}
+
+Este módulo dispone de un único interfaz de comunicaciones funcional con el resto del sistema. Se trata del interfaz de comando de la Figura~\ref{fig:SystArq}, el cual contiene las instrucciones de control para dirigir el vuelo del drone.\\
+También dispone de un interfaz dedicado en exclusiva a la depuración del sistema mostrado en la Figura~\ref{fig:GS_arq}, el cual no interviene durante la operación normal del sistema. Este porta información desde el analizador lógico, hacia el software de análisis de señales digitales \textit{Logic}.\\
+
+
+A continuación se detallan los interfaces que conectan los cuatro módulos de nivel superior que toman partido en la arquitectura del sistema de la Figura~\ref{fig:SystArq}; estación de tierra, drone, sensores de a bordo y ordenador de mando. Cabe destacar que no existen interfaces que comuniquen de manera directa el drone, con la electrónica de sensores de a bordo. Esto es debido a que se prefirió aislar dicha electrónica de la del drone por problemas en la alimentación de la electrónica propia del drone y no existe la necesidad específica de comunicar dichos módulos directamente entre ellos (quedan indiréctamente comunicados entre sí a través de la información enviada a tierra, procesada y recibida de vuelta en el drone). Dicho interfaz en cambio si podría darse para arquitecturas de sistema diferentes, como por ejemplo aquellas basadas en la premisa comentada en el apartado \ref{subsec:Mejoras en la arquitectura del sistema}
+
+
+\section{Interfaz de mando}
+\label{sec:Interfaz de mando}
+
+Se encarga de comunicar únicamente el ordenador de mando con la estación de tierra. Porta información de las instrucciones de posición, que se espera el drone obedezca, y parámetros para los bucles de control. Este interfaz tiene dos objetivos principales: Facilitar la comunicación con la estación de tierra, al mismo tiempo que proveer al sistema de una alta capacidad de reconfiguración para disminuir el tiempo entre pruebas. Por este motivo se incluyen los parámetros de los bucles de control como parte de los datos. Esto facilita realizar múltiples ensayos de vuelo consecutivos, con mucha diferencia en el comportamiento de cada uno de ellos.
+
+\subsection{Características}
+\label{subsec:Características}
+
+Se trata de una comunicación unidireccional con origen en el ordenador de mando y destino en la estación de tierra. La comunicación se realiza por puerto serie, y se basa en el uso de los estándares USB 2.0 y UART y RS232. Para la conversión del estándar eléctrico desde USB a RS232, se hace uso de un driver de USB de FTDI Chip. El cual también convierte del protocolo de comunicaciones USB a UART. Concretamente el canal B del integrado FT232HL. Dicho driver se encuentra integrado en la placa de desarrollo de la FPGA de Lattice. El canal A se reserva para otras tareas comentadas más adelante en la descripción de los interfaces de la propia estación de tierra. El puerto de comunicaciones se configura en tiempo de ejecución por la herramienta software ejecutada en el ordenador de mando. En ella se indica el número del puerto, el cual depende de la asignación que realice el ordenador en uso y la velocidad de transferencia, la cual se fija en 500Kbps. Esta velocidad irá acorde con la tasa de transferencia del mismo interfaz, del lado de la FPGA, explicado en más adelante. Las tramas se envían desde el ordenador de mando a través del USB con la información adecuada para encapsular cada byte en el formato de comunicaciones propio de una UART. De esta conversión también se encarga el módulo FT232HL a través de la información provista en tiempo de ejecución. Una vez abierto el puerto a la velocidad indicada anteriormente, se envía cada byte sin control de flujo, ni paridad. Se hace uso de diez bits por byte. Bit de inicio, 8 bits de datos y bit de parada.
+
+\subsection{Formato de tramas}
+\label{subsec:Formato de tramas}
+
+Se hace uso de un formato de tramas fijas. La longitud es conocida y siempre la misma, 16 bytes. Y la posición de cada valor tampoco varía durante toda la ejecución, lo que facilita las tareas de decodificación y sincronía. A lo largo del trabajo, se han ido añadiendo o modificando campos de la información transmitida por este interfaz, según las necesidades puntuales de pruebas o mejoras a lo largo de la evolución por los distintos objetivos secundarios, hasta alcanzar el objetivo principal.
+Cada trama es enviada en el instante de ejecución de cada instrucción en el ordenador de mando. Cada instrucción dispone también de un lapso de tiempo indicado al ejecutarla. De esta manera cada instrucción esta activa el tiempo indicado, hasta que se produzca la ejecución de la siguiente instrucción, o se termine el programa.
+En su versión final, las tramas componen sus 16 bytes con la construcción fija mostrada en las Figuras~\ref{fig:tramam1} y \ref{fig:tramam2}: 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_1.png}
+	\caption{Formato de trama de mando, primera mitad de la trama}
+	\label{fig:tramam1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_2.png}
+	\caption{Formato de trama de mando, segunda mitad de la trama}
+	\label{fig:tramam2}
+\end{figure}
+
+\begin{itemize}
+  \item Los dos primeros se usan de etapa de sincronía. Campos Stx1 y Stx2. Tienen los valores fijos 255 y 90 en base decimal. Siempre son transmitidos de esta manera. Así, la etapa receptora espera por una secuencia de dos bytes consecutivos con valores 255 y 90 para sincronizar con la trama entrante. Tras esto, el receptor comenzará a decodificar los valores de los siguientes 14 bytes con el orden indicado en la trama. Asumiendo que no se produzca un error de comunicaciones, el equipo receptor asociará cada valor a su campo adecuadamente. 
+  
+  \item Cmd\_ALT: Comando de vertical, o altura. Representa el valor de la consigna de posición de altura deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de altura como su consigna.
+  
+  \item Cmd\_L/R: Comando de desplazamiento horizontal lateral. Representa el valor de la consigna de posición lateral deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento lateral, como su valor de consigna. Se trata del eje de libertad asociado al alabeo.
+  
+  \item  Cmd\_F/B: Comando de desplazamiento horizontal frontal. Representa el valor de la consigna de posición frontal deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento frontal, como su valor de consigna. Se trata del eje de libertad asociado al cabeceo.
+  
+  \item Cmd\_T\_CW: Comando de giro en sentido horario. Representa el valor deseado de la velocidad de giro del drone, sobre sí mismo. Este valor será decodificado por la estación de tierra y enviado directamente al constructor de tramas, ya que este grado de libertad no se controla con un bucle cerrado de alto nivel. Se le deja su control exclusivamente a la electrónica propia del drone y su giróscopo interno. Se trata del eje de libertad asociado a la guiñada.
+  
+  \item PID\_Alt\_Kp: Parámetro de la constante proporcional de altura. Representa el valor deseado para la constante proporcional del bucle de control PID de altura. La diferencia  entre el valor de consigna de altura, Cmd\_ALT, y valor de altura medido por los sensores de a bordo, genera el valor de error de altura, componente del vector de error. Esta componente del error se multiplicará por el valor recibido en este campo para conseguir así la componente ``P'' del bucle de control de altura.
+  
+  \item  PID\_XY\_Kp: Parámetro de la constante proporcional de los ejes horizontales. Representa el valor deseado para las constantes proporcionales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica la misma tensión a ambos bucles de control. La diferencia  entre los valores de las consignas Cmd\_L/R y Cmd\_F/B y sus medidas por los sensores de posición de a bordo, generan los errores de posición horizontales, componentes del vector de error de posición. Estos errores se multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``P'' de los bucles de control de los ejes horizontales: Frontal y latera.
+  
+  \item RSV: Los bytes de las posiciones 9, 15 y 16 están reservados para posibles usos futuros. Tienen valores constantes a cero.
+  
+  \item T\_CW\_Trimm: Parámetro de corrección de giro del drone sobre sí mismo. Representa el valor del offset a añadir al valor del comando ``Cmd\_T\_CW'' a enviar hacia el drone. El objetivo de este parámetro es corregir de manera constante el valor de la velocidad de giro sobré si mismo enviado hacia el drone. Ya que este valor se encuentra controlado por un bucle abierto en la electrónica de la estación de tierra, si la electrónica propia del drone, tiene un error constante de giro que no pueda corregir, se aplicará la corrección necesaria a través del valor de este parámetro.
+  
+  \item  PID\_Alt\_Ki: Parámetro de la constante integral de altura. Representa el valor deseado para la constante integral del bucle de control PID de altura. El valor del error de altura comentado anteriormente, se integrará y multiplicará por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``I'' del  bucle de control de altura.
+  
+  \item PID\_Alt\_Kd: Parámetro de la constante derivativa de altura. Representa el valor deseado para la constante derivativa del bucle de control PID de altura. El valor del error de altura comentado anteriormente, se derivará y multiplicará por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``D'' del  bucle de control de altura. Este campo junto con los valores de los campos de las posiciones 7 y 11, completan los valores de los parámetros para el bucle de control cerrado PID de la altura.
+  
+  \item PID\_XY\_Ki: Parámetro de la constante integral de los ejes horizontales. Representa el valor deseado para las constantes integrales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes integrales de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se integrarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``I'' de los bucles de control de los ejes horizontales: Frontal y latera.
+  
+  \item PID\_XY\_Kd: Parámetro de la constante derivativo de los ejes horizontales. Representa el valor deseado para las constantes derivativas de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes derivativas de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se derivarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``D'' de los bucles de control de los ejes horizontales: Frontal y latera. Este campo junto con los valores de los campos de las posiciones 8 y 13, completan los valores de los parámetros para los bucles de control cerrado PID del plano horizontal, Controlador de posición Frontal y Controlador de posición lateral.
+\end{itemize}
+
+\section{Interfaz radio}
+\label{sec:Interfaz radio}
+
+Se encarga de comunicar la estación de tierra con la electrónica del drone, y los sensores de a bordo, tal como se muestra en la Figura~\ref{fig:SystArq}. Este interfaz porta información fundamental para el desempeño de la tarea de control de posición del drone. Se transmite información tanto de la posición del drone, como de las órdenes de velocidad que este deberá ejecutar. El objetivo de este interfaz es que la estación de tierra conozca la posición relativa del drone, y en base a esto, y a las instrucciones de mando que reciba, trate de dirigir y corregir en caso de error, dicha posición.\\
+Se trata de un enlace radio bidireccional entre la estación de tierra y el drone. Dividiremos este enlace en dos partes; la bajada, o downlink, que transmite información desde el drone hacia la estación de tierra. Y la subida, o uplink, que transmite información desde la estación de tierra hacia el drone.\\
+Ambos trabajan en la banda libre de 2.4GHz, pero en distintas frecuencias (canales). Así se consigue un enlace bidireccional full-duplex, en base a separación en frecuencia, o FDM. De esta manera ambos pueden estar transmitiendo información simultáneamente, sin colisionar, ni preocuparse de la complejidad y la bajada en la tasa de transferencia propia de un sistema de multiplexación por división en código, CDM.
+
+\subsection{Downlink}
+\label{subsec:Downlink}
+
+Se encarga de enlazar por radio los sensores de posición a bordo del drone con la estación de tierra. Porta la información medida por dichos sensores. Esta información se compone de una medida de distancia al suelo, o altura, tomada desde la parte media del drone. Una medida del desplazamiento frontal relativa al punto de despegue. Y una medida del desplazamiento lateral relativa también al punto de despegue.\\
+Las tres medidas se miden y transmiten por el interfaz radio en milímetros, considerando como origen de coordenadas, tanto para la altura como para los desplazamientos horizontales, la posición de despegue inicial.
+
+\subsubsection{Características}
+\label{subsubsec:Down_Car}
+
+Ocupa el canal 0x66 dentro de la banda libre de 2.4GHz utilizada por el transceptor NRF24L01. Se trata de una transmisión de baja potencia, con un alcance de unos 30 metros, transmitiendo a 1Mbps.
+
+\subsubsection{Formato de trama}
+\label{subsubsec:Down_FT}
+
+Se hace uso de un formato de tramas fijas, como para el caso de las tramas de mando. En este caso la longitud de la trama es de seis bytes. Y la posición de cada valor tampoco varía durante toda la ejecución.
+Cada trama es enviada en el instante inmediatamente posterior a la ejecución de las tres medidas de posición; altura, desplazamiento frontal y desplazamiento lateral. El formato de las tramas se muestra en la Figura~\ref{fig:down_frame}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Downlink.png}
+	\caption{Formato de trama de downlink}
+	\label{fig:down_frame}
+\end{figure}
+
+En estas tramas la sincronía está garantizada como parte del diseño de la transmisión realizada por la radio NRF24L01 y la forma en que esta se comunica con la electrónica de la estación de tierra, que se detallará más adelante. Por tanto los seis bytes de la trama son tres campos útiles de dos bytes cada uno.
+
+\begin{itemize}
+  \item H\_Pos\_F/B: Valor de la medida del desplazamiento frontal. Representa los milímetros de desplazamiento frontal desde el origen de coordenadas definido anteriormente. Se almacena en 16 bits consecutivos, y se codifica en complemento a dos.
+  
+  \item H\_Pos\_L/R: Homólogo al campo ``H\_Pos\_F/B'' con la salvedad de que este representa los milímetros de desplazamiento lateral desde el origen de coordenadas. Codificado también de la misma manera.
+  
+  \item Alt: Valor de la medida de altura. Representa los milímetros de desplazamiento vertical desde el origen de coordenadas. Se almacena en 16 bits consecutivos, y se codifica en binario plano, ya que no se contemplan alturas negativas para el marco de este TFG.
+  
+\end{itemize}
+
+Con estas tres medidas, la estación de tierra puede ubicar de manera relativa el drone, generando así el vector de posición necesario para realizar posteriormente las correcciones de posición respecto de las órdenes comandadas.
+
+\subsection{Uplink}
+\label{subsec:Uplink}
+
+Se encarga de enlazar por radio la estación de tierra con la electrónica del drone. Comunica las indicaciones de velocidad para cada eje, junto con canales auxiliares cuya función depende de cada drone. En este TFG no se hará uso de dichos canales auxiliares. 
+
+\subsubsection{Características}
+\label{subsubsec:Up_Car}
+
+De igual  manera que el interfaz de bajada, hace uso de una radio NRF24L01 en la banda de 2.4GHz. El módulo que gestiona este interfaz, controla la radio NRF24L01. Este módulo está diseñado para recibir los canales a codificar en la trama radio, desde una señal modulada por posición de pulso, PPM. Dicha modulación y sus características se describen más adelante en el apartado de interfaces de la estación de tierra, junto con el módulo que gestiona la radio del uplink. 
+
+\subsubsection{Formato de trama}
+\label{subsubsec:Up_FT}
+
+Este interfaz se compone de una transmisión de doce canales, de los cuales se hará uso exclusivamente de los cuatro primeros. Los ocho canales restantes portan comandos auxiliares, como la velocidad de reacción deseada para el drone, la cual se mantiene en su valor por defecto, y dependiendo del modelo exacto del drone utilizado, a veces se utilizan para disparar fotografías o video de la cámara instalada. El subsistema radio se encarga de transmitir la información contenida en la trama de la Figura~\ref{fig:up_frame} por radio hacia la electrónica del drone.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Uplink.png}
+	\caption{Formato de trama de uplink}
+	\label{fig:up_frame}
+\end{figure}
+
+\begin{itemize}
+  \item Cmd\_THR: Valor de velocidad de altura. Ocupa la primera posición en la trama. Representa el impulso deseado para el eje vertical del drone. Un valor de cero no tiene por qué implicar el apagado de los motores, depende de los valores de los siguientes dos canales. 
+  
+  \item Cmd\_R/L: Valor de velocidad de desplazamiento latera. Representa la velocidad de desplazamiento lateral deseada para el drone. Está asociado al grado de libertad del alabeo.
+  
+  \item Cmd\_F/B: Valor de velocidad de desplazamiento frontal. Representa la velocidad de desplazamiento frontal deseada para el drone. Está asociado al grado de libertad del cabeceo.
+  
+  \item Cmd\_T\_CW: Valor de velocidad de giro. Representa la velocidad de giro sobre sí mismo deseada para el drone. Está asociado al grado de libertad de la guiñada. 
+  
+  \item Aux: Algunos de los ocho canales adicionales tienen valores fijos y otros variables, dependiendo de su funcionalidad y del drone utilizado. Para este trabajo, estos canales se mantendrán con su valor por defecto.
+\end{itemize}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Módulos Software %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage % empezamos en página impar
+
 \chapter{Módulos Software}
 \label{chap:Módulos Software}
 
@@ -1307,10 +1320,130 @@ El drone mostró buen control de vuelo en tiempo cortos, por tanto fue válido par
 
 Tras las pruebas con el E010, inicialmente se tuvo que conseguir el mismo control sobre el X5C. Para ellos se modificó el código de enlace con el drone, ejecutado en el módulo de uplink, para conseguir control básico sobre el X5C. Una vez enlazado se hicieron pruebas de control en bucle abierto de igual manera que con el E010. El drone Syma, resulto también difícil de controlar en bucle abierto para vuelos de más de 10 o 15 segundos. A parte de sus desvíos poco previsibles en cada eje, lo cual dificultaba ejecutar correcciones en base a ?trimado?, este drone presentaba una degradación considerablemente notable en la potencia de los motores a medida que se gastaba la batería. Posiblemente debido a la baja calidad de las baterías y de los controladores de los motores, junto a la inexistencia de reguladores de tensión, este problema dificultaba extremadamente su control en altura, haciéndolo casi imposible en bucle abierto. Se procedió por tanto rápidamente a instalarle el sistema de medida de posición. El X5C si era capaz de levantar la electrónica embarcada, pero sus motores quedaban encendidos casi al máximo de su potencia para mantener el vuelo. Esto continuaba dificultando el correcto control en altura, generando oscilaciones de una amplitud imposible de corregir para el PID de altura. En este punto, al menos existía un mínimo de control sobre el drone, con escasa estabilidad. Por tanto se procedió a aligerar la electrónica con cambios menores, y aligerar el drone, con modificaciones mayores. Básicamente se libró al drone de todo aquello estrictamente innecesario para el vuelo. Se acortaron cables, se eliminaron luces de indicación de frente, soporte de cámara, amarre de batería, topes de motores, protecciones de aspas, tornillos, y media estructura de plástico del drone. Algunos elementos retirados se sustituyeron por puntos de soldadura o pegamento, en pro de aligerar todo lo posible. Al retirar media estructura, la resultante pecaba de exceso de flexibilidad y falta de rigidez, lo que eliminó parte de la independencia de ejes, pero permitió a los controladores, ganar bastante en cuanto a estabilización del drone. En este punto el trabajo pendiente se centró en mejorar los parámetros PID de los controladores diseñados para el drone previo al cambio de peso, ya que los anteriores no eran correctos con el nuevo sistema. Además se trabajó rotando dos baterías y controlando rigurosamente su nivel de carga, ya que aunque los bucles de control PID corrigen parte de la disminución de potencia en los motores debido a la descarga de las baterías, llegado un nivel de carga bajo, los parámetros de control mismos, dejaban de ser igual de efectivos, y la velocidad de respuesta también disminuía, lo que al final se traducía en el mismo efecto, parámetros PID inadecuados. Procurando trabajar con baterías en un rango de carga concreto, se minimizo lo suficiente este efecto como para poder mejorar la estabilidad y control sobre el drone.
 
+
+\section{Pruebas Unitarias}
+\label{sec:Pruebas Unitarias}
+
+En este apartado se describen las pruebas realizadas sobre los distintos módulos del sistema, previas a su integración.
+
+
+\subsection{Pruebas de los módulos de downlink}
+\label{subsec:Pruebas en modulos de downlink}
+
+Los softwares ejecutados en los módulos, downlink embarcado y downlink en la estación de tierra, se probaron inicialmente a través de sus interfaces de salida USB.\\
+Para el código del módulo de downlink embarcado, se preparó la lectura de los sensores y la transmisión por radio de los datos leídos, simultáneamente al envío por USB de los mismos. de esta manera se pudo verificar visualmente que los sensores medían de manera adecuada a través del USB. En la Figura~\ref{fig:DownDroneCap} se muestra una captura con las medidas extraídas por USB de los sensores de embarcados.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Drone_Sensors_Cap.png}
+	\caption{Captura de medidas con sensores de a bordo}
+	\label{fig:DownDroneCap}
+\end{figure}
+
+Para la comprobación del correcto funcionamiento del módulo donwlink en tierra y su enlace radio con el módulo embarcado, se procedió a encender ambos módulos de downlink y realizar lecturas en el interfaz UART\_Sensors de la estación de tierra (Figura~\ref{fig:SystArq}), tal como se realizó para el módulo de downlink embarcado. Contrastando estas medidas con las de la Figura~\ref{fig:DownDroneCap} se pudo comprobar la correcta medida de los sensores, empaquetado, transmisión y recepción en tierra de dichas medidas.
+
+
+\subsection{Pruebas del módulo de uplink}
+\label{subsec:Pruebas en modulo de uplink}
+
+Este módulo se verificó a través de las pruebas de enlace con los distintos drones utilizados durante el desarrollo del TFG. Estas se realizaron en el punto de partida del proyecto, durante la creación del código que cubre el objetivo~\ref{subsec:Enlace con el drone}. Durante el establecimiento del enlace entre el módulo de uplink y el drone, las luces de indicación de frente del drone cambian su patrón de parpadeo. En caso de un correcto enlace, dichas luces quedan fijas. Esta comprobación visual es suficiente para verificar el enlace, y de paso la correcta construcción y programación del módulo de uplink.
+
+
+\subsection{Pruebas de módulos software}
+\label{subsec:Pruebas de modulos software}
+
+El módulo dos de la estación de tierra (Procesado y comunicaciones en~\ref{subsubsec:GS_Mod2}, mostrado en el apartado~\ref{subsec:GS_Desc}) ejecuta el software principal del sistema, compuesto de múltiples módulos diseñados en Verilog. Los módulos más sencillos se instanciaron tras la codificación, directamente sobre el sistema final. Los módulos restantes, debido a su complejidad o impacto en la seguridad del sistema, se verificaron de manera individual a través de simulaciones lógicas, previa su integración.
+
+\subsubsection{Prueba de módulo decodificador de tramas de mando}
+\label{subsubsec:Prueba de modulo decodificador de tramas desde PC}
+
+El test consiste en enviar hacia el decodificador una trama completa para comprobar su correcta decodificación. Los valores incluidos en la trama van de 1 a 14 con valores crecientes. En la Figura~\ref{fig:FrameDecoderCap} se observa la trama enviada en la señal \textit{sink\_data} y su correcta decodificación junto a la señal de datos válidos asertada en el instante de recepción del último byte con valor 0x0E. El test solo captura en sus salidas los ocho primeros bytes ya que el módulo se diseñó originalmente para la recepción de tramas orientadas al control del drone en bucle abierto. Una vez comprobada la correcta decodificación de la trama, su funcionalidad de aumentó durante el desarrollo del trabajo para decodificar tramas completas, incluyendo los valores de los parámetros de los PIDs.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=17cm, keepaspectratio]{Imagenes/Cap_Mod_frame_decoder_SP13PI1.png}
+	\caption{Simulación funcional del módulo decodificador de tramas de mando}
+	\label{fig:FrameDecoderCap}
+\end{figure}
+
+\subsubsection{Prueba de módulo decodificador de tramas desde drone}
+\label{subsubsec:Prueba de modulo decodificador de tramas desde drone}
+
+De manera similar al test ejecutado para el módulo decodificador de tramas desde PC, este módulo se ensayó bajo recepción de una trama completa y posterior comprobación de su decodificación. En este caso, las señales recibidas son valores enteros de dieciséis bits en complemento a dos, separados en grupos de dos bytes. Por tanto el ensayo envía un valor negativo (-2) como desplazamiento frontal, un valor positivo mayor que 255 como desplazamiento lateral (400) y un valor positivo menor que 255 como altura (31). El resultado de la decodificación se muestra en la Figura~\ref{fig:FrameDroneDecoderCap}, de manera síncrona al pulso en la señal \textit{source\_data\_valid} en las tres señales posteriores.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=17cm, keepaspectratio]{Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png}
+	\caption{Simulación funcional del módulo decodificador de tramas de sensores}
+	\label{fig:FrameDroneDecoderCap}
+\end{figure}
+
+\subsubsection{Prueba de módulo conversor de pulsaciones}
+\label{subsubsec:Prueba de modulo conversor de pulsaciones}
+
+Este módulo fue ensayado como parte de las pruebas previas al diseño de la arquitectura final para el TFG. Durante la fase de control de bucle abierto se hizo uso de un módulo en la FPGA que recibía la pulsación de ciertas teclas en el PC y las codificaba como parte del proceso de identificación de tecla pulsada. La secuencia enviada en la señal \textit{sink\_data} de la Figura~\ref{fig:KeyPressCap} simula las pulsaciones ``w'', ``a'', ``w'', ``s'', ``d'', caracter desconocido, shift izquierdo, espacio y ``b''. Dichas pulsaciones se codifican con distintos valores de 0 a 6. Ignorando la entrada de una pulsación en un carácter desconocido.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=17cm, keepaspectratio]{Imagenes/Cap_Mod_KeyPress_SP6PI1.png}
+	\caption{Simulación funcional del módulo de conversión de pulsaciones}
+	\label{fig:KeyPressCap}
+\end{figure}
+
+\subsubsection{Prueba de módulos PID}
+\label{subsubsec:Prueba de modulos PID}
+
+Los módulos PID que controlan altura y desplazamientos frontal y lateral hacen uso de una lógica similar, salvando diferencias menores como el truncamiento de valores negativos para el caso del PID de altura y el ajuste de salida a los rangos esperados para la generación de las señales PPM. Los ensayos se realizaron en cuatro escenarios distintos, para comprobar el correcto funcionamiento de las distintas componentes:
+
+\begin{itemize}
+  \item TEST\_1: Ensaya la componente proporcional en sentido negativo. El resultado del bucle en negativo se observa en la señal \textit{pid\_prereg} de la Figura~\ref{fig:PIDAltCap}. Dicho valor es capado posteriormente a cero en el registro de salida del módulo PID \textit{source\_pid}.
+  
+  \item TEST\_2.1: Ensaya la componente integral en sentido positivo. Su crecimiento se observa sobre el registro \textit{error\_i\_acumm} con suma resultante sobre \textit{source\_pid}.
+  
+  \item TEST\_2.2: Tiene por objetivo ensayar el comportamiento del módulo para el caso de la puesta a cero de los parámetros que rigen el PID. Se desea conservar el valor integral, sin aplicar sobre el módulo correcciones adicionales o puestas a ceros inadecuadas.
+  
+  \item TEST\_3.1: En este caso de ensayo se pone a prueba la componente derivativa. Para ello se genera un error en sentido negativo y se observa el impacto de la derivada sobre la señal \textit{source\_pid} de la Figura~\ref{fig:PIDAltCap}.
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=18cm, keepaspectratio]{Imagenes/Cap_Mod_pid_altitude_SP19PI6.png}
+	\caption{Simulación funcional del módulo PID de altura}
+	\label{fig:PIDAltCap}
+\end{figure}
+
+\subsubsection{Prueba de módulo de comunicaciones UART}
+\label{subsubsec:Prueba de modulo de comunicaciones UART}
+
+El objetivo de este ensayo es comprobar que el módulo UART, responde al baud rate programdo y que la decodificación del byte entrante se realiza en el orden adecuado, a efectos de bit más y menos significativos. Se inyecta un cero, seguido de un uno a través de la señal \textit{sdin}, en orden de bit menos significativo primero. El resultado se puede observar en la señal data, síncrona con la señal data\_rdy de la Figura~\ref{fig:UARTCap}, sin errores de trama para ninguno de los dos casos ensayados.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=18cm, keepaspectratio]{Imagenes/Cap_Mod_uart_rx_SP8PI1.png}
+	\caption{Simulación funcional del módulo UART}
+	\label{fig:UARTCap}
+\end{figure}
+
+
+\subsubsection{Prueba de módulo de modulación PPM}
+\label{subsubsec:Prueba de modulo de modulación PPM}
+
+Este ensayo permite verificar las correctas transiciones entre los estados de cada canal y entre los 12 canales. En la Figura~\ref{fig:PPMCap} se observa el registro \textit{PPM\_STATE}, que almacena el estado encargado de contabilizar el tiempo a cero de cada pulso de bajada. Por otro lado el estado \textit{CHOOSE\_CHANNEL} se encarga de gestionar las transiciones para cada canal.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=18cm, keepaspectratio]{Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png}
+	\caption{Simulación funcional del módulo PPM}
+	\label{fig:PPMCap}
+\end{figure}
+
+Este ensayo permitió corregir errores en las transiciones entre estados, que producían saltos inadecuados.
+
+
 \section{Condiciones de los bucles de control}
 \label{sec:Condiciones de los bucles de control}
 
-Desde un punto de vista más alejado que solo centrarse en los parámetros PID de los bucles, existen algunos factores importantes que limitan los resultados obtenibles con una arquitectura concreta. Para el caso de este trabajo, la arquitectura elegida permitió usar tarjetas de desarrollo, en vez de hardware propietario. Pero a su vez implica ciertas limitaciones en el ancho de banda final del sistema, y sobre todo en las latencias. Ambos dos impactan en el resultado del control final.
+Desde un punto de vista alejado de los parámetros PID de los bucles de control, existen algunos factores importantes que limitan los resultados obtenibles con una arquitectura concreta. Para el caso de este trabajo, la arquitectura elegida permitió usar tarjetas de desarrollo en vez de hardware propietario, ahorrando tiempo de desarrollo y costes. Pero a su vez implicó ciertas limitaciones en el ancho de banda final del sistema y sobre todo en las latencias. Ambos dos tienen relación directa con el resultado de la calidad del control final.
 
 \subsection{Ancho de banda}
 \label{subsec:Ancho de banda}
