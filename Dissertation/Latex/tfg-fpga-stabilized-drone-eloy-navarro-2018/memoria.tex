@@ -83,7 +83,7 @@ Trabajo Fin de Grado/Máster
 \vspace{2.5cm}
 
 \LARGE
-HACIENDO PROGRAMABLE Y ESTABLE UN DRONE COMERCIAL ENRIQUECIDO Y CONTROLADO CON FPGA
+HACIENDO PROGRAMABLE Y ESTABLE CON FPGA UN DRONE COMERCIAL
 
 \vspace{3cm}
 
@@ -177,9 +177,9 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
 
-Dada la expansión de los drones en distintas tareas de la actualidad y del uso de las FPGAs como núcleos de procesamiento de un sistema, no solo como elemento para la agrupación de operaciones lógicas sencillas, resulta natural mezclar dichos dispositivos para beneficio mutuo. 
-A lo largo del proyecto se han diseñado distintos elementos software y hardware para permitirle a un conjunto de instrucciones ejecutadas en un ordenador, controlar por completo las operaciones y trayectoria de vuelo de un drone concreto, tanto en bucle abierto como cerrado. Este es capaz de obedecer las instrucciones de posición indicadas por el programa ejecutado, sin estabilización, control o intervención humana de por medio. Para ello se han diseñado elementos tanto en tierra, como a bordo del drone, que dotan al sistema de control autónomo sobre el vehículo. El control puede realizarse desde cualquier ordenador a través de la instalación de un paquete de librerías y la posterior ejecución de un programa en java. Todo el sistema se ha diseñado en base a FPGAs libres, drones de bajo coste y electrónica de tierra y a bordo del drone diseñados específicamente para la ocasión. De esta manera se dispone del control completo sobre el sistema diseñado, lo que permitiría mejoras y modificaciones futuras completas sobre el sistema, sin necesidad de incurrir en elevados costes de adquisición de software o hardware.
-Tras el diseño de los distintos elementos software y hardware, se han realizado verificaciones de cada elemento por separado y posteriormente se ha validado el sistema en su conjunto, mediante pruebas experimentales. Se han conseguido resultados especialmente satisfactorios con los sistemas en bucle cerrado, tanto en la estabilización como en el control del drone escogido.
+Dada la expansión de los drones en distintas tareas de la actualidad y del uso de las FPGAs como núcleos de procesamiento, resulta natural mezclar dichos dispositivos para beneficio mutuo.
+A lo largo de este proyecto se han diseñado distintos elementos software y hardware para permitirle a un conjunto de instrucciones ejecutadas en un ordenador, controlar por completo las operaciones y trayectoria de vuelo de un drone comercial. Este es capaz de obedecer las instrucciones de posición indicadas por el programa ejecutado, sin estabilización, control ni intervención humana de por medio. Para ello se han diseñado elementos tanto en tierra, como a bordo del drone, que dotan al sistema de control autónomo sobre el vehículo. El control puede realizarse desde cualquier ordenador a través de la instalación de un paquete de librerías y la posterior ejecución de un programa en java. Todo el sistema se ha diseñado en base a FPGAs y software libres, drones de bajo coste y electrónicas concretas para cubrir cada tarea. De esta manera se dispone del control completo sobre el sistema diseñado, permitiendo mejoras y modificaciones futuras sin necesidad de incurrir en elevados costes de adquisición de software o hardware.
+Tras el diseño de los distintos elementos se han realizado verificaciones de cada elemento por separado, integración y posterior verificación del sistema en su conjunto, mediante pruebas experimentales. Se han conseguido resultados especialmente satisfactorios con los sistemas en bucle cerrado, tanto en la estabilización como en el control del drone escogido.
 
 
 %\begin{itemize}
@@ -231,20 +231,23 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 \label{chap:Introducción} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-En la actualidad se ha extendido con rapidez el uso de drones y FPGAs, más allá del entorno militar en distintas áreas como vigilancia, cine, ocio, sistemas industriales, etc... Ambos dispositivos se han popularizado debido a su potencia y versatilidad de uso. Es un factor fundamental  en todas las aplicaciones para drones la capacidad de control sobre el mismo. Los drones son útiles porque se les puede estabilizar junto con la carga útil y controlar. Dicho control puede realizarse mediante distintos dispositivos, entre ellos FPGAs. Ciertas características convierten a las FPGAs en una elección sólida como núcleo del sistema de estabilización y dirección para los múltiples grados de libertad de un drone. En este TFG se hace uso de FPGAs libres para cubrir dichas tareas de control y estabilización fomentando además la propagación y uso de código abierto.\\
-A continuación se introducen algunas de estas características, junto con distintas aplicaciones y elementos que toman partido en la construcción del sistema
+El desarrollo de este trabajo fin de grado está orientado a crear la infraestructura necesaria para comandar un dron mediante un conjunto de instrucciones. El sistema lo compondrán un dron, una estación de tierra y un PC. Como se ha hecho en diseños previos \cite{ordonez2019control}, se ha escogido una FPGA para el núcleo de procesamiento, ubicado en la estación de tierra.
+\\
+En la actualidad se ha extendido con rapidez el uso de drones y FPGAs más allá del entorno militar, en distintas áreas como vigilancia, cine, ocio, sistemas industriales, etc... Ambos dispositivos se han popularizado debido a su potencia y versatilidad de uso. La capacidad de control y guiado sobre el vehículo y su carga útil resultan tareas fundamentales, llevadas a cabo habitualmente de diversas maneras. Guiado mediante imagen \cite{DroneImagen}, tele-dirección, ubicación global y controles abiertos o por posición son algunos métodos comunes. Este trabajo se centra en el control por posición del vehículo y su guiado mediante instrucciones prefijadas. Dicho sistema ejecutará bucles de control que puede realizarse mediante distintos dispositivos, entre ellos, FPGAs \cite{ordonez2018tfg}. Ciertas características las convierten en una elección sólida como núcleo del sistema de estabilización y dirección para los múltiples grados de libertad del drone. En este TFG se hace uso de un cuadricóptero comercial como dron y FPGAs libres para cubrir las tareas de control y estabilización, fomentando además el uso y propagación de código abierto.\\
+A continuación, se introducen algunas características de ambos dispositivos.
 
 
-\section{Sistemas básicos del drone}
+\section{Drones}
 \label{sec:Sistemas básicos del drone}
 
-Los drones se componen de distintos subsistemas para realizar sus tareas. Estos subsistemas cambian según el tipo de drone. Este TFG concretamente hace uso de un cuadricóptero comercial X5C del fabricante Syma. Por tanto se mencionan algunos sistemas propios de los cuadricópteros que no trabajan igual, o no se encuentran presentes necesariamente en otros tipos de drones. Algunos sistemas son específicos de cada aplicación, como puedan ser los estabilizadores de cámara usados en aplicaciones de grabación de video. Otros, por el contrario, son comunes a todos los cuadricópteros, como pueden ser la estructura, sensorización, electrónica de control, drivers de motores, motores y sistemas de gestión y almacenamiento de energía como baterías y reguladores. Además existen sistemas que si bien no son estrictamente necesarios para todas las aplicaciones, rara vez se ven excluidos, como son los sistemas de comunicaciones. A continuación se explican algunos de estos sistemas.
+Un dron hace referencia a una aeronave voladora no tripulada. Estas pueden ser pilotadas de manera remota, o mediante controles automáticos, dotándolas de distintos elementos según el mecanismo de control escogido y la tarea a cubrir.\\
+Este trabajo hace uso de un cuadricóptero comercial X5C del fabricante Syma. Por tanto se mencionan algunos sistemas propios de los cuadricópteros que no se encuentran presentes necesariamente en otros tipos de drones. Algunos sistemas son específicos de cada aplicación, como puedan ser los estabilizadores de cámara usados en aplicaciones de grabación de video. Otros, por el contrario, son comunes a todos los cuadricópteros, como la estructura, sensores, electrónica de control, drivers de motores, motores y sistemas de gestión y almacenamiento de energía (baterías y reguladores). Además existen sistemas que si bien no son estrictamente necesarios para todas las aplicaciones, rara vez se ven excluidos, como son los sistemas de comunicaciones. Procedemos a comentar algunos de estos componentes del dron a continuación.
 
 
 \subsection{Estructura}
 \label{subsec:Estructura}
 
-La estructura base de un drone es donde apoyan y montan el resto de componentes sus principales requisitos son reducir vibraciones, ser extremadamente rígida y ligera. Si las vibraciones no se viesen adecuadamente atenuadas, ciertas frecuencias podrían resonar mecánicamente a lo largo de toda la estructura, viendo comprometida la estabilidad del drone. Por su lado, la rigidez es fundamental ya que para un adecuado control del drone, se necesita asumir independencia de ejes. Por ejemplo, si asumimos que partimos de una situación estable, con el drone en vuelo a 1 metro de altura, si los cuatro motores generan impulso adicional por encima del necesario para mantenerse a dicha altura, en una estructura totalmente rígida, el drone sencillamente asciende, ya que el par de rotación de las cuatro aspas se cancela entre sí como se muestra en la Figura~\ref{fig:Drone} (asumiendo también el empuje de cuatro motores ideales).
+La estructura base o marco de un dron es donde apoyan y montan el resto de componentes. Sus principales requisitos son: amortiguar vibraciones, ser extremadamente rígida y ligera. Si las vibraciones no se viesen adecuadamente atenuadas, ciertas frecuencias podrían resonar mecánicamente a lo largo de toda la estructura, viendo comprometida la estabilidad del dron. Por su lado, la rigidez es fundamental, ya que para un adecuado control del dron, se necesita asumir independencia de ejes. Si partimos de una situación estable, por ejemplo, con el dron en vuelo a 1 metro de altura; si los cuatro motores generan el mismo impulso adicional (asumiéndolos ideales), en una estructura totalmente rígida el dron sencillamente ascendería. El par de rotación de las cuatro aspas se cancelaría entre sí, en caso de establecer el sentido de giro como muestra la Figura~\ref{fig:Drone}.
 
 \begin{figure}[h]
 	\centering
@@ -253,22 +256,22 @@ La estructura base de un drone es donde apoyan y montan el resto de componentes 
 	\label{fig:Drone}
 \end{figure}
 
-En caso de que la estructura no sea ideal, si por ejemplo asumimos una ligera asimetría de rigidez en uno de los ejes de apoyo de motores del drone, durante el empuje para ascender, sufriría una fuerza de torsión mayor que los demás, lo que forzaría al drone a girar sobre sí mismo como muestra la Figura \ref{fig:Drone_error}.
+En caso de que la estructura no resulte idealmente rígida; durante el empuje ascendente, se producirían momentos idénticos (M1, M2, M3 y M4 de la Figura \ref{fig:Drone_error}) sobre los cuatro motores, pero los ejes que unen dichos motores al marco sufrirían torsiones desiguales, lo que forzaría al dron a girar sobre sí mismo.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5cm, keepaspectratio]{Imagenes/Cuadricoptero_Pequeno_aspas_giro.jpg}
-	\caption{Error de rotación}
+	\includegraphics[width=7cm, keepaspectratio]{Imagenes/Mot_Mom.png}
+	\caption{Fuerzas asociadas a motores en dron}
 	\label{fig:Drone_error}
 \end{figure}
 
-Dicho error de rotación podría ser corregido por otros sistemas del drone que se comentan a continuación. Pero solo pueden corregirse hasta cierto punto, además de ocupar dichos sistemas en corregir errores que la propia estructura puede paliar si se construye adecuadamente, pudiendo llegar a saturarlos e impedirles realizar su tarea adecuadamente.
+Dicho error de rotación podría ser corregido por otros sistemas del dron, pero solo pueden corregirse hasta cierto punto, además de ocupar dichos sistemas en corregir errores que la propia estructura puede paliar si se construye adecuadamente, pudiendo llegar a saturarlos e impedirles realizar su tarea adecuadamente.
 
 
 \subsection{Sensores}
 \label{subsec:Sensores}
 
-Parte fundamental de todo cuadricóptero es un conjunto de sensores capaz de medir aceleraciones y giros. Para la mayoría de los drones comerciales incluido el utilizado en este TFG, se hace uso de acelerómetros y giróscopos MEMS, es decir elementos mecánicos y electromecánicos miniaturizados e integrados en solo chip. Por ejemplo un giróscopo y acelerómetro MEMS es en realidad un capacímetro diferencial conectado a un conjunto de láminas intercaladas, unas fijas al sustrato y otras libres como se muestra continuación en la Figura~\ref{fig:Masa_ST}.
+Parte fundamental de todo cuadricóptero es un conjunto de sensores capaz de medir aceleraciones y giros. Para la mayoría de los drones comerciales, incluido el utilizado en este TFG, se hace uso de acelerómetros y giróscopos MEMS \cite{ganssle2012designer}, es decir elementos mecánicos y electromecánicos miniaturizados e integrados en solo chip. Por ejemplo un giróscopo y acelerómetro MEMS es en realidad un capacímetro diferencial conectado a un conjunto de láminas intercaladas, unas fijas al sustrato y otras libres como se muestra continuación en la Figura~\ref{fig:Masa_ST}.
 
 \begin{figure}[h]
 	\centering
@@ -279,20 +282,20 @@ Parte fundamental de todo cuadricóptero es un conjunto de sensores capaz de medi
 
 Cuando se produce una aceleración sobre el chip, las láminas fijas al sustrato se desplazan con él, acercándose a ciertas láminas libres y alejándose de las demás, viendo por tanto su medida diferencial de capacidad alterada de manera proporcional a la aceleración, en base a la segunda ley de Newton. Esta construcción se realiza para cada eje y se integra en un solo chip, a menudo llamada plataforma inercial de tres ejes. De esta manera se facilita su integración en el sistema y se abaratan costes.\\
 Como en todo, hay calidades que definen las capacidades finales de un sistema. Para el caso de una plataforma inercial la resolución es un parámetro fundamental, tanto en la medida de las aceleraciones como de los giros.\\
-Por ilustrar un error de desplazamiento asociado a dichos sensores, cuando el sistema de control de drone se basa en un sensor incapaz de detectar cierto nivel de giro, es decir, una velocidad de giro suficientemente lenta y constante como para quedar por debajo del salto mínimo de velocidad que el sensor es capaz de resolver, ocurrirá que el drone, comenzara a girar a una velocidad considerablemente lenta, pero constante en ese sentido. Al no ser detectado, dicho error continuara creciendo, integrándose en el tiempo y posiblemente volviéndose notorio. Como para el caso de la estructura dicho error también podría ser corregido por otro tipo de sensor, pero a menudo estos no se instalan, debido al incremento del coste. Para esta situación, por ejemplo un sensor que aplicase una posible solución sería un magnetómetros a modo de brújula, que corregiría errores de giro considerablemente grandes, pero para el caso de los drones utilizados en este TFG, ninguno integra ningún sistema adicional para la corrección del giro, además del propio giróscopo. Este tipo de errores aplican a todos los ejes de todos los sensores, con mayor o menor impacto.
+Podemos ilustrar el error de desplazamiento asociado a dichos sensores, cuando el sistema de control de dron se basa, por ejemplo, en un giróscopo incapaz de detectar cierto nivel de giro. Es decir, una velocidad de giro suficientemente lenta y constante como para quedar por debajo del salto mínimo de velocidad angular que el sensor es capaz de resolver, produciría un giro indetectable y por tanto incorregible para el dron. Como para el caso de la estructura, dicho error también podría ser corregido por otro tipo de sensor, pero a menudo estos no se instalan, debido al incremento del coste. Para esta situación, por ejemplo, un sensor que aplicase una posible solución sería un magnetómetro a modo de brújula, corrigiendo errores de giro mediante orientación global. Ningún dron de los utilizados en este TFG integra sistema adicional para la corrección del giro, además del propio giróscopo.
 
 
 \subsection{Electrónica de Control}
 \label{subsec:Electrónica de Control}
 
-Este módulo es el encargado de procesar las señales de los sensores, entregando las respuestas necesarias para cubrir dos tareas; estabilizar el drone y en caso de recibir comandos por radio u otro mecanismo, modificar las órdenes a entregar a los sistemas de actuación en proporción. Para el caso de los cuadricópteros objeto de este TFG, los elementos de actuación son cuatro motores, y esta electrónica deberá cubrir ambas tareas, estabilización y modificación del comportamiento en base a comandos radio.\\
-En una situación de vuelo estable, el objetivo de esta electrónica es corregir las aceleraciones y giros con las órdenes adecuadas a los motores. Por ejemplo, si un sensor de aceleración detecta una aceleración a izquierdas, esta electrónica deberá responder generando una fuerza en sentido contrario, para este caso, consistirá en inclinar el drone ligera y proporcionalmente a derechas, para ello entregará mayor indicación de velocidad de giro a los drivers de los motores izquierdos, y menor a los derechos. Con esto el drone se inclinaría, corrigiendo la aceleración que de otro modo le hubiera desplazado hacia la izquierda. Este es un caso muy simplificado a modo de ejemplo. La electrónica a bordo computa las ecuaciones de movimiento para el cuadricóptero a la frecuencia que le permite su capacidad de proceso, junto con los tiempos de adquisición de los sensores y respuesta de los drivers y motores. 
+Este módulo es el encargado de procesar las señales de los sensores, entregando las respuestas necesarias para cubrir dos tareas; estabilizar el dron en giro y plano horizontal y en caso de recibir comandos por radio u otro mecanismo, modificar las órdenes a entregar a los sistemas de actuación, para obedecer. Para el caso de los cuadricópteros objeto de este trabajo, los elementos de actuación son cuatro motores, y esta electrónica deberá cubrir ambas tareas, estabilización y modificación del comportamiento en base a comandos radio recibidos desde la estación de tierra.\\
+En una situación de vuelo estable, el objetivo de esta electrónica es corregir las aceleraciones y giros con las órdenes adecuadas a los motores. Por ejemplo, si un sensor detecta una aceleración a izquierdas, esta electrónica deberá responder generando una fuerza en sentido contrario, para este caso, consistirá en inclinar el dron ligera y proporcionalmente a derechas. Para ello entregará mayor indicación de velocidad de giro a los drivers de los motores izquierdos, y menor a los derechos. Con esto el dron se inclinaría, corrigiendo la aceleración que de otro modo le hubiera desplazado hacia la izquierda. Este es un caso muy simplificado a modo de ejemplo. La electrónica a bordo computa las ecuaciones de movimiento para el cuadricóptero \cite{Quad_ecuations} a la frecuencia que le permite su capacidad de proceso, junto con los tiempos de adquisición de los sensores y respuesta de los drivers y motores.
 
 
 \subsection{Drivers y motores}
 \label{subsec:Drivers y motores}
 
-Este hardware es el encargado de convertir las órdenes de velocidad de giro, en giro real de las aspas conectadas a los motores. Cubren la función de transductores instrucción a fuerza, a través de etapas de potencia que dependen de la construcción de los motores. La estructura general se muestra en la Figura~\ref{fig:Drivers_gen}.
+Este hardware es el encargado de convertir las órdenes de velocidad de giro, en giro real de las aspas conectadas a los motores. Cubren la función de transductores, instrucción a fuerza, a través de etapas de potencia que dependen de la construcción de los motores. La estructura general desde el controlador, hasta los motores, se muestra en la Figura~\ref{fig:Drivers_gen}.
 
 \begin{figure}[h]
 	\centering
@@ -302,14 +305,14 @@ Este hardware es el encargado de convertir las órdenes de velocidad de giro, en 
 	\label{fig:Drivers_gen}
 \end{figure}
 
-Los motores pueden ser basados en escobillas, o libres de ellas. Cada tipo de motor tiene una forma concreta de ser controlado. Los que disponen de escobillas, se manejan mediante métodos de control de motores de corriente continua. Por tanto las etapas de potencia de los drivers se despreocupan de la posición del rotor respecto del estator y transmiten mayor o menor cantidad de corriente al bobinado, a través de puentes en H controlados por PWM. Para el caso de un motor sin escobillas, hay múltiples métodos de control para producir el giro. La dificultad reside en saber en qué instante y a qué velocidad se puede variar el campo magnético en las tres fases del motor. Para ello hay algunos sistemas basados en conocer la posición relativa entre el rotor y el estator mediante sensores de efecto hall. Otros sistemas en cambio, trabajan sin dichos sensores. A efectos de este TFG, todos los motores son de corriente continua.
+Los motores pueden ser basados en escobillas, o libres de ellas. Cada tipo de motor tiene una forma concreta de ser controlado \cite{Infi_Motors}. Los que disponen de escobillas, se manejan mediante métodos de control de motores de corriente continua. Por tanto las etapas de potencia de los drivers se despreocupan de la posición del rotor respecto del estator y transmiten mayor o menor cantidad de corriente al bobinado, a través de puentes en H controlados por PWM. Para el caso de un motor sin escobillas, hay múltiples métodos de control para producir el giro. La dificultad reside en saber en qué instante y a qué velocidad se puede variar el campo magnético en las tres fases del motor. Para ello hay algunos sistemas basados en conocer la posición relativa entre el rotor y el estator mediante sensores de efecto hall. Otros sistemas en cambio, trabajan sin dichos sensores. A efectos de este TFG, todos los motores son de corriente continua.
 
 
 \subsection{Comunicaciones}
 \label{subsec:Comunicaciones}
 
-Dependiendo del tipo de drone, no es estrictamente necesario disponer de un sistema de comunicaciones radio, ya que puede ser sustituido por un conjunto de instrucciones a ejecutar a bordo del drone, sin necesidad de ver su comportamiento modificado durante el vuelo. Pero tanto para el caso de drones teledirigidos, como para el de este TFG, la radio es un componente fundamental, encargada de comunicar la electrónica del drone, con la electrónica en tierra que tiene por objetivo dirigir el drone.
-Aquí rigen múltiples tipos de sistemas y estándares, el más común se encuentra en banda libre de 2.4Ghz y es en el que se apoya este TFG. Se envían comandos radio digitales en forma de tramas de doce paquetes, siendo cada paquete un canal del drone. Los cuatro canales comunes a todo drone, y utilizados en esta trabajo son: Altura (Uz), cabeceo (pitch), guiñada (yaw) y alabeo (roll) ordenados como se muestra en la Figura~\ref{fig:YawPitchRoll}.
+Dependiendo del tipo de dron, no es estrictamente necesario disponer de un sistema de comunicaciones radio, ya que puede ser sustituido por un conjunto de instrucciones a ejecutar a bordo del dron, sin necesidad de ver su comportamiento modificado durante el vuelo. Pero tanto para el caso de drones teledirigidos, como para el de este TFG, la radio es un componente fundamental, encargada de comunicar la electrónica del dron, con la electrónica en tierra que tiene por objetivo dirigir el dron.
+Aquí rigen múltiples tipos de sistemas y estándares, el más común se encuentra en banda libre de 2.4Ghz y es en el que se apoya este TFG. Se envían comandos radio digitales en forma de tramas de doce paquetes, siendo cada paquete un canal del dron. Los cuatro canales comunes a todo dron, y utilizados en esta trabajo son: Altura (-Uz), cabeceo (pitch), guiñada (yaw) y alabeo (roll) ordenados como se muestra en la Figura~\ref{fig:YawPitchRoll}.
 
 \begin{figure}[h]
 	\centering
@@ -323,14 +326,13 @@ Aquí rigen múltiples tipos de sistemas y estándares, el más común se encuentra e
 \section{Aplicaciones de vehículos aéreos no tripulados}
 \label{sec:Aplicaciones}
 
-Un drone tal y como lo conocemos actualmente es una aeronave que vuela sin tripulación. Las aplicaciones de los drones son muchas, desde su inicio en el sector militar como muchas otras tecnologías, se ha extendido su utilización a áreas de otros sectores rápidamente. A continuación se mencionan algunos casos interesantes.
+Un dron tal y como lo conocemos actualmente es una aeronave que vuela sin tripulación. Las aplicaciones de los drones son muchas, desde su inicio en el sector militar, como muchas otras tecnologías, se ha extendido su utilización a áreas de otros sectores para cubrir tareas variadas. A continuación se mencionan algunos casos interesantes.
 
 
 \subsection{Agricultura}
 \label{subsec:Agricultura}
 
-Una de las áreas con mayor impacto en el desarrollo y aplicación esta siendo el sector agrícola. Con hectáreas de cultivos que controlar, y cada vez más tipos de sensores, se utilizan desde control de plagas, hasta por ejemplo, exploración de viñedos para determinar el mejor momento para la vendimia. A menudo hacen uso de controladores basados en ubicación global a través de GPS para el control de posición y trayectoria del drone, y de sensores ópticos y multiespectrales para determinar parámetros como la actividad clorofílica o su estrés hídrico. Este es el caso del sensor Sequoia+ de Parrot de la Figura~\ref{fig:Sequo}.
-
+Una de las áreas con mayor impacto en el desarrollo y aplicación esta siendo el sector agrícola. Con hectáreas de cultivos que controlar, y cada vez más tipos de sensores, se utilizan desde control de plagas, hasta por ejemplo, exploración de viñedos para determinar el mejor momento para la vendimia. A menudo hacen uso de controladores basados en ubicación global a través de GPS para el control de posición y trayectoria del dron, y de sensores ópticos y multiespectrales para determinar parámetros como la actividad clorofílica o su estrés hídrico. Este es el caso del sensor Sequoia+ de Parrot \cite{parrot2019parrot} de la Figura~\ref{fig:Sequo}. Dicho sensor se monta a bordo del dron que vaya a realizar la misión.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=10cm, keepaspectratio]{Imagenes/Parrot_Sequoia.jpg}
@@ -338,14 +340,13 @@ Una de las áreas con mayor impacto en el desarrollo y aplicación esta siendo el 
 	\caption{Sensor óptico Sequoia+}
 	\label{fig:Sequo}
 \end{figure}
-
-De esta manera se analiza desde el cielo cuanta luz absorben y reflejan las plantas, permitiendo optimizar la producción del agricultor.
+De esta manera se analiza desde el cielo, por ejemplo, cuanta luz absorben y reflejan las plantas, permitiendo optimizar la producción del agricultor.
 
 
 \subsection{Seguridad y rescate}
 \label{subsec:Seguridad y rescate}
 
-Debido a la ventaja de volar a alturas inferiores que las de un helicóptero, se ha extendido el uso de los drones al rescate de personas. Integrando cámaras de alta resolución en los mismos, y sistemas de localización de desaparecidos, como es el caso del proyecto de seguridad ``LifeSeeker'' de Centum se podría ubicar a personas desaparecidas. El dispositivo de la Figura~\ref{fig:Lifeseeker} ha sido diseñado para instalarse en aviones no tripulados. El sistema embarcado hace uso de los móviles de los desaparecidos, aun fuera de las zonas de cobertura, como si se tratasen de radiobalizas, permitiendo así su localización.
+Debido a la ventaja de volar a alturas inferiores que las de un helicóptero, se ha extendido el uso de los drones al rescate de personas. Integrando cámaras de alta resolución en los mismos, y sistemas de localización de desaparecidos, como es el caso del proyecto de seguridad ``LifeSeeker'' \cite{Lifeseeker} de Centum se podría ubicar a personas desaparecidas. El dispositivo de la Figura~\ref{fig:Lifeseeker} ha sido diseñado para instalarse en aviones no tripulados \cite{Lifeseeker_Noticia}. El sistema embarcado hace uso de los móviles de los desaparecidos, aun fuera de las zonas de cobertura, como si se tratasen de radiobalizas, permitiendo así su localización.
 
 \begin{figure}[h]
 	\centering
@@ -355,136 +356,48 @@ Debido a la ventaja de volar a alturas inferiores que las de un helicóptero, se 
 	\label{fig:Lifeseeker}
 \end{figure}
 
-Otros ejemplos de sistemas basados en drones, los han utilizado para reparto masivo de medicamentos o incluso envíos de sangre para transfusiones.
+Otros ejemplos de sistemas basados en drones, los han utilizado para reparto masivo de medicamentos o incluso envíos de sangre para transfusiones \cite{Envio_Sangre_drone}.
 
 
 \subsection{Envíos}
 \label{subsec:Envios}
 
-En esta aplicación, ha habido controversia relacionada con el control aéreo. La legislación actual dificulta el desarrollo en esta industria a la misma velocidad que se han expandido los drones en otras áreas. No obstante empresas como DHL o Amazon han desarrollado tecnologías al respecto y las han probado e implantado en zonas en las que dichas limitaciones no funcionan de la misma manera. A través de este servicio, Amazon envían paquetes en tiempo inferiores a los 30 minutos usando drones como el de la Figura~\ref{fig:AmaDrone}. Son sistemas híbridos con despegue vertical y vuelo horizontal. Gozan de navegación autónoma guiada por GPS y controlan el espacio aéreo a su alrededor mediante visión artificial, para evitar obstáculos y localizar su área de aterrizaje.
+En esta aplicación, ha habido controversia relacionada con el control aéreo. La legislación actual dificulta el desarrollo en esta industria a la misma velocidad que se han expandido los drones en otras áreas. No obstante empresas como DHL o Amazon han desarrollado tecnologías al respecto \cite{Drone_env} y las han probado e implantado en zonas en las que dichas limitaciones no funcionan de la misma manera. A través de este servicio, Amazon envían paquetes en tiempo inferiores a los 30 minutos usando drones como el de la Figura~\ref{fig:AmaDrone}. Son sistemas híbridos con despegue vertical y vuelo horizontal. Gozan de navegación autónoma guiada por GPS y controlan el espacio aéreo a su alrededor mediante visión artificial, para evitar obstáculos y localizar su área de aterrizaje.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=12cm, keepaspectratio]{Imagenes/prime-air_04.jpg}
 	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{Drone de Amazon en prueba real de envío}
+	\caption{dron de Amazon en prueba real de envío}
 	\label{fig:AmaDrone}
 \end{figure}
-
-
-\section{Sistemas de control}
-\label{sec:Sistemas de control}
-
-Los sistemas de control de un drone se basan principalmente en bucles de control, ejecutados por la electrónica de control antes mencionada. Estos sistemas son la herramienta principal para garantizar la estabilidad de vehículo. Los sistemas de control ejecutados dirigen la corriente en cada motor para mantener el sistema estable. Además de los sistemas comunes a todo drone, este TFG hace uso de sus propios bucles de control para conseguir su objetivo. Estos bucles, trabajan de manera simultánea y paralela a los propios del drone. A efectos del trabajo realizado, los bucles de control implementados en este TFG se consideraran los de mayor nivel, ya que son los encargados de comandar a los intrínsecos del drone, considerados de bajo nivel.\\
-Los sistemas de control usados en este TFG son de dos tipos, bucle abierto y bucle cerrado, cada uno utilizado de una manera concreta en distintas partes del sistema.
-
-
-\subsection{Bucle abierto}
-\label{subsec:Bucle abierto}
-
-Los bucles abiertos reciben una señal y producen una respuesta concreta resultado de convolucionar la entrada, con la función de transferencia del bucle. Pueden ser lineales e invariantes en el tiempo, o no, dependiendo de la necesidad concreta que deban cubrir. Su respuesta es enviada hacia los actuadores, o bucles de siguiente nivel como se muestra en la Figura~\ref{fig:OpenLoop}. La respuesta del controlador de bucle abierto es independiente de la situación del drone, respuestas de sensores, posición, ubicación y demás. Por tanto, asumiendo el caso de un bucle de control abierto invariante y sin memoria, si se ejecuta en dos ocasiones con la misma señal de entrada, producirá dos veces la misma señal de salida.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=16cm, keepaspectratio]{Imagenes/Open_loop_Controller.png}
-	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{Esquema básico de un sistema de control de bucle abierto}
-	\label{fig:OpenLoop}
-\end{figure}
-
-En relación al trabajo realizado, este tipo de bucle se usa por ejemplo en el control de la guiñada, en la cual, es un bucle cerrado de bajo nivel el que se encarga de girar lo indicado por el bucle abierto de nivel superior programado en la FPGA de control.
-
-El comportamiento de este tipo de bucles difiere de los bucles cerrados mencionados en el siguiente punto.
-
-
-\subsection{Bucle cerrado}
-\label{subsec:Bucle cerrado}
-
-Los bucles cerrados hacen uso de dos señales de entrada. Una de ellas es el comando, es la señal que indica el objetivo a alcanzar en algún parámetro concreto por el bucle. Otra es la señal recibida de alguna otra parte del sistema o sensor, capaz de medir e informar sobre el estado del parámetro objetivo. Ambas señales se restan y producen una señal de error que es entregada al controlador, como se muestra en la Figura~\ref{fig:ClosedLoop}. Este opera de la misma manera que para el bucle abierto, generando una respuesta que es entregada a otro módulo, ya sea un bloque de menor nivel o un actuador.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=16cm, keepaspectratio]{Imagenes/Closed_Loop_Controller.png}
-	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{Esquema básico de un sistema de control de bucle cerrado}
-	\label{fig:ClosedLoop}
-\end{figure}
-
-Estos bucles de control si tienen en cuenta el estado actual del parámetro objetivo para realizar su corrección. Al realizar una medición sobre el mismo, pueden acomodar la respuesta del controlador a valores ajustados a la situación actual del parámetro a modificar. Pudiendo darse el caso, de que para una entrada distinta de cero, la salida del sistema hacia los actuadores, sea cero. Este sería el caso en el que el valor comandado en la entrada, es igual que el valor medido por el sensor, generando por tanto una señal de error cero (asumiendo por ejemplo una respuesta proporcional del controlador).
-
-
-\subsection{Algoritmos de control PID}
-\label{subsec:Algoritmos de control PID}
-
-Este TFG hace uso de controladores PID. Ejecuta esta clase de sistema de control a través de algoritmos que calculan el error como la diferencia entre una señal de comando (instrucción de mando desde PC) y una señal entrante (medida de un sensor). Dicho error (e(t) en la Figura~\ref{fig:PID_Controller}) entonces pasa por tres procesos paralelos.
-
-\begin{itemize}
-  \item Un proceso de proporción: Su multiplica el error por una constante proporcional según la ecuación~\ref{eq:P}. El objetivo es aproximar el error a cero a través de actuar sobre el sistema, de manera proporcional al error existente en cada evaluación del bucle.
-	\begin{equation}
-		P[n] = Kp \cdot e[n]
-	\label{eq:P}
-	\end{equation}
-  
-  \item Un proceso de integración: El error recibido se suma en una variable de acumulación. Esta integra la medida de error actual, junto con todas las anteriores recibidas según la ecuación~\ref{eq:I}. El resultado es multiplicado por una constante de integración. El objetivo de esta componente, es eliminar error estacionario inalcanzable para el control proporcional. Una vez regulado el valor de la constante proporcional, ocurre que cierto error sigue presente. Este error se suma a sí mismo en cada ejecución del bucle, de tal manera que la acumulación crece lo suficiente como para que se produzca una respuesta sobre los actuadores, capaz de corregirlo. Se puede deducir que una vez corregido en un caso idea, el valor del acumulador dejaría de variar.
-	\begin{equation}
-		I[n] = Ki \sum_{0}^{n} e[n]
-	\label{eq:I}
-	\end{equation}
-  
-  \item Un proceso de derivación: El error previamente almacenado se resta al error de este instante generando la componente derivativa de la ecuación~\ref{eq:D}. El resultado es multiplicado por una constante de derivación. Los dos bucles anteriores tienen el objetivo de corregir el error. En el desarrollo de su tarea, existe la posibilidad de que el sistema oscile. La componente proporcional puede ajustarse para trabajar fuera del régimen de sobreoscilación, pero esto no ocurre con la componente integral, la cual por definición genera un retardo en la respuesta de los actuadores que produce oscilación. Esta puede ser tan pequeña que se vuelva imperceptible, de no ser así, la componente derivativa puede ayudar a minimizar las oscilaciones. Ya que calcula la derivada del error, cuanto este cambia bruscamente, por ejemplo cuando el sistema se acerca rápidamente a la posición de la consigna, la derivada en el tiempo también crecerá, pero en sentido contrario. De tal manera que la componente derivativa ayudará entonces a frenar el sistema, dotando al controlador de un grado de suavidad en el acercamiento hacia el error. Esto disminuye las oscilaciones, por tanto se puede deducir que esta componente resultará en cero en caso de un sistema ideal sin oscilaciones, ya que el error no variaría.
-	\begin{equation}
-		D[n] = Kd \cdot (e[n]-e[n-1])
-	\label{eq:D}
-	\end{equation}
-  
-\end{itemize}
-
-El resultado de los 3 procesos previos se suma en una única señal de error construyendo la señal u(t) como se muestra en la Figura~\ref{fig:PID_Controller}.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[]{Imagenes/PID_Figure.png}
-	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{Esquema de un controlador PID}
-	\label{fig:PID_Controller}
-\end{figure}
-
-El resultado de la suma de la Ecuación~\ref{eq:pid} será la variable usada para tratar de corregir el error existente. Es decir, será la variable a entregar a los distintos actuadores del sistema, dependiendo de en que parte se encuentre el PID ejecutado.
-
-\begin{equation}
-	u[n] = P[n] + I[n]+D[n]
-\label{eq:pid}
-\end{equation}
 
 
 \section{FPGA}
 \label{sec:FPGA}
 
-\subsection{Concepto}
-\label{subsec:Concepto}
-
-Las siglas hacen referencia a un array de puertas lógicas reprogramables in situ. Son una evolución de una tecnología similar llamada CPLD que disponía de una densidad de puertas lógicas por centímetro cuadrado menor.\\
-Una FPGA es un dispositivo capaz de realizar pequeñas operaciones lógicas y almacenar sus resultados en biestables. Dichas operaciones lógicas y memorias pueden interconectarse de manera muy flexible, permitiendo llevar a cabo operaciones y tareas mucho más complejas, a través de una adecuada programación de los elementos más básicos. Dicha programación se realiza en un lenguaje de descripción de hardware. Para el caso de este trabajo se ha hecho uso de Verilog 2001. Un lenguaje similar a C en aspecto, pero con un concepto de fondo radicalmente distinto.
+Las siglas hacen referencia a un array de puertas lógicas reprogramables in situ (Field Programmable Gate Array). Son la evolución de una tecnología previa similar llamada CPLD, que gracias a una reordenación de los elementos que las componían, consiguen una mayor densidad de puertas lógicas por centímetro cuadrado.\\
+Una FPGA es un dispositivo que agrupa elementos capaces de realizar pequeñas operaciones lógicas y almacenar sus resultados en biestables. Dichas operaciones lógicas y memorias pueden interconectarse de manera muy flexible, permitiendo llevar a cabo operaciones y tareas mucho más complejas. Su programación se realiza a través de lenguajes de descripción de hardware, orientados a trabajar a bajo nivel. Para el caso de este trabajo se ha hecho uso de Verilog 2001. Un lenguaje similar a C en aspecto, pero con un concepto de fondo radicalmente distinto. A continuación se comentan algunas características y aplicaciones actuales de las FPGAs.
 
 \subsection{Características}
 \label{subsec:Características}
 
-Una FPGA dispone de ciertas características que le ofrecen una ventaja sobre opciones programables más tradicionales, como puede ser un procesador secuencial.\\
-Una FPGA puede ser programada de tal manera que ejecute un conjunto de instrucciones concreto varias veces de manera simultánea sin verse disminuido su rendimiento global. En el caso de un procesador secuencial, si se desea realizar una tarea adicional, o sencillamente ejecutar dos veces la misma sección del código, solo suele haber dos opciones; que haya hardware dedicado por duplicado construido sobre el mismo silicio, cosa que no suele ocurrir para todas las necesidades de un sistema, sino solo en casos puntuales. O realizar una ejecución del código mientras la segunda ejecución espera a que la primera termine. Una FPGA en cambio es capaz de construir el mismo sistema hardware tantas veces como recursos hardware disponga, permitiendo que todos ellos ejecuten en paralelo, sin un mínimo detrimento del rendimiento en ninguno de ellos. Esta ventaja es de especial importancia en procesos de control cuya terea puede dividirse en muchas, como es el caso del procesamiento de imágenes por ejemplo. O en sistemas paralelos de procesado digital de señales. El segundo caso está muy relacionado con este TFG, debido a la ejecución de múltiples sistemas de comunicaciones simultáneamente a la ejecución de cuatro bucles de control paralelos.\\
-Otra potente característica es su capacidad de re-configuración dinámica. Esta les ha otorgado popularidad en aplicaciones en las que se requiere rediseñar por completo el sistema de procesado, sin necesidad de un cambio físico sobre el hardware. Esto sobrepasa la idea de por ejemplo reconfigurar los coeficientes de un filtro de una parte concreta de una arquitectura de demodulación, por la capacidad de reconstruir toda la arquitectura. Convirtiendo el nuevo sistema en un demodulador completamente diferente, no solo a efectos de bandas, códigos y demás, sino de idea o concepto completamente nuevo, sobre el mismo hardware.
+Una FPGA dispone de ciertas características que le ofrecen ventaja sobre opciones programables más tradicionales, como procesadores secuenciales. Estas pueden ser programadas de tal manera que ejecuten un conjunto de instrucciones concreto varias veces en paralelo, sin ver disminuido su rendimiento global, ni impactar en otros módulos pre-programados. Para un procesador secuencial, realizar la misma tarea dos veces, supone esperar a que la primera acabe para ejecutar la segunda, o disponer de hardware dedicado por duplicado, construido sobre el mismo silicio, opción no siempre disponible. Una FPGA, en cambio, es capaz de construir el mismo sistema hardware tantas veces como recursos hardware disponga, permitiendo que todos ellos ejecuten en paralelo, con un detrimento del rendimiento mínimo y controlable. Esta ventaja es de especial importancia en procesos de control cuya tarea puede dividirse en muchas, como en procesamiento de imágenes, o sistemas de procesado digital de señales. El segundo caso está muy relacionado con este TFG, debido a la ejecución simultanea de múltiples sistemas de comunicaciones, junto con cuatro bucles de control PID paralelos.\\
+Otra potente característica es su capacidad de re-configuración dinámica. Esta les ha otorgado popularidad en aplicaciones en las que se requiere rediseñar por completo el sistema de procesado, sin necesidad de un cambio físico sobre el hardware. Permiten modificar, por ejemplo, un filtro completo, no solo el valor de sus coeficientes; o reordenar los módulos de un sistema de telecomunicaciones, dotándolo de funciones completamente diferentes en base a una arquitectura radicalmente nueva. Características como esta hacen que estos dispositivos se popularicen para nuevas aplicaciones.
 
 \subsection{Aplicaciones}
 \label{subsec:Aplicaciones}
 
 Como se ha mencionado antes, las FPGAs cubren un espectro muy grande de aplicaciones, ya que van desde las típicas sustituciones de sistemas digitales combinacionales, a núcleo de sistemas paralelos, en ocasiones inabordables para un procesador secuencial estándar.\\
-Algunas aplicaciones potentes a día de hoy para FPGAs son por ejemplo la visión artificial en procesos industriales y en seguridad. Son tareas que a menudo se han llevado a cabo por procesadores gráficos que en su esencia son una mezcla de muchos pequeños procesadores pensados para realizar cómputos geométricos simples, y que actualmente se están sustituyendo por FPGAs debido a la flexibilidad y potencia de las mismas.\\
-También se comienzan a utilizar como aceleradores de redes neuronales convolucionales debido a la que los avances en unidades de procesamiento gráfico no alcanzan a cubrir las necesidades de proceso para dichas redes. Las GPUs de manera individual, tienen mayor capacidad de proceso que una FPGA de grado medio, pero estas últimas ofrecen un consumo mucho más bajo y mayor capacidad de clustering, por estos motivos, son la elección para sustituir a los aceleradores gráficos en este campo.
+Algunas aplicaciones potentes a día de hoy para FPGAs son, por ejemplo, la visión artificial, procesos industriales o procesador de redes neuronales \cite{FPGAs_Neurals}. Estos últimos a menudo se han llevado a cabo por procesadores gráficos que, en su esencia, son una mezcla de muchos pequeños procesadores pensados para realizar cómputos geométricos simples. En ocasiones se están sustituyendo por FPGAs debido a la flexibilidad, potencia y capacidad de re-configuración de las mismas \cite{zhu2003fpga}. Los avances en unidades de procesamiento gráfico, a menudo no alcanzan a cubrir las necesidades de dichas redes y  dispositivos FPGA equivalentes en potencia, suelen disponer de mayor eficiencia energética y facilidad para el clustering.\\
+Gracias a su robustez son también utilizadas en entornos de seguridad como los ferroviarios, e incluso comienzan a invadir entornos menos comunes, como el espacial.
+
 
 \subsection{FPGAs Libres}
 \label{subsec:FPGAs Libres}
 
 Son aquellas en las que se encuentra disponible toda la información de su diseño interno, formatos de almacenamiento de datos (BitStream) y en general todo aquello necesario para que un diseñador sea capaz de crear las herramientas de software necesarias para programar dichos dispositivos.\\
-En la actualidad muchas de las herramientas de diseño software para FPGAs son software propietario con un elevado coste de adquisición. Sobre todo aquellas versiones de los entornos integrados de desarrollo que incluyen la mayor cantidad de comodidades, módulos IP pre-compilados y herramientas posibles. Este es el caso de Quartus, distribuido por Intel para sus FPGAs que incluye una versión gratuita, muy limitada de prestaciones y con ciertas limitaciones, o Vivado de Xilinx. En contraposición a este tipo de software se encuentra el software libre, o abierto, en general englobado bajo licencias GPL (General Public License) que tienen por objetivo defender su libre distribución sin necesidad de adquirir licencias de pago. Bajo este tipo de licencias se encuentra software como Icestudio (Figuras~\ref{fig:icelogo} y \ref{fig:icestudio}), orientado al diseño de software para FPGAs de Lattice, en constante crecimiento. Una de las familias de FPGAs recientemente cubiertas por este software son las ICE40 UltraPlus, concretamente la ICE40UP5K utilizada para desarrollar el núcleo de proceso de la unidad de tierra en este TFG que se detallará más adelante en este informe.
+En la actualidad muchas de las herramientas de diseño software para FPGAs son software propietario con un elevado coste de adquisición. Sobre todo aquellas versiones de los entornos integrados de desarrollo que incluyen la mayor cantidad de comodidades, módulos IP pre-compilados y herramientas posibles. Este es el caso de Quartus, distribuido por Intel para sus FPGAs, que incluye una versión gratuita, muy limitada de prestaciones y capacidades, o Vivado de Xilinx, en una situación similar. En contraposición a este tipo de software se encuentra el software libre, o abierto, en general englobado bajo licencias GPL (General Public License) que tienen por objetivo defender su libre distribución sin necesidad de adquirir licencias de pago. Bajo este tipo de licencias se encuentra software como Icestudio (Figuras~\ref{fig:icelogo}), orientado al diseño de software para FPGAs de Lattice, en entornos gráficos con editor de texto, o esquemas de bloques como en la Figura \ref{fig:icestudio}, en constante crecimiento. Una de las familias de FPGAs recientemente cubiertas por este software son las ICE40 UltraPlus, concretamente la ICE40UP5K. Esta FPGA es la utilizada para desarrollar el procesador de la estación de tierra durante el desarrollo de este TFG, que se detallará más adelante en este informe.
 
 \begin{figure}[h]
 	\centering
@@ -503,95 +416,6 @@ En la actualidad muchas de las herramientas de diseño software para FPGAs son so
 \end{figure}
 
 
-\section{Mecanismos de comunicación}
-\label{sec:MecCom}
-
-A lo largo de este trabajo, se hace uso de diferentes estándares y protocolos de comunicación para enlazar distintos módulos, permitiéndoles comunicarse entre ellos de una manera determinada. Aquí se comentan algunos de los mecanismos empleados en el informe.
-
-\subsection{UART}
-\label{subsec:UART}
-
-Se trata de un sistema de comunicaciones serie asíncronas (Universal Asynchronous Receiver Transmitter) capaz de realizar una comunicación full dúplex bidireccional con tan solo dos hilos, transmisión y recepción (más un tercero, a modo de referencia, si los dispositivos en comunicación no gozasen de una referencia común de tensión). Se utiliza cada hilo exclusivamente para cada sentido de la comunicación.\\
-En el sistema se utilizan comunicaciones asíncronas en dos ubicaciones distintas. En la Figura~\ref{fig:uartframe} se muestra la transmisión de un byte que incluye bit de paridad. En el trabajo realizado, este bit no está en uso, el resto de la configuración es idéntica a la utilizada. Se comienza con el bus a nivel alto. El primer flanco de bajada marca la llegada del bit de inicio de paquete, ``START''. Seguido de los ocho bits de datos comenzando por el bit de menor peso ``D0'', y acabando con un último bit de parada ``STOP'', este indica el final del paquete. La línea roja del cronograma de la Figura~\ref{fig:uartframe}, muestra el instante de detección del bit de inicio, y  los posteriores instantes de muestreo de cada bit. Los bits se reciben a la tasa de transferencia preestablecida de 500Kbps, en caso contrario, se perdería la sincronía con el byte en transmisión, pudiendo perder, o recibir prematuramente el bit de parada (dependiendo de si el error en la tasa de transferencia es por exceso o por defecto), produciéndose un error de ``framing''. En caso de transferirse adecuadamente, el valor del byte estaría disponible al recibir el último bit transmitido, ``D7''.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm]{Imagenes/UART_funcionamiento.png}
-	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{Formato de paquete UART}
-	\label{fig:uartframe}
-\end{figure}
-
-\subsection{SPI}
-\label{subsec:SPI}
-
-A lo largo del TFG se hace uso de puertos serie, SPI, en tres ubicaciones distintas, dos en la estación de tierra y la tercera en la electrónica embarcada.\\
-Un puerto SPI se trata de una comunicación maestro esclavo. Esta se basa en una comunicación serie, síncrona de tres o cuatro hilos para un enlace bidireccional, con un único dispositivo cada vez. En la Figura~\ref{fig:spiframe} se muestra un ejemplo de comunicación, y en la Figura~\ref{fig:spiarq} un ejemplo de las conexiones. La única señal opcional es la selección del esclavo, Slave Select (SS). Las tres señales obligatorias son el reloj (SCLK), la salida de datos del maestro y entrada hacia el esclavo (MOSI) y la entrada de datos del maestro y salida del esclavo (MISO).
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm]{Imagenes/spi_funcionamiento.jpg}
-	\caption{Funcionamiento de una comunicación SPI}
-	\label{fig:spiframe}
-\end{figure}
-
-\begin{itemize}
-  \item SS: En caso de tener conexión a múltiples dispositivos, el maestro puede escoger con cual entablar comunicación, asertando este pin, activo a nivel bajo, en el esclavo deseado.
-  
-  \item SCLK: Se trata de la señal de reloj. Se utiliza para sincronizar las transmisiones. En el flanco de bajada se deben ubicar los datos en la salida correspondiente, y se deben leer en el flanco de subida.
-  
-  \item MISO: Master Input Slave Output. Convención utilizada para designar el pin de entrada de datos hacia el maestro, desde los posibles esclavos.
-  
-  \item MOSI: Master Output Slave Input. Ofrece la funcionalidad complementaria al pin MISO. En este caso, es el maestro el que utiliza este pin de salida y los esclavos como entrada.
-  
-\end{itemize}
-
-Un esquema típico de conexión con múltiples esclavos se muestra en la Figura~\ref{fig:spiarq}. Para este trabajo, se hará uso de comunicaciones con un único esclavo únicamente, ya que se dispone de tres radios NRF24L01 y tres procesadores de Atmel independientes.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm]{Imagenes/spi_esquema.png}
-	\caption{Esquema de conexión para un puerto SPI}
-	\label{fig:spiarq}
-\end{figure}
-
-\subsection{I2C}
-\label{subsec:I2C}
-
-Se trata de un desarrollo de Philips para la conexión de múltiples circuitos integrados de semejante o distinta naturaleza, sobre un bus común.\\
-De manera similar al estándar de SPI, I2C hace uso de una arquitectura maestro-esclavo, síncrona, bidireccional, en este caso half-dúplex, mediante dos hilos: Reloj (normalmente designado SCL o CLK) y datos (SDA) que se conectan a todos los dispositivos colgados del bus, como se muestra en la Figura~\ref{fig:i2carq}.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=10cm]{Imagenes/I2C_Arq.png}
-	\caption{Arquitectura hardware de un bus I2C}
-	\label{fig:i2carq}
-\end{figure}
-
-Las líneas de reloj y datos se encuentran, por defecto, a nivel alto gracias a dos resistencias de ``pull-up'', Rp en la arquitectura arriba indicada. Para iniciar una comunicación, dichas líneas deben ser comprobadas a fin de evitar colisiones. Si el bus I2C se encuentra libre en ese instante, se puede iniciar una comunicación manteniendo la línea SCL a nivel alto y forzando un flanco de bajada en la línea de datos SDA. Este evento fuerza a los esclavos a atender el siguiente mensaje recibido, por si fuera destinado a ellos. La trama tiene el formato especificado en la Figura~\ref{fig:i2cmsg}. El destinatario se especifica en la trama enviada a través del primer grupo de 7 a 10 bits, dependiendo del dispositivo, seguido del bit que especifica el sentido de la información; se desea enviar información hacia el esclavo, o se quiere solicitar información de él. Tras cada grupo de datos transferidos, se envía un ACK o un NoACK al remitente, para informarle si el paquete ha sido recibido con éxito. La trama se termina con el envío de un bit de parada, señalado por un flanco de subida en la señal SDA, mientras se mantiene la línea SCL a nivel alto.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm]{Imagenes/I2C_Frame_Format.jpg}
-	\caption{Formato de trama I2C}
-	\label{fig:i2cmsg}
-\end{figure}
-
-\subsection{PPM}
-\label{subsec:PPM}
-
-Las siglas PPM vienen de Pulse Position Modulation. Se trata de una modulación en la que cada canal tiene un instante de llegada concreto, respecto del canal inmediatamente anterior. El desfase que se produzca respecto de dicho instante se transforma en el valor que se asigna a ese canal. De esta manera pueden codificarse todos los canales utilizados sobre un único conductor mediante multiplexación en tiempo. El aspecto general de una trama se muestra en la Figura~\ref{fig:ppmframe}. En ella se tiene seleccionado el canal 1 para mostrar su temporización.\\
-Una trama completa PPM para el drone SYMA-X5C utilizado (las características básicas de PPM se mantienen entre distintos fabricantes, pero particularidades como el número y orden de los canales puede variar) se compone de doce canales. El inicio de trama se marca con un pulso a nivel bajo de 0.3 milisegundos. A partir de este instante se comienza el conteo de cada canal, indicado por los niveles altos y separados entre ellos a por pulsos de bajada de 0.3ms. La trama termina con un último pulso de bajada de 0.3ms que indica el fin de trama. Cada canal tiene una duración mínima asignada de 1ms y una duración máxima de 2ms contando con su flanco de 0.3ms de bajada. Estos tiempos, sumados al pulso de inicio de trama, completan la duración de una trama con un máximo de 24.3ms. Cada canal por tanto tendrá su valor mínimo para una duración a nivel alto de 0.7ms (canal 1 de la Figura~\ref{fig:ppmframe}) y su valor máximo para 1.7ms.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm]{Imagenes/Mod_PPM.png}
-	\caption{Señal PPM hacia el módulo de transmisión de uplink}
-	\label{fig:ppmframe}
-\end{figure}
-
-En este TFG se hace uso de esta técnica, dado que el módulo que maneja esta interfaz estaba originalmente diseñado para recibir la modulación PPM de un mando de radio control. PPM es la modulación más extendida en la mayoría de mandos de radio control para conectarse a módulos externos de bandas, potencias y otras características distintas a las suyas nativas, por tanto resulta cómodo adaptarse a esta modulación, para comunicarse con el módulo de uplink.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -599,38 +423,40 @@ En este TFG se hace uso de esta técnica, dado que el módulo que maneja esta inte
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage % empezamos en página impar
+
+
 \chapter{Objetivos}
 \label{chap:objetivos}
 
 \section{Objetivo principal}
 \label{sec:objetivo-ppal}
 
-El objetivo de este trabajo es ser capaces de controlar un drone de bajo coste desde un ordenador. Este deberá ser capaz de auto-estabilizarse a través de un conjunto de sensores y procesamiento basado en una FPGA libre.
+El objetivo de este trabajo es ser capaces de controlar un dron de bajo coste desde un ordenador. Este deberá ser capaz de auto-estabilizarse a través de un conjunto de sensores y procesamiento basado en una FPGA libre.
 Para ello se ha dividido el trabajo en sub-objetivos comentados a continuación, los cuales en su conjunto permitirán alcanzar el objetivo principal una vez cubiertos.
 
 
 \section{Sub-objetivos}
 \label{sec:Sub-objetivos}
 
-\subsection{Enlace con el drone}
+\subsection{Enlace con el dron}
 \label{subsec:Enlace con el drone}
 
-El punto de partida del proyecto, pasa por ser capaces de realizar una comunicación radio entre un ordenador y el propio drone. Para esta tarea se hará uso del software libre provisto por goebish en su repositorio nrf24\_multipro. Habrá que conseguir enlazar el software ejecutado en un procesador de Atmel, con la electrónica propia del drone.
+El punto de partida del proyecto, pasa por ser capaces de realizar una comunicación radio entre un ordenador y el propio dron. Para esta tarea se hará uso del software libre provisto por goebish en su repositorio nrf24\_multipro. Habrá que conseguir enlazar el software ejecutado en un procesador de Atmel, con la electrónica propia del dron.
 
 \subsection{Comunicación de órdenes fijas al drone}
 \label{subsec:Comunicación de órdenes fijas al drone}
 
-Una vez establecida la comunicación es el momento de generar el software necesario tanto para el procesador de Atmel como para la FPGA. Con esto se podrán probar instrucciones fijas hacia el drone, del tipo, enciende y apaga motores.
+Una vez establecida la comunicación es el momento de generar el software necesario tanto para el procesador de Atmel como para la FPGA. Con esto se podrán probar instrucciones fijas hacia el dron, del tipo, enciende y apaga motores.
 
 \subsection{Diseño de librerías de control para PC}
 \label{subsec:Diseño de librerías de control para PC}
 
-El objetivo de las librerías, es facilitar el uso del drone y la repetitividad de los ensayos a través de abstraerse de la capa más baja del control del drone. Esto permite pasar de instrucciones de encendido y apagado independientes, a instrucciones de despegue, avance, giro y demás, con el objetivo de facilitar siguientes tareas.
+El objetivo de las librerías, es facilitar el uso del dron y la repetitividad de los ensayos a través de abstraerse de la capa más baja del control del dron. Esto permite pasar de instrucciones de encendido y apagado independientes, a instrucciones de despegue, avance, giro y demás, con el objetivo de facilitar siguientes tareas.
 
-\subsection{Comando del drone en bucle abierto}
+\subsection{Comando del dron en bucle abierto}
 \label{subsec:Comando del drone en bucle abierto}
 
-En este punto ya se dispone del software para realizar ensayos de vuelo con el drone en bucle abierto. Se encadenarán varias instrucciones de vuelo construidas en la librería previa, con el objetivo de probar el drone en trazados más complejos. Como despegue, avance, retorno y aterrizaje, o estabilidad en vuelo estático.
+En este punto ya se dispone del software para realizar ensayos de vuelo con el dron en bucle abierto. Se encadenarán varias instrucciones de vuelo construidas en la librería previa, con el objetivo de probar el dron en trazados más complejos. Como despegue, avance, retorno y aterrizaje, o estabilidad en vuelo estático.
 
 \subsection{Diseño de la estación de tierra}
 \label{subsec:Diseño de la estación de tierra}
@@ -640,12 +466,12 @@ Para proceder a realizar ensayos de bucle cerrado, será necesario tener disponib
 \subsection{Diseño de electrónica de a bordo}
 \label{subsec:Diseño de electrónica de a bordo}
 
-Para poder corregir el comportamiento en vuelo del drone, será necesario que este disponga de información relativa a su posición local. Para cubrir esta tarea, se instalará en el drone electrónica capaz de medir los parámetros que se consideren necesarios y transmitirlos a la estación de tierra para ser procesados.
+Para poder corregir el comportamiento en vuelo del dron, será necesario que este disponga de información relativa a su posición local. Para cubrir esta tarea, se instalará en el dron electrónica capaz de medir los parámetros que se consideren necesarios y transmitirlos a la estación de tierra para ser procesados.
 
 \subsection{Cierre de bucles para cada eje}
 \label{subsec:Cierre de bucles para cada eje}
 
-Se deberá diseñar un bucle cerrado de control para cada eje, independiente del resto. Esto permitirá el manejo completo del drone, pudiendo actuar de manera también independiente para cada eje.
+Se deberá diseñar un bucle cerrado de control para cada eje, independiente del resto. Esto permitirá el manejo completo del dron, pudiendo actuar de manera también independiente para cada eje.
 
 \subsection{Experimentación y parches}
 \label{subsec:Experimentación y parches}
@@ -659,7 +485,7 @@ Este punto cubre una necesidad presente en los 7 sub-objetivos anteriores. Tras 
 Los objetivos del trabajo deberán ser capaces de cubrir unos requisitos mínimos que permitan discernir cuando una tarea se ha cumplido adecuadamente para avanzar a la siguiente. Para ello se listan a continuación unos requisitos mínimos del sistema.
 
 \begin{itemize}
-  \item El sistema deberá ser capaz de estabilizar el drone con al menos tres grados de libertad; cabeceo, alabeo y altitud.
+  \item El sistema deberá ser capaz de estabilizar el dron con al menos tres grados de libertad; cabeceo, alabeo y altitud.
   
   \item Cada grado de libertad controlado deberá implementar un bucle cerrado, retroalimentado, con controlador PID.
   
@@ -744,12 +570,12 @@ Tarjeta de desarrollo para la familia UltraPlus de ICE40. Incluye elementos vari
 \section{EACHINE E010}
 \label{sec:EACHINE E010}
 
-Mini-drone cuadricóptero teledirigido fabricado por Eachine. Cuenta con 8cm de ancho y 8 cm de largo, conductores en las aspas para evitar vórtices en los extremos de las mismas, aumentando así la eficiencia en vuelo, batería de litio y sistema teledirigido de cuatro canales en la banda de 2.4GHz. Dispone de 30 metros de alcance radio, sistema de retorno al punto de partida, y una estructura ligera.
+Mini-dron cuadricóptero teledirigido fabricado por Eachine. Cuenta con 8cm de ancho y 8 cm de largo, conductores en las aspas para evitar vórtices en los extremos de las mismas, aumentando así la eficiencia en vuelo, batería de litio y sistema teledirigido de cuatro canales en la banda de 2.4GHz. Dispone de 30 metros de alcance radio, sistema de retorno al punto de partida, y una estructura ligera.
 
 \section{SYMA X5C}
 \label{sec:SYMA X5C}
 
-Drone cuadricóptero teledirigido fabricado por Syma. Un drone ligero para su tamaño, con una estructura robusta, perfecto para aprendizaje de principiantes y experimentación gracias a su importante resistencia mecnánica. Electrónica de recepción radio con 50 metros de alcance en la banda de 2.4GHz, cuatro canales de control, batería de litio, 31cm de ancho y largo, y 100gr de peso. Incluye una cámara con almacenamiento en SD-Card.
+Dron cuadricóptero teledirigido fabricado por Syma. Un dron ligero para su tamaño, con una estructura robusta, perfecto para aprendizaje de principiantes y experimentación gracias a su importante resistencia mecnánica. Electrónica de recepción radio con 50 metros de alcance en la banda de 2.4GHz, cuatro canales de control, batería de litio, 31cm de ancho y largo, y 100gr de peso. Incluye una cámara con almacenamiento en SD-Card.
 
 \section{NRF24L01}
 \label{sec:NRF24L01}
@@ -759,7 +585,7 @@ Módulo que integra el chip de mismo código, con condensadores de desacoplo neces
 \section{Flow breakout board}
 \label{sec:Flow breakout board}
 
-Se trata de un módulo de BitCraze que integra un sensor de medida de distancias por tiempo de vuelo VL53L0x accesible por I2C, junto a un sensor de flujo óptico PMW3901 accesible por SPI. Incluye electrónica periférica para hacerlos funcionar y un cabezal para las conexiones eléctricas. Al alimentarse a 3.6V puede ser conectado a la salida de los reguladores de las tarjetas de desarrollo de Arduino.
+Se trata de un módulo de BitCraze que integra un sensor de medida de distancias por tiempo de vuelo VL53L0x accesible por I2C, junto a un sensor de flujo óptico PMW3901 accesible por SPI \cite{sensor_module}. Incluye electrónica periférica para hacerlos funcionar y un cabezal para las conexiones eléctricas. Al alimentarse a 3.6V puede ser conectado a la salida de los reguladores de las tarjetas de desarrollo de Arduino.
 
 
 
@@ -769,7 +595,7 @@ Se trata de un módulo de BitCraze que integra un sensor de medida de distancias 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage % empezamos en página impar
-\chapter{Drone enriquecido controlado por FPGA}
+\chapter{Dron enriquecido controlado por FPGA}
 \label{Drone enriquecido controlado por FPGA}
 
 \section{Arquitectura del sistema}
@@ -780,9 +606,9 @@ La arquitectura del sistema se ha planteado con el propósito de cubrir los objet
 \begin{itemize}
   \item Un ordenador para enviar las órdenes de mando.
   
-  \item Un drone como estructura base y sistema de vuelo con su propia electrónica para la recepción de órdenes de movimiento. La llamaremos electrónica del drone de aquí en adelante, para diferenciarla del siguiente conjunto de electrónica.
+  \item Un dron como estructura base y sistema de vuelo con su propia electrónica para la recepción de órdenes de movimiento. La llamaremos electrónica del dron de aquí en adelante, para diferenciarla del siguiente conjunto de electrónica.
   
-  \item Un conjunto de sensores para realizar medidas de posición y ubicar al drone. De ahora en adelante, sensores de a bordo o embarcados.
+  \item Un conjunto de sensores para realizar medidas de posición y ubicar al dron. De ahora en adelante, sensores de a bordo o embarcados.
   
   \item Una estación de tierra como centro de control y verdadero centro neurálgico del sistema.
 \end{itemize}
@@ -804,13 +630,13 @@ En la Figura~\ref{fig:SystArq} se muestra la estructura de más alto nivel de la 
 	\label{fig:SystArq}
 \end{figure}
 
-La arquitectura del sistema propuesto, se basa en que la estación de tierra atiende los comandos que puedan llegar desde el ordenador de mando, de manera simultánea a las tramas que provengan de los sensores a bordo del drone. El drone, capaz de ubicar de manera local su posición relativa en base a las medidas entregadas por sus sensores, transmite eventualmente por radio su posición hacia la estación de tierra. Ésta calcula el vector de error de posición como la diferencia entre las medidas de posición indicadas por los sensores de posición, y las órdenes recibidas desde el ordenador de mando. En base al vector de error, la estación de tierra computa las correcciones y se las envía por radio al drone en forma de órdenes de movimiento. El drone entonces, obedece dichas órdenes, a continuación vuelve a medir su posición y envía la información de nuevo a la estación de tierra, cerrando así el bucle de control principal del sistema.\\
+La arquitectura del sistema propuesto, se basa en que la estación de tierra atiende los comandos que puedan llegar desde el ordenador de mando, de manera simultánea a las tramas que provengan de los sensores a bordo del dron. El dron, capaz de ubicar de manera local su posición relativa en base a las medidas entregadas por sus sensores, transmite eventualmente por radio su posición hacia la estación de tierra. Ésta calcula el vector de error de posición como la diferencia entre las medidas de posición indicadas por los sensores de posición, y las órdenes recibidas desde el ordenador de mando. En base al vector de error, la estación de tierra computa las correcciones y se las envía por radio al dron en forma de órdenes de movimiento. El dron entonces, obedece dichas órdenes, a continuación vuelve a medir su posición y envía la información de nuevo a la estación de tierra, cerrando así el bucle de control principal del sistema.\\
 A continuación se describen los dos sistemas diseñados, junto con el ordenador de mando. Estos componen el sistema completo de este trabajo, con la arquitectura mostrada el la Figura~\ref{fig:SystArq}.
 
 \section{Estación de tierra}
 \label{sec:Estación de tierra}
 
-Es el módulo encargado de ejecutar los algoritmos de control y producir las respuestas necesarias para estabilizar y controlar el drone. Para ello procesa los comandos enviados desde el ordenador de mando y las señales medidas por los sensores a bordo. Dicha información se traslada entre sus módulos a través de los interfaces mostrados en la Figura~\ref{fig:GS_arq}. El resultado de su proceso es enviado de vuelta hacia el drone a través las órdenes de movimiento del interfaz radio.
+Es el módulo encargado de ejecutar los algoritmos de control y producir las respuestas necesarias para estabilizar y controlar el dron. Para ello procesa los comandos enviados desde el ordenador de mando y las señales medidas por los sensores a bordo. Dicha información se traslada entre sus módulos a través de los interfaces mostrados en la Figura~\ref{fig:GS_arq}. El resultado de su proceso es enviado de vuelta hacia el dron a través las órdenes de movimiento del interfaz radio.
 
 \begin{figure}[h]
 	\centering
@@ -850,21 +676,21 @@ A continuación se nombran los distintos módulos que componen la estación de tier
 \subsection{Objetivo}
 \label{subsec:GS_Obj}
 
-La estación de tierra tiene por objetivo conseguir que el drone obedezca las instrucciones de posición que se envían desde el ordenador de mando. Para ello se diseñarán una serie de funciones, descritas a continuación, que la estación de tierra ejecutará a través de los módulos disponibles. Toda información que se mueva dentro de la estación de tierra, quedará descrita más adelante en los interfaces. Mientras que la información transmitida entre los módulos de la estación de tierra y el exterior (drone, sensores a bordo y ordenador de mando), queda definida en los interfaces del sistema.
+La estación de tierra tiene por objetivo conseguir que el dron obedezca las instrucciones de posición que se envían desde el ordenador de mando. Para ello se diseñarán una serie de funciones, descritas a continuación, que la estación de tierra ejecutará a través de los módulos disponibles. Toda información que se mueva dentro de la estación de tierra, quedará descrita más adelante en los interfaces. Mientras que la información transmitida entre los módulos de la estación de tierra y el exterior (dron, sensores a bordo y ordenador de mando), queda definida en los interfaces del sistema.
 
 \subsection{Funciones}
 \label{subsec:GS_Func}
 
 \begin{itemize}
-  \item Recepción de tramas enviadas desde el drone por el interfaz de downlink. Función ejecutada por el módulo 3. Deberá demodular y decodificar la información de los sensores de a bordo del drone, transmitida por radio. Tras esto generará un paquete con la información recibida hacia el procesador principal, a través del interfaz UART\_Sensors.
+  \item Recepción de tramas enviadas desde el dron por el interfaz de downlink. Función ejecutada por el módulo 3. Deberá demodular y decodificar la información de los sensores de a bordo del dron, transmitida por radio. Tras esto generará un paquete con la información recibida hacia el procesador principal, a través del interfaz UART\_Sensors.
   
   \item Recepción de comandos desde el ordenador de mando. Función ejecutada por el módulo 2. El módulo 2 incluye el driver de USB, FT232HL, el cual deberá recibir los comandos de posición por USB y realizar la conversión a protocolo UART para hacérselos llegar a la FPGA del módulo 2.
   
-  \item Procesado de control y dirección del drone. Función ejecutada por el módulo 2. Para la correcta estabilización y control de la posición del drone, el módulo 2 dispone de una FPGA ICE40UP5K. Esta ejecutará el firmware configurado en su lógica interna para cubrir la función de control y estabilización. Dicho firmware ejecutará, entre otras cosas, los bucles de control definidos en el siguiente capítulo, algoritmos de control. 
+  \item Procesado de control y dirección del dron. Función ejecutada por el módulo 2. Para la correcta estabilización y control de la posición del dron, el módulo 2 dispone de una FPGA ICE40UP5K. Esta ejecutará el firmware configurado en su lógica interna para cubrir la función de control y estabilización. Dicho firmware ejecutará, entre otras cosas, los bucles de control definidos en el siguiente capítulo, algoritmos de control. 
   
-  \item Enlace radio con el drone. Como inicio de las comunicaciones entre la estación de tierra y el drone, el módulo 4 se encarga, tras el arranque, de enlazarse con la electrónica del drone.
+  \item Enlace radio con el dron. Como inicio de las comunicaciones entre la estación de tierra y el dron, el módulo 4 se encarga, tras el arranque, de enlazarse con la electrónica del dron.
   
-  \item Transmisión de comandos de movimiento de vuelta al drone. Tras realizar el enlace, el módulo 4 se encarga de transmitir periódicamente las órdenes de movimiento que haya recibido por el interfaz PPM\_Frames.
+  \item Transmisión de comandos de movimiento de vuelta al dron. Tras realizar el enlace, el módulo 4 se encarga de transmitir periódicamente las órdenes de movimiento que haya recibido por el interfaz PPM\_Frames.
 \end{itemize}
 
 
@@ -879,7 +705,7 @@ Se compone de tres flujos de información distintos, programación, depuración y c
 \subsubsection{SPI}
 \label{subsubsec:GS_SPI}
 
-La estación de tierra hace uso de dos puertos SPI para leer cada una de las dos radios disponibles. Se trata de las radios de los módulos 3 y 4, downlink y uplink respectivamente. Ambos hacen uso de una radio modelo NRF24L01, cuyo interfaz de escritura y lectura de registros es un puerto serie SPI. Para esta tarea se hace uso de la librería NRF24L01, distribuida de manera abierta en Github y en la herramienta de instalación de librerías del IDE de Arduino. Por el puerto SPI del downlink, viajan los datos de las medidas de los sensores, leídas a bordo del drone. Por el puerto SPI del uplink, viajan las órdenes de movimiento generadas en el módulo 2, que deberán alcanzar al drone.
+La estación de tierra hace uso de dos puertos SPI para leer cada una de las dos radios disponibles. Se trata de las radios de los módulos 3 y 4, downlink y uplink respectivamente. Ambos hacen uso de una radio modelo NRF24L01, cuyo interfaz de escritura y lectura de registros es un puerto serie SPI. Para esta tarea se hace uso de la librería NRF24L01, distribuida de manera abierta en Github y en la herramienta de instalación de librerías del IDE de Arduino. Por el puerto SPI del downlink, viajan los datos de las medidas de los sensores, leídas a bordo del dron. Por el puerto SPI del uplink, viajan las órdenes de movimiento generadas en el módulo 2, que deberán alcanzar al dron.
 
 \subsubsection{UART \& UART\_Sensors}
 \label{subsubsec:GS_UART}
@@ -890,7 +716,7 @@ La segunda ubicación donde se hace uso de este protocolo es en la recepción de l
 \subsubsection{PPM\_Frames}
 \label{subsubsec:GS_PPM}
 
-Esta interfaz porta la información de las órdenes de movimiento que deben llegar al drone a través de una comunicación con un solo hilo, desde el módulo 2, hacia el módulo 4. Para ello hace uso de una modulación PPM como la comentada en la introducción. Las órdenes de movimiento han sido calculadas por la FPGA del módulo 2, y se entraman según se especifica en los formatos de trama de la sección del uplink, dentro del interfaz radio de los interfaces del sistema.
+Esta interfaz porta la información de las órdenes de movimiento que deben llegar al dron a través de una comunicación con un solo hilo, desde el módulo 2, hacia el módulo 4. Para ello hace uso de una modulación PPM como la comentada en la introducción. Las órdenes de movimiento han sido calculadas por la FPGA del módulo 2, y se entraman según se especifica en los formatos de trama de la sección del uplink, dentro del interfaz radio de los interfaces del sistema.
 
 \subsection{Módulos}
 \label{subsec:GS_Mod}
@@ -900,40 +726,40 @@ A continuación se describen los módulos que componen la estación de tierra, menc
 \subsubsection{Módulo 1: Hub USB}
 \label{subsubsec:GS_Mod1}
 
-Centraliza las comunicaciones USB, permitiendo tener un único puerto ocupado en ordenador de mando, y poder acceder desde él a la programación individual de los 3 módulos reprogramables, junto a las sondas de depuración, y alimentar simultáneamente todos los sistemas. También permite el apagado individual, muy útil para restablecer la comunicación con el drone reiniciando el módulo de uplink, sin eliminar la configuración en RAM de los módulos 2 y 3.
+Centraliza las comunicaciones USB, permitiendo tener un único puerto ocupado en ordenador de mando, y poder acceder desde él a la programación individual de los 3 módulos reprogramables, junto a las sondas de depuración, y alimentar simultáneamente todos los sistemas. También permite el apagado individual, muy útil para restablecer la comunicación con el dron reiniciando el módulo de uplink, sin eliminar la configuración en RAM de los módulos 2 y 3.
 
 \subsubsection{Módulo 2: Procesado y comunicaciones con ordenador}
 \label{subsubsec:GS_Mod2}
 
 Se trata del procesador principal del sistema, junto a un regulador de tensión, accesos a varios pines de propósito general y un driver de USB. Como procesador principal se hace uso de una FPGA ICE40UP5K de Lattice en su encapsulado QFN de 48 pines conectada a través de una UART al driver de USB, para el cual se hace uso de un FT232HL, capaz de convertir el protocolo USB a distintos estándares de comunicación. Concretamente el canal A convierte de USB a SPI, para la reprogramación de las memorias RAM interna de la FPGA y la memoria FLASH externa de la tarjeta de desarrollo. Y el canal B convierte de USB a UART, para comunicar las instrucciones de mando desde el ordenador hasta la FPGA.\\
-La FPGA de este módulo es la encargada de recibir los comandos desde el ordenador de mando a través de interfaz UART, las medidas de los sensores de a bordo del drone a través del primer interfaz SPI y entrega las órdenes de movimiento por el segundo. Para ello, ejecuta los bucles de control descritos más adelante en el apartado sobre los algoritmos de control de la FPGA. Dichos bucles se nutren de la información recibida por UART originaria del módulo 1 y SPI desde el módulo 3. El resultado de su ejecución es enviado por SPI hacia el módulo 4.
+La FPGA de este módulo es la encargada de recibir los comandos desde el ordenador de mando a través de interfaz UART, las medidas de los sensores de a bordo del dron a través del primer interfaz SPI y entrega las órdenes de movimiento por el segundo. Para ello, ejecuta los bucles de control descritos más adelante en el apartado sobre los algoritmos de control de la FPGA. Dichos bucles se nutren de la información recibida por UART originaria del módulo 1 y SPI desde el módulo 3. El resultado de su ejecución es enviado por SPI hacia el módulo 4.
 
 \subsubsection{Módulo 3: Downlink}
 \label{subsubsec:GS_Mod3}
 
 Se compone de una radio NRF24L01 conectada por puerto SPI a un procesador de Atmel integrado en una tarjeta Arduino Uno. La radio se alimenta desde la tarjeta del procesador, el cual se alimenta a su vez por USB. También se tiene acceso por USB a la reprogramación del procesador y a su salida de puerto serie para depuración.\\
-Este módulo se encarga de recibir las medidas de posición desde los sensores a bordo del drone. Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas desde el drone. Cuando las recibe, las entrama con un formato de trama idéntico al descrito en el apartado del downlink, con el añadido al principio de dos bytes de valor 255 y 90, como bytes de sincronía. Técnica de sincronía idéntica a la descrita en el interfaz de mando. De esta manera, aunque se falle la recepción de un byte, el receptor tiene un método para volver a sincronizarse con las siguientes tramas. Además el módulo de downlink incluye un CRC de 8 bits en su mecanismo de comunicación radio y sistema de retransmisiones, lo que dificulta la llegada de bytes erróneos a este nivel (Si puede ocurrir que ante la llegada de múltiples bytes erróneos a la radio, uno o varios queden sin entregar al procesador, tras el vencimiento de los reintentos).\\
+Este módulo se encarga de recibir las medidas de posición desde los sensores a bordo del dron. Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas desde el dron. Cuando las recibe, las entrama con un formato de trama idéntico al descrito en el apartado del downlink, con el añadido al principio de dos bytes de valor 255 y 90, como bytes de sincronía. Técnica de sincronía idéntica a la descrita en el interfaz de mando. De esta manera, aunque se falle la recepción de un byte, el receptor tiene un método para volver a sincronizarse con las siguientes tramas. Además el módulo de downlink incluye un CRC de 8 bits en su mecanismo de comunicación radio y sistema de retransmisiones, lo que dificulta la llegada de bytes erróneos a este nivel (Si puede ocurrir que ante la llegada de múltiples bytes erróneos a la radio, uno o varios queden sin entregar al procesador, tras el vencimiento de los reintentos).\\
 Una vez entramadas dichas medidas, las reenvía hacia el módulo 2 a través de la UART especificada en el interfaz UART \& UART\_Sensors.
 
 \subsubsection{Módulo 4: Uplink}
 \label{subsubsec:GS_Mod4}
 
-Este módulo se encarga de gestionar el interfaz PPM descrito anteriormente. Se trata de un procesador de Atmel integrado en una tarjeta Arduino Nano, junto con otra radio NRF24L01. La tarjeta Arduino Nano, incluye también regulador de tensión e interfaz USB para cubrir las mismas tareas que en el módulo 3, alimentación propia y de la radio, depuración y programación. El procesador programa la radio como transmisor y lo enlaza con la electrónica del drone. Tras el enlace, comienza a transmitir hacia el drone las órdenes de movimiento demoduladas de la trama PPM recibida periódicamente desde la FPGA del módulo 2.
+Este módulo se encarga de gestionar el interfaz PPM descrito anteriormente. Se trata de un procesador de Atmel integrado en una tarjeta Arduino Nano, junto con otra radio NRF24L01. La tarjeta Arduino Nano, incluye también regulador de tensión e interfaz USB para cubrir las mismas tareas que en el módulo 3, alimentación propia y de la radio, depuración y programación. El procesador programa la radio como transmisor y lo enlaza con la electrónica del dron. Tras el enlace, comienza a transmitir hacia el dron las órdenes de movimiento demoduladas de la trama PPM recibida periódicamente desde la FPGA del módulo 2.
 
 \subsubsection{Módulo 5: Depuración}
 \label{subsubsec:GS_Mod5}
 
-Se trata de un sistema de adquisición digital diseñado por Saleae, para ser usado como analizador lógico. Dispone de una conexión de masa como referencia y ocho canales. Estos se conectan de tal manera que se tiene acceso a la información de los interfaces UART (Órdenes de movimiento recibidas desde el ordenador), UART\_Sensors (Medidas de posición recibidas desde la electrónica de sensorización del drone) y PPM\_Frames (tramas PPM resultado de procesar lo recibido por los dos interfaces previos). De esta manera, se puede depurar el sistema completo una vez en funcionamiento. Ya que el sistema de adquisición de Saleae permite capturas predefinidas en tiempo, se configuran adquisiciones de 5 o 10 segundos y se asocia el disparo de inicio de dicha captura a la recepción de una nueva trama de órdenes de mando. De esta manera se realizan capturas de todos los eventos que se producen por ejemplo desde la recepción de la trama de despegue, hasta el aterrizaje. Esto ha hecho posible gran parte de la depuración de errores y fallos en la estabilidad del sistema o en su ejecución.
+Se trata de un sistema de adquisición digital diseñado por Saleae, para ser usado como analizador lógico. Dispone de una conexión de masa como referencia y ocho canales. Estos se conectan de tal manera que se tiene acceso a la información de los interfaces UART (Órdenes de movimiento recibidas desde el ordenador), UART\_Sensors (Medidas de posición recibidas desde la electrónica de sensorización del dron) y PPM\_Frames (tramas PPM resultado de procesar lo recibido por los dos interfaces previos). De esta manera, se puede depurar el sistema completo una vez en funcionamiento. Ya que el sistema de adquisición de Saleae permite capturas predefinidas en tiempo, se configuran adquisiciones de 5 o 10 segundos y se asocia el disparo de inicio de dicha captura a la recepción de una nueva trama de órdenes de mando. De esta manera se realizan capturas de todos los eventos que se producen por ejemplo desde la recepción de la trama de despegue, hasta el aterrizaje. Esto ha hecho posible gran parte de la depuración de errores y fallos en la estabilidad del sistema o en su ejecución.
 
 \section{Sistema embarcado}
 \label{sec:Sistema embarcado}
 
-Para el control del vuelo del drone, es necesario nutrir a la estación de tierra de información sobre el drone. Este sistema se encarga de obtener dicha información y enviársela a la estación de tierra. Para ello dispone de distintos sensores capaces de permitirle ubicar de manera relativa el drone, una radio para comunicar la información, y un procesador para realizar las lecturas de sensores, procesarlas y generar la trama a enviar. Estos módulos y sus interfaces se muestran en la Figura~\ref{fig:OB_arq} y se describen a continuación.
+Para el control del vuelo del dron, es necesario nutrir a la estación de tierra de información sobre el dron. Este sistema se encarga de obtener dicha información y enviársela a la estación de tierra. Para ello dispone de distintos sensores capaces de permitirle ubicar de manera relativa el dron, una radio para comunicar la información, y un procesador para realizar las lecturas de sensores, procesarlas y generar la trama a enviar. Estos módulos y sus interfaces se muestran en la Figura~\ref{fig:OB_arq} y se describen a continuación.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Drone_arq.png}
-	\caption{Arquitectura e interfaces del sistema sensor de posición ubicado en el drone}
+	\caption{Arquitectura e interfaces del sistema sensor de posición ubicado en el dron}
 	\label{fig:OB_arq}
 \end{figure}
 
@@ -960,13 +786,13 @@ Este montaje incluye módulos adicionales a los sensores para hacer posible su le
   \item Módulo 3: Transmisor de downlink.
 \end{itemize}
 
-Estos módulos se alimentan desde un pack de batería de 3.6V de Litio, independiente de la electrónica de control del drone. Esto es debido a que a pesar del peso adicional que supone una batería separada, los drivers de motores del drone exigen picos de corriente considerables a las baterías. Estas, que no siempre tienen capacidad de descarga suficiente debido al diseño del drone, caen en tensión. Estas caídas, en caso de alimentar todo el sistema de las mismas baterías, llegan a producir apagados eventuales en la electrónica de los sensores, lo que dificulta el control, volviendo el sistema inestable en la mayor parte de los casos.
+Estos módulos se alimentan desde un pack de batería de 3.6V de Litio, independiente de la electrónica de control del dron. Esto es debido a que a pesar del peso adicional que supone una batería separada, los drivers de motores del dron exigen picos de corriente considerables a las baterías. Estas, que no siempre tienen capacidad de descarga suficiente debido al diseño del dron, caen en tensión. Estas caídas, en caso de alimentar todo el sistema de las mismas baterías, llegan a producir apagados eventuales en la electrónica de los sensores, lo que dificulta el control, volviendo el sistema inestable en la mayor parte de los casos.
 
 
 \subsection{Objetivo}
 \label{subsec:OB_Obj}
 
-Los sensores embarcados tienen el objetivo de proveer a la estación de tierra, con información sobre la posición del drone en cada momento. Para ello cada módulo cubrirá con unas funciones concretas definidas a continuación y se comunicará la información generada a través de los interfaces de la Figura~\ref{fig:OB_arq}, explicados más adelante.
+Los sensores embarcados tienen el objetivo de proveer a la estación de tierra, con información sobre la posición del dron en cada momento. Para ello cada módulo cubrirá con unas funciones concretas definidas a continuación y se comunicará la información generada a través de los interfaces de la Figura~\ref{fig:OB_arq}, explicados más adelante.
 
 
 \subsection{Funciones}
@@ -977,9 +803,9 @@ Los sensores embarcados tienen el objetivo de proveer a la estación de tierra, c
   
   \item Medida de velocidad de desplazamiento horizontal. Función del módulo 2.
   
-  \item Procesado de las medidas hasta conseguir posición relativa del drone y entramado para transmisión. Función del módulo 1.
+  \item Procesado de las medidas hasta conseguir posición relativa del dron y entramado para transmisión. Función del módulo 1.
   
-  \item Transmisión de paquetes con información de posición del drone hacia la estación de tierra. Función del módulo 3.
+  \item Transmisión de paquetes con información de posición del dron hacia la estación de tierra. Función del módulo 3.
 \end{itemize}
 
 
@@ -989,18 +815,18 @@ Los sensores embarcados tienen el objetivo de proveer a la estación de tierra, c
 \subsubsection{Módulo 1: Procesador}
 \label{subsubsec:OB_Mod1}
 
-Este módulo se encarga de inicializar los dos sensores, altura y desplazamiento y realizar lecturas de sus medidas por los interfaces I2C\_Alt y SPI\_XY respectivamente. Una vez tomadas las medidas, se realizan ciertos procesos sobre los datos. El sensor de altura (ToF) sufre errores por debajo de los 3cm de distancia de medida, por tanto este módulo se encarga de filtrar dichos valores erróneos, entregando una medida ficticia de 3cm para toda altura igual o inferior. Esto hará que en ocasiones el drone, ya aterrizado, siga indicando una altura de 3cm. Esto no supone un problema ya que llegado el momento del aterrizaje, la altura ficticia de 3cm medidos, ayuda a descargar el bucle integral, apagando los motores por completo. También realiza las lecturas del sensor de velocidad de desplazamiento horizontal (Flow). El procesador se encarga de convertir estas, en medidas de posición relativas. Para ello integra en el tiempo las medidas de velocidad de desplazamiento, leídas del interfaz SPI\_XY. Ya que el sensor de flujo no mide correctamente para alturas inferiores a 4cm, se aprovecha la lógica de filtrado, para no modificar las medidas de posición en este rango de alturas.\\
+Este módulo se encarga de inicializar los dos sensores, altura y desplazamiento y realizar lecturas de sus medidas por los interfaces I2C\_Alt y SPI\_XY respectivamente. Una vez tomadas las medidas, se realizan ciertos procesos sobre los datos. El sensor de altura por tiempo de vuelo (ToF) \cite{sensor_tof} sufre errores por debajo de los 3cm de distancia de medida, por tanto este módulo se encarga de filtrar dichos valores erróneos, entregando una medida ficticia de 3cm para toda altura igual o inferior. Esto hará que en ocasiones el dron, ya aterrizado, siga indicando una altura de 3cm. Esto no supone un problema ya que llegado el momento del aterrizaje, la altura ficticia de 3cm medidos, ayuda a descargar el bucle integral, apagando los motores por completo. También realiza las lecturas del sensor de velocidad de desplazamiento horizontal (Flow). El procesador se encarga de convertir estas, en medidas de posición relativas. Para ello integra en el tiempo las medidas de velocidad de desplazamiento, leídas del interfaz SPI\_XY. Ya que el sensor de flujo no mide correctamente para alturas inferiores a 4cm, se aprovecha la lógica de filtrado, para no modificar las medidas de posición en este rango de alturas.\\
 Una vez filtradas e integradas, entrama dichas medidas y las reenvía hacia el módulo 3 a través del interfaz SPI\_Radio.
 
 \subsubsection{Módulo 2: Sensores}
 \label{subsubsec:OB_Mod2}
 
-Este módulo se compone de una sola tarjeta que integra dos sensores. Juntos ofrecen lo necesario para llegar a conocer la ubicación relativa aproximada del drone. También incluye electrónica auxiliar y conexiones.
+Este módulo se compone de una sola tarjeta que integra dos sensores. Juntos ofrecen lo necesario para llegar a conocer la ubicación relativa aproximada del dron. También incluye electrónica auxiliar y conexiones.
 
 \begin{itemize}
-  \item ToF: Se trata del sensor VL53L0x, el cual mide la distancia entre su encapsulado y un objeto enfrentado a él, a través de la medida del tiempo de vuelo de una señal laser. Se accede desde el módulo 1, a través del interfaz I2C\_Alt, un puerto serie I2C. Tiene un rango de trabajo de entra 3cm y 2m. Este sensor se apunta hacia el suelo, desde su soporte en el drone, con la intención de medir la distancia al suelo desde el punto medio del drone. De esta manera una vez aterrizado, la distancia mínima de medida, es superior a 3cm, lo cual minimiza la necesidad de filtrado en el procesador (esta última se mantiene igualmente, ya que los apoyos del drone son flexibles, y el sensor tiene tolerancias de medida). Este sensor tiene un retardo de medida de hasta 30ms, el cual dificultará en cierta medida la estabilidad del bucle de control de altura ejecutado en la FPGA.
+  \item ToF: Se trata del sensor VL53L0x, el cual mide la distancia entre su encapsulado y un objeto enfrentado a él, a través de la medida del tiempo de vuelo de una señal laser. Se accede desde el módulo 1, a través del interfaz I2C\_Alt, un puerto serie I2C. Tiene un rango de trabajo de entra 3cm y 2m. Este sensor se apunta hacia el suelo, desde su soporte en el dron, con la intención de medir la distancia al suelo desde el punto medio del dron. De esta manera una vez aterrizado, la distancia mínima de medida, es superior a 3cm, lo cual minimiza la necesidad de filtrado en el procesador (esta última se mantiene igualmente, ya que los apoyos del dron son flexibles, y el sensor tiene tolerancias de medida). Este sensor tiene un retardo de medida de hasta 30ms, el cual dificultará en cierta medida la estabilidad del bucle de control de altura ejecutado en la FPGA.
   
-  \item Flow: Como sensor de desplazamiento se hace uso del PMW3901. Este sensor de movimiento, tiene una óptica diseñada para enfocar a distancias superiores a 8cm. Aunque funciona bien hasta los 4cm si se dispone de buena iluminación. Sus medidas son filtradas como se indica en el proceso del módulo 1. Entrega medida de velocidad de desplazamiento en dos ejes, para el plano captado por su óptica. El montaje apunta el sensor hacia el suelo, desde el mismo soporte que para el sensor de tiempo de vuelo. De esta manera se conocerá la velocidad de desplazamiento horizontal del drone respecto del suelo. Es el módulo 1 el encargado de convertir estas velocidades de desplazamiento en posición relativa. El sensor tiene un puerto de comunicaciones SPI para inicialización y lectura, sus medidas son entregadas al módulo 1 a través del interfaz SPI\_XY.
+  \item Flow: Como sensor de desplazamiento se hace uso del PMW3901 \cite{motion_module}. Este sensor de movimiento, tiene una óptica diseñada para enfocar a distancias superiores a 8cm. Aunque funciona bien hasta los 4cm si se dispone de buena iluminación. Sus medidas son filtradas como se indica en el proceso del módulo 1. Entrega medida de velocidad de desplazamiento en dos ejes, para el plano captado por su óptica. El montaje apunta el sensor hacia el suelo, desde el mismo soporte que para el sensor de tiempo de vuelo. De esta manera se conocerá la velocidad de desplazamiento horizontal del dron respecto del suelo. Es el módulo 1 el encargado de convertir estas velocidades de desplazamiento en posición relativa. El sensor tiene un puerto de comunicaciones SPI para inicialización y lectura, sus medidas son entregadas al módulo 1 a través del interfaz SPI\_XY.
 \end{itemize}
 
 \subsubsection{Módulo 3: Transmisor de downlink}
@@ -1028,7 +854,7 @@ Se trata de una comunicación con el ordenador de programación, exclusivo para re
 \subsubsection{I2C\_Alt}
 \label{subsubsec:OB_II_I2C}
 
-Comunica por puerto serie I2C, el sensor de medida de altura, VL53L0x del módulo 2, con el procesador del módulo 1. Porta las medidas de distancia entre la zona media del drone y el suelo bajo él, consideradas como la altura del drone.
+Comunica por puerto serie I2C, el sensor de medida de altura, VL53L0x del módulo 2, con el procesador del módulo 1. Porta las medidas de distancia entre la zona media del dron y el suelo bajo él, consideradas como la altura del dron.
 
 \subsubsection{SPI\_XY}
 \label{subsubsec:OB_II_SPIXY}
@@ -1045,12 +871,12 @@ Puerto serie SPI utilizado para la configuración inicial de la radio NRF24L01, y
 \section{Ordenador de mando}
 \label{sec:Ordenador de mando}
 
-Se trata del ordenador ubicado en el módulo de tierra de la Figura~\ref{fig:SystArq}. Dicho hardware se encarga de ejecutar el código python que dirigirá el vuelo del drone.
+Se trata del ordenador ubicado en el módulo de tierra de la Figura~\ref{fig:SystArq}. Dicho hardware se encarga de ejecutar el código python que dirigirá el vuelo del dron.
 
 \subsection{Objetivo}
 \label{subsec:OM_Obj}
 
-El objetivo de este módulo será permitir el control del drone desde PC, ofreciendo la menor cantidad de limitaciones posibles en cuanto a su manejo y configuración. Para ello incluirá la transmisión de tramas que contengan información para el control de los cuatro grados de libertad del drone y los parámetros de sus bucles de control.
+El objetivo de este módulo será permitir el control del dron desde PC, ofreciendo la menor cantidad de limitaciones posibles en cuanto a su manejo y configuración. Para ello incluirá la transmisión de tramas que contengan información para el control de los cuatro grados de libertad del dron y los parámetros de sus bucles de control.
 
 \subsection{Funciones}
 \label{subsec:OM_Func}
@@ -1066,17 +892,17 @@ El objetivo de este módulo será permitir el control del drone desde PC, ofrecien
 \subsection{Interfaces}
 \label{subsec:OM_Int}
 
-Este módulo dispone de un único interfaz de comunicaciones funcional con el resto del sistema. Se trata del interfaz de comando de la Figura~\ref{fig:SystArq}, el cual contiene las instrucciones de control para dirigir el vuelo del drone.\\
+Este módulo dispone de un único interfaz de comunicaciones funcional con el resto del sistema. Se trata del interfaz de comando de la Figura~\ref{fig:SystArq}, el cual contiene las instrucciones de control para dirigir el vuelo del dron.\\
 También dispone de un interfaz dedicado en exclusiva a la depuración del sistema mostrado en la Figura~\ref{fig:GS_arq}, el cual no interviene durante la operación normal del sistema. Este porta información desde el analizador lógico, hacia el software de análisis de señales digitales \textit{Logic}.\\
 
 
-A continuación se detallan los interfaces que conectan los cuatro módulos de nivel superior que toman partido en la arquitectura del sistema de la Figura~\ref{fig:SystArq}; estación de tierra, drone, sensores de a bordo y ordenador de mando. Cabe destacar que no existen interfaces que comuniquen de manera directa el drone, con la electrónica de sensores de a bordo. Esto es debido a que se prefirió aislar dicha electrónica de la del drone por problemas en la alimentación de la electrónica propia del drone y no existe la necesidad específica de comunicar dichos módulos directamente entre ellos (quedan indiréctamente comunicados entre sí a través de la información enviada a tierra, procesada y recibida de vuelta en el drone). Dicho interfaz en cambio si podría darse para arquitecturas de sistema diferentes, como por ejemplo aquellas basadas en la premisa comentada en el apartado \ref{subsec:Mejoras en la arquitectura del sistema}
+A continuación se detallan los interfaces que conectan los cuatro módulos de nivel superior que toman partido en la arquitectura del sistema de la Figura~\ref{fig:SystArq}; estación de tierra, dron, sensores de a bordo y ordenador de mando. Cabe destacar que no existen interfaces que comuniquen de manera directa el dron, con la electrónica de sensores de a bordo. Esto es debido a que se prefirió aislar dicha electrónica de la del dron por problemas en la alimentación de la electrónica propia del dron y no existe la necesidad específica de comunicar dichos módulos directamente entre ellos (quedan indiréctamente comunicados entre sí a través de la información enviada a tierra, procesada y recibida de vuelta en el dron). Dicho interfaz en cambio si podría darse para arquitecturas de sistema diferentes, como por ejemplo aquellas basadas en la premisa comentada en el apartado \ref{subsec:Mejoras en la arquitectura del sistema}
 
 
 \section{Interfaz de mando}
 \label{sec:Interfaz de mando}
 
-Se encarga de comunicar únicamente el ordenador de mando con la estación de tierra. Porta información de las instrucciones de posición, que se espera el drone obedezca, y parámetros para los bucles de control. Este interfaz tiene dos objetivos principales: Facilitar la comunicación con la estación de tierra, al mismo tiempo que proveer al sistema de una alta capacidad de reconfiguración para disminuir el tiempo entre pruebas. Por este motivo se incluyen los parámetros de los bucles de control como parte de los datos. Esto facilita realizar múltiples ensayos de vuelo consecutivos, con mucha diferencia en el comportamiento de cada uno de ellos.
+Se encarga de comunicar únicamente el ordenador de mando con la estación de tierra. Porta información de las instrucciones de posición, que se espera el dron obedezca, y parámetros para los bucles de control. Este interfaz tiene dos objetivos principales: Facilitar la comunicación con la estación de tierra, al mismo tiempo que proveer al sistema de una alta capacidad de reconfiguración para disminuir el tiempo entre pruebas. Por este motivo se incluyen los parámetros de los bucles de control como parte de los datos. Esto facilita realizar múltiples ensayos de vuelo consecutivos, con mucha diferencia en el comportamiento de cada uno de ellos.
 
 \subsection{Características}
 \label{subsec:Características}
@@ -1107,42 +933,42 @@ En su versión final, las tramas componen sus 16 bytes con la construcción fija m
 \begin{itemize}
   \item Los dos primeros se usan de etapa de sincronía. Campos Stx1 y Stx2. Tienen los valores fijos 255 y 90 en base decimal. Siempre son transmitidos de esta manera. Así, la etapa receptora espera por una secuencia de dos bytes consecutivos con valores 255 y 90 para sincronizar con la trama entrante. Tras esto, el receptor comenzará a decodificar los valores de los siguientes 14 bytes con el orden indicado en la trama. Asumiendo que no se produzca un error de comunicaciones, el equipo receptor asociará cada valor a su campo adecuadamente. 
   
-  \item Cmd\_ALT: Comando de vertical, o altura. Representa el valor de la consigna de posición de altura deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de altura como su consigna.
+  \item Cmd\_ALT: Comando de vertical, o altura. Representa el valor de la consigna de posición de altura deseada para el dron. Este valor será decodificado por la estación de tierra y enviado al bucle de control de altura como su consigna.
   
-  \item Cmd\_L/R: Comando de desplazamiento horizontal lateral. Representa el valor de la consigna de posición lateral deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento lateral, como su valor de consigna. Se trata del eje de libertad asociado al alabeo.
+  \item Cmd\_L/R: Comando de desplazamiento horizontal lateral. Representa el valor de la consigna de posición lateral deseada para el dron. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento lateral, como su valor de consigna. Se trata del eje de libertad asociado al alabeo.
   
-  \item  Cmd\_F/B: Comando de desplazamiento horizontal frontal. Representa el valor de la consigna de posición frontal deseada para el drone. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento frontal, como su valor de consigna. Se trata del eje de libertad asociado al cabeceo.
+  \item  Cmd\_F/B: Comando de desplazamiento horizontal frontal. Representa el valor de la consigna de posición frontal deseada para el dron. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento frontal, como su valor de consigna. Se trata del eje de libertad asociado al cabeceo.
   
-  \item Cmd\_T\_CW: Comando de giro en sentido horario. Representa el valor deseado de la velocidad de giro del drone, sobre sí mismo. Este valor será decodificado por la estación de tierra y enviado directamente al constructor de tramas, ya que este grado de libertad no se controla con un bucle cerrado de alto nivel. Se le deja su control exclusivamente a la electrónica propia del drone y su giróscopo interno. Se trata del eje de libertad asociado a la guiñada.
+  \item Cmd\_T\_CW: Comando de giro en sentido horario. Representa el valor deseado de la velocidad de giro del dron, sobre sí mismo. Este valor será decodificado por la estación de tierra y enviado directamente al constructor de tramas, ya que este grado de libertad no se controla con un bucle cerrado de alto nivel. Se le deja su control exclusivamente a la electrónica propia del dron y su giróscopo interno. Se trata del eje de libertad asociado a la guiñada.
   
   \item PID\_Alt\_Kp: Parámetro de la constante proporcional de altura. Representa el valor deseado para la constante proporcional del bucle de control PID de altura. La diferencia  entre el valor de consigna de altura, Cmd\_ALT, y valor de altura medido por los sensores de a bordo, genera el valor de error de altura, componente del vector de error. Esta componente del error se multiplicará por el valor recibido en este campo para conseguir así la componente ``P'' del bucle de control de altura.
   
-  \item  PID\_XY\_Kp: Parámetro de la constante proporcional de los ejes horizontales. Representa el valor deseado para las constantes proporcionales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica la misma tensión a ambos bucles de control. La diferencia  entre los valores de las consignas Cmd\_L/R y Cmd\_F/B y sus medidas por los sensores de posición de a bordo, generan los errores de posición horizontales, componentes del vector de error de posición. Estos errores se multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``P'' de los bucles de control de los ejes horizontales: Frontal y latera.
+  \item  PID\_XY\_Kp: Parámetro de la constante proporcional de los ejes horizontales. Representa el valor deseado para las constantes proporcionales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el dron es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica la misma tensión a ambos bucles de control. La diferencia  entre los valores de las consignas Cmd\_L/R y Cmd\_F/B y sus medidas por los sensores de posición de a bordo, generan los errores de posición horizontales, componentes del vector de error de posición. Estos errores se multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``P'' de los bucles de control de los ejes horizontales: Frontal y latera.
   
   \item RSV: Los bytes de las posiciones 9, 15 y 16 están reservados para posibles usos futuros. Tienen valores constantes a cero.
   
-  \item T\_CW\_Trimm: Parámetro de corrección de giro del drone sobre sí mismo. Representa el valor del offset a añadir al valor del comando ``Cmd\_T\_CW'' a enviar hacia el drone. El objetivo de este parámetro es corregir de manera constante el valor de la velocidad de giro sobré si mismo enviado hacia el drone. Ya que este valor se encuentra controlado por un bucle abierto en la electrónica de la estación de tierra, si la electrónica propia del drone, tiene un error constante de giro que no pueda corregir, se aplicará la corrección necesaria a través del valor de este parámetro.
+  \item T\_CW\_Trimm: Parámetro de corrección de giro del dron sobre sí mismo. Representa el valor del offset a añadir al valor del comando ``Cmd\_T\_CW'' a enviar hacia el dron. El objetivo de este parámetro es corregir de manera constante el valor de la velocidad de giro sobré si mismo enviado hacia el dron. Ya que este valor se encuentra controlado por un bucle abierto en la electrónica de la estación de tierra, si la electrónica propia del dron, tiene un error constante de giro que no pueda corregir, se aplicará la corrección necesaria a través del valor de este parámetro.
   
   \item  PID\_Alt\_Ki: Parámetro de la constante integral de altura. Representa el valor deseado para la constante integral del bucle de control PID de altura. El valor del error de altura comentado anteriormente, se integrará y multiplicará por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``I'' del  bucle de control de altura.
   
   \item PID\_Alt\_Kd: Parámetro de la constante derivativa de altura. Representa el valor deseado para la constante derivativa del bucle de control PID de altura. El valor del error de altura comentado anteriormente, se derivará y multiplicará por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``D'' del  bucle de control de altura. Este campo junto con los valores de los campos de las posiciones 7 y 11, completan los valores de los parámetros para el bucle de control cerrado PID de la altura.
   
-  \item PID\_XY\_Ki: Parámetro de la constante integral de los ejes horizontales. Representa el valor deseado para las constantes integrales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes integrales de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se integrarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``I'' de los bucles de control de los ejes horizontales: Frontal y latera.
+  \item PID\_XY\_Ki: Parámetro de la constante integral de los ejes horizontales. Representa el valor deseado para las constantes integrales de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el dron es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes integrales de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se integrarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``I'' de los bucles de control de los ejes horizontales: Frontal y latera.
   
-  \item PID\_XY\_Kd: Parámetro de la constante derivativo de los ejes horizontales. Representa el valor deseado para las constantes derivativas de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el drone es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes derivativas de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se derivarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``D'' de los bucles de control de los ejes horizontales: Frontal y latera. Este campo junto con los valores de los campos de las posiciones 8 y 13, completan los valores de los parámetros para los bucles de control cerrado PID del plano horizontal, Controlador de posición Frontal y Controlador de posición lateral.
+  \item PID\_XY\_Kd: Parámetro de la constante derivativo de los ejes horizontales. Representa el valor deseado para las constantes derivativas de ambos bucles de control PID de posición horizontal. El control de posición frontal y el control de posición lateral. Ya que el dron es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes derivativas de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se derivarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``D'' de los bucles de control de los ejes horizontales: Frontal y latera. Este campo junto con los valores de los campos de las posiciones 8 y 13, completan los valores de los parámetros para los bucles de control cerrado PID del plano horizontal, Controlador de posición Frontal y Controlador de posición lateral.
 \end{itemize}
 
 \section{Interfaz radio}
 \label{sec:Interfaz radio}
 
-Se encarga de comunicar la estación de tierra con la electrónica del drone, y los sensores de a bordo, tal como se muestra en la Figura~\ref{fig:SystArq}. Este interfaz porta información fundamental para el desempeño de la tarea de control de posición del drone. Se transmite información tanto de la posición del drone, como de las órdenes de velocidad que este deberá ejecutar. El objetivo de este interfaz es que la estación de tierra conozca la posición relativa del drone, y en base a esto, y a las instrucciones de mando que reciba, trate de dirigir y corregir en caso de error, dicha posición.\\
-Se trata de un enlace radio bidireccional entre la estación de tierra y el drone. Dividiremos este enlace en dos partes; la bajada, o downlink, que transmite información desde el drone hacia la estación de tierra. Y la subida, o uplink, que transmite información desde la estación de tierra hacia el drone.\\
+Se encarga de comunicar la estación de tierra con la electrónica del dron, y los sensores de a bordo, tal como se muestra en la Figura~\ref{fig:SystArq}. Este interfaz porta información fundamental para el desempeño de la tarea de control de posición del dron. Se transmite información tanto de la posición del dron, como de las órdenes de velocidad que este deberá ejecutar. El objetivo de este interfaz es que la estación de tierra conozca la posición relativa del dron, y en base a esto, y a las instrucciones de mando que reciba, trate de dirigir y corregir en caso de error, dicha posición.\\
+Se trata de un enlace radio bidireccional entre la estación de tierra y el dron. Dividiremos este enlace en dos partes; la bajada, o downlink, que transmite información desde el dron hacia la estación de tierra. Y la subida, o uplink, que transmite información desde la estación de tierra hacia el dron.\\
 Ambos trabajan en la banda libre de 2.4GHz, pero en distintas frecuencias (canales). Así se consigue un enlace bidireccional full-duplex, en base a separación en frecuencia, o FDM. De esta manera ambos pueden estar transmitiendo información simultáneamente, sin colisionar, ni preocuparse de la complejidad y la bajada en la tasa de transferencia propia de un sistema de multiplexación por división en código, CDM.
 
 \subsection{Downlink}
 \label{subsec:Downlink}
 
-Se encarga de enlazar por radio los sensores de posición a bordo del drone con la estación de tierra. Porta la información medida por dichos sensores. Esta información se compone de una medida de distancia al suelo, o altura, tomada desde la parte media del drone. Una medida del desplazamiento frontal relativa al punto de despegue. Y una medida del desplazamiento lateral relativa también al punto de despegue.\\
+Se encarga de enlazar por radio los sensores de posición a bordo del dron con la estación de tierra. Porta la información medida por dichos sensores. Esta información se compone de una medida de distancia al suelo, o altura, tomada desde la parte media del dron. Una medida del desplazamiento frontal relativa al punto de despegue. Y una medida del desplazamiento lateral relativa también al punto de despegue.\\
 Las tres medidas se miden y transmiten por el interfaz radio en milímetros, considerando como origen de coordenadas, tanto para la altura como para los desplazamientos horizontales, la posición de despegue inicial.
 
 \subsubsection{Características}
@@ -1174,12 +1000,12 @@ En estas tramas la sincronía está garantizada como parte del diseño de la transm
   
 \end{itemize}
 
-Con estas tres medidas, la estación de tierra puede ubicar de manera relativa el drone, generando así el vector de posición necesario para realizar posteriormente las correcciones de posición respecto de las órdenes comandadas.
+Con estas tres medidas, la estación de tierra puede ubicar de manera relativa el dron, generando así el vector de posición necesario para realizar posteriormente las correcciones de posición respecto de las órdenes comandadas.
 
 \subsection{Uplink}
 \label{subsec:Uplink}
 
-Se encarga de enlazar por radio la estación de tierra con la electrónica del drone. Comunica las indicaciones de velocidad para cada eje, junto con canales auxiliares cuya función depende de cada drone. En este TFG no se hará uso de dichos canales auxiliares. 
+Se encarga de enlazar por radio la estación de tierra con la electrónica del dron. Comunica las indicaciones de velocidad para cada eje, junto con canales auxiliares cuya función depende de cada dron. En este TFG no se hará uso de dichos canales auxiliares. 
 
 \subsubsection{Características}
 \label{subsubsec:Up_Car}
@@ -1189,7 +1015,7 @@ De igual  manera que el interfaz de bajada, hace uso de una radio NRF24L01 en la
 \subsubsection{Formato de trama}
 \label{subsubsec:Up_FT}
 
-Este interfaz se compone de una transmisión de doce canales, de los cuales se hará uso exclusivamente de los cuatro primeros. Los ocho canales restantes portan comandos auxiliares, como la velocidad de reacción deseada para el drone, la cual se mantiene en su valor por defecto, y dependiendo del modelo exacto del drone utilizado, a veces se utilizan para disparar fotografías o video de la cámara instalada. El subsistema radio se encarga de transmitir la información contenida en la trama de la Figura~\ref{fig:up_frame} por radio hacia la electrónica del drone.
+Este interfaz se compone de una transmisión de doce canales, de los cuales se hará uso exclusivamente de los cuatro primeros. Los ocho canales restantes portan comandos auxiliares, como la velocidad de reacción deseada para el dron, la cual se mantiene en su valor por defecto, y dependiendo del modelo exacto del dron utilizado, a veces se utilizan para disparar fotografías o video de la cámara instalada. El subsistema radio se encarga de transmitir la información contenida en la trama de la Figura~\ref{fig:up_frame} por radio hacia la electrónica del dron.
 
 \begin{figure}[h]
 	\centering
@@ -1199,15 +1025,15 @@ Este interfaz se compone de una transmisión de doce canales, de los cuales se ha
 \end{figure}
 
 \begin{itemize}
-  \item Cmd\_THR: Valor de velocidad de altura. Ocupa la primera posición en la trama. Representa el impulso deseado para el eje vertical del drone. Un valor de cero no tiene por qué implicar el apagado de los motores, depende de los valores de los siguientes dos canales. 
+  \item Cmd\_THR: Valor de velocidad de altura. Ocupa la primera posición en la trama. Representa el impulso deseado para el eje vertical del dron. Un valor de cero no tiene por qué implicar el apagado de los motores, depende de los valores de los siguientes dos canales. 
   
-  \item Cmd\_R/L: Valor de velocidad de desplazamiento latera. Representa la velocidad de desplazamiento lateral deseada para el drone. Está asociado al grado de libertad del alabeo.
+  \item Cmd\_R/L: Valor de velocidad de desplazamiento latera. Representa la velocidad de desplazamiento lateral deseada para el dron. Está asociado al grado de libertad del alabeo.
   
-  \item Cmd\_F/B: Valor de velocidad de desplazamiento frontal. Representa la velocidad de desplazamiento frontal deseada para el drone. Está asociado al grado de libertad del cabeceo.
+  \item Cmd\_F/B: Valor de velocidad de desplazamiento frontal. Representa la velocidad de desplazamiento frontal deseada para el dron. Está asociado al grado de libertad del cabeceo.
   
-  \item Cmd\_T\_CW: Valor de velocidad de giro. Representa la velocidad de giro sobre sí mismo deseada para el drone. Está asociado al grado de libertad de la guiñada. 
+  \item Cmd\_T\_CW: Valor de velocidad de giro. Representa la velocidad de giro sobre sí mismo deseada para el dron. Está asociado al grado de libertad de la guiñada. 
   
-  \item Aux: Algunos de los ocho canales adicionales tienen valores fijos y otros variables, dependiendo de su funcionalidad y del drone utilizado. Para este trabajo, estos canales se mantendrán con su valor por defecto.
+  \item Aux: Algunos de los ocho canales adicionales tienen valores fijos y otros variables, dependiendo de su funcionalidad y del dron utilizado. Para este trabajo, estos canales se mantendrán con su valor por defecto.
 \end{itemize}
 
 
@@ -1228,12 +1054,12 @@ A continuación se explican los mecanismos ejecutados en cada caso.
 \section{Algoritmos de control sobre la FPGA}
 \label{sec:Algoritmos de control sobre la FPGA}
 
-La lógica de la FPGA se encarga procesar información procedente de dos fuentes distintas, ordenador de mando y drone.
+La lógica de la FPGA se encarga procesar información procedente de dos fuentes distintas, ordenador de mando y dron.
 
 \begin{itemize}
-  \item Por un lado, recibe información desde el ordenador de mando, a través de un puerto serie asíncrono con destino en el módulo, UART PC Frames \& Sync de la Figura~\ref{fig:FPGA_arq}. Las características y el formato de las tramas recibidas por esta vía se describen en el apartado Interfaz de mando. De cada trama se decodifica información para los tres bucles de control PID. La información decodificada por el módulo PC Frame Decoder incluye información de cada PID. Esta es enviada hacia cada controlador según corresponda. A través del flujos de datos Alt Command \& Alt KpKiKd, se envía la información del comando de altura recibido, es decir, la altura deseada para el drone en ese instante, junto con los parámetros proporcional, integral y derivativo del bucle de control de altura. La misma información pero particularizada a cada uno de los dos ejes horizontales es portada por los interfaces Forward Command \& XY KpKiKd y Side Command \& XY KpKiKd. Con la particularidad de que estos dos comparten parámetros PID. De esta manera puede actualizarse casi por completo el comportamiento de los bucles de control, según lo que se reciba en cada trama de mando enviada. Adicionalmente la trama incluye información sobre la orden de giro a entregar directamente al módulo de escalado. Este parámetro, como se ha comentado anteriormente, no pasa por un PID ejecutado en la FPGA, sino que se transfiere directamente hacia el drone, por no disponer de un elemento de medida a bordo. Dicho elemento de medida no se introdujo ya que los errores de giro son suficientemente pequeños como para despreciarlos.
+  \item Por un lado, recibe información desde el ordenador de mando, a través de un puerto serie asíncrono con destino en el módulo, UART PC Frames \& Sync de la Figura~\ref{fig:FPGA_arq}. Las características y el formato de las tramas recibidas por esta vía se describen en el apartado Interfaz de mando. De cada trama se decodifica información para los tres bucles de control PID. La información decodificada por el módulo PC Frame Decoder incluye información de cada PID. Esta es enviada hacia cada controlador según corresponda. A través del flujos de datos Alt Command \& Alt KpKiKd, se envía la información del comando de altura recibido, es decir, la altura deseada para el dron en ese instante, junto con los parámetros proporcional, integral y derivativo del bucle de control de altura. La misma información pero particularizada a cada uno de los dos ejes horizontales es portada por los interfaces Forward Command \& XY KpKiKd y Side Command \& XY KpKiKd. Con la particularidad de que estos dos comparten parámetros PID. De esta manera puede actualizarse casi por completo el comportamiento de los bucles de control, según lo que se reciba en cada trama de mando enviada. Adicionalmente la trama incluye información sobre la orden de giro a entregar directamente al módulo de escalado. Este parámetro, como se ha comentado anteriormente, no pasa por un PID ejecutado en la FPGA, sino que se transfiere directamente hacia el dron, por no disponer de un elemento de medida a bordo. Dicho elemento de medida no se introdujo ya que los errores de giro son suficientemente pequeños como para despreciarlos.
   
-  \item Por otro lado se recibe información desde los sensores embarcados en el drone en el módulo UART Drone Frames \& Sync, decodificada en este caso por el módulo Drone Frame Decoder. Las medidas tomadas son entregadas a través de los flujos de datos X, Y, Z Measures, a los bucles de control correspondientes. Estos hacen referencia al desplazamiento latera (Bucle Side PID), frontal (Bucle Forw PID) y en altura (Bucle Alt PID), respectivamente. En este punto, los bucles y el módulo de escalado de giro, tienen toda la información necesaria para trabajar.
+  \item Por otro lado se recibe información desde los sensores embarcados en el dron en el módulo UART Drone Frames \& Sync, decodificada en este caso por el módulo Drone Frame Decoder. Las medidas tomadas son entregadas a través de los flujos de datos X, Y, Z Measures, a los bucles de control correspondientes. Estos hacen referencia al desplazamiento latera (Bucle Side PID), frontal (Bucle Forw PID) y en altura (Bucle Alt PID), respectivamente. En este punto, los bucles y el módulo de escalado de giro, tienen toda la información necesaria para trabajar.
 \end{itemize}
 
 \begin{figure}[h]
@@ -1243,12 +1069,12 @@ La lógica de la FPGA se encarga procesar información procedente de dos fuentes d
 	\label{fig:FPGA_arq}
 \end{figure}
 
-Cada bucle de control de cada eje se diseña en base a un controlador PID. Cada uno Tendrá entonces como entrada de comando, el valor recibido desde el decodificador de tramas de PC para su eje concreto. Como entrada de retroalimentación, tendrán la medida del sensor de desplazamiento del eje acorde, recibido desde el decodificador de tramas del drone. Calculando la diferencia entre el comando y la medida del sensor, se tendrá el error a procesar por el PID de dicho eje, de manera independiente de los demás ejes. Los bucles integral y derivativo, realizan su tarea diferencial a la velocidad de cierre del bucle. Esta es de 30.3Hz. Por tanto el tiempo de derivación y el tiempo de integración serán constantes con un valor de 33ms. Por el contrario como se ha comentado anteriormente, los parámetros PID, por los que se multiplican las componentes del error proporcional, el error integrado en el tiempo y el error derivado respecto del tiempo, son variables recibidas en las tramas de mando. Dichas variables suelen modificarse en momento clave de la ejecución de las instrucciones de mando, como despegue, vuelo y aterrizaje, permitiendo cierta flexibilidad a la hora de realizar distintas tareas.
+Cada bucle de control de cada eje se diseña en base a un controlador PID. Cada uno Tendrá entonces como entrada de comando, el valor recibido desde el decodificador de tramas de PC para su eje concreto. Como entrada de retroalimentación, tendrán la medida del sensor de desplazamiento del eje acorde, recibido desde el decodificador de tramas del dron. Calculando la diferencia entre el comando y la medida del sensor, se tendrá el error a procesar por el PID de dicho eje, de manera independiente de los demás ejes. Los bucles integral y derivativo, realizan su tarea diferencial a la velocidad de cierre del bucle. Esta es de 30.3Hz. Por tanto el tiempo de derivación y el tiempo de integración serán constantes con un valor de 33ms. Por el contrario como se ha comentado anteriormente, los parámetros PID, por los que se multiplican las componentes del error proporcional, el error integrado en el tiempo y el error derivado respecto del tiempo, son variables recibidas en las tramas de mando. Dichas variables suelen modificarse en momento clave de la ejecución de las instrucciones de mando, como despegue, vuelo y aterrizaje, permitiendo cierta flexibilidad a la hora de realizar distintas tareas.
 
 \section{Software en el módulo de Downlink embarcado}
 \label{sec:Software en el módulo de Downlink embarcado}
 
-El software planteado a bordo del drone se encarga de inicializar radio y sensores, para posteriormente realizar una medida de cada sensor y transmitirlas por radio. El objetivo es informar a la estación de tierra de las medidas de a bordo Sus requisitos son, consumir la menor cantidad de energía posible, realizar su función rápidamente, entreteniéndose lo menor posible en tareas secundarias, y transmitir las medidas con la menor cantidad de latencia posible. Para cubrir estos objetivos, el software se ha diseñado de manera sencilla. Se comienza inicializando los sensores y la radio sin modificar sus parámetros durante la ejecución y se prepara una estructura de datos en la que quepa la trama entera a transmitir por radio, en grupos de dos bytes:\\
+El software planteado a bordo del dron se encarga de inicializar radio y sensores, para posteriormente realizar una medida de cada sensor y transmitirlas por radio. El objetivo es informar a la estación de tierra de las medidas de a bordo Sus requisitos son, consumir la menor cantidad de energía posible, realizar su función rápidamente, entreteniéndose lo menor posible en tareas secundarias, y transmitir las medidas con la menor cantidad de latencia posible. Para cubrir estos objetivos, el software se ha diseñado de manera sencilla. Se comienza inicializando los sensores y la radio sin modificar sus parámetros durante la ejecución y se prepara una estructura de datos en la que quepa la trama entera a transmitir por radio, en grupos de dos bytes:\\
 \begin{verbatim}
 struct TxFrame{
   int16_t H_disp_front;	// Frontal displacement counter
@@ -1273,10 +1099,10 @@ A través de la ejecución de la función \textit{setPIDValues} dentro del módulo c
   
   \item Los parámetros: xy\_kp, xy\_ki, xy\_kd, se aplican a las constantes, proporcional, integral y derivativa respectivamente, de ambos bucle de control PID horizontales.
   
-  \item El parámetro OffGiroDI, es el encargado de permitir corregir el error, si lo hubiere, en el control del giro sobre sí mismo del drone.
+  \item El parámetro OffGiroDI, es el encargado de permitir corregir el error, si lo hubiere, en el control del giro sobre sí mismo del dron.
 \end{itemize}
 
-Tras al menos una ejecución de esta función, se puede proceder a enviar instrucciones de mando al drone. Estas pueden enviarse de manera directa a través de la instrucción setcontrols:
+Tras al menos una ejecución de esta función, se puede proceder a enviar instrucciones de mando al dron. Estas pueden enviarse de manera directa a través de la instrucción setcontrols:
 
 \begin{flushleft}
 \textit{def} setcontrols (ArrAb, DerIzq, DelDet, GiroDI, Duracion):
@@ -1296,7 +1122,7 @@ Adicionalmente al método de control directo, se puede hacer uso de la función se
 \textit{def} settrace (ArrAb, DerIzq, DelDet, GiroDI, Duracion, Steps):
 \end{flushleft}
 
-Esta función hace uso de \textit{setcontrols},  para generar puntos intermedios en una trayectoria larga. Los parámetros son los mismos que para \textit{setcontrols}, salvo por el añadido de Steps, que indica el número de puntos intermedios a crear entre el punto actual y el destino indicado. Esta función es útil en casos en los que se quiera recorrer distancias de más de pocos centímetros. Esto es debido a que en caso de por ejemplo, despegue y posterior indicación de vuelo a una distancia considerable del punto de origen, los bucles de control partirían de un error grande, lo que se intenta resolver con un  empuje considerable en la dirección de corrección del error. A pesar del posterior suavizado en la aceleración, de la componente derivativa, este empuje excesivo en ocasiones puede desestabilizar el control de los bucles PID y dificultar la adecuada medida de la ubicación por parte del sensor óptico. Además al inclinar bruscamente el drone, el sensor de altura mide una distancia mayor, debido al nuevo ángulo de incidencia sobre el suelo. Esto se traduce en un avance tortuoso del drone, como avanzando ``a tirones'' hacia su destino. Para evitar esto, \textit{settrace} genera la ristra de avances de menor distancia, evitando el crecimiento excesivo de los errores calculados por los bucles.
+Esta función hace uso de \textit{setcontrols},  para generar puntos intermedios en una trayectoria larga. Los parámetros son los mismos que para \textit{setcontrols}, salvo por el añadido de Steps, que indica el número de puntos intermedios a crear entre el punto actual y el destino indicado. Esta función es útil en casos en los que se quiera recorrer distancias de más de pocos centímetros. Esto es debido a que en caso de por ejemplo, despegue y posterior indicación de vuelo a una distancia considerable del punto de origen, los bucles de control partirían de un error grande, lo que se intenta resolver con un  empuje considerable en la dirección de corrección del error. A pesar del posterior suavizado en la aceleración, de la componente derivativa, este empuje excesivo en ocasiones puede desestabilizar el control de los bucles PID y dificultar la adecuada medida de la ubicación por parte del sensor óptico. Además al inclinar bruscamente el dron, el sensor de altura mide una distancia mayor, debido al nuevo ángulo de incidencia sobre el suelo. Esto se traduce en un avance tortuoso del dron, como avanzando ``a tirones'' hacia su destino. Para evitar esto, \textit{settrace} genera la ristra de avances de menor distancia, evitando el crecimiento excesivo de los errores calculados por los bucles.
 
 
 
@@ -1312,13 +1138,13 @@ Esta función hace uso de \textit{setcontrols},  para generar puntos intermedios 
 \section{Eachine E010}
 \label{sec:Eachine E010}
 
-En un inicio se hico uso del drone Eachine E010. Un pequeño cuadricóptero, ligero y de comportamiento nervioso. Sobre él se hicieron pruebas de control en bucle abierto. Se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el drone y se probaron despegues y vuelos cortos en línea recta.\\
-El drone mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas con algo de pre-énfasis. Sabido su desvió a derechas y hacia abajo, se prepararon vuelos de avance y despegue en los que progresivamente se aumentaba la fuerza de los motores hacia la izquierda y hacia arriba. Estas dificultades hicieron los vuelos largos en bucle abierto imposibles, por tanto se intentó instalar el controlador de vuelo de bucle cerrado en dicho drone. Desgraciadamente el peso de la electrónica disponible era excesivo y hubo que abortar los intentos y buscar una plataforma de mayor potencia. Por este motivo se utilizó el drone Syma X5C finalmente, frente al pequeño E010.
+En un inicio se hico uso del dron Eachine E010. Un pequeño cuadricóptero, ligero y de comportamiento nervioso. Sobre él se hicieron pruebas de control en bucle abierto. Se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el dron y se probaron despegues y vuelos cortos en línea recta.\\
+El dron mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas con algo de pre-énfasis. Sabido su desvió a derechas y hacia abajo, se prepararon vuelos de avance y despegue en los que progresivamente se aumentaba la fuerza de los motores hacia la izquierda y hacia arriba. Estas dificultades hicieron los vuelos largos en bucle abierto imposibles, por tanto se intentó instalar el controlador de vuelo de bucle cerrado en dicho dron. Desgraciadamente el peso de la electrónica disponible era excesivo y hubo que abortar los intentos y buscar una plataforma de mayor potencia. Por este motivo se utilizó el dron Syma X5C finalmente, frente al pequeño E010.
 
 \section{Syma X5C en Bucle abierto}
 \label{sec:Syma X5C en Bucle abierto}
 
-Tras las pruebas con el E010, inicialmente se tuvo que conseguir el mismo control sobre el X5C. Para ellos se modificó el código de enlace con el drone, ejecutado en el módulo de uplink, para conseguir control básico sobre el X5C. Una vez enlazado se hicieron pruebas de control en bucle abierto de igual manera que con el E010. El drone Syma, resulto también difícil de controlar en bucle abierto para vuelos de más de 10 o 15 segundos. A parte de sus desvíos poco previsibles en cada eje, lo cual dificultaba ejecutar correcciones en base a ?trimado?, este drone presentaba una degradación considerablemente notable en la potencia de los motores a medida que se gastaba la batería. Posiblemente debido a la baja calidad de las baterías y de los controladores de los motores, junto a la inexistencia de reguladores de tensión, este problema dificultaba extremadamente su control en altura, haciéndolo casi imposible en bucle abierto. Se procedió por tanto rápidamente a instalarle el sistema de medida de posición. El X5C si era capaz de levantar la electrónica embarcada, pero sus motores quedaban encendidos casi al máximo de su potencia para mantener el vuelo. Esto continuaba dificultando el correcto control en altura, generando oscilaciones de una amplitud imposible de corregir para el PID de altura. En este punto, al menos existía un mínimo de control sobre el drone, con escasa estabilidad. Por tanto se procedió a aligerar la electrónica con cambios menores, y aligerar el drone, con modificaciones mayores. Básicamente se libró al drone de todo aquello estrictamente innecesario para el vuelo. Se acortaron cables, se eliminaron luces de indicación de frente, soporte de cámara, amarre de batería, topes de motores, protecciones de aspas, tornillos, y media estructura de plástico del drone. Algunos elementos retirados se sustituyeron por puntos de soldadura o pegamento, en pro de aligerar todo lo posible. Al retirar media estructura, la resultante pecaba de exceso de flexibilidad y falta de rigidez, lo que eliminó parte de la independencia de ejes, pero permitió a los controladores, ganar bastante en cuanto a estabilización del drone. En este punto el trabajo pendiente se centró en mejorar los parámetros PID de los controladores diseñados para el drone previo al cambio de peso, ya que los anteriores no eran correctos con el nuevo sistema. Además se trabajó rotando dos baterías y controlando rigurosamente su nivel de carga, ya que aunque los bucles de control PID corrigen parte de la disminución de potencia en los motores debido a la descarga de las baterías, llegado un nivel de carga bajo, los parámetros de control mismos, dejaban de ser igual de efectivos, y la velocidad de respuesta también disminuía, lo que al final se traducía en el mismo efecto, parámetros PID inadecuados. Procurando trabajar con baterías en un rango de carga concreto, se minimizo lo suficiente este efecto como para poder mejorar la estabilidad y control sobre el drone.
+Tras las pruebas con el E010, inicialmente se tuvo que conseguir el mismo control sobre el X5C. Para ellos se modificó el código de enlace con el dron, ejecutado en el módulo de uplink, para conseguir control básico sobre el X5C. Una vez enlazado se hicieron pruebas de control en bucle abierto de igual manera que con el E010. El dron Syma, resulto también difícil de controlar en bucle abierto para vuelos de más de 10 o 15 segundos. A parte de sus desvíos poco previsibles en cada eje, lo cual dificultaba ejecutar correcciones en base a ?trimado?, este dron presentaba una degradación considerablemente notable en la potencia de los motores a medida que se gastaba la batería. Posiblemente debido a la baja calidad de las baterías y de los controladores de los motores, junto a la inexistencia de reguladores de tensión, este problema dificultaba extremadamente su control en altura, haciéndolo casi imposible en bucle abierto. Se procedió por tanto rápidamente a instalarle el sistema de medida de posición. El X5C si era capaz de levantar la electrónica embarcada, pero sus motores quedaban encendidos casi al máximo de su potencia para mantener el vuelo. Esto continuaba dificultando el correcto control en altura, generando oscilaciones de una amplitud imposible de corregir para el PID de altura. En este punto, al menos existía un mínimo de control sobre el dron, con escasa estabilidad. Por tanto se procedió a aligerar la electrónica con cambios menores, y aligerar el dron, con modificaciones mayores. Básicamente se libró al dron de todo aquello estrictamente innecesario para el vuelo. Se acortaron cables, se eliminaron luces de indicación de frente, soporte de cámara, amarre de batería, topes de motores, protecciones de aspas, tornillos, y media estructura de plástico del dron. Algunos elementos retirados se sustituyeron por puntos de soldadura o pegamento, en pro de aligerar todo lo posible. Al retirar media estructura, la resultante pecaba de exceso de flexibilidad y falta de rigidez, lo que eliminó parte de la independencia de ejes, pero permitió a los controladores, ganar bastante en cuanto a estabilización del dron. En este punto el trabajo pendiente se centró en mejorar los parámetros PID de los controladores diseñados para el dron previo al cambio de peso, ya que los anteriores no eran correctos con el nuevo sistema. Además se trabajó rotando dos baterías y controlando rigurosamente su nivel de carga, ya que aunque los bucles de control PID corrigen parte de la disminución de potencia en los motores debido a la descarga de las baterías, llegado un nivel de carga bajo, los parámetros de control mismos, dejaban de ser igual de efectivos, y la velocidad de respuesta también disminuía, lo que al final se traducía en el mismo efecto, parámetros PID inadecuados. Procurando trabajar con baterías en un rango de carga concreto, se minimizo lo suficiente este efecto como para poder mejorar la estabilidad y control sobre el dron.
 
 
 \section{Pruebas Unitarias}
@@ -1346,7 +1172,7 @@ Para la comprobación del correcto funcionamiento del módulo donwlink en tierra y
 \subsection{Pruebas del módulo de uplink}
 \label{subsec:Pruebas en modulo de uplink}
 
-Este módulo se verificó a través de las pruebas de enlace con los distintos drones utilizados durante el desarrollo del TFG. Estas se realizaron en el punto de partida del proyecto, durante la creación del código que cubre el objetivo~\ref{subsec:Enlace con el drone}. Durante el establecimiento del enlace entre el módulo de uplink y el drone, las luces de indicación de frente del drone cambian su patrón de parpadeo. En caso de un correcto enlace, dichas luces quedan fijas. Esta comprobación visual es suficiente para verificar el enlace, y de paso la correcta construcción y programación del módulo de uplink.
+Este módulo se verificó a través de las pruebas de enlace con los distintos drones utilizados durante el desarrollo del TFG. Estas se realizaron en el punto de partida del proyecto, durante la creación del código que cubre el objetivo~\ref{subsec:Enlace con el drone}. Durante el establecimiento del enlace entre el módulo de uplink y el dron, las luces de indicación de frente del dron cambian su patrón de parpadeo. En caso de un correcto enlace, dichas luces quedan fijas. Esta comprobación visual es suficiente para verificar el enlace, y de paso la correcta construcción y programación del módulo de uplink.
 
 
 \subsection{Pruebas de módulos software}
@@ -1357,7 +1183,7 @@ El módulo dos de la estación de tierra (Procesado y comunicaciones en~\ref{subsu
 \subsubsection{Prueba de módulo decodificador de tramas de mando}
 \label{subsubsec:Prueba de modulo decodificador de tramas desde PC}
 
-El test consiste en enviar hacia el decodificador una trama completa para comprobar su correcta decodificación. Los valores incluidos en la trama van de 1 a 14 con valores crecientes. En la Figura~\ref{fig:FrameDecoderCap} se observa la trama enviada en la señal \textit{sink\_data} y su correcta decodificación junto a la señal de datos válidos asertada en el instante de recepción del último byte con valor 0x0E. El test solo captura en sus salidas los ocho primeros bytes ya que el módulo se diseñó originalmente para la recepción de tramas orientadas al control del drone en bucle abierto. Una vez comprobada la correcta decodificación de la trama, su funcionalidad de aumentó durante el desarrollo del trabajo para decodificar tramas completas, incluyendo los valores de los parámetros de los PIDs.
+El test consiste en enviar hacia el decodificador una trama completa para comprobar su correcta decodificación. Los valores incluidos en la trama van de 1 a 14 con valores crecientes. En la Figura~\ref{fig:FrameDecoderCap} se observa la trama enviada en la señal \textit{sink\_data} y su correcta decodificación junto a la señal de datos válidos asertada en el instante de recepción del último byte con valor 0x0E. El test solo captura en sus salidas los ocho primeros bytes ya que el módulo se diseñó originalmente para la recepción de tramas orientadas al control del dron en bucle abierto. Una vez comprobada la correcta decodificación de la trama, su funcionalidad de aumentó durante el desarrollo del trabajo para decodificar tramas completas, incluyendo los valores de los parámetros de los PIDs.
 
 \begin{figure}[h]
 	\centering
@@ -1448,13 +1274,13 @@ Desde un punto de vista alejado de los parámetros PID de los bucles de control, 
 \subsection{Ancho de banda}
 \label{subsec:Ancho de banda}
 
-El ancho de banda se vio limitado por las velocidades de ejecución más lentas dentro del sistema, estas son la velocidad de recepción de tramas de la electrónica propia del drone, la cual limita cuantas órdenes puede atender por segundo, y la lectura de los sensores, limitada por la electrónica embarcada y las especificaciones de los propios sensores. Finalmente se estableció una velocidad de lectura de 30.3 hercios, que permitía a los sensores ser leídos adecuadamente, y a la electrónica propia del drone, atender todas las tramas entrantes. Esto limita la brusquedad de las reacciones del drone, en caso de correcciones necesarias, y la suavidad del mismo durante su vuelo.
+El ancho de banda se vio limitado por las velocidades de ejecución más lentas dentro del sistema, estas son la velocidad de recepción de tramas de la electrónica propia del dron, la cual limita cuantas órdenes puede atender por segundo, y la lectura de los sensores, limitada por la electrónica embarcada y las especificaciones de los propios sensores. Finalmente se estableció una velocidad de lectura de 30.3 hercios, que permitía a los sensores ser leídos adecuadamente, y a la electrónica propia del dron, atender todas las tramas entrantes. Esto limita la brusquedad de las reacciones del dron, en caso de correcciones necesarias, y la suavidad del mismo durante su vuelo.
 
 \subsection{Retardo}
 \label{subsec:Retardo}
 
 Aunque el ancho de banda es un parámetro fundamental en el control de un sistema, para el caso de este TFG, la mayor cantidad de problemas durante el desarrollo y pruebas del sistema, fueron originados por falta de estabilidad. Esta se pone en riesgo por múltiples factores, algunos ya comentados, pero principalmente por los retardos en la ejecución de los bucles de control. El tiempo que transcurre desde que se realiza la medida de posición de un eje, hasta que se actúa en consecuencia para corregir el error, es fundamental para estabilizar correctamente el vehículo.\\
-En este aspecto, hay varias fuentes de retardo en el sistema, algunas inherentes a algún componente, como los retardos de medida de los sensores, y otras, fruto de la arquitectura escogida. Por ejemplo el hecho de que el proceso de control sea ejecutado en tierra y no a bordo del drone, genera retardos asociados a la transmisión de los valores. Las medidas no son procesadas a bordo sino que se transmiten hacia tierra, donde se procesan para obtener una respuesta, y dicha respuesta se devuelve al drone. Este proceso de transmisión a tierra añade retardos indeseados, pero necesarios para el funcionamiento del sistema.\\
+En este aspecto, hay varias fuentes de retardo en el sistema, algunas inherentes a algún componente, como los retardos de medida de los sensores, y otras, fruto de la arquitectura escogida. Por ejemplo el hecho de que el proceso de control sea ejecutado en tierra y no a bordo del dron, genera retardos asociados a la transmisión de los valores. Las medidas no son procesadas a bordo sino que se transmiten hacia tierra, donde se procesan para obtener una respuesta, y dicha respuesta se devuelve al dron. Este proceso de transmisión a tierra añade retardos indeseados, pero necesarios para el funcionamiento del sistema.\\
 Si tratamos de contabilizar a groso modo los retardos existentes, tenemos:
 
 \begin{itemize}
@@ -1482,12 +1308,12 @@ A falta de contabilizar de manera más fina los retardos, es sabido que existe un
 \chapter{Conclusiones}
 \label{chap:Conclusiones}
 
-Para terminar, realizaremos un repaso de los objetivos alcanzados, los métodos y las dificultades encontradas en el proceso. Gracias a ellas se ha sufrido y aprendido durante todo el proyecto. A cada elemento diseñado, se han encontrado formas mejores de hacerlo en un futuro, alternativas con propiedades distintas y opciones a elementos sueltos o la propia arquitectura misma, que podrían dar resultados diferentes y mejores. Finalmente se ha conseguido un resultado satisfactorio con el objetivo principal que se tenía, estabilizar y controlar un drone de bajo coste desde un ordenador. El trabajo podría dividirse en dos grandes bloques, control del drone mediante bucles abiertos y control mediante bucles cerrados.
+Para terminar, realizaremos un repaso de los objetivos alcanzados, los métodos y las dificultades encontradas en el proceso. Gracias a ellas se ha sufrido y aprendido durante todo el proyecto. A cada elemento diseñado, se han encontrado formas mejores de hacerlo en un futuro, alternativas con propiedades distintas y opciones a elementos sueltos o la propia arquitectura misma, que podrían dar resultados diferentes y mejores. Finalmente se ha conseguido un resultado satisfactorio con el objetivo principal que se tenía, estabilizar y controlar un dron de bajo coste desde un ordenador. El trabajo podría dividirse en dos grandes bloques, control del dron mediante bucles abiertos y control mediante bucles cerrados.
 
 \begin{itemize}
-  \item Control mediante bucles abiertos: Esta fue la primera aproximación a tener un control mínimo de los vehículos desde el ordenador. El resultado fue positivo desde el punto de vista de lo que este tipo de sistemas pueden llegar a ofrecer. Se diseñó software y hardware completamente funcional, permitiendo el enlace con el drone y su obediencia ante las instrucciones dadas desde el pc. Pero las derivas propias de los drones, especialmente notables en drones de bajo coste, dificultaron excesivamente un buen control del mismo mediante esta metodología. Los resultados conseguidos permitían controlar un drone, comandándole instrucciones que este obedecía, pero dicho control era precario, falto de precisión y repetitividad. Para un ejercicio de despegue y parada en vuelo, llegaba un momento en que dichas derivas dirigían el drone contra el suelo, contra una pared, etc. La problemática de este método era difícil de subsanar con la infraestructura disponible, por este motivo se procedió a evolucionar todo el sistema, hardware y software, tanto en tierra como a bordo, dotándolo de una nueva dimensión, conocimiento en el drone de la propia ubicación relativa del drone. Esto supuso poder avanzar al siguiente tipo de control.
+  \item Control mediante bucles abiertos: Esta fue la primera aproximación a tener un control mínimo de los vehículos desde el ordenador. El resultado fue positivo desde el punto de vista de lo que este tipo de sistemas pueden llegar a ofrecer. Se diseñó software y hardware completamente funcional, permitiendo el enlace con el dron y su obediencia ante las instrucciones dadas desde el pc. Pero las derivas propias de los drones, especialmente notables en drones de bajo coste, dificultaron excesivamente un buen control del mismo mediante esta metodología. Los resultados conseguidos permitían controlar un dron, comandándole instrucciones que este obedecía, pero dicho control era precario, falto de precisión y repetitividad. Para un ejercicio de despegue y parada en vuelo, llegaba un momento en que dichas derivas dirigían el dron contra el suelo, contra una pared, etc. La problemática de este método era difícil de subsanar con la infraestructura disponible, por este motivo se procedió a evolucionar todo el sistema, hardware y software, tanto en tierra como a bordo, dotándolo de una nueva dimensión, conocimiento en el dron de la propia ubicación relativa del dron. Esto supuso poder avanzar al siguiente tipo de control.
   
-  \item  Control mediante bucles cerrados: Esta fue la arquitectura definitiva diseñada para el control del drone. Se diseñó electrónica y software para permitir al drone medir su propia ubicación respecto del punto de despegue y transmitirla al sistema en tierra. La estación de tierra recibió añadidos hardware, y una completa actualización de software para recibir, procesar y corregir la ubicación del drone mediante PIDs, enlaces serie y radio, satisfactoriamente. El sistema en este punto permitió recibir instrucciones de posición desde el ordenador y controlar el drone para obedecerlas. Mediante estos cambios se consiguieron vuelos significativamente más estables y similares entre sí. Los cambios permitieron además ampliar la duración de los vuelos hasta los límites impuestos por los niveles de carga en las baterías, lo que facilitó las tareas de ajuste de parámetros PID y experimentación.
+  \item  Control mediante bucles cerrados: Esta fue la arquitectura definitiva diseñada para el control del dron. Se diseñó electrónica y software para permitir al dron medir su propia ubicación respecto del punto de despegue y transmitirla al sistema en tierra. La estación de tierra recibió añadidos hardware, y una completa actualización de software para recibir, procesar y corregir la ubicación del dron mediante PIDs, enlaces serie y radio, satisfactoriamente. El sistema en este punto permitió recibir instrucciones de posición desde el ordenador y controlar el dron para obedecerlas. Mediante estos cambios se consiguieron vuelos significativamente más estables y similares entre sí. Los cambios permitieron además ampliar la duración de los vuelos hasta los límites impuestos por los niveles de carga en las baterías, lo que facilitó las tareas de ajuste de parámetros PID y experimentación.
 \end{itemize}
 
 El trabajo realizado pone a disposición pública el hardware, software y diseño del sistema, listos para que cualquiera persona pueda adquirir los elementos por un bajo coste, instalarlos y ponerlos en funcionamiento. Esto ofrece un gran abanico de posibles modificaciones, mejoras y desarrollos futuros.
@@ -1501,7 +1327,7 @@ El sistema desarrollado ofrece muchas posibilidades de mejoras y añadidos. En es
 \label{subsec:Mejoras en la arquitectura del sistema}
 
 \begin{itemize}
-  \item La arquitectura del sistema es posiblemente la consideración de diseño cuyo cambio tenga un mayor impacto en el resultado final. La premisa de procesar con la FPGA en tierra, tiene ventajas y desventajas. Probablemente la peor contrapartida sea los tiempos de transmisión y recepción añadidos por los distintos módulos que intervienen en la comunicación de las medidas hacia tierra y las órdenes de vuelta hacia el drone. Estos retardos añadidos, empeoran la estabilidad que se puede llegar a conseguir, con el vehículo en vuelo. El cambio más significativo pasaría posiblemente por trasladar la FPGA a la electrónica embarcada, con conexión directa a los sensores y a los drivers de los motores. Esto supondría incluir una cantidad considerable de software en la FPGA, a cambio de disminuir los retardos a más de la mitad, ganando en favor de la calidad del control que se ejerce sobre el drone.
+  \item La arquitectura del sistema es posiblemente la consideración de diseño cuyo cambio tenga un mayor impacto en el resultado final. La premisa de procesar con la FPGA en tierra, tiene ventajas y desventajas. Probablemente la peor contrapartida sea los tiempos de transmisión y recepción añadidos por los distintos módulos que intervienen en la comunicación de las medidas hacia tierra y las órdenes de vuelta hacia el dron. Estos retardos añadidos, empeoran la estabilidad que se puede llegar a conseguir, con el vehículo en vuelo. El cambio más significativo pasaría posiblemente por trasladar la FPGA a la electrónica embarcada, con conexión directa a los sensores y a los drivers de los motores. Esto supondría incluir una cantidad considerable de software en la FPGA, a cambio de disminuir los retardos a más de la mitad, ganando en favor de la calidad del control que se ejerce sobre el dron.
 \end{itemize}
 
 \subsection{Mejoras hardware}
@@ -1523,7 +1349,7 @@ El sistema desarrollado ofrece muchas posibilidades de mejoras y añadidos. En es
   
   \item Los controladores actuales realizan su tarea en base exclusivamente a la posición del vehículo, pero no reparan en limitaciones de velocidad o aceleración. Una mejora potente sería ubicar bucles de control de velocidad y aceleración bajo los actuales bucles de control de posición. Esto controlaría las brusquedades y dotaría al sistema de un mayor control sobre cómo se desplaza el vehículo.
   
-  \item Generador de trayectorias: Para poder acometer un generador de trayectorias completo, serían necesarias modificaciones hardware y software en la estación de tierra. Estas deberían permitir a la estación de tierra informar al ordenador de mando de la ubicación actual del drone (obtenida de las medidas de los sensores embarcados). Con este añadido se permitiría al software en el pc crear verdaderos puntos intermedios en el avance de drone, dependientes tanto de la posición actual, como de la posición de destino, trazando así una trayectoria sin incrementos exagerados en el error de los bucles de control.
+  \item Generador de trayectorias: Para poder acometer un generador de trayectorias completo, serían necesarias modificaciones hardware y software en la estación de tierra. Estas deberían permitir a la estación de tierra informar al ordenador de mando de la ubicación actual del dron (obtenida de las medidas de los sensores embarcados). Con este añadido se permitiría al software en el pc crear verdaderos puntos intermedios en el avance de dron, dependientes tanto de la posición actual, como de la posición de destino, trazando así una trayectoria sin incrementos exagerados en el error de los bucles de control.
 \end{itemize}
 
 
@@ -1536,30 +1362,235 @@ El sistema desarrollado ofrece muchas posibilidades de mejoras y añadidos. En es
 
 \textbf{{\Large Bibliografía}}
 
-\begin{verbatim}
-https://www.parrot.com/soluciones-business/profesional/parrot-sequoia
-http://www.centum-rt.com/en/lifeseeker/
-http://www.ingenieros.es/noticias/ver/life-seeker-sistema-para-la-localizaciandoacuten-de-personas-desde-el-aire/2735
-https://www.bbc.com/news/technology-38450664
-https://www.digikey.com/en/articles/techzone/2012/jul/a-designers-guide-to-mems-sensors
-https://charlestytler.com/quadcopter-equations-motion/
-https://www.infineon.com/dgdl/Infineon-Application-Motor_Control-Drone_Electronic_Speed_Controller_ESC-TR-v01_00-EN.pdf?fileId=5546d462580663ef015843a229fe54ea
-http://fpvmax.com/2017/08/09/pids-ajuste-drones/
-https://www.arrow.com/es-mx/research-and-events/articles/fpgas-in-neural-networks
-https://core.ac.uk/download/pdf/154797518.pdf
-https://www.luisllamas.es/arduino-spi/
-https://twitter.com/obijuan_cube/status/1135920285205401600
-https://www.solitontech.com/uart-protocol-validation-service/
-http://www.latticesemi.com/-/media/LatticeSemi/Documents/DataSheets/iCE/iCE40-UltraPlus-Family-Data-Sheet.ashx
-https://www.mouser.es/pdfdocs/enDM00270461.pdf
-https://www.bitcraze.io/flow-breakout/
-https://wiki.bitcraze.io/_media/projects:crazyflie2:expansionboards:pot0189-pmw3901mb-txqt-ds-r1.00-200317_20170331160807_public.pdf
-https://hipertextual.com/presentado-por/vodafone-one/paola-santana
-https://www.amazon.com/Amazon-Prime-Air/b?ie=UTF8&node=8037720011
-http://www.automatas.org/hardware/teoria_pid.htm
-https://teslabem.com/nivel-intermedio/fundamentos-del-protocolo-i2c-aprende/
 
-\end{verbatim}
+
+% https://www.parrot.com/soluciones-business/profesional/parrot-sequoia
+% http://www.centum-rt.com/en/lifeseeker/
+% http://www.ingenieros.es/noticias/ver/life-seeker-sistema-para-la-localizaciandoacuten-de-personas-desde-el-aire/2735
+% https://www.bbc.com/news/technology-38450664
+% https://www.digikey.com/en/articles/techzone/2012/jul/a-designers-guide-to-mems-sensors
+% https://charlestytler.com/quadcopter-equations-motion/
+% https://www.infineon.com/dgdl/Infineon-Application-Motor_Control-Drone_Electronic_Speed_Controller_ESC-TR-v01_00-EN.pdf?fileId=5546d462580663ef015843a229fe54ea
+% http://fpvmax.com/2017/08/09/pids-ajuste-drones/
+% https://www.arrow.com/es-mx/research-and-events/articles/fpgas-in-neural-networks
+% https://core.ac.uk/download/pdf/154797518.pdf
+% https://www.luisllamas.es/arduino-spi/
+% https://www.solitontech.com/uart-protocol-validation-service/
+% https://www.st.com/en/imaging-and-photonics-solutions/vl53l0x.html
+% https://www.bitcraze.io/flow-breakout/
+% https://www.pixart.com/products-detail/44/PMW3901MB-TXQT
+% https://hipertextual.com/presentado-por/vodafone-one/paola-santana
+% https://www.amazon.com/Amazon-Prime-Air/b?ie=UTF8&node=8037720011
+% http://www.automatas.org/hardware/teoria_pid.htm
+% https://teslabem.com/nivel-intermedio/fundamentos-del-protocolo-i2c-aprende/
+% https://teslabem.com/nivel-intermedio/fundamentos-del-protocolo-i2c-aprende/
+
+%\begin{verbatim}
+%\end{verbatim}
+
+
+
+\cleardoublepage
+
+% Las siguientes dos instrucciones es todo lo que necesitas
+% para incluir las citas en la memoria
+\bibliographystyle{abbrv}
+%\bibliographystyle{apalike}
+\bibliography{memoria}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ANEXOS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+
+\appendix
+\chapter{Mecanismos de comunicación}
+\label{app:MecCom}
+
+
+A lo largo de este trabajo, se hace uso de diferentes estándares y protocolos de comunicación para enlazar distintos módulos, permitiéndoles comunicarse entre ellos de una manera determinada. Aquí se comentan algunos de los mecanismos empleados en el informe.
+
+\section{UART}
+\label{sec:UART}
+
+Se trata de un sistema de comunicaciones serie asíncronas (Universal Asynchronous Receiver Transmitter) capaz de realizar una comunicación full dúplex bidireccional con tan solo dos hilos, transmisión y recepción (más un tercero, a modo de referencia, si los dispositivos en comunicación no gozasen de una referencia común de tensión). Se utiliza cada hilo exclusivamente para cada sentido de la comunicación.\\
+En el sistema se utilizan comunicaciones asíncronas en dos ubicaciones distintas. En la Figura~\ref{fig:uartframe} se muestra la transmisión de un byte que incluye bit de paridad \cite{uart_adv}. En el trabajo realizado, este bit no está en uso, el resto de la configuración es idéntica a la utilizada. Se comienza con el bus a nivel alto. El primer flanco de bajada marca la llegada del bit de inicio de paquete, ``START''. Seguido de los ocho bits de datos comenzando por el bit de menor peso ``D0'', y acabando con un último bit de parada ``STOP'', este indica el final del paquete. La línea roja del cronograma de la Figura~\ref{fig:uartframe}, muestra el instante de detección del bit de inicio, y  los posteriores instantes de muestreo de cada bit. Los bits se reciben a la tasa de transferencia preestablecida de 500Kbps, en caso contrario, se perdería la sincronía con el byte en transmisión, pudiendo perder, o recibir prematuramente el bit de parada (dependiendo de si el error en la tasa de transferencia es por exceso o por defecto), produciéndose un error de ``framing''. En caso de transferirse adecuadamente, el valor del byte estaría disponible al recibir el último bit transmitido, ``D7''.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm]{Imagenes/UART_funcionamiento.png}
+	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
+	\caption{Formato de paquete UART}
+	\label{fig:uartframe}
+\end{figure}
+
+\section{SPI}
+\label{sec:SPI}
+
+A lo largo del TFG se hace uso de puertos serie, SPI, en tres ubicaciones distintas, dos en la estación de tierra y la tercera en la electrónica embarcada.\\
+Un puerto SPI se trata de una comunicación maestro esclavo. Esta se basa en una comunicación serie, síncrona de tres o cuatro hilos para un enlace bidireccional, con un único dispositivo cada vez \cite{spi_adv}. En la Figura~\ref{fig:spiframe} se muestra un ejemplo de comunicación, y en la Figura~\ref{fig:spiarq} un ejemplo de las conexiones. La única señal opcional es la selección del esclavo, Slave Select (SS). Las tres señales obligatorias son el reloj (SCLK), la salida de datos del maestro y entrada hacia el esclavo (MOSI) y la entrada de datos del maestro y salida del esclavo (MISO).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm]{Imagenes/spi_funcionamiento.jpg}
+	\caption{Funcionamiento de una comunicación SPI}
+	\label{fig:spiframe}
+\end{figure}
+
+\begin{itemize}
+  \item SS: En caso de tener conexión a múltiples dispositivos, el maestro puede escoger con cual entablar comunicación, asertando este pin, activo a nivel bajo, en el esclavo deseado.
+  
+  \item SCLK: Se trata de la señal de reloj. Se utiliza para sincronizar las transmisiones. En el flanco de bajada se deben ubicar los datos en la salida correspondiente, y se deben leer en el flanco de subida.
+  
+  \item MISO: Master Input Slave Output. Convención utilizada para designar el pin de entrada de datos hacia el maestro, desde los posibles esclavos.
+  
+  \item MOSI: Master Output Slave Input. Ofrece la funcionalidad complementaria al pin MISO. En este caso, es el maestro el que utiliza este pin de salida y los esclavos como entrada.
+  
+\end{itemize}
+
+Un esquema típico de conexión con múltiples esclavos se muestra en la Figura~\ref{fig:spiarq}. Para este trabajo, se hará uso de comunicaciones con un único esclavo únicamente, ya que se dispone de tres radios NRF24L01 y tres procesadores de Atmel independientes.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm]{Imagenes/spi_esquema.png}
+	\caption{Esquema de conexión para un puerto SPI}
+	\label{fig:spiarq}
+\end{figure}
+
+\section{I2C}
+\label{sec:I2C}
+
+Se trata de un desarrollo de Philips para la conexión de múltiples circuitos integrados de semejante o distinta naturaleza, sobre un bus común.\\
+De manera similar al estándar de SPI, I2C hace uso de una arquitectura maestro-esclavo, síncrona, bidireccional, en este caso half-dúplex, mediante dos hilos: Reloj (normalmente designado SCL o CLK) y datos (SDA) \cite{i2c_adv} que se conectan a todos los dispositivos colgados del bus, como se muestra en la Figura~\ref{fig:i2carq}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{Imagenes/I2C_Arq.png}
+	\caption{Arquitectura hardware de un bus I2C}
+	\label{fig:i2carq}
+\end{figure}
+
+Las líneas de reloj y datos se encuentran, por defecto, a nivel alto gracias a dos resistencias de ``pull-up'', Rp en la arquitectura arriba indicada. Para iniciar una comunicación, dichas líneas deben ser comprobadas a fin de evitar colisiones. Si el bus I2C se encuentra libre en ese instante, se puede iniciar una comunicación manteniendo la línea SCL a nivel alto y forzando un flanco de bajada en la línea de datos SDA. Este evento fuerza a los esclavos a atender el siguiente mensaje recibido, por si fuera destinado a ellos. La trama tiene el formato especificado en la Figura~\ref{fig:i2cmsg}. El destinatario se especifica en la trama enviada a través del primer grupo de 7 a 10 bits, dependiendo del dispositivo, seguido del bit que especifica el sentido de la información; se desea enviar información hacia el esclavo, o se quiere solicitar información de él. Tras cada grupo de datos transferidos, se envía un ACK o un NoACK al remitente, para informarle si el paquete ha sido recibido con éxito. La trama se termina con el envío de un bit de parada, señalado por un flanco de subida en la señal SDA, mientras se mantiene la línea SCL a nivel alto.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm]{Imagenes/I2C_Frame_Format.jpg}
+	\caption{Formato de trama I2C}
+	\label{fig:i2cmsg}
+\end{figure}
+
+\section{PPM}
+\label{sec:PPM}
+
+Las siglas PPM vienen de Pulse Position Modulation. Se trata de una modulación en la que cada canal tiene un instante de llegada concreto, manteniendo constantes la amplitud de los mismos \cite{PPM_adv}, respecto del canal inmediatamente anterior. El desfase que se produzca respecto de dicho instante se transforma en el valor que se asigna a ese canal. De esta manera pueden codificarse todos los canales utilizados sobre un único conductor mediante multiplexación en tiempo. El aspecto general de una trama se muestra en la Figura~\ref{fig:ppmframe}. En ella se tiene seleccionado el canal 1 para mostrar su temporización.\\
+Una trama completa PPM para el dron SYMA-X5C utilizado (las características básicas de PPM se mantienen entre distintos fabricantes, pero particularidades como el número y orden de los canales puede variar) se compone de doce canales. El inicio de trama se marca con un pulso a nivel bajo de 0.3 milisegundos. A partir de este instante se comienza el conteo de cada canal, indicado por los niveles altos y separados entre ellos a por pulsos de bajada de 0.3ms. La trama termina con un último pulso de bajada de 0.3ms que indica el fin de trama. Cada canal tiene una duración mínima asignada de 1ms y una duración máxima de 2ms contando con su flanco de 0.3ms de bajada. Estos tiempos, sumados al pulso de inicio de trama, completan la duración de una trama con un máximo de 24.3ms. Cada canal por tanto tendrá su valor mínimo para una duración a nivel alto de 0.7ms (canal 1 de la Figura~\ref{fig:ppmframe}) y su valor máximo para 1.7ms.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm]{Imagenes/Mod_PPM.png}
+	\caption{Señal PPM hacia el módulo de transmisión de uplink}
+	\label{fig:ppmframe}
+\end{figure}
+
+En este TFG se hace uso de esta técnica, dado que el módulo que maneja esta interfaz estaba originalmente diseñado para recibir la modulación PPM de un mando de radio control. PPM es la modulación más extendida en la mayoría de mandos de radio control para conectarse a módulos externos de bandas, potencias y otras características distintas a las suyas nativas, por tanto resulta cómodo adaptarse a esta modulación, para comunicarse con el módulo de uplink.
+
+
+\chapter{Sistemas de control}
+\label{app:Sistemas de control}
+
+
+Los sistemas de control de un dron se basan principalmente en bucles de control PID \cite{PIDs}, ejecutados por la electrónica de control antes mencionada. Estos sistemas son la herramienta principal para garantizar la estabilidad de vehículo. Los sistemas de control ejecutados dirigen la corriente en cada motor para mantener el sistema estable. Además de los sistemas comunes a todo dron, este TFG hace uso de sus propios bucles de control para conseguir su objetivo. Estos bucles, trabajan de manera simultánea y paralela a los propios del dron. A efectos del trabajo realizado, los bucles de control implementados en este TFG se consideraran los de mayor nivel, ya que son los encargados de comandar a los intrínsecos del dron, considerados de bajo nivel.\\
+Los sistemas de control usados en este TFG son de dos tipos, bucle abierto y bucle cerrado, cada uno utilizado de una manera concreta en distintas partes del sistema.
+
+
+\section{Bucle abierto}
+\label{sec:Bucle abierto}
+
+Los bucles abiertos reciben una señal y producen una respuesta concreta resultado de convolucionar la entrada, con la función de transferencia del bucle. Pueden ser lineales e invariantes en el tiempo, o no, dependiendo de la necesidad concreta que deban cubrir. Su respuesta es enviada hacia los actuadores, o bucles de siguiente nivel como se muestra en la Figura~\ref{fig:OpenLoop}. La respuesta del controlador de bucle abierto es independiente de la situación del dron, respuestas de sensores, posición, ubicación y demás. Por tanto, asumiendo el caso de un bucle de control abierto invariante y sin memoria, si se ejecuta en dos ocasiones con la misma señal de entrada, producirá dos veces la misma señal de salida.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=16cm, keepaspectratio]{Imagenes/Open_loop_Controller.png}
+	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
+	\caption{Esquema básico de un sistema de control de bucle abierto}
+	\label{fig:OpenLoop}
+\end{figure}
+
+En relación al trabajo realizado, este tipo de bucle se usa por ejemplo en el control de la guiñada, en la cual, es un bucle cerrado de bajo nivel el que se encarga de girar lo indicado por el bucle abierto de nivel superior programado en la FPGA de control.
+
+El comportamiento de este tipo de bucles difiere de los bucles cerrados mencionados en el siguiente punto.
+
+
+\section{Bucle cerrado}
+\label{sec:Bucle cerrado}
+
+Los bucles cerrados hacen uso de dos señales de entrada. Una de ellas es el comando, es la señal que indica el objetivo a alcanzar en algún parámetro concreto por el bucle. Otra es la señal recibida de alguna otra parte del sistema o sensor, capaz de medir e informar sobre el estado del parámetro objetivo. Ambas señales se restan y producen una señal de error que es entregada al controlador \cite{closed_loop_pid}, como se muestra en la Figura~\ref{fig:ClosedLoop}. Este opera de la misma manera que para el bucle abierto, generando una respuesta que es entregada a otro módulo, ya sea un bloque de menor nivel o un actuador.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=16cm, keepaspectratio]{Imagenes/Closed_Loop_Controller.png}
+	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
+	\caption{Esquema básico de un sistema de control de bucle cerrado}
+	\label{fig:ClosedLoop}
+\end{figure}
+
+Estos bucles de control si tienen en cuenta el estado actual del parámetro objetivo para realizar su corrección. Al realizar una medición sobre el mismo, pueden acomodar la respuesta del controlador a valores ajustados a la situación actual del parámetro a modificar. Pudiendo darse el caso, de que para una entrada distinta de cero, la salida del sistema hacia los actuadores, sea cero. Este sería el caso en el que el valor comandado en la entrada, es igual que el valor medido por el sensor, generando por tanto una señal de error cero (asumiendo por ejemplo una respuesta proporcional del controlador).
+
+
+\section{Algoritmos de control PID}
+\label{sec:Algoritmos de control PID}
+
+Este TFG hace uso de controladores PID. Ejecuta esta clase de sistema de control a través de algoritmos que calculan el error como la diferencia entre una señal de comando (instrucción de mando desde PC) y una señal entrante (medida de un sensor). Dicho error (e(t) en la Figura~\ref{fig:PID_Controller}) entonces pasa por tres procesos paralelos.
+
+\begin{itemize}
+  \item Un proceso de proporción: Su multiplica el error por una constante proporcional según la ecuación~\ref{eq:P}. El objetivo es aproximar el error a cero a través de actuar sobre el sistema, de manera proporcional al error existente en cada evaluación del bucle.
+	\begin{equation}
+		P[n] = Kp \cdot e[n]
+	\label{eq:P}
+	\end{equation}
+  
+  \item Un proceso de integración: El error recibido se suma en una variable de acumulación. Esta integra la medida de error actual, junto con todas las anteriores recibidas según la ecuación~\ref{eq:I}. El resultado es multiplicado por una constante de integración. El objetivo de esta componente, es eliminar error estacionario inalcanzable para el control proporcional. Una vez regulado el valor de la constante proporcional, ocurre que cierto error sigue presente. Este error se suma a sí mismo en cada ejecución del bucle, de tal manera que la acumulación crece lo suficiente como para que se produzca una respuesta sobre los actuadores, capaz de corregirlo. Se puede deducir que una vez corregido en un caso idea, el valor del acumulador dejaría de variar.
+	\begin{equation}
+		I[n] = Ki \sum_{0}^{n} e[n]
+	\label{eq:I}
+	\end{equation}
+  
+  \item Un proceso de derivación: El error previamente almacenado se resta al error de este instante generando la componente derivativa de la ecuación~\ref{eq:D}. El resultado es multiplicado por una constante de derivación. Los dos bucles anteriores tienen el objetivo de corregir el error. En el desarrollo de su tarea, existe la posibilidad de que el sistema oscile. La componente proporcional puede ajustarse para trabajar fuera del régimen de sobreoscilación, pero esto no ocurre con la componente integral, la cual por definición genera un retardo en la respuesta de los actuadores que produce oscilación. Esta puede ser tan pequeña que se vuelva imperceptible, de no ser así, la componente derivativa puede ayudar a minimizar las oscilaciones. Ya que calcula la derivada del error, cuanto este cambia bruscamente, por ejemplo cuando el sistema se acerca rápidamente a la posición de la consigna, la derivada en el tiempo también crecerá, pero en sentido contrario. De tal manera que la componente derivativa ayudará entonces a frenar el sistema, dotando al controlador de un grado de suavidad en el acercamiento hacia el error. Esto disminuye las oscilaciones, por tanto se puede deducir que esta componente resultará en cero en caso de un sistema ideal sin oscilaciones, ya que el error no variaría.
+	\begin{equation}
+		D[n] = Kd \cdot (e[n]-e[n-1])
+	\label{eq:D}
+	\end{equation}
+  
+\end{itemize}
+
+El resultado de los 3 procesos previos se suma en una única señal de error construyendo la señal u(t) como se muestra en la Figura~\ref{fig:PID_Controller}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[]{Imagenes/PID_Figure.png}
+	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
+	\caption{Esquema de un controlador PID}
+	\label{fig:PID_Controller}
+\end{figure}
+
+El resultado de la suma de la Ecuación~\ref{eq:pid} será la variable usada para tratar de corregir el error existente. Es decir, será la variable a entregar a los distintos actuadores del sistema, dependiendo de en que parte se encuentre el PID ejecutado.
+
+\begin{equation}
+	u[n] = P[n] + I[n]+D[n]
+\label{eq:pid}
+\end{equation}
+
+
+
+
+
+
+
 
 
 \begin{comment}
