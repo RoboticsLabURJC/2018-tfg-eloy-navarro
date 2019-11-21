@@ -428,86 +428,86 @@ En la actualidad muchas de las herramientas de diseño software para FPGAs son so
 \chapter{Objetivos}
 \label{chap:objetivos}
 
+Habiendo ubicado los elementos principales con los que se trabajará durante este desarrollo, procedemos a concretar y comentar el objetivo del TFG. Adicionalmente, los subobjetivos pretenden desgranar el objetivo principal en logros más concretos, que juntos, permitirán alcanzar el objetivo principal.
+
 \section{Objetivo principal}
 \label{sec:objetivo-ppal}
 
-El objetivo de este trabajo es ser capaces de controlar un dron de bajo coste desde un ordenador. Este deberá ser capaz de auto-estabilizarse a través de un conjunto de sensores y procesamiento basado en una FPGA libre.
-Para ello se ha dividido el trabajo en sub-objetivos comentados a continuación, los cuales en su conjunto permitirán alcanzar el objetivo principal una vez cubiertos.
+En este trabajo, se pretende estabilizar y programar el control de un dron comercial de bajo coste haciendo uso de FPGAs libres. El sistema; deberá ser capaz de estabilizar el vehículo de manera autónoma, haciendo uso de electrónica de sensorización embarcada en el dron y computación sobre la FPGA en tierra. Adicionalmente, el dron deberá obedecer las instrucciones de movimiento ejecutadas en el PC, en comunicación con la FPGA.
 
 
 \section{Sub-objetivos}
 \label{sec:Sub-objetivos}
 
-\subsection{Enlace con el dron}
-\label{subsec:Enlace con el drone}
+A continuación se enumeran los tres objetivos cuyas funcionalidades, en conjunto, permitirán alcanzar el objetivo principal.
 
-El punto de partida del proyecto, pasa por ser capaces de realizar una comunicación radio entre un ordenador y el propio dron. Para esta tarea se hará uso del software libre provisto por goebish en su repositorio nrf24\_multipro. Habrá que conseguir enlazar el software ejecutado en un procesador de Atmel, con la electrónica propia del dron.
+\subsection{Enriquecer dron comercial}
+\label{subsec:Enriquecer dron comercial}
 
-\subsection{Comunicación de órdenes fijas al drone}
-\label{subsec:Comunicación de órdenes fijas al drone}
+Se deberá nutrir al vehículo con los elementos de sensorización y comunicación adecuados a la tarea. Estos deberán permitirle conocer su ubicación de manera local y establecer una comunicación con la estación de tierra, donde se ubicará la FPGA que computará y comunicará las correcciones pertinentes de vuelta.
 
-Una vez establecida la comunicación es el momento de generar el software necesario tanto para el procesador de Atmel como para la FPGA. Con esto se podrán probar instrucciones fijas hacia el dron, del tipo, enciende y apaga motores.
+\subsection{Estabilizar dron mediante FPGA en tierra}
+\label{subsec:Estabilizar dron mediante FPGA en tierra}
 
-\subsection{Diseño de librerías de control para PC}
-\label{subsec:Diseño de librerías de control para PC}
+Una vez diseñada la estación de tierra y establecida la comunicación con los controladores y sensores a bordo del dron, se procederá a construir el software necesario para conseguir un vuelo estacionario y estable del vehículo.
 
-El objetivo de las librerías, es facilitar el uso del dron y la repetitividad de los ensayos a través de abstraerse de la capa más baja del control del dron. Esto permite pasar de instrucciones de encendido y apagado independientes, a instrucciones de despegue, avance, giro y demás, con el objetivo de facilitar siguientes tareas.
+\subsection{Programar dron desde PC}
+\label{subsec:Programar dron desde PC}
 
-\subsection{Comando del dron en bucle abierto}
-\label{subsec:Comando del drone en bucle abierto}
-
-En este punto ya se dispone del software para realizar ensayos de vuelo con el dron en bucle abierto. Se encadenarán varias instrucciones de vuelo construidas en la librería previa, con el objetivo de probar el dron en trazados más complejos. Como despegue, avance, retorno y aterrizaje, o estabilidad en vuelo estático.
-
-\subsection{Diseño de la estación de tierra}
-\label{subsec:Diseño de la estación de tierra}
-
-Para proceder a realizar ensayos de bucle cerrado, será necesario tener disponible una electrónica de tierra capaz de recibir medidas de los sensores de a bordo, procesar y responder en consecuencia. La respuesta dependerá tanto de las medidas de los sensores, como del comando que se reciba por USB. Estos se enviarán desde un ordenador que secuenciará las instrucciones a ejecutar.
-
-\subsection{Diseño de electrónica de a bordo}
-\label{subsec:Diseño de electrónica de a bordo}
-
-Para poder corregir el comportamiento en vuelo del dron, será necesario que este disponga de información relativa a su posición local. Para cubrir esta tarea, se instalará en el dron electrónica capaz de medir los parámetros que se consideren necesarios y transmitirlos a la estación de tierra para ser procesados.
-
-\subsection{Cierre de bucles para cada eje}
-\label{subsec:Cierre de bucles para cada eje}
-
-Se deberá diseñar un bucle cerrado de control para cada eje, independiente del resto. Esto permitirá el manejo completo del dron, pudiendo actuar de manera también independiente para cada eje.
-
-\subsection{Experimentación y parches}
-\label{subsec:Experimentación y parches}
-
-Este punto cubre una necesidad presente en los 7 sub-objetivos anteriores. Tras aplicar cambios software y/o hardware se testeará el trabajo. Según el resultado, se avanzará a la siguiente fase del desarrollo, o se iterará entre la fase de origen y esta, hasta corregir adecuadamente los posibles errores.
+La estación de tierra deberá comunicarse con el PC, permitiendo a este último ejecutar instrucciones que afecten a los controladores ejecutados en la FPGA de la estación. De esta manera, el PC se convertirá en el ordenador de mando indirectamente. Este ejecutará las instrucciones que comandarán los movimientos del dron, siendo la FPGA en la estación de tierra, la encarga de que el vehículo obedezca dichas ordenes de manera estable.
 
 
 \section{Requisitos}
 \label{sec:Requisitos}
 
-Los objetivos del trabajo deberán ser capaces de cubrir unos requisitos mínimos que permitan discernir cuando una tarea se ha cumplido adecuadamente para avanzar a la siguiente. Para ello se listan a continuación unos requisitos mínimos del sistema.
+Los objetivos del trabajo se deberán cubrir con unos requisitos mínimos. Estos permitirán discernir cuando una tarea se ha cumplido adecuadamente para avanzar a la siguiente. Para ello se listan a continuación.
 
 \begin{itemize}
   \item El sistema deberá ser capaz de estabilizar el dron con al menos tres grados de libertad; cabeceo, alabeo y altitud.
   
   \item Cada grado de libertad controlado deberá implementar un bucle cerrado, retroalimentado, con controlador PID.
   
-  \item Dichos controladores deberán obedecer a consignas radio que permitan el control en tiempo real desde la plataforma de tierra.
+  \item Dichos controladores deberán obedecer a consignas radio que permitan el control en tiempo real desde la plataforma en tierra.
   
   \item Para facilitar las tareas de estabilización y otorgar flexibilidad al sistema, los controladores PID deberán disponer de parámetros re-configurables también desde la estación de tierra.
 \end{itemize}
 
+Para cubrir estos requisitos, se han planteado una metodología y un plan de trabajo a seguir, comentados a continuación.
 
 \section{Metodología}
 \label{sec:Metodología}
 
-Para conseguir alcanzar el objetivo final, cubriendo los requisitos mínimos, se procederá a abordar los sub-objetivos de manera secuencial. Se intentarán tener reuniones de seguimiento semanales por conferencia, para informar de los avances y de posibles problemas. También se informará por correo u otros medios en caso de resultar útil. En estas reuniones se comentará dicho avance y problemas, y se propondrán las siguientes tareas a abordar.\\
-El trabajo se organizará segmentando el objetivo semanal en tareas más simples. Se diseñarán soluciones para dichas tareas y posteriormente se implementarán y testearán. Según los resultados de los ensayos, se corregirán errores, se buscarán y aplicarán soluciones alternativas y se volverá a ensayar. En caso de resultado positivo se preparará el resultado para informar adecuadamente en la reunión, y recibir información de vuelta.
+Para realizar el seguimiento del trabajo, se intentarán tener reuniones semanales por conferencia, informando de los avances y posibles problemas. También se informará por correo u otros medios en caso de resultar útil. En estas reuniones se comentará el avance y problemas y se propondrán posibles soluciones y siguientes tareas a abordar.\\
+El trabajo se organizará segmentando el objetivo semanal en tareas más simples. Se diseñarán soluciones para dichas tareas y posteriormente se implementarán y testearán. Según los resultados de los ensayos, se corregirán errores, se buscarán y aplicarán soluciones alternativas y se volverá a ensayar. En caso de resultado positivo, se preparará el resultado para informar adecuadamente en la reunión, y recibir información de vuelta.
 
 
 \section{Plan de trabajo}
 \label{sec:Plan de trabajo}
 
-En base a las herramientas de desarrollo disponibles, mencionadas más adelante en el Capítulo~\ref{chap:Infraestructura utilizada},  se planteará una arquitectura de sistema, definida en la Sección~\ref{sec:Arquitectura del sistema}. Dicha arquitectura deberá ser capaz de alcanzar el objetivo principal, cubriendo los requisitos mínimos, dentro de las limitaciones impuestas por la propia arquitectura, a su vez limitada por factores como las herramientas disponibles, tiempo de desarrollo y dificultad. El desarrollo se hará en gran medida los fines de semana, añadiendo horas disponibles por las tardes, tras el horario laboral, dependiendo de las exigencias de este. Se cubrirán los sub-objetivos en orden, hasta alcanzar el objetivo principal. 
+Para conseguir alcanzar el objetivo final, cubriendo los requisitos mínimos, se procederá a abordar el trabajo con la siguiente ordenación de tareas:
 
+\begin{itemize}
 
+  \item Enlace con el dron: Se trara del punto de partida del proyecto. Pasa por ser capaces de realizar una comunicación radio entre un ordenador y el propio dron. Para esta tarea se hará uso del software libre provisto por goebish en su repositorio nrf24\_multipro. Habrá que conseguir enlazar el software ejecutado en un procesador de Atmel, con la electrónica propia del dron.
+  
+  \item Comunicación de órdenes fijas al drone: Una vez establecida la comunicación es el momento de generar el software necesario tanto para el procesador de Atmel como para la FPGA. Con esto se podrán probar instrucciones fijas, simples hacia el dron, por ejemplo una prueba de arranque, enciende y apaga motores.
+  
+  \item Diseño de librerías de control para PC: El objetivo de las librerías, es facilitar el uso del dron y la repetitividad de los ensayos a través de abstraerse de la capa más baja del control del dron. Esto permite pasar de instrucciones simples e independientes, a instrucciones complejas, compuestas a su vez de secuencias de instrucciones simples. Por ejemplo, despegue y aterrizaje, giros o desplazamientos. Esto facilitará las siguientes tareas.
+  
+  \item Comando del dron en bucle abierto: En este punto ya se dispone del software para realizar ensayos de vuelo con el dron en bucle abierto. Se encadenarán varias instrucciones de vuelo construidas en la librería previa, con el objetivo de probar el dron en trazados más complejos. Como despegue, avance, retorno y aterrizaje, o estabilidad en vuelo estático.
+  
+  \item Diseño de electrónica de a bordo: Para poder corregir el comportamiento en vuelo del dron, será necesario que este disponga de información relativa a su posición local. Para cubrir esta tarea, se instalará en el dron electrónica capaz de medir parámetros de posición y transmitirlos a la estación de tierra para ser procesados.
+  
+  \item Diseño de la estación de tierra: Para proceder a realizar ensayos de bucle cerrado, será necesario tener disponible una electrónica en tierra capaz de recibir las medidas de los sensores de a bordo. Deberá entonces poder procesarlas y transmitir la respuesta hacia el vehículo. Dicha respuesta dependerá tanto de las medidas de los sensores del dron, como de las indicaciones recibidas desde el ordenador de mando.
+  
+  \item Cierre de bucles para cada eje: Se deberán diseñar bucles de control independientes para cada eje en la FPGA de la estación de tierra. Esto permitirá la estabilización y manejo completo del dron.
+  
+  \item Experimentación y parches: Este punto cubre una necesidad presente en cada tarea. Tras aplicar cambios software y/o hardware se testeará el trabajo. Según el resultado, se avanzará a la siguiente fase del desarrollo, o se iterará entre la fase de origen y esta, hasta corregir adecuadamente los posibles errores.
+  
+\end{itemize}
+
+Estas tareas se llevarán a cabo en gran medida los fines de semana, añadiendo horas tras el horario laboral, dependiendo de la disponibilidad. 
+Para cubrir las tareas, se hará uso de las herramientas de desarrollo disponibles, comentadas a continuación en el Capítulo~\ref{chap:Infraestructura utilizada}. En base a estas, se planteará una arquitectura de sistema, definida más adelante en la Sección~\ref{sec:Arquitectura del sistema}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -519,70 +519,95 @@ En base a las herramientas de desarrollo disponibles, mencionadas más adelante e
 \chapter{Infraestructura utilizada}
 \label{chap:Infraestructura utilizada}
 
-\section{IceCube2}
+Para alcanzar los objetivos, desarrollando las tareas comentadas anteriormente, hemos utilizado un amplio conjunto de herramientas software y hardware. Estas nos han permitido realizar diseños software en distintos lenguajes, compilar, programar y ejecutar, en las plataformas disponibles. Posteriormente, mediante el uso de herramientas adicionales, se han podido simular y evaluar los resultados, permitiendo avanzar a través de tareas de depuración y corrección de errores. A continuación se describen dichas herramientas y su uso durante este trabajo.
+
+
+\section{Entornos de desarrollo}
+\label{sec:Entornos de desarrollo}
+
+En este apartado, se comentan las herramientas software que permiten trabajar con código, cubriendo múltiples necesidades (edición, compilación, enlazado, etc...) en un solo paquete.
+
+\subsection{IceCube2}
 \label{sec:IceCube2}
 
-En su versión 2017.08.27940, es el entorno de desarrollo suministrado por Lattice para la programación de sus familias pequeñas de dispositivos FPGA. Integra un editor de texto plano, junto con un sintetizador para código Verilog 2001. También realiza las tareas de ubicación de elementos lógicos utilizados, trazado de conexiones en el array concreto de la FPGA escogida y generación del fichero de programación ``*.bin''.
-Este software integra la herramienta de programación Diamond Programmer versión 3.10.0.111.2 también distribuida por Lattice para realizar a programación de sus dispositivos con el fichero ``.bin'' generado tras el trazado de la FPGA.
+En su versión 2017.08.27940, es el entorno de desarrollo suministrado por Lattice para la programación de sus familias de pequeñas FPGAs. Integra un editor de texto plano, junto con un sintetizador para código Verilog 2001. También realiza las tareas de ubicación de elementos lógicos utilizados, trazado de conexiones en el array de la FPGA escogida y generación del fichero de programación ``*.bin''. Se ha utilizado durante todo el desarrollo sobre FPGA del trabajo. Con él se han realizado todas las tareas desde la compilación del proyecto completo hasta la generación del fichero de programación.
 
-\section{Quartus Prime}
+\subsection{Quartus Prime}
 \label{sec:Quartus Prime}
 
-Versión 15.1.0 Build 185. Herramienta de diseño, test y programación de software para FPGAs de Altera (Intel). Utilizado en este trabajo exclusivamente por su editor de texto con reconocimiento del leguaje Verilog 2001 e identificación de estructuras con color.
+Versión 15.1.0 Build 185. Herramienta de diseño, test, depuración y programación de software para FPGAs de Altera (Intel). Utilizado en este trabajo exclusivamente por su editor de texto con reconocimiento del leguaje Verilog 2001 e identificación de estructuras con color. La comodidad y versatilidad de su editor integrado, frente al entorno de Lattice, lo han convertido en mi elección para el desarrollo del código de cada módulo, previo a su compilación en el proyecto, tarea realizada con el IDE de Lattice.
 
-\section{Arduino IDE}
+\subsection{Arduino IDE}
 \label{sec:Arduino IDE}
 
-Versión 1.8.8. Entorno de desarrollo integrado de Arduino para procesadores Atmel compatibles. Adicionalmente al editor de texto, compilador, enlazador y programador, todo en uno, Suministra algunas herramientas adicionales de utilidad:
-Instalador de librerías integrado. Utilizado para facilitar las tareas de instalación de paquetes para comunicación por puerto serie. Entre los incluidos, se hace uso en este trabajo de las librerías para puertos serie SPI, I2C y UART.
-Además incluye un monitor de puerto serie ya configurado para el dispositivo concreto a programar. Realiza la lectura por el mismo puerto USB utilizado para programar el dispositivo, ahorrando tiempo y disminuyendo el peso necesario en la electrónica de a bordo para realizar tareas de diagnóstico.
+Versión 1.8.8. Entorno de desarrollo integrado de Arduino para procesadores Atmel compatibles. Adicionalmente al editor de texto, compilador, enlazador y programador, suministra algunas herramientas adicionales de utilidad:
+Instalador de librerías integrado. Utilizado en el TFG para facilitar la instalación de paquetes de comunicación por puerto serie y manejo de dispositivos desde librerías en Github. Entre los incluidos, se hace uso en este trabajo de las librerías para puertos serie SPI, I2C y UART y librerías para manejo de sensores.
+Además incluye un monitor de puerto serie ya configurado para el dispositivo concreto a programar. Realiza la lectura por el mismo puerto USB utilizado para programar el dispositivo, ahorrando tiempo y disminuyendo el peso necesario en la electrónica de a bordo para realizar tareas de diagnóstico. Este entorno se ha utilizado mayoritariamente para el desarrollo, depuración y programación de los programas ejecutados en los procesadores Atmel ubicados a bordo del dron (comunicación y sensores) y en la estación de tierra (comunicación por radio).
 
-\section{ModelSim}
-\label{sec:ModelSim}
 
-Versión 10.4b. Herramienta para la simulación de lenguajes de descripción de hardware. Compatible con Verilog 2001, permite la comprobación de sintaxis del lenguaje, compilación e instanciación de múltiples módulos. Ofrece también completa configuración de resoluciones y tiempos de simulación, junto con la posibilidad de realizar análisis dinámicos del hardware definido. Permite ahorrar tiempo a la hora de realizar tareas de limpieza de código y pruebas fuera del vehículo, disminuyendo el tiempo de desarrollo y la cantidad de choques por error de control en vuelo.
+\section{Herramientas de Simulación}
+\label{sec:Herramientas de Simulación}
 
-\section{FT\_Prog}
+En este apartado se comenta la única herramienta de simulación utilizada en el proyecto, ModelSim. Versión 10.4b. Herramienta para la simulación de lenguajes de descripción de hardware en general. Compatible con Verilog 2001, permite la comprobación de sintaxis del lenguaje, compilación e instanciación de múltiples módulos. En cuanto a la simulación utilizada, es una herramienta flexible en la creación de cronogramas y selección de señales a observar. Ofrece también completa configuración de resoluciones y tiempos de simulación, junto con la posibilidad de realizar análisis dinámicos del hardware definido. Gracias a su uso, se ha ahorrado tiempo a la hora de realizar tareas de limpieza de código y pruebas fuera del vehículo, disminuyendo el tiempo de desarrollo y la cantidad de choques por errores de diseño en los controles de vuelo.
+
+
+\section{Herramientas de programación}
+\label{sec:Herramientas de programación}
+
+Una vez generados y simulados los códigos, estos deben ser programados en los distintos dispositivos que componen el sistema. La programación de los procesadores de Atmel se realiza a través del propio entorno de desarrollo comentado anteriormente en el apartado \ref{sec:Arduino IDE}, el resto de herramientas necesarias para programación se comentan a continuación.
+
+\subsection{FT\_Prog}
 \label{sec:FT_Prog}
 
-Versión 3.6.88.402. Herramienta distribuida por FTDI Chip para reconfigurar la memoria flash de los dispositivos de comunicación USB, que permite modificar el comportamiento de cada canal de sus dispositivos, activando, desactivando o modificando su comportamiento para hacerlo acorde a distintos estándares.
+Versión 3.6.88.402. Herramienta distribuida por FTDI Chip para reconfigurar la memoria flash de los dispositivos de comunicación USB, que permite modificar el comportamiento de cada canal de sus dispositivos; activando, desactivando o modificando su comportamiento para hacerlo acorde a distintos estándares. Se ha utilizado para configurar los dos canales de comunicación USB de la estación de tierra. Configurando el canal A para permitir la programación del dispositivo FPGA y el canal B para comunicar, FPGA con PC mediante USB.
 
-\section{Logic}
+\subsection{Diamond Programmer}
+\label{sec:Diamond Programmer}
+
+Se trata de la herramienta de programación distribuida por Lattice. Versión 3.10.0.111.2. Permite la programación de sus dispositivos FPGA mediante el uso de ficheros con formato ``.bin'' generados tras el trazado de la FPGA. Dicho fichero es generado, en este TFG, por la herramienta IceCube2 \ref{sec:IceCube2} y posteriormente cargado con este software para programar la FPGA de la estación de tierra.
+
+
+\section{Herramientas de depuración}
+\label{sec:Herramientas de depuración}
+
+Para facilitar la detección y corrección de errores, se ha utilizado una herramienta de análisis de señales digitales, compuesta de un elemento hardware y otro software. A continuación se describen ambos.
+
+\subsection{Logic Analizer}
+\label{sec:Logic Analizer}
+
+Tarjeta de adquisición de Saleae. Trabaja como analizador lógico de ocho canales, con muestreo hasta 24MSPS, permite la adquisición y análisis de señales de hasta 12MHz. Sus ocho canales son reconfigurables como señales de entrada y señales de disparo, facilitando la sincronía con tramas y eventos. Esta herramienta trabaja en conjunto con la interfaz de usuario ``Logic'' \ref{sec:Logic}. Sus ocho conexiones se han realizado en distintos puntos de la estación de tierra. Su función durante el desarrollo ha sido poder obtener las capturas más representativas posibles de lo que estaba ocurriendo en cada momento. Para ello, se han capturando tramas desde el PC de mando hacia la estación de tierra, medidas de los sensores desde el dron hacia la estación de tierra, señales internas de la FPGA y órdenes desde la estación de tierra al dron. Este set de sondas, ha facilitado tanto el debug en vuelo, como la corrección de distintos parámetros de los controladores. Sin ellas, hubiera resultado imposible avanzar adecuadamente entre las etapas de desarrollo del TFG.
+
+\subsection{Logic}
 \label{sec:Logic}
 
 Versión 1.2.10. Esta utilidad de Saleae es su interfaz para almacenamiento y visualización de señales medidas con sus herramientas de análisis digital. Para el caso de un puerto serie de comunicaciones, permite el análisis de la información para un protocolo concreto, interpretando la información en cada canal y mostrándola en relación al momento de lectura. Se pueden nombrar y configurar distintos protocolos para cada canal, de esta manera se puede utilizar para comprobar el comportamiento de señales concretas del sistema, o analizar los datos transferidos entre dispositivos. Esta herramienta facilita el debug del sistema a través de tareas de detección y corrección de errores.
 
-\section{Logic Analizer}
-\label{sec:Logic Analizer}
 
-Tarjeta de adquisición de Saleae. Trabaja como analizador lógico de ocho canales, con muestreo hasta 24MSPS, permitiendo adquisición y análisis de señales de hasta 12MHz. Canales reconfigurables como señal o disparo para sincronía con tramas y eventos. Esta herramienta trabaja en conjunto con la herramienta para PC ?Logic? para su configuración e interfaz de usuario.
+\section{Plataformas hardware}
+\label{sec:Plataformas hardware}
 
-\section{Arduino Uno y Nano}
+\subsection{Arduino Uno y Nano}
 \label{sec:Arduino Uno y Nano}
 
 Tarjetas de desarrollo que integran un procesador de Atmel de 8 bits modelos ATMEGA8U2-MU y ATMEGA328P-AU, un interfaz de UART a USB para comunicaciones y alimentación, conectores hacia los GPIOs de los procesadores y un regulador de 5V a 3V3. Se pueden alimentar de manera externa sobre la entrada del regulador, o directamente mediante el USB. Se dispone de acceso para programación y depuración a través del mismo USB.
 
-\section{ICE40 UltraPlus Breakout Board}
+\subsection{ICE40 UltraPlus Breakout Board}
 \label{sec:ICE40 UltraPlus Breakout Board}
 
 Tarjeta de desarrollo para la familia UltraPlus de ICE40. Incluye elementos varios de interfaz humana, como Leds, interruptores, jumpers e interfaz hacia los pines de propósito general, GPIOs. También incluye un interfaz USB reprogramable de FTDI Chip y doble canal, FT232HL. Como procesador hace uso de una FPGA ICE40UP5K-SG48, con 5280 celdas lógicas, 120Kbits de RAM embebida y 1024kbits de RAM estática, una PLL y 8 bloques DSP (multiplicadores de 16 bits).
 
-\section{EACHINE E010}
-\label{sec:EACHINE E010}
 
-Mini-dron cuadricóptero teledirigido fabricado por Eachine. Cuenta con 8cm de ancho y 8 cm de largo, conductores en las aspas para evitar vórtices en los extremos de las mismas, aumentando así la eficiencia en vuelo, batería de litio y sistema teledirigido de cuatro canales en la banda de 2.4GHz. Dispone de 30 metros de alcance radio, sistema de retorno al punto de partida, y una estructura ligera.
-
-\section{SYMA X5C}
+\subsection{SYMA X5C}
 \label{sec:SYMA X5C}
 
 Dron cuadricóptero teledirigido fabricado por Syma. Un dron ligero para su tamaño, con una estructura robusta, perfecto para aprendizaje de principiantes y experimentación gracias a su importante resistencia mecnánica. Electrónica de recepción radio con 50 metros de alcance en la banda de 2.4GHz, cuatro canales de control, batería de litio, 31cm de ancho y largo, y 100gr de peso. Incluye una cámara con almacenamiento en SD-Card.
 
-\section{NRF24L01}
+\subsection{NRF24L01}
 \label{sec:NRF24L01}
 
 Módulo que integra el chip de mismo código, con condensadores de desacoplo necesarios para su utilización, una antena integrada en la propia PCB y pines para acceso a su interfaz SPI. Ocupa la banda de 2.4GHz, con 125 posibles canales de 1 MHz de ancho de banda cada uno. Al trabajar entre 1.9V y 3.6, es perfecto para su utilización junto a tarjetas Arduino Uno y Nano, que integran reguladores con salida a 3.6V. Dispone de tasas de transferencia de hasta 2Mbps y alcances de hasta 30 metros.
 
-\section{Flow breakout board}
+\subsection{Flow breakout board}
 \label{sec:Flow breakout board}
 
 Se trata de un módulo de BitCraze que integra un sensor de medida de distancias por tiempo de vuelo VL53L0x accesible por I2C, junto a un sensor de flujo óptico PMW3901 accesible por SPI \cite{sensor_module}. Incluye electrónica periférica para hacerlos funcionar y un cabezal para las conexiones eléctricas. Al alimentarse a 3.6V puede ser conectado a la salida de los reguladores de las tarjetas de desarrollo de Arduino.
@@ -1138,8 +1163,9 @@ Esta función hace uso de \textit{setcontrols},  para generar puntos intermedios 
 \section{Eachine E010}
 \label{sec:Eachine E010}
 
-En un inicio se hico uso del dron Eachine E010. Un pequeño cuadricóptero, ligero y de comportamiento nervioso. Sobre él se hicieron pruebas de control en bucle abierto. Se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el dron y se probaron despegues y vuelos cortos en línea recta.\\
-El dron mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas con algo de pre-énfasis. Sabido su desvió a derechas y hacia abajo, se prepararon vuelos de avance y despegue en los que progresivamente se aumentaba la fuerza de los motores hacia la izquierda y hacia arriba. Estas dificultades hicieron los vuelos largos en bucle abierto imposibles, por tanto se intentó instalar el controlador de vuelo de bucle cerrado en dicho dron. Desgraciadamente el peso de la electrónica disponible era excesivo y hubo que abortar los intentos y buscar una plataforma de mayor potencia. Por este motivo se utilizó el dron Syma X5C finalmente, frente al pequeño E010.
+En principio se hizo uso del dron Eachine E010. Se trata de un pequeño cuadricóptero, ligero y de reacciones nerviosas. Cuenta con 8cm de ancho y 8 cm de largo, conductores en las aspas, para minimizar vórtices, batería de litio y 30 metros de alcance con su radio de 2.4GHz. Sobre él se hicieron pruebas de control en bucle abierto. Se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el dron y se probaron despegues con aterrizajes y vuelos cortos de ida y vuelta en línea recta.\\
+El dron mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas de bucle abierto con algo de pre-énfasis. El dron, presentaba derivas erráticas en uno de sus ejes horizontales, y grandes derivas en el eje vertical, dependientes, entre otras cosas, del nivel de batería. Estas dificultades hicieron de los vuelos largos en bucle abierto, una tarea imposibles. Por tanto se intentó instalar el controlador de vuelo de bucle cerrado en dicho dron. Desgraciadamente el peso de la electrónica disponible era excesivo y hubo que abortar los intentos y buscar una plataforma de mayor potencia. Por este motivo se seleccionó el dron Syma X5C finalmente, frente al pequeño E010.
+
 
 \section{Syma X5C en Bucle abierto}
 \label{sec:Syma X5C en Bucle abierto}
