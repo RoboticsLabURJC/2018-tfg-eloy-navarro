@@ -580,37 +580,40 @@ Tarjeta de adquisición de Saleae. Trabaja como analizador lógico de ocho canales
 \subsection{Logic}
 \label{sec:Logic}
 
-Versión 1.2.10. Esta utilidad de Saleae es su interfaz para almacenamiento y visualización de señales medidas con sus herramientas de análisis digital. Para el caso de un puerto serie de comunicaciones, permite el análisis de la información para un protocolo concreto, interpretando la información en cada canal y mostrándola en relación al momento de lectura. Se pueden nombrar y configurar distintos protocolos para cada canal, de esta manera se puede utilizar para comprobar el comportamiento de señales concretas del sistema, o analizar los datos transferidos entre dispositivos. Esta herramienta facilita el debug del sistema a través de tareas de detección y corrección de errores.
+Versión 1.2.10. Esta utilidad de Saleae es su interfaz para almacenamiento y visualización de señales, tomadas con sus herramientas hardware de análisis digital. En nuestro caso, la hemos utilizado junto con el analizador lógico ``Logic Analizer'', cubriendo las tareas comentadas anteriormente (apartado \ref{sec:Logic Analizer}). Para el caso de un puerto serie, permite el análisis de la información de un protocolo concreto, decodificando los bits de cada canal y mostrando el resultado en relación al instante de llegada. Esto hace posible tareas de depuración, basadas en observar el efecto concreto de un cambio en el código. Se pueden nombrar y configurar distintos protocolos para cada canal, de esta manera se ha utilizado también para comprobar el comportamiento de puertos UART, SPI y señales internas de la FPGA, analizando los datos transferidos entre dispositivos. 
 
 
 \section{Plataformas hardware}
 \label{sec:Plataformas hardware}
 
+La arquitectura escogida para el desarrollo de este trabajo, requiere del uso de múltiples tarjetas con distintas capacidades. Estas, trabajan juntas para cumplir un mismo objetivo. Tanto en la estación de tierra, como a bordo del vehículo, se han instalado varios elementos hardware descritos a continuación.
+
 \subsection{Arduino Uno y Nano}
 \label{sec:Arduino Uno y Nano}
 
-Tarjetas de desarrollo que integran un procesador de Atmel de 8 bits modelos ATMEGA8U2-MU y ATMEGA328P-AU, un interfaz de UART a USB para comunicaciones y alimentación, conectores hacia los GPIOs de los procesadores y un regulador de 5V a 3V3. Se pueden alimentar de manera externa sobre la entrada del regulador, o directamente mediante el USB. Se dispone de acceso para programación y depuración a través del mismo USB.
+Como procesadores auxiliares, se han utilizado tarjetas de desarrollo, que integran un procesador de Atmel de 8 bits modelos ATMEGA8U2-MU y ATMEGA328P-AU, un interfaz de UART a USB para comunicaciones, programación y alimentación, conectores hacia las GPIOs de los procesadores y un regulador de 5 a 3,3 voltios. Se pueden alimentar de manera externa sobre la entrada del regulador, o directamente mediante el USB. Se dispone de acceso para programación y comunicaciones a través del mismo USB en ambas tarjetas. La tarjeta ``Nano'' la hemos utilizado a bordo del dron por una cuestión de dimensión y peso, mientras que la tarjeta ``Uno'', significativamente más grande y pesada, se ha quedado en la estación de tierra, junto a la FPGA.
 
 \subsection{ICE40 UltraPlus Breakout Board}
 \label{sec:ICE40 UltraPlus Breakout Board}
 
-Tarjeta de desarrollo para la familia UltraPlus de ICE40. Incluye elementos varios de interfaz humana, como Leds, interruptores, jumpers e interfaz hacia los pines de propósito general, GPIOs. También incluye un interfaz USB reprogramable de FTDI Chip y doble canal, FT232HL. Como procesador hace uso de una FPGA ICE40UP5K-SG48, con 5280 celdas lógicas, 120Kbits de RAM embebida y 1024kbits de RAM estática, una PLL y 8 bloques DSP (multiplicadores de 16 bits).
+Tarjeta de desarrollo para la familia UltraPlus de los modelos ICE40 de Lattice. Incluye elementos varios de interfaz humana; como Leds, interruptores, jumpers y conexiones de propósito general. También incluye un interfaz USB reprogramable de FTDI Chip y doble canal, FT232HL. Como procesador dispone de una FPGA ICE40UP5K-SG48, con 5280 celdas lógicas, 120Kbits de RAM embebida y 1024kbits de RAM estática, una PLL y 8 bloques DSP (multiplicadores de 16 bits). Esta plataforma se ha usado como núcleo de la estación de tierra, conectándose con periféricos radio y el PC de mando.
 
 
 \subsection{SYMA X5C}
 \label{sec:SYMA X5C}
 
-Dron cuadricóptero teledirigido fabricado por Syma. Un dron ligero para su tamaño, con una estructura robusta, perfecto para aprendizaje de principiantes y experimentación gracias a su importante resistencia mecnánica. Electrónica de recepción radio con 50 metros de alcance en la banda de 2.4GHz, cuatro canales de control, batería de litio, 31cm de ancho y largo, y 100gr de peso. Incluye una cámara con almacenamiento en SD-Card.
+Dron cuadricóptero teledirigido fabricado por Syma. Escogido por ser un dron ligero (100gr) para su tamaño (31cm de ancho y largo), con una estructura robusta. Idóneo para aprendizaje y experimentación, gracias a su importante resistencia mecánica. Su electrónica de recepción radio alcanza 50 metros en la banda de 2.4GHz, cuenta con cuatro canales de control y batería de litio. Además incluye varios elementos que han sido descartado en este TFG, para ganar relación potencia a peso. Como cámara con almacenamiento en SD-Card, iluminación y protecciones de aspas.
+
 
 \subsection{NRF24L01}
 \label{sec:NRF24L01}
 
-Módulo que integra el chip de mismo código, con condensadores de desacoplo necesarios para su utilización, una antena integrada en la propia PCB y pines para acceso a su interfaz SPI. Ocupa la banda de 2.4GHz, con 125 posibles canales de 1 MHz de ancho de banda cada uno. Al trabajar entre 1.9V y 3.6, es perfecto para su utilización junto a tarjetas Arduino Uno y Nano, que integran reguladores con salida a 3.6V. Dispone de tasas de transferencia de hasta 2Mbps y alcances de hasta 30 metros.
+Este módulo, integra el chip de mismo código, junto a condensadores de desacoplo necesarios para su utilización, una antena integrada en la propia PCB y pines de acceso a su interfaz SPI. Su utilización durante el trabajo ha facilitado la implementación radio, gracias a la integración en una pequeña PCB de todo lo necesario para establecer la conexión. Ocupa la banda de 2.4GHz, con 125 posibles canales de 1 MHz de ancho de banda cada uno (disponibles para multiplexación en frecuencia). Al trabajar hasta los 3.6 voltios, es perfecto para su utilización junto con las tarjetas Arduino Uno y Nano, que integran reguladores a dicha tensión. Dispone de tasas de transferencia de hasta 2Mbps y alcances de hasta 30 metros.
 
 \subsection{Flow breakout board}
 \label{sec:Flow breakout board}
 
-Se trata de un módulo de BitCraze que integra un sensor de medida de distancias por tiempo de vuelo VL53L0x accesible por I2C, junto a un sensor de flujo óptico PMW3901 accesible por SPI \cite{sensor_module}. Incluye electrónica periférica para hacerlos funcionar y un cabezal para las conexiones eléctricas. Al alimentarse a 3.6V puede ser conectado a la salida de los reguladores de las tarjetas de desarrollo de Arduino.
+Se trata de un módulo de BitCraze \cite{sensor_module}, que integra un sensor de medida de distancias por tiempo de vuelo VL53L0x, accesible por I2C, junto a un sensor de flujo óptico PMW3901, accesible por SPI. Incluye la óptica, electrónica periférica para hacerlos funcionar y un cabezal para las conexiones eléctricas. Funciona a 3.6 voltios, por lo que lo alimentamos directamente desde la salida del regulador de la tarjeta Nano, a bordo del dron. Esto también nos permite realizar el interfaz eléctrico directamente entre los procesadores y el módulo. Usamos este conjunto de sensores, ya que nos ofrece medidas del desplazamiento horizontal y vertical, en una sola tarjeta de peso y tamaño adecuados al vehículo escogido.
 
 
 
