@@ -41,84 +41,108 @@
 \contentsline {subsection}{\numberline {3.5.3}SYMA X5C}{21}% 
 \contentsline {subsection}{\numberline {3.5.4}NRF24L01}{22}% 
 \contentsline {subsection}{\numberline {3.5.5}Flow breakout board}{22}% 
-\contentsline {chapter}{\numberline {4}Dron enriquecido controlado por FPGA}{23}% 
-\contentsline {section}{\numberline {4.1}Arquitectura del sistema}{23}% 
-\contentsline {section}{\numberline {4.2}Estaci\'on de tierra}{25}% 
-\contentsline {subsection}{\numberline {4.2.1}Descripci\'on}{26}% 
-\contentsline {subsection}{\numberline {4.2.2}Objetivo}{27}% 
-\contentsline {subsection}{\numberline {4.2.3}Funciones}{27}% 
-\contentsline {subsection}{\numberline {4.2.4}Interfaces}{28}% 
-\contentsline {subsubsection}{USB}{28}% 
-\contentsline {subsubsection}{SPI}{28}% 
-\contentsline {subsubsection}{UART \& UART\_Sensors}{28}% 
-\contentsline {subsubsection}{PPM\_Frames}{29}% 
-\contentsline {subsection}{\numberline {4.2.5}M\'odulos}{29}% 
-\contentsline {subsubsection}{M\'odulo 1: Hub USB}{29}% 
-\contentsline {subsubsection}{M\'odulo 2: Procesado y comunicaciones con ordenador}{29}% 
-\contentsline {subsubsection}{M\'odulo 3: Downlink}{30}% 
-\contentsline {subsubsection}{M\'odulo 4: Uplink}{30}% 
-\contentsline {subsubsection}{M\'odulo 5: Depuraci\'on}{31}% 
-\contentsline {section}{\numberline {4.3}Sistema embarcado}{31}% 
-\contentsline {subsection}{\numberline {4.3.1}Descripcion}{31}% 
-\contentsline {subsection}{\numberline {4.3.2}Objetivo}{32}% 
-\contentsline {subsection}{\numberline {4.3.3}Funciones}{33}% 
-\contentsline {subsection}{\numberline {4.3.4}M\'odulos}{33}% 
-\contentsline {subsubsection}{M\'odulo 1: Procesador}{33}% 
-\contentsline {subsubsection}{M\'odulo 2: Sensores}{34}% 
-\contentsline {subsubsection}{M\'odulo 3: Transmisor de downlink}{35}% 
-\contentsline {subsection}{\numberline {4.3.5}Interfaces externos}{35}% 
-\contentsline {subsubsection}{Position Sensors Measures}{35}% 
-\contentsline {subsubsection}{USB}{35}% 
-\contentsline {subsection}{\numberline {4.3.6}Interfaces internos}{36}% 
-\contentsline {subsubsection}{I2C\_Alt}{36}% 
-\contentsline {subsubsection}{SPI\_XY}{36}% 
-\contentsline {subsubsection}{SPI\_Radio}{36}% 
-\contentsline {section}{\numberline {4.4}Ordenador de mando}{36}% 
-\contentsline {subsection}{\numberline {4.4.1}Objetivo}{36}% 
-\contentsline {subsection}{\numberline {4.4.2}Funciones}{37}% 
-\contentsline {subsection}{\numberline {4.4.3}Interfaces}{37}% 
-\contentsline {section}{\numberline {4.5}Interfaz de mando}{38}% 
-\contentsline {subsection}{\numberline {4.5.1}Caracter\IeC {\'\i }sticas}{38}% 
-\contentsline {subsection}{\numberline {4.5.2}Formato de tramas}{39}% 
-\contentsline {section}{\numberline {4.6}Interfaz radio}{42}% 
-\contentsline {subsection}{\numberline {4.6.1}Downlink}{43}% 
-\contentsline {subsubsection}{Caracter\IeC {\'\i }sticas}{43}% 
-\contentsline {subsubsection}{Formato de trama}{43}% 
-\contentsline {subsection}{\numberline {4.6.2}Uplink}{44}% 
-\contentsline {subsubsection}{Caracter\IeC {\'\i }sticas}{44}% 
-\contentsline {subsubsection}{Formato de trama}{45}% 
-\contentsline {chapter}{\numberline {5}M\'odulos Software}{47}% 
-\contentsline {section}{\numberline {5.1}Algoritmos de control sobre la FPGA}{47}% 
-\contentsline {section}{\numberline {5.2}Software en el m\'odulo de Downlink embarcado}{49}% 
-\contentsline {section}{\numberline {5.3}Librer\IeC {\'\i }a Python}{50}% 
-\contentsline {chapter}{\numberline {6}Validaci\'on experimental}{53}% 
-\contentsline {section}{\numberline {6.1}Eachine E010}{53}% 
-\contentsline {section}{\numberline {6.2}Syma X5C en Bucle abierto}{53}% 
-\contentsline {section}{\numberline {6.3}Pruebas Unitarias}{55}% 
-\contentsline {subsection}{\numberline {6.3.1}Pruebas de los m\'odulos de downlink}{55}% 
-\contentsline {subsection}{\numberline {6.3.2}Pruebas del m\'odulo de uplink}{56}% 
-\contentsline {subsection}{\numberline {6.3.3}Pruebas de m\'odulos software}{56}% 
-\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas de mando}{56}% 
-\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas desde drone}{57}% 
-\contentsline {subsubsection}{Prueba de m\'odulo conversor de pulsaciones}{57}% 
-\contentsline {subsubsection}{Prueba de m\'odulos PID}{58}% 
-\contentsline {subsubsection}{Prueba de m\'odulo de comunicaciones UART}{59}% 
-\contentsline {subsubsection}{Prueba de m\'odulo de modulaci\'on PPM}{60}% 
-\contentsline {section}{\numberline {6.4}Condiciones de los bucles de control}{61}% 
-\contentsline {subsection}{\numberline {6.4.1}Ancho de banda}{61}% 
-\contentsline {subsection}{\numberline {6.4.2}Retardo}{61}% 
-\contentsline {chapter}{\numberline {7}Conclusiones}{63}% 
-\contentsline {section}{\numberline {7.1}Trabajo futuro}{64}% 
-\contentsline {subsection}{\numberline {7.1.1}Mejoras en la arquitectura del sistema}{64}% 
-\contentsline {subsection}{\numberline {7.1.2}Mejoras hardware}{65}% 
-\contentsline {subsection}{\numberline {7.1.3}Mejoras software}{65}% 
-\contentsline {chapter}{Bibliograf\'{\i }a}{69}% 
-\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{71}% 
-\contentsline {section}{\numberline {A.1}UART}{71}% 
-\contentsline {section}{\numberline {A.2}SPI}{72}% 
-\contentsline {section}{\numberline {A.3}I2C}{73}% 
-\contentsline {section}{\numberline {A.4}PPM}{75}% 
-\contentsline {chapter}{\numberline {B}Sistemas de control}{77}% 
-\contentsline {section}{\numberline {B.1}Bucle abierto}{77}% 
-\contentsline {section}{\numberline {B.2}Bucle cerrado}{78}% 
-\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{79}% 
+\contentsline {chapter}{\numberline {4}M\'odulos del sistema}{23}% 
+\contentsline {section}{\numberline {4.1}Arquitectura}{23}% 
+\contentsline {section}{\numberline {4.2}Dron enriquecido}{26}% 
+\contentsline {subsection}{\numberline {4.2.1}Arquitectura del dron}{26}% 
+\contentsline {subsection}{\numberline {4.2.2}M\'odulos}{27}% 
+\contentsline {subsubsection}{M\'odulo 1: Procesador}{28}% 
+\contentsline {subsubsection}{M\'odulo 2: Sensores}{29}% 
+\contentsline {subsubsection}{M\'odulo 3: Transmisor de downlink}{30}% 
+\contentsline {subsection}{\numberline {4.2.3}Objetivo}{30}% 
+\contentsline {subsection}{\numberline {4.2.4}Interfaces externos}{30}% 
+\contentsline {subsubsection}{Position Sensors Measures}{30}% 
+\contentsline {subsubsection}{USB}{30}% 
+\contentsline {subsection}{\numberline {4.2.5}Interfaces internos}{31}% 
+\contentsline {subsubsection}{I2C\_Alt}{31}% 
+\contentsline {subsubsection}{SPI\_XY}{31}% 
+\contentsline {subsubsection}{SPI\_Radio}{31}% 
+\contentsline {section}{\numberline {4.3}Ordenador de mando}{31}% 
+\contentsline {subsection}{\numberline {4.3.1}Objetivo}{31}% 
+\contentsline {subsection}{\numberline {4.3.2}Funciones}{32}% 
+\contentsline {subsection}{\numberline {4.3.3}Interfaces}{32}% 
+\contentsline {subsection}{\numberline {4.3.4}Librer\IeC {\'\i }a Python}{32}% 
+\contentsline {section}{\numberline {4.4}Estaci\'on de tierra basada en FPGA}{34}% 
+\contentsline {section}{\numberline {4.5}Interfaz USB de mando}{35}% 
+\contentsline {section}{\numberline {4.6}Interfaz radio}{35}% 
+\contentsline {chapter}{\numberline {5}Dron enriquecido controlado por FPGA}{37}% 
+\contentsline {section}{\numberline {5.1}Arquitectura del sistema}{37}% 
+\contentsline {section}{\numberline {5.2}Estaci\'on de tierra}{39}% 
+\contentsline {subsection}{\numberline {5.2.1}Descripci\'on}{40}% 
+\contentsline {subsection}{\numberline {5.2.2}Objetivo}{41}% 
+\contentsline {subsection}{\numberline {5.2.3}Funciones}{41}% 
+\contentsline {subsection}{\numberline {5.2.4}Interfaces}{42}% 
+\contentsline {subsubsection}{USB}{42}% 
+\contentsline {subsubsection}{SPI}{42}% 
+\contentsline {subsubsection}{UART \& UART\_Sensors}{42}% 
+\contentsline {subsubsection}{PPM\_Frames}{43}% 
+\contentsline {subsection}{\numberline {5.2.5}M\'odulos}{43}% 
+\contentsline {subsubsection}{M\'odulo 1: Hub USB}{43}% 
+\contentsline {subsubsection}{M\'odulo 2: Procesado y comunicaciones con ordenador}{43}% 
+\contentsline {subsubsection}{M\'odulo 3: Downlink}{44}% 
+\contentsline {subsubsection}{M\'odulo 4: Uplink}{44}% 
+\contentsline {subsubsection}{M\'odulo 5: Depuraci\'on}{45}% 
+\contentsline {section}{\numberline {5.3}Sistema embarcado}{45}% 
+\contentsline {subsection}{\numberline {5.3.1}Descripci\'on}{45}% 
+\contentsline {subsection}{\numberline {5.3.2}Objetivo}{46}% 
+\contentsline {subsection}{\numberline {5.3.3}Funciones}{47}% 
+\contentsline {subsection}{\numberline {5.3.4}M\'odulos}{47}% 
+\contentsline {subsubsection}{M\'odulo 1: Procesador}{47}% 
+\contentsline {subsubsection}{M\'odulo 2: Sensores}{48}% 
+\contentsline {subsubsection}{M\'odulo 3: Transmisor de downlink}{49}% 
+\contentsline {subsection}{\numberline {5.3.5}Interfaces externos}{49}% 
+\contentsline {subsubsection}{Position Sensors Measures}{49}% 
+\contentsline {subsubsection}{USB}{49}% 
+\contentsline {subsection}{\numberline {5.3.6}Interfaces internos}{50}% 
+\contentsline {subsubsection}{I2C\_Alt}{50}% 
+\contentsline {subsubsection}{SPI\_XY}{50}% 
+\contentsline {subsubsection}{SPI\_Radio}{50}% 
+\contentsline {section}{\numberline {5.4}Ordenador de mando}{50}% 
+\contentsline {subsection}{\numberline {5.4.1}Objetivo}{50}% 
+\contentsline {subsection}{\numberline {5.4.2}Funciones}{51}% 
+\contentsline {subsection}{\numberline {5.4.3}Interfaces}{51}% 
+\contentsline {section}{\numberline {5.5}Interfaz de mando}{52}% 
+\contentsline {subsection}{\numberline {5.5.1}Caracter\IeC {\'\i }sticas}{52}% 
+\contentsline {subsection}{\numberline {5.5.2}Formato de tramas}{53}% 
+\contentsline {section}{\numberline {5.6}Interfaz radio}{56}% 
+\contentsline {subsection}{\numberline {5.6.1}Downlink}{57}% 
+\contentsline {subsubsection}{Caracter\IeC {\'\i }sticas}{57}% 
+\contentsline {subsubsection}{Formato de trama}{57}% 
+\contentsline {subsection}{\numberline {5.6.2}Uplink}{58}% 
+\contentsline {subsubsection}{Caracter\IeC {\'\i }sticas}{58}% 
+\contentsline {subsubsection}{Formato de trama}{59}% 
+\contentsline {chapter}{\numberline {6}M\'odulos Software}{61}% 
+\contentsline {section}{\numberline {6.1}Algoritmos de control sobre la FPGA}{61}% 
+\contentsline {section}{\numberline {6.2}Software en el m\'odulo de Downlink embarcado}{63}% 
+\contentsline {section}{\numberline {6.3}Librer\IeC {\'\i }a Python}{64}% 
+\contentsline {chapter}{\numberline {7}Validaci\'on experimental}{67}% 
+\contentsline {section}{\numberline {7.1}Eachine E010}{67}% 
+\contentsline {section}{\numberline {7.2}Syma X5C en Bucle abierto}{67}% 
+\contentsline {section}{\numberline {7.3}Pruebas Unitarias}{69}% 
+\contentsline {subsection}{\numberline {7.3.1}Pruebas de los m\'odulos de downlink}{69}% 
+\contentsline {subsection}{\numberline {7.3.2}Pruebas del m\'odulo de uplink}{70}% 
+\contentsline {subsection}{\numberline {7.3.3}Pruebas de m\'odulos software}{70}% 
+\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas de mando}{70}% 
+\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas desde drone}{71}% 
+\contentsline {subsubsection}{Prueba de m\'odulo conversor de pulsaciones}{71}% 
+\contentsline {subsubsection}{Prueba de m\'odulos PID}{72}% 
+\contentsline {subsubsection}{Prueba de m\'odulo de comunicaciones UART}{73}% 
+\contentsline {subsubsection}{Prueba de m\'odulo de modulaci\'on PPM}{74}% 
+\contentsline {section}{\numberline {7.4}Condiciones de los bucles de control}{75}% 
+\contentsline {subsection}{\numberline {7.4.1}Ancho de banda}{75}% 
+\contentsline {subsection}{\numberline {7.4.2}Retardo}{75}% 
+\contentsline {chapter}{\numberline {8}Conclusiones}{77}% 
+\contentsline {section}{\numberline {8.1}Trabajo futuro}{78}% 
+\contentsline {subsection}{\numberline {8.1.1}Mejoras en la arquitectura del sistema}{78}% 
+\contentsline {subsection}{\numberline {8.1.2}Mejoras hardware}{79}% 
+\contentsline {subsection}{\numberline {8.1.3}Mejoras software}{79}% 
+\contentsline {chapter}{Bibliograf\'{\i }a}{83}% 
+\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{85}% 
+\contentsline {section}{\numberline {A.1}UART}{85}% 
+\contentsline {section}{\numberline {A.2}SPI}{86}% 
+\contentsline {section}{\numberline {A.3}I2C}{87}% 
+\contentsline {section}{\numberline {A.4}PPM}{89}% 
+\contentsline {chapter}{\numberline {B}Sistemas de control}{91}% 
+\contentsline {section}{\numberline {B.1}Bucle abierto}{91}% 
+\contentsline {section}{\numberline {B.2}Bucle cerrado}{92}% 
+\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{93}% 

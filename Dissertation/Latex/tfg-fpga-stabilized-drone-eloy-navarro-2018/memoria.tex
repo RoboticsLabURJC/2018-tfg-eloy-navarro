@@ -619,6 +619,331 @@ Se trata de un módulo de BitCraze \cite{sensor_module}, que integra un sensor de
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Módulos del sistema %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage % empezamos en página impar
+\chapter{Módulos del sistema}
+\label{chap: Módulos del sistema}
+
+A continuación se expresa la arquitectura del sistema, en su conjunto de tres módulos principales; PC, dron y estación de tierra. Estos módulos se descomponen en elementos adicionales, explicados más adelante en sus respectivas secciones. También se detallan los interfaces que comunican dichos módulos.
+
+\section{Arquitectura}
+\label{sec:Arquitectura}
+
+La arquitectura del sistema planteada en este TFG, pretende cubrir los objetivos propuestos en el Capítulo~\ref{chap:objetivos}, haciendo uso de la infraestructura indicada en el Capítulo~\ref{chap:Infraestructura utilizada}. Para realizar sus tareas, el sistema se compone de tres módulos principales y dos interfaces de alto nivel. La arquitectura planteada, junto con la relación entre dichos elementos, se muestran en la Figura~\ref{fig:NewSystArq}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Arquitectura_del_Sistema.png}
+	\caption{Arquitectura de sistema}
+	\label{fig:NewSystArq}
+\end{figure}
+
+Los tres módulos principales que lo componen son:
+
+\begin{itemize}
+  \item Ordenador de mando: PC utilizado para enviar hacia la estación de tierra, las instrucciones que comandarán el dron.
+  
+  \item Dron: Se trata del cuadricóptero que deberá obedecer las instrucciones de movimiento, indicadas por el ordenador de mando. Irá cargado de electrónica propia y sensores adicionales.
+  
+  \item Estación de tierra: Este módulo actuará como centro neurálgico del sistema, mediante el uso de una FPGA como núcleo. Presta atención a las instrucciones indicadas por el ordenador de mando y deberá encargarse de que el vehículo escogido, ejecute adecuadamente dichas instrucciones.
+\end{itemize}
+
+Estos elementos, se comunican entre sí gracias a dos grupos de interfaces de sistema:
+
+\begin{itemize}
+  \item Interfaz USB de mando: Conexión unidireccional encargada de portar el flujo de instrucciones desde el ordenador de mando, hacia la estación de tierra, mediante USB 2.0. Contiene las instrucciones de mando, que la estación de tierra deberá hacer efectivas.
+  
+  \item Interfaz radio: Enlace bidireccional que permite comunicar el dron con la estación de tierra y viceversa. Contiene las medidas de los sensores de a bordo y las órdenes de movimiento hacia el dron.
+\end{itemize}
+
+
+La arquitectura, del sistema propuesto, basa su funcionamiento en las siguientes premisas:
+
+\begin{itemize}
+  \item La estación de tierra, atiende los comandos que puedan llegar desde el ordenador de mando.
+  
+  \item El dron, cargado de sensores, transmitirá periódicamente medidas de posición hacia la estación de tierra.
+  
+  \item La estación de tierra, gracias a las medidas de los sensores recibidas desde el dron, es capaz de ubicar de manera local la posición del vehículo. Dicha ubicación será relativa al punto de despegue.
+  
+  \item La estación de tierra, generará un vector de error de posición para el vehículo en vuelo, mediante la diferencia entre las medidas de posición indicadas por los sensores del vehículo y las órdenes recibidas desde el ordenador de mando.
+  
+  \item La estación de tierra, transmitirá al vehículo en vuelo, ordenes de movimiento para corregir el posible error de posición existente.
+  
+  \item El dron, realizará cambios en su posición, en base a las ordenes de movimiento recibidas.
+\end{itemize}
+
+De manera general, este conjunto de afirmaciones es llevado a cabo, a través del flujo de control expresado en la Figura~\ref{fig:System_Flow}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=13cm, keepaspectratio]{Imagenes/Flujo_del_Sistema.png}
+	\caption{Flujo de control general del sistema}
+	\label{fig:System_Flow}
+\end{figure}
+
+Para cubrir la funcionalidad de dicho bucle, el sistema hace uso de los tres módulos indicados anteriormente (Figura~\ref{fig:NewSystArq}), comentados en los siguientes apartados.
+
+
+\section{Dron enriquecido}
+\label{sec:Sistema embarcado}
+
+Se trata de la plataforma utilizada como vehículo volador. Finalmente, para el desarrollo de este TFG, se ha optado por el X5C de Syma (Comentado en~\ref{sec:SYMA X5C}), sobre el que se han realizado modificaciones en su estructura y añadidos a sus capacidades originales.\\ 
+Estos añadidos le permiten:
+
+\begin{itemize}
+  \item Medir distancia al suelo, para conocer su altura.
+  
+  \item Medir su desplazamiento horizontal, para conocer su ubicación relativa al punto de despegue.
+  
+  \item Comunicarse por radio con la estación de tierra, para hacer llegar su ubicación a la FPGA allí ubicada.
+\end{itemize}
+
+A continuación se comenta la arquitectura que permite la comunicación de estas medidas de posición.
+
+
+\subsection{Arquitectura del dron}
+\label{subsec:OB_Desc}
+
+Para controlar el vuelo del dron, desde la estación de tierra, es necesario nutrirla de información sobre el vehículo, que este no tenía a su disposición en origen. Resulta imprescindible, tanto que la FPGA de la estación, conozca la posición del dron; como que este sea capaz de moverse según se lo indiquen en cada instante. Esto último ya se encontraba entre las capacidades originales del dron, por tanto, se ha instalado electrónica adicional en el vehículo que permite cubrir la primera necesidad, ubicación de posición. La arquitectura final del dron se muestra en la Figura~\ref{fig:Drone_arq}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Drone_arq.png}
+	\caption{Arquitectura del dron}
+	\label{fig:Drone_arq}
+\end{figure}
+
+Esta arquitectura hace uso de múltiples elementos, como sensores, actuadores, procesadores y radios. La radio de recepción, electrónica de control y actuadores, mostrados en la rama inferior de la Figura~\ref{fig:Drone_arq}, son los elementos propios del vehículo. Estos le permiten obedecer ordenes de movimiento, dirigidas a él a través del interfaz radio de subida (Apartado~\ref{subsec:Uplink}), detallado más adelante en este informe. Los módulos de la rama superior de la arquitectura son los que dotan al vehículo en cuestión, de la capacidad de conocer su posición en tiempo real y transmitírsela a la FPGA de la estación de tierra. Estos se comentan a continuación.
+
+
+\subsection{Módulos}
+\label{subsec:OB_Mod}
+
+En la Figura~\ref{fig:OB_desc} se muestran los módulos instalados adicionalmente, utilizados para conocer la ubicación del vehículo en tiempo real.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/OnBoard_System_Mod.jpg}
+	\caption{Sistema de sensores embarcado}
+	\label{fig:OB_desc}
+\end{figure}
+
+Los módulos instalados son:
+
+\begin{itemize}
+  \item Módulo 1: Procesador Atmel.
+  
+  \item Módulo 2: Tarjeta de sensores.
+  
+  \item Módulo 3: Transmisor de downlink.
+\end{itemize}
+
+Estos módulos se alimentan desde un pack de batería de 3.6V de Litio, independiente de la electrónica de control del dron. Esto es debido a que a pesar del peso adicional que supone una batería separada, los drivers de motores del dron exigen picos de corriente considerables a las baterías. Estas, que no siempre tienen capacidad de descarga suficiente debido al diseño del dron, caen en tensión. Estas caídas, en caso de alimentar todo el sistema de las mismas baterías, llegan a producir apagados eventuales en la electrónica de los sensores, lo que dificulta el control, volviendo el sistema inestable en la mayor parte de los casos.
+
+\subsubsection{Módulo 1: Procesador}
+\label{subsubsec:OB_Mod1}
+
+Este módulo se encarga de inicializar los dos sensores, altura y desplazamiento y realizar lecturas de sus medidas por los interfaces I2C\_Alt y SPI\_XY respectivamente. Una vez tomadas las medidas, se realizan ciertos procesos sobre los datos. El sensor de altura por tiempo de vuelo (ToF) \cite{sensor_tof} sufre errores por debajo de los 3cm de distancia de medida, por tanto este módulo se encarga de filtrar dichos valores erróneos, entregando una medida ficticia de 3cm para toda altura igual o inferior. Esto hará que en ocasiones el dron, ya aterrizado, siga indicando una altura de 3cm. Esto no supone un problema ya que llegado el momento del aterrizaje, la altura ficticia de 3cm medidos, ayuda a descargar el bucle integral, apagando los motores por completo. También realiza las lecturas del sensor de velocidad de desplazamiento horizontal (Flow). El procesador se encarga de convertir estas, en medidas de posición relativas. Para ello integra en el tiempo las medidas de velocidad de desplazamiento, leídas del interfaz SPI\_XY. Ya que el sensor de flujo no mide correctamente para alturas inferiores a 4cm, se aprovecha la lógica de filtrado, para no modificar las medidas de posición en este rango de alturas.\\
+Una vez filtradas e integradas, entrama dichas medidas y las reenvía hacia el módulo 3 a través del interfaz SPI\_Radio.
+
+\subsubsection{Módulo 2: Sensores}
+\label{subsubsec:OB_Mod2}
+
+Este módulo se compone de una sola tarjeta que integra dos sensores. Juntos ofrecen lo necesario para llegar a conocer la ubicación relativa aproximada del dron. También incluye electrónica auxiliar y conexiones.
+
+\begin{itemize}
+  \item ToF: Se trata del sensor VL53L0x, el cual mide la distancia entre su encapsulado y un objeto enfrentado a él, a través de la medida del tiempo de vuelo de una señal laser. Se accede desde el módulo 1, a través del interfaz I2C\_Alt, un puerto serie I2C. Tiene un rango de trabajo de entra 3cm y 2m. Este sensor se apunta hacia el suelo, desde su soporte en el dron, con la intención de medir la distancia al suelo desde el punto medio del dron. De esta manera una vez aterrizado, la distancia mínima de medida, es superior a 3cm, lo cual minimiza la necesidad de filtrado en el procesador (esta última se mantiene igualmente, ya que los apoyos del dron son flexibles, y el sensor tiene tolerancias de medida). Este sensor tiene un retardo de medida de hasta 30ms, el cual dificultará en cierta medida la estabilidad del bucle de control de altura ejecutado en la FPGA.
+  
+  \item Flow: Como sensor de desplazamiento se hace uso del PMW3901 \cite{motion_module}. Este sensor de movimiento, tiene una óptica diseñada para enfocar a distancias superiores a 8cm. Aunque funciona bien hasta los 4cm si se dispone de buena iluminación. Sus medidas son filtradas como se indica en el proceso del módulo 1. Entrega medida de velocidad de desplazamiento en dos ejes, para el plano captado por su óptica. El montaje apunta el sensor hacia el suelo, desde el mismo soporte que para el sensor de tiempo de vuelo. De esta manera se conocerá la velocidad de desplazamiento horizontal del dron respecto del suelo. Es el módulo 1 el encargado de convertir estas velocidades de desplazamiento en posición relativa. El sensor tiene un puerto de comunicaciones SPI para inicialización y lectura, sus medidas son entregadas al módulo 1 a través del interfaz SPI\_XY.
+\end{itemize}
+
+\subsubsection{Módulo 3: Transmisor de downlink}
+\label{subsubsec:OB_Mod3}
+
+Se hace uso de una radio NRF24L01 conectada por puerto SPI al módulo 1, a través del interfaz SPI\_Radio. Este módulo transmite las medidas de posición de los sensores del módulo 2, ya procesados y entramados por el módulo 1, hacia la estación de tierra. Se configura la radio como transmisora, con una configuración en los parámetros radio, homóloga a la del módulo de downlink en la estación de tierra. Entonces se transmite una trama, justo después de realizar cada medida de ambos sensores, tiempo de vuelo y flujo. Las tramas son idénticas a las descritas en el apartado del downlink, con el mismo añadido al principio de dos bytes de valor 255 y 90. Esto lo hace compatible con la configuración del módulo de downlink de la estación de tierra. Incluye los mismos mecanismos de retransmisión y comprobación de redundancia cíclica que la radio de la estación de tierra.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Objetivo}
+\label{subsec:OB_Obj}
+
+Los sensores embarcados tienen el objetivo de proveer a la estación de tierra, con información sobre la posición del dron en cada momento. Para ello cada módulo cubrirá con unas funciones concretas definidas a continuación y se comunicará la información generada a través de los interfaces de la Figura~\ref{fig:OB_arq}, explicados más adelante.
+
+
+
+
+
+
+\subsection{Interfaces externos}
+\label{subsec:OB_IE}
+
+\subsubsection{Position Sensors Measures}
+\label{subsubsec:OB_IE_PSM}
+
+Como se muestra en la arquitectura de la Figura~\ref{fig:OB_arq}, enlaza por radio la electrónica de sensores y la estación de tierra. Porta las medidas de posición tomadas por los sensores del módulo 2 y procesadas por el módulo 1. Sus características y tramas están descritas en el apartado del downlink.
+
+\subsubsection{USB}
+\label{subsubsec:OB_IE_USB}
+
+Se trata de una comunicación con el ordenador de programación, exclusivo para reprogramación del procesador de Atmel, o extracción de medidas por puerto serie para comprobaciones y depuración.
+
+
+\subsection{Interfaces internos}
+\label{subsec:OB_II}
+
+\subsubsection{I2C\_Alt}
+\label{subsubsec:OB_II_I2C}
+
+Comunica por puerto serie I2C, el sensor de medida de altura, VL53L0x del módulo 2, con el procesador del módulo 1. Porta las medidas de distancia entre la zona media del dron y el suelo bajo él, consideradas como la altura del dron.
+
+\subsubsection{SPI\_XY}
+\label{subsubsec:OB_II_SPIXY}
+
+Comunica por puerto serie SPI, el sensor de medida de velocidad de desplazamiento, PMW3901, del módulo 2 con el procesador del módulo 1. Porta las medidas velocidad de desplazamiento sobre el plano horizontal en ambos ejes. En este punto, no existe una referencia concreta, ya que se trata de una medida de la velocidad de desplazamiento instantánea.
+
+\subsubsection{SPI\_Radio}
+\label{subsubsec:OB_II_SPIRadio}
+
+Puerto serie SPI utilizado para la configuración inicial de la radio NRF24L01, y para la indicación de tramas a enviar. La configuración inicial se parametriza de manera idéntica a la indicada para el downlink, en este caso como radio de transmisión. El formato de tramas coincide de igual manera con el del downlink por compatibilidad. Porta las medidas, ya procesadas por el módulo 1, de los interfaces I2C\_Alt y SPI\_XY.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Ordenador de mando}
+\label{sec: Ordenador de mando}
+
+Se trata del PC de la Figura~\ref{fig:NewSystArq}. Dicho hardware se encarga de ejecutar el código python que dirigirá el vuelo del dron. La ejecución de dicho código, implica que el PC comunicará por USB, hacia la estación de tierra, las órdenes que deberá obedecer el vehículo controlado. Para el caso de este trabajo, el cuadricóptero de Syma.
+
+\subsection{Objetivo}
+\label{subsec:OM_Obj}
+
+El objetivo de este módulo es permitir el control del vehículo desde PC, ofreciendo la menor cantidad de limitaciones posibles en cuanto a su manejo y configuración. Para ello, el módulo contará con las funciones comentadas a continuación.
+
+\subsection{Funciones}
+\label{subsec:OM_Func}
+
+De manera general, el ordenador de mando cubrirá las siguientes dos funciones:
+\begin{itemize}
+  \item Ejecución de instrucciones en python.
+  
+  \item Comunicación hacia la estación de tierra a través de un puerto USB.
+\end{itemize}
+
+De manera más concreta, dichas funciones controlarán la estación de tierra y el vehículo. Para ello, las tramas transmitidas por USB incluirán información de dos elementos:
+\begin{itemize}
+  \item Controles sobre el vehículo: Información sobre el control de los cuatro grados de libertad del dron (cabeceo, alabeo, guiñada y altitud), con el objetivo de ofrecer el máximo nivel de manejo.
+  
+  \item Controles sobre la estación de tierra: Valores de los parámetros de configuración de los bucles de control PID, ejecutados en la estación. Esto permite su reconfiguración en tiempo de ejecución.
+\end{itemize}
+
+
+\subsection{Interfaces}
+\label{subsec:OM_Int}
+
+De manera funcional, este módulo hace uso únicamente de un interfaz con el sistema. El comentado \textit{Interfaz USB de Mando}, dirigido contra la estación de tierra y mostrado en la Figura~\ref{fig:NewSystArq}.\\
+Paralelo a este, existe un segundo interfaz USB, desde la estación de tierra hacia el PC, utilizado exclusivamente para tareas de depuración (no presente en~\ref{fig:NewSystArq}). Este segundo USB, se comunica con la herramienta de depuración \textit{Logic}, comentada en \ref{sec:Logic Analizer}.
+
+
+\subsection{Librería Python}
+\label{sec:Librería Python}
+
+El software ejecutado en python en el ordenador de mando es el encargado de enviar las instrucciones de mando hacia la estación de tierra. Estas permiten modificar tanto los parámetros de los bucles PID, como sus consignas de posición, además de inicializar el enlace USB con la UART receptora en la FPGA.\\
+A través de la ejecución de la función \textit{setPIDValues}, se cargan los valores de las constantes para los PIDs vertical (Atura) y horizontales (cabeceo y alabeo), junto al offset para la corrección del error de giro (guiñada).
+
+\begin{flushleft}
+\textit{def} setPIDValues(alt\_kp, alt\_ki, alt\_kd, xy\_kp, xy\_ki, xy\_kd, OffGiroDI):
+\end{flushleft}
+
+\begin{itemize}
+  \item Los parámetros: alt\_kp, alt\_ki y alt\_kd, controlan las constantes, proporcional, integral y derivativa respectivamente, del bucle de control PID de altura.
+  
+  \item Los parámetros: xy\_kp, xy\_ki, xy\_kd, se aplican a las constantes, proporcional, integral y derivativa respectivamente, de ambos bucle de control PID horizontales.
+  
+  \item El parámetro OffGiroDI, es el encargado de permitir corregir el error, si lo hubiere, en el control del giro sobre sí mismo del dron.
+\end{itemize}
+
+Tras al menos una ejecución de esta función, se puede proceder a enviar instrucciones de mando al dron. Estas pueden enviarse de manera directa, a través de la instrucción setcontrols. Esta función permite dirigir el dron a una posición concreta en los tres ejecs controlados por posición, e indicarle una velocidad de giro constante, para el manejo de la guiñada. La función dispone de los siguientes parámetros:
+
+\begin{flushleft}
+\textit{def} setcontrols (ArrAb, DerIzq, DelDet, GiroDI, Duracion):
+\end{flushleft}
+
+\begin{itemize}
+  \item Los parámetros: ArrAb, DerIzq y DelDet, son las consignas para los bucles de control PID en la FPGA. Estos son enviados a su destino a través de los flujos de datos Alt\_Command, Side\_Command, Forward\_Command de la Figura~\ref{fig:FPGA_arq}, respectivamente.
+  
+  \item El parámetro GiroDI, es enviado hacia el módulo de escalado de rango, Scaler, de la arquitectura de la Figura~\ref{fig:FPGA_arq}.
+  
+  \item Duracion, es el parámetro utilizado para especificar el tiempo mínimo de espera para la ejecución de esta instrucción, en segundos. Tras este periodo de tiempo se podrá ejecutar la siguiente instrucción de mando.
+\end{itemize}
+
+Adicionalmente al método de control directo, se puede hacer uso de la función settrace, la cual genera posiciones intermedias entre la posición actual y la indicada en sus parámetros, para el instante de la ejecución.
+
+\begin{flushleft}
+\textit{def} settrace (ArrAb, DerIzq, DelDet, GiroDI, Duracion, Steps):
+\end{flushleft}
+
+Esta función hace uso de \textit{setcontrols},  para generar puntos intermedios en una trayectoria larga. Los parámetros son los mismos que para \textit{setcontrols}, salvo por el añadido de Steps, que indica el número de puntos intermedios a crear entre el punto actual y el destino indicado. Esta función es útil para recorrer distancias largas. Se debe a que en caso de, por ejemplo, despegue y vuelo a una distancia considerable del punto de despegue; se tendría un error de posición grande, lo que provoca un empuje considerable en la dirección de corrección del error. A pesar del posterior suavizado en la aceleración, debido a la componente derivativa, este empuje excesivo puede desestabilizar el control. Además al inclinar brusca y considerablemente el vehículo, se dificulta la adecuada medida de posición, por parte del sensor óptico. Ocurre algo similar con el sensor de altura. Para una inclinación considerable del vehículo, este mide una distancia mayor, debido al nuevo ángulo de incidencia sobre el suelo. Esto se traduce en un avance tortuoso del dron, como avanzando ``a tirones'' hacia su destino. Para evitar esto, se hace uso de \textit{settrace}, que disminuye el crecimiento excesivo de los errores, minimizando este efecto.
+
+
+\section{Estación de tierra basada en FPGA}
+\label{sec: Estación de tierra}
+
+
+
+
+
+
+
+
+
+
+A continuación se detallan los interfaces que conectan los cuatro módulos de nivel superior que toman partido en la arquitectura del sistema de la Figura~\ref{fig:SystArq}; estación de tierra, dron, sensores de a bordo y ordenador de mando. Cabe destacar que no existen interfaces que comuniquen de manera directa el dron, con la electrónica de sensores de a bordo. Esto es debido a que se prefirió aislar dicha electrónica de la del dron por problemas en la alimentación de la electrónica propia del dron y no existe la necesidad específica de comunicar dichos módulos directamente entre ellos (quedan indiréctamente comunicados entre sí a través de la información enviada a tierra, procesada y recibida de vuelta en el dron). Dicho interfaz en cambio si podría darse para arquitecturas de sistema diferentes, como por ejemplo aquellas basadas en la premisa comentada en el apartado \ref{subsec:Mejoras en la arquitectura del sistema}
+
+\section{Interfaz USB de mando}
+\label{sec: Interfaz USB de mando}
+
+\section{Interfaz radio}
+\label{sec: Interfaz radio}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Drone enriquecido controlado por FPGA %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -786,13 +1111,13 @@ Para el control del vuelo del dron, es necesario nutrir a la estación de tierra 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Drone_arq.png}
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Drone_Sensor_arq.png}
 	\caption{Arquitectura e interfaces del sistema sensor de posición ubicado en el dron}
 	\label{fig:OB_arq}
 \end{figure}
 
 
-\subsection{Descripcion}
+\subsection{Descripción}
 \label{subsec:OB_Desc}
 
 En la Figura~\ref{fig:OB_desc} se muestran los módulos que componen el montaje de los sensores embarcados.
