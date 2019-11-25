@@ -800,6 +800,40 @@ El vehículo solo se comunica con el resto del sistema mediante enlace radio (com
 También dispone de conexión USB, exclusiva para reprogramación del procesador y extracción de medidas por puerto serie en tareas de depuración. Este no se muestra en la arquitectura del sistema del apartado~\ref{sec:Arquitectura}.
 
 
+\subsection{Software a bordo del dron}
+\label{sec:Software en el módulo de Downlink embarcado}
+
+El software planteado para el dron, se ejecuta en el procesador Atmel del módulo 1. A través de los interfaces internos (apartado~\ref{subsec:OB_II}) se encarga de configurar radio y sensores, para posteriormente realizar una medida de cada sensor y transmitirlas por radio. El objetivo es mantener informada a la estación de tierra, de la posición del vehículo. Este software se diseñó para cubrir ciertos requisitos como: Consumir la menor cantidad de energía posible, realizar su función rápidamente (permite aumentar el ancho de banda), entreteniéndose lo menor posible en tareas secundarias (intentando minimizar latencias), y transmitir cada medidas rápida e íntegramente. Para cubrir estos objetivos, el software se ha diseñado de manera sencilla. Se comienza iniciando los sensores y la radio, sin modificar sus parámetros durante la ejecución y se prepara una estructura de datos en la que quepa la trama entera a transmitir por radio, en grupos de dos bytes:\\
+\begin{verbatim}
+struct TxFrame{
+  int16_t H_disp_front;	// Frontal displacement counter
+  int16_t H_disp_side;  // Side displacement counter
+  int16_t altitude;     // Altitude counter
+};
+\end{verbatim}
+Esto permite realizar una medida de cada sensor, filtrarlas y almacenar el resultado sobre su respectiva ubicación en la variable tipo \textit{TxFrame}. Esta entonces, puede transmitirse inmediatamente por radio, minimizando retardos e iterando esta lógica en bucle, hasta el apagado de la electrónica.
+
+
+\section{Estación de tierra basada en FPGA}
+\label{sec: Estación de tierra}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Ordenador de mando}
 \label{sec: Ordenador de mando}
@@ -877,8 +911,11 @@ Adicionalmente al método de control directo, se puede hacer uso de la función se
 Esta función hace uso de \textit{setcontrols},  para generar puntos intermedios en una trayectoria larga. Los parámetros son los mismos que para \textit{setcontrols}, salvo por el añadido de Steps, que indica el número de puntos intermedios a crear entre el punto actual y el destino indicado. Esta función es útil para recorrer distancias largas. Se debe a que en caso de, por ejemplo, despegue y vuelo a una distancia considerable del punto de despegue; se tendría un error de posición grande, lo que provoca un empuje considerable en la dirección de corrección del error. A pesar del posterior suavizado en la aceleración, debido a la componente derivativa, este empuje excesivo puede desestabilizar el control. Además al inclinar brusca y considerablemente el vehículo, se dificulta la adecuada medida de posición, por parte del sensor óptico. Ocurre algo similar con el sensor de altura. Para una inclinación considerable del vehículo, este mide una distancia mayor, debido al nuevo ángulo de incidencia sobre el suelo. Esto se traduce en un avance tortuoso del dron, como avanzando ``a tirones'' hacia su destino. Para evitar esto, se hace uso de \textit{settrace}, que disminuye el crecimiento excesivo de los errores, minimizando este efecto.
 
 
-\section{Estación de tierra basada en FPGA}
-\label{sec: Estación de tierra}
+
+
+
+
+
 
 
 
@@ -905,6 +942,21 @@ A continuación se detallan los interfaces que conectan los cuatro módulos de niv
 
 \section{Interfaz radio}
 \label{sec: Interfaz radio}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

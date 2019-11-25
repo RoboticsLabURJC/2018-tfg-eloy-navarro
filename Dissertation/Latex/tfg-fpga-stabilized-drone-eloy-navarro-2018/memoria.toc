@@ -54,14 +54,15 @@
 \contentsline {subsubsection}{SPI\_XY}{31}% 
 \contentsline {subsubsection}{SPI\_Radio}{31}% 
 \contentsline {subsection}{\numberline {4.2.4}Interfaces externos}{31}% 
-\contentsline {section}{\numberline {4.3}Ordenador de mando}{32}% 
-\contentsline {subsection}{\numberline {4.3.1}Objetivo}{32}% 
-\contentsline {subsection}{\numberline {4.3.2}Funciones}{32}% 
-\contentsline {subsection}{\numberline {4.3.3}Interfaz externo}{33}% 
-\contentsline {subsection}{\numberline {4.3.4}Librer\IeC {\'\i }a Python}{33}% 
-\contentsline {section}{\numberline {4.4}Estaci\'on de tierra basada en FPGA}{35}% 
-\contentsline {section}{\numberline {4.5}Interfaz USB de mando}{35}% 
-\contentsline {section}{\numberline {4.6}Interfaz radio}{35}% 
+\contentsline {subsection}{\numberline {4.2.5}Software a bordo del dron}{32}% 
+\contentsline {section}{\numberline {4.3}Estaci\'on de tierra basada en FPGA}{33}% 
+\contentsline {section}{\numberline {4.4}Ordenador de mando}{33}% 
+\contentsline {subsection}{\numberline {4.4.1}Objetivo}{33}% 
+\contentsline {subsection}{\numberline {4.4.2}Funciones}{33}% 
+\contentsline {subsection}{\numberline {4.4.3}Interfaz externo}{34}% 
+\contentsline {subsection}{\numberline {4.4.4}Librer\IeC {\'\i }a Python}{34}% 
+\contentsline {section}{\numberline {4.5}Interfaz USB de mando}{36}% 
+\contentsline {section}{\numberline {4.6}Interfaz radio}{36}% 
 \contentsline {chapter}{\numberline {5}Dron enriquecido controlado por FPGA}{37}% 
 \contentsline {section}{\numberline {5.1}Arquitectura del sistema}{37}% 
 \contentsline {section}{\numberline {5.2}Estaci\'on de tierra}{39}% 
