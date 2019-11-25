@@ -47,22 +47,19 @@
 \contentsline {subsection}{\numberline {4.2.1}Arquitectura del dron}{26}% 
 \contentsline {subsection}{\numberline {4.2.2}M\'odulos}{27}% 
 \contentsline {subsubsection}{M\'odulo 1: Procesador}{28}% 
-\contentsline {subsubsection}{M\'odulo 2: Sensores}{29}% 
-\contentsline {subsubsection}{M\'odulo 3: Transmisor de downlink}{30}% 
-\contentsline {subsection}{\numberline {4.2.3}Objetivo}{30}% 
-\contentsline {subsection}{\numberline {4.2.4}Interfaces externos}{30}% 
-\contentsline {subsubsection}{Position Sensors Measures}{30}% 
-\contentsline {subsubsection}{USB}{30}% 
-\contentsline {subsection}{\numberline {4.2.5}Interfaces internos}{31}% 
+\contentsline {subsubsection}{M\'odulo 2: Tarjeta de Sensores}{29}% 
+\contentsline {subsubsection}{M\'odulo 3: Transmisor de bajada hacia FPGA}{30}% 
+\contentsline {subsection}{\numberline {4.2.3}Interfaces internos}{31}% 
 \contentsline {subsubsection}{I2C\_Alt}{31}% 
 \contentsline {subsubsection}{SPI\_XY}{31}% 
 \contentsline {subsubsection}{SPI\_Radio}{31}% 
-\contentsline {section}{\numberline {4.3}Ordenador de mando}{31}% 
-\contentsline {subsection}{\numberline {4.3.1}Objetivo}{31}% 
+\contentsline {subsection}{\numberline {4.2.4}Interfaces externos}{31}% 
+\contentsline {section}{\numberline {4.3}Ordenador de mando}{32}% 
+\contentsline {subsection}{\numberline {4.3.1}Objetivo}{32}% 
 \contentsline {subsection}{\numberline {4.3.2}Funciones}{32}% 
-\contentsline {subsection}{\numberline {4.3.3}Interfaces}{32}% 
-\contentsline {subsection}{\numberline {4.3.4}Librer\IeC {\'\i }a Python}{32}% 
-\contentsline {section}{\numberline {4.4}Estaci\'on de tierra basada en FPGA}{34}% 
+\contentsline {subsection}{\numberline {4.3.3}Interfaz externo}{33}% 
+\contentsline {subsection}{\numberline {4.3.4}Librer\IeC {\'\i }a Python}{33}% 
+\contentsline {section}{\numberline {4.4}Estaci\'on de tierra basada en FPGA}{35}% 
 \contentsline {section}{\numberline {4.5}Interfaz USB de mando}{35}% 
 \contentsline {section}{\numberline {4.6}Interfaz radio}{35}% 
 \contentsline {chapter}{\numberline {5}Dron enriquecido controlado por FPGA}{37}% 
