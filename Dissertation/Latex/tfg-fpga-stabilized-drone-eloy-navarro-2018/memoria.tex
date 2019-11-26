@@ -623,15 +623,15 @@ Se trata de un módulo de BitCraze \cite{sensor_module}, que integra un sensor de
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage % empezamos en página impar
-\chapter{Módulos del sistema}
+\chapter{Arquitectura del sistema}
 \label{chap: Módulos del sistema}
 
 A continuación se expresa la arquitectura del sistema, en su conjunto de tres módulos principales; PC, dron y estación de tierra. Estos módulos se descomponen en elementos adicionales, explicados más adelante en sus respectivas secciones. También se detallan los interfaces que comunican dichos módulos.
 
-\section{Arquitectura}
+\section{Estructura utilizada}
 \label{sec:Arquitectura}
 
-La arquitectura del sistema planteada en este TFG, pretende cubrir los objetivos propuestos en el Capítulo~\ref{chap:objetivos}, haciendo uso de la infraestructura indicada en el Capítulo~\ref{chap:Infraestructura utilizada}. Para realizar sus tareas, el sistema se compone de tres módulos principales y dos interfaces de alto nivel. La arquitectura planteada, junto con la relación entre dichos elementos, se muestran en la Figura~\ref{fig:NewSystArq}.
+La estructura planteada en este TFG, pretende cubrir los objetivos propuestos en el Capítulo~\ref{chap:objetivos}, haciendo uso de la infraestructura indicada en el Capítulo~\ref{chap:Infraestructura utilizada}. Para realizar sus tareas, el sistema se compone de tres módulos principales y dos interfaces de alto nivel. La arquitectura planteada, junto con la relación entre dichos elementos, se muestran en la Figura~\ref{fig:NewSystArq}.
 
 \begin{figure}[h]
 	\centering
@@ -816,6 +816,47 @@ Esto permite realizar una medida de cada sensor, filtrarlas y almacenar el resul
 
 \section{Estación de tierra basada en FPGA}
 \label{sec: Estación de tierra}
+
+Este módulo, hace posible que el vehículo escogido, obedezca las instrucciones ejecutadas en el ordenador de mando (Apartado~\ref{sec: Ordenador de mando}). Para ello, hace uso de una FPGA de Lattice ubicada en la tarjeta de desarrollo escogida (\ref{sec:ICE40 UltraPlus Breakout Board}) y dos módulos radio (\ref{sec:NRF24L01}). Este conjunto de electrónica otorga las siguientes capacidades a la estación de tierra:
+
+\begin{itemize}
+  \item Atender las tramas de mando enviadas desde PC por USB.
+  
+  \item Atender las tramas con medidas de posición enviadas desde el dron por radio.
+  
+  \item Ejecutar algoritmos de control, para generar órdenes de movimiento que estabilicen y manejen el vehículo. 
+  
+  \item Transmitir por radio ordenes de movimiento hacia el dron.
+\end{itemize}
+
+El conjunto de elementos escogidos, convergen en la siguiente arquitectura.
+
+\subsection{Arquitectura de la estación}
+\label{subsec:OB_Desc}
+
+La estación de tierra se estructura de manera que sea capaz de realizar sus funciones, ofreciendo además facilidades para la depuración. Una vez construido el sistema completo, resulta fundamental poder realizar cómodamente tareas de ensayo y error para el ajuste de los distintos parámetros que intervienen en el control del vuelo del vehículo. Debido a esta premisa, la estación de tierra se compone de elementos que le permiten comunicarse con el dron y el ordenador de mando mediante módulos radio y USB respectivamente, procesar información mediante la FPGA, realizar capturar de valores internos y enviarlos hacia el PC para su análisis. En la Figura~\ref{fig:ETArq} se exponen los módulos e interfaces de la estación de tierra, que hacen posible dichas tareas.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=13cm, keepaspectratio]{Imagenes/ET_arq.png}
+	\caption{Arquitectura de la estación de tierra}
+	\label{fig:ETArq}
+\end{figure}
+
+A continuación se explican los módulos hacen posible que la estación lleve a cabo su cometido.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
