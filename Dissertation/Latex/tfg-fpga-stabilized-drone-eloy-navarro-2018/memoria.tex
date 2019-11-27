@@ -596,7 +596,14 @@ Como procesadores auxiliares, se han utilizado tarjetas de desarrollo, que integ
 \subsection{ICE40 UltraPlus Breakout Board}
 \label{sec:ICE40 UltraPlus Breakout Board}
 
-Tarjeta de desarrollo para la familia UltraPlus de los modelos ICE40 de Lattice. Incluye elementos varios de interfaz humana; como Leds, interruptores, jumpers y conexiones de propósito general. También incluye un interfaz USB reprogramable de FTDI Chip y doble canal, FT232HL. Como procesador dispone de una FPGA ICE40UP5K-SG48, con 5280 celdas lógicas, 120Kbits de RAM embebida y 1024kbits de RAM estática, una PLL y 8 bloques DSP (multiplicadores de 16 bits). Esta plataforma se ha usado como núcleo de la estación de tierra, conectándose con periféricos radio y el PC de mando.
+Tarjeta de desarrollo para la familia UltraPlus de los modelos ICE40 de Lattice. Incluye un regulador de tensión, elementos varios de interfaz humana; como Leds, interruptores, jumpers y conexiones de propósito general. También incluye un interfaz USB reprogramable de FTDI Chip y doble canal, FT232HL, con el canal A configurado para convertir de USB a SPI, ocupado en la programación y el canal B libre de uso. Como procesador dispone de una FPGA ICE40UP5K-SG48 en su encapsulado QFN de 48 pines, con 5280 celdas lógicas, 120Kbits de RAM embebida y 1024kbits de RAM estática, una PLL y 8 bloques DSP (multiplicadores de 16 bits). 
+Se trata de una FPGA basada en RAM, por tanto, dispone de una memoria interna de configuración basada en RAM (bancos de memoria que determinan el hardware que se construirá dentro de la FPGA) y una memoria flash externa (instalada en esta tarjeta). Esto permite:
+\begin{itemize}
+  \item Configurar un programa volátil, directamente en la memoria RAM de configuración de la FPGA. Este, sobrescribirá cualquier configuración existente y desaparecerá en caso de apagado.
+  
+  \item Almacenar un programa en memoria flash externa, el cual será cargado en la memoria de configuración RAM, durante el arranque.
+\end{itemize}
+Esta plataforma se ha usado como núcleo de la estación de tierra, conectándose con periféricos radio y el PC de mando.
 
 
 \subsection{SYMA X5C}
@@ -719,10 +726,10 @@ Para controlar el vuelo del dron, desde la estación de tierra, es necesario nutr
 Esta arquitectura hace uso de múltiples elementos, como sensores, actuadores, procesadores y radios. La radio de recepción, electrónica de control y actuadores, mostrados en la rama inferior de la Figura~\ref{fig:Drone_arq}, son los elementos propios del vehículo. Estos le permiten obedecer ordenes de movimiento, dirigidas a él a través del interfaz radio de subida (Apartado~\ref{subsec:Uplink}), detallado más adelante en este informe. Los módulos de la rama superior de la arquitectura son los que dotan al vehículo en cuestión, de la capacidad de conocer su posición en tiempo real y transmitírsela a la FPGA de la estación de tierra. Estos se comentan a continuación.
 
 
-\subsection{Módulos}
+\subsection{Módulos del dron}
 \label{subsec:OB_Mod}
 
-El vehículo se equipa con los siguientes módulos, utilizados para conocer su propia ubicación en tiempo real.
+El vehículo se equipa con los siguientes módulos adicionales, utilizados para conocer su propia ubicación en tiempo real.
 \begin{itemize}
   \item Módulo 1: Procesador Atmel.
   
@@ -817,40 +824,93 @@ Esto permite realizar una medida de cada sensor, filtrarlas y almacenar el resul
 \section{Estación de tierra basada en FPGA}
 \label{sec: Estación de tierra}
 
-Este módulo, hace posible que el vehículo escogido, obedezca las instrucciones ejecutadas en el ordenador de mando (Apartado~\ref{sec: Ordenador de mando}). Para ello, hace uso de una FPGA de Lattice ubicada en la tarjeta de desarrollo escogida (\ref{sec:ICE40 UltraPlus Breakout Board}) y dos módulos radio (\ref{sec:NRF24L01}). Este conjunto de electrónica otorga las siguientes capacidades a la estación de tierra:
+Este módulo, hace posible que el vehículo escogido, obedezca las instrucciones ejecutadas en el ordenador de mando (apartado~\ref{sec: Ordenador de mando}). Además resulta fundamental poder realizar capturas de información en tiempo real, para el ajuste de los distintos parámetros que intervienen en el control del vuelo del vehículo. Por tanto, se instala un conjunto de electrónica que otorgue suficientes capacidades a la estación de tierra:
 
 \begin{itemize}
   \item Atender las tramas de mando enviadas desde PC por USB.
   
   \item Atender las tramas con medidas de posición enviadas desde el dron por radio.
   
-  \item Ejecutar algoritmos de control, para generar órdenes de movimiento que estabilicen y manejen el vehículo. 
+  \item Ejecutar algoritmos de control, para generar órdenes de movimiento que estabilicen y manejen el vehículo.
   
   \item Transmitir por radio ordenes de movimiento hacia el dron.
+
+  \item Realizar capturas de valores internos de la FPGA y tramas de comunicaciones, enviándolos después hacia el PC para su análisis.
 \end{itemize}
 
-El conjunto de elementos escogidos, convergen en la siguiente arquitectura.
+Para cubrir este conjunto de tareas, se converge en la siguiente arquitectura.
 
 \subsection{Arquitectura de la estación}
 \label{subsec:OB_Desc}
 
-La estación de tierra se estructura de manera que sea capaz de realizar sus funciones, ofreciendo además facilidades para la depuración. Una vez construido el sistema completo, resulta fundamental poder realizar cómodamente tareas de ensayo y error para el ajuste de los distintos parámetros que intervienen en el control del vuelo del vehículo. Debido a esta premisa, la estación de tierra se compone de elementos que le permiten comunicarse con el dron y el ordenador de mando mediante módulos radio y USB respectivamente, procesar información mediante la FPGA, realizar capturar de valores internos y enviarlos hacia el PC para su análisis. En la Figura~\ref{fig:ETArq} se exponen los módulos e interfaces de la estación de tierra, que hacen posible dichas tareas.
+La estación de tierra se estructura de manera que sea capaz de realizar las tareas comentadas. Hace uso de una FPGA de Lattice ubicada en la tarjeta de desarrollo escogida (\ref{sec:ICE40 UltraPlus Breakout Board}), dos módulos radio (\ref{sec:NRF24L01}) y un módulo de adquisición para depurar señales digitales (\ref{sec:Logic Analizer}). Estos elementos le permiten, no solo dirigir el dron, sino además facilitar tareas de ensayo y error, permitiendo ajustar los controladores. En la Figura~\ref{fig:ETArq} se exponen los módulos y relaciones entre ellos, que intervienen para cumplir dichas tareas.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=13cm, keepaspectratio]{Imagenes/ET_arq.png}
+	\includegraphics[width=16cm, keepaspectratio]{Imagenes/ET_arq.png}
 	\caption{Arquitectura de la estación de tierra}
 	\label{fig:ETArq}
 \end{figure}
 
-A continuación se explican los módulos hacen posible que la estación lleve a cabo su cometido.
+A continuación se explican los módulos que hacen posible los cometidos desempeñados por la estación de tierra.
 
 
+\subsection{Módulos de la estación}
+\label{subsec:OB_Mod}
+
+Para el control y depuración del vuelo del dron, la estación se equipa con los siguientes módulos:
+
+\begin{itemize}
+  \item Módulo 1: Concentrador USB, como enlace hacia el PC.
+  
+  \item Módulo 2: Tarjeta de procesamiento basada en FPGA.
+  
+  \item Módulo 3: Receptor radio, de medidas de posición del dron.
+  
+  \item Módulo 4: Transmisor radio, de órdenes de movimiento hacia el dron.
+  
+  \item Módulo 5: Depuración, para adquisición de señales digitales.
+\end{itemize}
+
+Cada módulo de la estación, se compone de una o varias tarjetas mostradas en el montaje de la Figura~\ref{fig:GS_desc}. Cada módulo ejecuta con una función concreta y necesaria para cumplir algún sub-objetivo, permitir a las demás cumplir con el suyo, o facilitar las tareas de depuración.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=16cm, keepaspectratio]{Imagenes/Ground_Station_Mod.jpg}
+	\caption{Montaje de la estación de tierra}
+	\label{fig:GS_desc}
+\end{figure}
+
+A continuación se describen los distintos módulos que componen la estación de tierra, enumerados en la Figura~\ref{fig:GS_desc}:
+
+\subsubsection{Módulo 1: Concentrador USB}
+\label{subsubsec:GS_Mod1}
+
+Centraliza las comunicaciones USB, permitiendo tener un único puerto ocupado en el PC y poder acceder desde él a la programación individual de los 3 módulos reprogramables; modúlo transmisor, modulo receptor y FPGA. Además se puede acceder a las sondas de depuración, y alimentar simultáneamente todos los sistemas. También permite el apagado individual de cada módulo, muy útil para restablecer la comunicación con el dron reiniciando el módulo transmisor, sin eliminar la configuración en RAM existente en la FPGA.
+
+\subsubsection{Módulo 2: Procesador basado en FPGA}
+\label{subsubsec:GS_Mod2}
+
+Se trata de la tarjeta que integra la FPGA utilizada como procesador principal del sistema. Incluye la Lattice comentada en el Apartado~\ref{sec:ICE40 UltraPlus Breakout Board} junto a demás elementos periféricos y auxiliares. Se conecta con el ordenador de mando mediante el interfaz USB integrado en el chip FT232HL, cuyo canal B se encuentra libre. Este convierte de USB a UART, para comunicar las instrucciones de mando desde el PC hacia la FPGA.\\
+La FPGA de este módulo es la encargada de atender las instrucciones de mando y las medidas de los sensores de a bordo del dron. Además se encarga de ejecutar los bucles de control, generando las órdenes de movimiento que corregirán la trayectoria del vehículo. Estas las modula mediante modulación por posición de pulso, sobre el interfaz Tramas\_PPM, hacia el módulo transmisor. Más adelante se describen los algoritmos de control utilizados (Apartado~\ref{sec:Algoritmos de control sobre la FPGA}).
 
 
+\subsubsection{Módulo 3: Receptor radio de medidas de posición}
+\label{subsubsec:GS_Mod3}
+
+Se compone de una radio NRF24L01 conectada por puerto SPI a un procesador de Atmel integrado en la tarjeta Arduino Uno. La radio se alimenta desde la tarjeta del procesador, el cual se alimenta a su vez por USB. También se tiene acceso por USB a la reprogramación del procesador y a su salida de puerto serie para depuración.\\
+Este módulo se encarga de recibir las medidas de posición desde los sensores a bordo del dron. Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas de posición desde el vehículo. Una vez recibidas, las entrama y las dirige hacia la FPGA del módulo 2 mediante la interfaz UART\_Sensores del Apartado~\ref{subsubsec:GS_UART_Sensores}.
+
+\subsubsection{Módulo 4: Transmisor radio de órdenes de movimiento}
+\label{subsubsec:GS_Mod4}
+
+Este módulo se encarga de demodular el interfaz Tramas\_PPM, contenedor de las órdenes de movimiento indicadas por la FPGA. Convierte dicha modulación en una transmisión radio hacia el dron. Consta de un procesador de Atmel integrado en una tarjeta Arduino Nano, junto con una radio NRF24L01. La tarjeta Arduino Nano, incluye también regulador de tensión e interfaz USB para cubrir las mismas tareas que en el caso del módulo 3, alimentación, depuración y programación. El procesador configura la radio como transmisor y la enlaza con la electrónica original del dron (Rama inferior de la arquitectura de la Figura~\ref{fig:Drone_arq}). Tras el enlace, comienza a transmitir periódicamente hacia el dron, las órdenes de movimiento demoduladas de la trama PPM recibida desde la FPGA.
 
 
+\subsubsection{Módulo 5: Depuración}
+\label{subsubsec:GS_Mod5}
 
+Se trata de un sistema de adquisición digital diseñado por Saleae, para ser usado como analizador lógico. Dispone de una conexión de masa como referencia y ocho canales. Estos se conectan de tal manera que se tiene acceso a la información de los interfaces: UART_Mando (Órdenes de movimiento recibidas desde el ordenador), UART\_Sensorses (Medidas de posición recibidas desde la electrónica de sensorización del dron), Tramas\_PPM (tramas PPM moduladas por la FPGA, resultado de sus bucles de control) y algunas señales internas de la FPGA. De esta manera, se puede depurar el sistema completo una vez en funcionamiento. Ya que el sistema de adquisición de Saleae permite capturas predefinidas en tiempo, se configuran adquisiciones de 5 o 10 segundos y se asocia el disparo de captura a la recepción de una nueva trama desde el ordenador de mando. De esta manera, se realizan capturas de todos los eventos que se producen en el entorno de la orden enviada. Esto ha hecho posible gran parte de la depuración de errores y fallos en la estabilidad del sistema o en su ejecución, junto con ajuste de parámetros PID.
 
 
 
@@ -1128,6 +1188,9 @@ La estación de tierra hace uso de dos puertos SPI para leer cada una de las dos 
 \subsubsection{UART \& UART\_Sensors}
 \label{subsubsec:GS_UART}
 
+ 
+  Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas desde el vehículo. Cuando las recibe, las entrama con un formato de trama idéntico al descrito en el apartado del downlink, con el añadido al principio de dos bytes de valor 255 y 90, como bytes de sincronía. Técnica de sincronía idéntica a la descrita en el interfaz de mando. De esta manera, aunque se falle la recepción de un byte, el receptor tiene un método para volver a sincronizarse con las siguientes tramas. Además el módulo de downlink incluye un CRC de 8 bits en su mecanismo de comunicación radio y sistema de retransmisiones, lo que dificulta la llegada de bytes erróneos a este nivel (Si puede ocurrir que ante la llegada de múltiples bytes erróneos a la radio, uno o varios queden sin entregar al procesador, tras el vencimiento de los reintentos).
+ 
 En el sistema se utilizan comunicaciones asíncronas en dos ubicaciones distintas, y para portar distinta información. En primer lugar, se utiliza para recibir los comandos desde el ordenador de mando a través del interfaz UART de la figura 25. El protocolo USB 2.0 es convertido a UART por el driver FT232HL del módulo 2. Una vez convertido, es recibido por la FPGA del mismo módulo, la cual se sincroniza con las tramas recibidas con las características y formato de tramas comentados en el apartado Interfaz de mando.\\
 La segunda ubicación donde se hace uso de este protocolo es en la recepción de las medidas de los sensores de a bordo, a través del interfaz UART\_Sensors. Esta interfaz llega desde el módulo de downlink, el cual se encarga de comunicar las medidas de posición a la FPGA del módulo 2, directamente a través de una UART sin paridad ni control de flujo, con 10 bits por byte y una tasa de transferencia de 500Kbps.
 
