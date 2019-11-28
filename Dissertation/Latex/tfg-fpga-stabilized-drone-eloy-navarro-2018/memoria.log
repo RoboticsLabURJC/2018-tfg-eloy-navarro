@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.30)  27 NOV 2019 17:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.30)  28 NOV 2019 19:17
 entering extended mode
 **./memoria.tex
 (memoria.tex
@@ -235,13 +235,13 @@ LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 
 
-LaTeX Warning: Label `subsec:OB_Desc' multiply defined.
-
-
-LaTeX Warning: Label `subsec:OB_Mod' multiply defined.
+LaTeX Warning: Label `subsec:GS_Desc' multiply defined.
 
 
 LaTeX Warning: Label `fig:GS_desc' multiply defined.
+
+
+LaTeX Warning: Label `subsec:GS_Mod' multiply defined.
 
 
 LaTeX Warning: Label `subsubsec:GS_Mod1' multiply defined.
@@ -286,15 +286,6 @@ LaTeX Warning: Label `subsec:OB_IE' multiply defined.
 LaTeX Warning: Label `subsec:OB_II' multiply defined.
 
 
-LaTeX Warning: Label `subsubsec:OB_II_I2C' multiply defined.
-
-
-LaTeX Warning: Label `subsubsec:OB_II_SPIXY' multiply defined.
-
-
-LaTeX Warning: Label `subsubsec:OB_II_SPIRadio' multiply defined.
-
-
 LaTeX Warning: Label `subsec:OM_Obj' multiply defined.
 
 
@@ -305,6 +296,13 @@ LaTeX Warning: Label `subsec:OM_Int' multiply defined.
 
 
 LaTeX Warning: Label `subsec:Caracter\IeC {\'\i }sticas' multiply defined.
+
+
+LaTeX Warning: Label `sec:Algoritmos de control sobre la FPGA' multiply defined
+.
+
+
+LaTeX Warning: Label `fig:FPGA_arq' multiply defined.
 
 
 LaTeX Warning: Label `sec:Software en el m\'odulo de Downlink embarcado' multip
@@ -476,14 +474,14 @@ LaTeX Info: Redefining \% on input line 1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
  [5]
-LaTeX Info: Redefining \. on input line 67.
-LaTeX Info: Redefining \% on input line 67.
+LaTeX Info: Redefining \. on input line 64.
+LaTeX Info: Redefining \% on input line 64.
  [6]
-LaTeX Info: Redefining \. on input line 116.
-LaTeX Info: Redefining \% on input line 116.
+LaTeX Info: Redefining \. on input line 111.
+LaTeX Info: Redefining \% on input line 111.
  [7]
-LaTeX Info: Redefining \. on input line 152.
-LaTeX Info: Redefining \% on input line 152.
+LaTeX Info: Redefining \. on input line 149.
+LaTeX Info: Redefining \% on input line 149.
  [8])
 \tf@toc=\write3
 \openout3 = `memoria.toc'.
@@ -754,191 +752,207 @@ Underfull \vbox (badness 2351) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 786.
 LaTeX Info: Redefining \% on input line 786.
  [32 <./Imagenes/BitCrazeXY.png>]
-LaTeX Info: Redefining \. on input line 810.
-LaTeX Info: Redefining \% on input line 810.
- [33]
-Underfull \hbox (badness 10000) in paragraph at lines 813--814
+Underfull \hbox (badness 10000) in paragraph at lines 806--807
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 814.
-("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\t1pcr.fd"
+LaTeX Info: Redefining \. on input line 807.
+LaTeX Info: Redefining \% on input line 807.
+[33]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 807.
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\t1pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-LaTeX Info: Redefining \. on input line 828.
-LaTeX Info: Redefining \% on input line 828.
+LaTeX Info: Redefining \. on input line 831.
+LaTeX Info: Redefining \% on input line 831.
  [34]
 <Imagenes/ET_arq.png, id=182, 2015.53pt x 914.41624pt>
 File: Imagenes/ET_arq.png Graphic file (type png)
 <use Imagenes/ET_arq.png>
-Package pdftex.def Info: Imagenes/ET_arq.png  used on input line 850.
+Package pdftex.def Info: Imagenes/ET_arq.png  used on input line 843.
 (pdftex.def)             Requested size: 455.24408pt x 206.53009pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 872.
-LaTeX Info: Redefining \% on input line 872.
-[35]
-<Imagenes/Ground_Station_Mod.jpg, id=187, 3468.96pt x 1951.29pt>
+LaTeX Info: Redefining \. on input line 858.
+LaTeX Info: Redefining \% on input line 858.
+ [35 <./Imagenes/ET_arq.png>]
+<Imagenes/Ground_Station_Mod.jpg, id=188, 3468.96pt x 1951.29pt>
 File: Imagenes/Ground_Station_Mod.jpg Graphic file (type jpg)
 <use Imagenes/Ground_Station_Mod.jpg>
 Package pdftex.def Info: Imagenes/Ground_Station_Mod.jpg  used on input line 87
-9.
+1.
 (pdftex.def)             Requested size: 455.24408pt x 256.05855pt.
+LaTeX Info: Redefining \. on input line 882.
+LaTeX Info: Redefining \% on input line 882.
+ [36 <./Imagenes/Ground_Station_Mod.jpg>]
+
+LaTeX Warning: Reference `subsubsec:GS_UART_Sensores' on page 37 undefined on i
+nput line 893.
+
+LaTeX Info: Redefining \. on input line 899.
+LaTeX Info: Redefining \% on input line 899.
+[37]
+LaTeX Info: Redefining \. on input line 914.
+LaTeX Info: Redefining \% on input line 914.
+ [38]
+LaTeX Info: Redefining \. on input line 937.
+LaTeX Info: Redefining \% on input line 937.
+ [39]
+<Imagenes/FPGA_Soft_arq.png, id=201, 658.71094pt x 483.30562pt>
+File: Imagenes/FPGA_Soft_arq.png Graphic file (type png)
+<use Imagenes/FPGA_Soft_arq.png>
+Package pdftex.def Info: Imagenes/FPGA_Soft_arq.png  used on input line 943.
+(pdftex.def)             Requested size: 398.33858pt x 292.27174pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 896.
-LaTeX Info: Redefining \% on input line 896.
-[36 <./Imagenes/ET_arq.png>]
+LaTeX Info: Redefining \. on input line 949.
+LaTeX Info: Redefining \% on input line 949.
+[40]
+Underfull \vbox (badness 3375) has occurred while \output is active []
 
-LaTeX Warning: Reference `subsubsec:GS_UART_Sensores' on page 37 undefined on i
-nput line 902.
-
-LaTeX Info: Redefining \. on input line 903.
-LaTeX Info: Redefining \% on input line 903.
-[37 <./Imagenes/Ground_Station_Mod.jpg>]
-LaTeX Info: Redefining \. on input line 943.
-LaTeX Info: Redefining \% on input line 943.
- [38]
-LaTeX Info: Redefining \. on input line 972.
-LaTeX Info: Redefining \% on input line 972.
- [39]
-LaTeX Info: Redefining \. on input line 1002.
-LaTeX Info: Redefining \% on input line 1002.
- [40]
-LaTeX Info: Redefining \. on input line 1040.
-LaTeX Info: Redefining \% on input line 1040.
- [41]
-LaTeX Info: Redefining \. on input line 1075.
-LaTeX Info: Redefining \% on input line 1075.
+LaTeX Info: Redefining \. on input line 989.
+LaTeX Info: Redefining \% on input line 989.
+ [41 <./Imagenes/FPGA_Soft_arq.png>]
+LaTeX Info: Redefining \. on input line 1020.
+LaTeX Info: Redefining \% on input line 1020.
  [42]
-Cap\'{\i }tulo 5.
-[43
-
+LaTeX Info: Redefining \. on input line 1045.
+LaTeX Info: Redefining \% on input line 1045.
+ [43]
+LaTeX Info: Redefining \. on input line 1116.
+LaTeX Info: Redefining \% on input line 1116.
+ [44]
+LaTeX Info: Redefining \. on input line 1116.
+LaTeX Info: Redefining \% on input line 1116.
+ [45]
+LaTeX Info: Redefining \. on input line 1116.
+LaTeX Info: Redefining \% on input line 1116.
+ [46
 
 ]
-<Imagenes/System_arq.png, id=214, 534.49687pt x 374.14781pt>
+Cap\'{\i }tulo 5.
+[47
+
+]
+<Imagenes/System_arq.png, id=229, 534.49687pt x 374.14781pt>
 File: Imagenes/System_arq.png Graphic file (type png)
 <use Imagenes/System_arq.png>
-Package pdftex.def Info: Imagenes/System_arq.png  used on input line 1106.
+Package pdftex.def Info: Imagenes/System_arq.png  used on input line 1147.
 (pdftex.def)             Requested size: 398.33858pt x 278.84607pt.
-LaTeX Info: Redefining \. on input line 1118.
-LaTeX Info: Redefining \% on input line 1118.
- [44 <./Imagenes/System_arq.png>]
-<Imagenes/Ground_Station_arq.png, id=219, 505.89pt x 368.1253pt>
+LaTeX Info: Redefining \. on input line 1159.
+LaTeX Info: Redefining \% on input line 1159.
+ [48 <./Imagenes/System_arq.png>]
+<Imagenes/Ground_Station_arq.png, id=234, 505.89pt x 368.1253pt>
 File: Imagenes/Ground_Station_arq.png Graphic file (type png)
 <use Imagenes/Ground_Station_arq.png>
 Package pdftex.def Info: Imagenes/Ground_Station_arq.png  used on input line 11
-21.
+62.
 (pdftex.def)             Requested size: 455.24408pt x 331.276pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1132.
-LaTeX Info: Redefining \% on input line 1132.
- [45 <./Imagenes/Ground_Station_arq.png>]
+LaTeX Info: Redefining \. on input line 1173.
+LaTeX Info: Redefining \% on input line 1173.
+ [49 <./Imagenes/Ground_Station_arq.png>]
 File: Imagenes/Ground_Station_Mod.jpg Graphic file (type jpg)
 <use Imagenes/Ground_Station_Mod.jpg>
 Package pdftex.def Info: Imagenes/Ground_Station_Mod.jpg  used on input line 11
-35.
+76.
 (pdftex.def)             Requested size: 455.24408pt x 256.05855pt.
-LaTeX Info: Redefining \. on input line 1158.
-LaTeX Info: Redefining \% on input line 1158.
- [46]
-LaTeX Info: Redefining \. on input line 1182.
-LaTeX Info: Redefining \% on input line 1182.
- [47]
-LaTeX Info: Redefining \. on input line 1196.
-LaTeX Info: Redefining \% on input line 1196.
- [48]
-LaTeX Info: Redefining \. on input line 1217.
-LaTeX Info: Redefining \% on input line 1217.
- [49]
-LaTeX Info: Redefining \. on input line 1224.
-LaTeX Info: Redefining \% on input line 1224.
+LaTeX Info: Redefining \. on input line 1199.
+LaTeX Info: Redefining \% on input line 1199.
  [50]
+LaTeX Info: Redefining \. on input line 1223.
+LaTeX Info: Redefining \% on input line 1223.
+ [51]
+LaTeX Info: Redefining \. on input line 1237.
+LaTeX Info: Redefining \% on input line 1237.
+ [52]
+LaTeX Info: Redefining \. on input line 1258.
+LaTeX Info: Redefining \% on input line 1258.
+ [53]
+LaTeX Info: Redefining \. on input line 1265.
+LaTeX Info: Redefining \% on input line 1265.
+ [54]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1239.
-LaTeX Info: Redefining \% on input line 1239.
- [51]
-<Imagenes/Drone_Sensor_arq.png, id=243, 489.32813pt x 351.56343pt>
+LaTeX Info: Redefining \. on input line 1280.
+LaTeX Info: Redefining \% on input line 1280.
+ [55]
+<Imagenes/Drone_Sensor_arq.png, id=258, 489.32813pt x 351.56343pt>
 File: Imagenes/Drone_Sensor_arq.png Graphic file (type png)
 <use Imagenes/Drone_Sensor_arq.png>
-Package pdftex.def Info: Imagenes/Drone_Sensor_arq.png  used on input line 1242
+Package pdftex.def Info: Imagenes/Drone_Sensor_arq.png  used on input line 1283
 .
 (pdftex.def)             Requested size: 398.33858pt x 286.19711pt.
 File: Imagenes/OnBoard_System_Mod.jpg Graphic file (type jpg)
 <use Imagenes/OnBoard_System_Mod.jpg>
 Package pdftex.def Info: Imagenes/OnBoard_System_Mod.jpg  used on input line 12
-55.
+96.
 (pdftex.def)             Requested size: 398.33858pt x 226.69478pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 1267.
-LaTeX Info: Redefining \% on input line 1267.
-[52 <./Imagenes/Drone_Sensor_arq.png>]
-LaTeX Info: Redefining \. on input line 1285.
-LaTeX Info: Redefining \% on input line 1285.
- [53]
 LaTeX Info: Redefining \. on input line 1308.
 LaTeX Info: Redefining \% on input line 1308.
- [54]
-LaTeX Info: Redefining \. on input line 1317.
-LaTeX Info: Redefining \% on input line 1317.
- [55]
-Overfull \hbox (19.43362pt too wide) in paragraph at lines 1343--1344
+[56 <./Imagenes/Drone_Sensor_arq.png>]
+LaTeX Info: Redefining \. on input line 1326.
+LaTeX Info: Redefining \% on input line 1326.
+ [57]
+LaTeX Info: Redefining \. on input line 1349.
+LaTeX Info: Redefining \% on input line 1349.
+ [58]
+LaTeX Info: Redefining \. on input line 1358.
+LaTeX Info: Redefining \% on input line 1358.
+ [59]
+Overfull \hbox (19.43362pt too wide) in paragraph at lines 1384--1385
 []\T1/ptm/m/n/12 Comunica por puer-to se-rie SPI, el sen-sor de me-di-da de ve-
 lo-ci-dad de des-pla-za-mien-to, PMW3901,
  []
 
-LaTeX Info: Redefining \. on input line 1349.
-LaTeX Info: Redefining \% on input line 1349.
-[56]
-Underfull \hbox (badness 10000) in paragraph at lines 1376--1378
+LaTeX Info: Redefining \. on input line 1390.
+LaTeX Info: Redefining \% on input line 1390.
+[60]
+Underfull \hbox (badness 10000) in paragraph at lines 1417--1419
 
  []
 
-LaTeX Info: Redefining \. on input line 1378.
-LaTeX Info: Redefining \% on input line 1378.
-[57]
-LaTeX Info: Redefining \. on input line 1392.
-LaTeX Info: Redefining \% on input line 1392.
- [58]
-<Imagenes/Tramas_de_mando_1.png, id=267, 442.65375pt x 82.05656pt>
+LaTeX Info: Redefining \. on input line 1419.
+LaTeX Info: Redefining \% on input line 1419.
+[61]
+LaTeX Info: Redefining \. on input line 1433.
+LaTeX Info: Redefining \% on input line 1433.
+ [62]
+<Imagenes/Tramas_de_mando_1.png, id=282, 442.65375pt x 82.05656pt>
 File: Imagenes/Tramas_de_mando_1.png Graphic file (type png)
 <use Imagenes/Tramas_de_mando_1.png>
-Package pdftex.def Info: Imagenes/Tramas_de_mando_1.png  used on input line 140
-2.
+Package pdftex.def Info: Imagenes/Tramas_de_mando_1.png  used on input line 144
+3.
 (pdftex.def)             Requested size: 398.33858pt x 73.8452pt.
-<Imagenes/Tramas_de_mando_2.png, id=268, 444.15938pt x 82.80937pt>
+<Imagenes/Tramas_de_mando_2.png, id=283, 444.15938pt x 82.80937pt>
 File: Imagenes/Tramas_de_mando_2.png Graphic file (type png)
 <use Imagenes/Tramas_de_mando_2.png>
-Package pdftex.def Info: Imagenes/Tramas_de_mando_2.png  used on input line 140
-9.
+Package pdftex.def Info: Imagenes/Tramas_de_mando_2.png  used on input line 145
+0.
 (pdftex.def)             Requested size: 398.33858pt x 74.26617pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 1416.
-LaTeX Info: Redefining \% on input line 1416.
-[59 <./Imagenes/Tramas_de_mando_1.png>]
-LaTeX Info: Redefining \. on input line 1426.
-LaTeX Info: Redefining \% on input line 1426.
- [60 <./Imagenes/Tramas_de_mando_2.png>]
-LaTeX Info: Redefining \. on input line 1436.
-LaTeX Info: Redefining \% on input line 1436.
-[61]
-LaTeX Info: Redefining \. on input line 1448.
-LaTeX Info: Redefining \% on input line 1448.
- [62]
-Overfull \hbox (13.1453pt too wide) in paragraph at lines 1458--1459
+LaTeX Info: Redefining \. on input line 1457.
+LaTeX Info: Redefining \% on input line 1457.
+[63 <./Imagenes/Tramas_de_mando_1.png>]
+LaTeX Info: Redefining \. on input line 1467.
+LaTeX Info: Redefining \% on input line 1467.
+ [64 <./Imagenes/Tramas_de_mando_2.png>]
+LaTeX Info: Redefining \. on input line 1477.
+LaTeX Info: Redefining \% on input line 1477.
+[65]
+LaTeX Info: Redefining \. on input line 1489.
+LaTeX Info: Redefining \% on input line 1489.
+ [66]
+Overfull \hbox (13.1453pt too wide) in paragraph at lines 1499--1500
 []\T1/ptm/m/n/12 Ocupa el ca-nal 0x66 den-tro de la ban-da li-bre de 2.4GHz uti
 -li-za-da por el trans-cep-tor NRF24L01.
  []
@@ -946,270 +960,269 @@ Overfull \hbox (13.1453pt too wide) in paragraph at lines 1458--1459
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1465.
-LaTeX Info: Redefining \% on input line 1465.
- [63]
-<Imagenes/Tramas_de_Downlink.png, id=286, 272.51813pt x 82.80937pt>
+LaTeX Info: Redefining \. on input line 1506.
+LaTeX Info: Redefining \% on input line 1506.
+ [67]
+<Imagenes/Tramas_de_Downlink.png, id=301, 272.51813pt x 82.80937pt>
 File: Imagenes/Tramas_de_Downlink.png Graphic file (type png)
 <use Imagenes/Tramas_de_Downlink.png>
-Package pdftex.def Info: Imagenes/Tramas_de_Downlink.png  used on input line 14
-68.
+Package pdftex.def Info: Imagenes/Tramas_de_Downlink.png  used on input line 15
+09.
 (pdftex.def)             Requested size: 398.33858pt x 121.04976pt.
-LaTeX Info: Redefining \. on input line 1486.
-LaTeX Info: Redefining \% on input line 1486.
-
-[64 <./Imagenes/Tramas_de_Downlink.png>]
-<Imagenes/Tramas_de_Uplink.png, id=290, 417.81094pt x 84.315pt>
-File: Imagenes/Tramas_de_Uplink.png Graphic file (type png)
-<use Imagenes/Tramas_de_Uplink.png>
-Package pdftex.def Info: Imagenes/Tramas_de_Uplink.png  used on input line 1503
-.
-(pdftex.def)             Requested size: 398.33858pt x 80.39081pt.
-LaTeX Info: Redefining \. on input line 1511.
-LaTeX Info: Redefining \% on input line 1511.
- [65 <./Imagenes/Tramas_de_Uplink.png>]
 LaTeX Info: Redefining \. on input line 1527.
 LaTeX Info: Redefining \% on input line 1527.
-[66]
+
+[68 <./Imagenes/Tramas_de_Downlink.png>]
+<Imagenes/Tramas_de_Uplink.png, id=305, 417.81094pt x 84.315pt>
+File: Imagenes/Tramas_de_Uplink.png Graphic file (type png)
+<use Imagenes/Tramas_de_Uplink.png>
+Package pdftex.def Info: Imagenes/Tramas_de_Uplink.png  used on input line 1544
+.
+(pdftex.def)             Requested size: 398.33858pt x 80.39081pt.
+LaTeX Info: Redefining \. on input line 1552.
+LaTeX Info: Redefining \% on input line 1552.
+ [69 <./Imagenes/Tramas_de_Uplink.png>]
+LaTeX Info: Redefining \. on input line 1568.
+LaTeX Info: Redefining \% on input line 1568.
+[70]
 Cap\'{\i }tulo 6.
-[67
+[71
 
 
 ]
-<Imagenes/FPGA_Soft_arq.png, id=301, 658.71094pt x 483.30562pt>
 File: Imagenes/FPGA_Soft_arq.png Graphic file (type png)
 <use Imagenes/FPGA_Soft_arq.png>
-Package pdftex.def Info: Imagenes/FPGA_Soft_arq.png  used on input line 1548.
+Package pdftex.def Info: Imagenes/FPGA_Soft_arq.png  used on input line 1589.
 (pdftex.def)             Requested size: 398.33858pt x 292.27174pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1558--1559
+Underfull \hbox (badness 10000) in paragraph at lines 1599--1600
 
  []
 
 
 Underfull \vbox (badness 1609) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1559.
-LaTeX Info: Redefining \% on input line 1559.
- [68]
-LaTeX Info: Redefining \. on input line 1564.
-LaTeX Info: Redefining \% on input line 1564.
+LaTeX Info: Redefining \. on input line 1600.
+LaTeX Info: Redefining \% on input line 1600.
+ [72]
+LaTeX Info: Redefining \. on input line 1605.
+LaTeX Info: Redefining \% on input line 1605.
 
-[69 <./Imagenes/FPGA_Soft_arq.png>]
-LaTeX Info: Redefining \. on input line 1598.
-LaTeX Info: Redefining \% on input line 1598.
- [70]
-LaTeX Info: Redefining \. on input line 1615.
-LaTeX Info: Redefining \% on input line 1615.
- [71]
-LaTeX Info: Redefining \. on input line 1615.
-LaTeX Info: Redefining \% on input line 1615.
- [72
+[73]
+LaTeX Info: Redefining \. on input line 1639.
+LaTeX Info: Redefining \% on input line 1639.
+ [74]
+LaTeX Info: Redefining \. on input line 1656.
+LaTeX Info: Redefining \% on input line 1656.
+ [75]
+LaTeX Info: Redefining \. on input line 1656.
+LaTeX Info: Redefining \% on input line 1656.
+ [76
 
 ]
 Cap\'{\i }tulo 7.
-[73
+[77
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1638.
-LaTeX Info: Redefining \% on input line 1638.
- [74]
-<Imagenes/Drone_Sensors_Cap.png, id=325, 450.18187pt x 346.29375pt>
+LaTeX Info: Redefining \. on input line 1679.
+LaTeX Info: Redefining \% on input line 1679.
+ [78]
+<Imagenes/Drone_Sensors_Cap.png, id=338, 450.18187pt x 346.29375pt>
 File: Imagenes/Drone_Sensors_Cap.png Graphic file (type png)
 <use Imagenes/Drone_Sensors_Cap.png>
-Package pdftex.def Info: Imagenes/Drone_Sensors_Cap.png  used on input line 164
-6.
+Package pdftex.def Info: Imagenes/Drone_Sensors_Cap.png  used on input line 168
+7.
 (pdftex.def)             Requested size: 398.33858pt x 306.43031pt.
-LaTeX Info: Redefining \. on input line 1652.
-LaTeX Info: Redefining \% on input line 1652.
+LaTeX Info: Redefining \. on input line 1693.
+LaTeX Info: Redefining \% on input line 1693.
 
-[75 <./Imagenes/Drone_Sensors_Cap.png>]
+[79 <./Imagenes/Drone_Sensors_Cap.png>]
 
-LaTeX Warning: Reference `subsec:Enlace con el drone' on page 76 undefined on i
-nput line 1657.
+LaTeX Warning: Reference `subsec:Enlace con el drone' on page 80 undefined on i
+nput line 1698.
 
-LaTeX Info: Redefining \. on input line 1669.
-LaTeX Info: Redefining \% on input line 1669.
-[76]
-<Imagenes/Cap_Mod_frame_decoder_SP13PI1.png, id=333, 587.94656pt x 293.59688pt>
+LaTeX Info: Redefining \. on input line 1710.
+LaTeX Info: Redefining \% on input line 1710.
+[80]
+<Imagenes/Cap_Mod_frame_decoder_SP13PI1.png, id=346, 587.94656pt x 293.59688pt>
 
 File: Imagenes/Cap_Mod_frame_decoder_SP13PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_frame_decoder_SP13PI1.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_frame_decoder_SP13PI1.png  used on in
-put line 1672.
+put line 1713.
 (pdftex.def)             Requested size: 483.69684pt x 241.53944pt.
 
-Overfull \hbox (28.45273pt too wide) in paragraph at lines 1672--1673
+Overfull \hbox (28.45273pt too wide) in paragraph at lines 1713--1714
  [][] 
  []
 
-<Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png, id=334, 523.9575pt x 216.0571
+<Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png, id=347, 523.9575pt x 216.0571
 9pt>
 File: Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png  used 
-on input line 1684.
+on input line 1725.
 (pdftex.def)             Requested size: 483.69684pt x 199.46072pt.
 
-Overfull \hbox (28.45273pt too wide) in paragraph at lines 1684--1685
+Overfull \hbox (28.45273pt too wide) in paragraph at lines 1725--1726
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 1693.
-LaTeX Info: Redefining \% on input line 1693.
-[77 <./Imagenes/Cap_Mod_frame_decoder_SP13PI1.png>]
-<Imagenes/Cap_Mod_KeyPress_SP6PI1.png, id=340, 599.23875pt x 159.59625pt>
+LaTeX Info: Redefining \. on input line 1734.
+LaTeX Info: Redefining \% on input line 1734.
+[81 <./Imagenes/Cap_Mod_frame_decoder_SP13PI1.png>]
+<Imagenes/Cap_Mod_KeyPress_SP6PI1.png, id=352, 599.23875pt x 159.59625pt>
 File: Imagenes/Cap_Mod_KeyPress_SP6PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_KeyPress_SP6PI1.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_KeyPress_SP6PI1.png  used on input li
-ne 1696.
+ne 1737.
 (pdftex.def)             Requested size: 483.69684pt x 128.82658pt.
 
-Overfull \hbox (28.45273pt too wide) in paragraph at lines 1696--1697
+Overfull \hbox (28.45273pt too wide) in paragraph at lines 1737--1738
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 1707.
-LaTeX Info: Redefining \% on input line 1707.
-[78 <./Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png> <./Imagenes/Cap_Mod_Key
+LaTeX Info: Redefining \. on input line 1748.
+LaTeX Info: Redefining \% on input line 1748.
+[82 <./Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png> <./Imagenes/Cap_Mod_Key
 Press_SP6PI1.png>]
-<Imagenes/Cap_Mod_pid_altitude_SP19PI6.png, id=346, 1014.79124pt x 411.03563pt>
+<Imagenes/Cap_Mod_pid_altitude_SP19PI6.png, id=358, 1014.79124pt x 411.03563pt>
 
 File: Imagenes/Cap_Mod_pid_altitude_SP19PI6.png Graphic file (type png)
 <use Imagenes/Cap_Mod_pid_altitude_SP19PI6.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_pid_altitude_SP19PI6.png  used on inp
-ut line 1718.
+ut line 1759.
 (pdftex.def)             Requested size: 512.1496pt x 207.44905pt.
 
-Overfull \hbox (56.90549pt too wide) in paragraph at lines 1718--1719
+Overfull \hbox (56.90549pt too wide) in paragraph at lines 1759--1760
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 1727.
-LaTeX Info: Redefining \% on input line 1727.
-[79 <./Imagenes/Cap_Mod_pid_altitude_SP19PI6.png>]
-<Imagenes/Cap_Mod_uart_rx_SP8PI1.png, id=351, 855.195pt x 159.59625pt>
+LaTeX Info: Redefining \. on input line 1768.
+LaTeX Info: Redefining \% on input line 1768.
+[83 <./Imagenes/Cap_Mod_pid_altitude_SP19PI6.png>]
+<Imagenes/Cap_Mod_uart_rx_SP8PI1.png, id=364, 855.195pt x 159.59625pt>
 File: Imagenes/Cap_Mod_uart_rx_SP8PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_uart_rx_SP8PI1.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_uart_rx_SP8PI1.png  used on input lin
-e 1730.
+e 1771.
 (pdftex.def)             Requested size: 512.1496pt x 95.57582pt.
 
-Overfull \hbox (56.90549pt too wide) in paragraph at lines 1730--1731
+Overfull \hbox (56.90549pt too wide) in paragraph at lines 1771--1772
  [][] 
  []
 
-<Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png, id=352, 798.73407pt x 174.6525pt>
+<Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png, id=365, 798.73407pt x 174.6525pt>
 File: Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png  used on inpu
-t line 1743.
+t line 1784.
 (pdftex.def)             Requested size: 512.1496pt x 111.99307pt.
 
-Overfull \hbox (56.90549pt too wide) in paragraph at lines 1743--1744
+Overfull \hbox (56.90549pt too wide) in paragraph at lines 1784--1785
  [][] 
  []
 
 
 Underfull \vbox (badness 5064) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1755.
-LaTeX Info: Redefining \% on input line 1755.
- [80 <./Imagenes/Cap_Mod_uart_rx_SP8PI1.png> <./Imagenes/Cap_Mod_ppm_encoder_SP
+LaTeX Info: Redefining \. on input line 1796.
+LaTeX Info: Redefining \% on input line 1796.
+ [84 <./Imagenes/Cap_Mod_uart_rx_SP8PI1.png> <./Imagenes/Cap_Mod_ppm_encoder_SP
 10PI1.png>]
-LaTeX Info: Redefining \. on input line 1767.
-LaTeX Info: Redefining \% on input line 1767.
+LaTeX Info: Redefining \. on input line 1808.
+LaTeX Info: Redefining \% on input line 1808.
 
-[81]
-LaTeX Info: Redefining \. on input line 1789.
-LaTeX Info: Redefining \% on input line 1789.
- [82]
-Cap\'{\i }tulo 8.
-[83
-
-
-]
-LaTeX Info: Redefining \. on input line 1813.
-LaTeX Info: Redefining \% on input line 1813.
- [84]
-LaTeX Info: Redefining \. on input line 1833.
-LaTeX Info: Redefining \% on input line 1833.
- [85]
-LaTeX Info: Redefining \. on input line 1843.
-LaTeX Info: Redefining \% on input line 1843.
+[85]
+LaTeX Info: Redefining \. on input line 1830.
+LaTeX Info: Redefining \% on input line 1830.
  [86]
-LaTeX Info: Redefining \. on input line 1875.
-LaTeX Info: Redefining \% on input line 1875.
- [87
+Cap\'{\i }tulo 8.
+[87
+
 
 ]
-LaTeX Info: Redefining \. on input line 1875.
-LaTeX Info: Redefining \% on input line 1875.
- [88
+LaTeX Info: Redefining \. on input line 1854.
+LaTeX Info: Redefining \% on input line 1854.
+ [88]
+LaTeX Info: Redefining \. on input line 1874.
+LaTeX Info: Redefining \% on input line 1874.
+ [89]
+LaTeX Info: Redefining \. on input line 1884.
+LaTeX Info: Redefining \% on input line 1884.
+ [90]
+LaTeX Info: Redefining \. on input line 1916.
+LaTeX Info: Redefining \% on input line 1916.
+ [91
 
-] (memoria.bbl [89
+]
+LaTeX Info: Redefining \. on input line 1916.
+LaTeX Info: Redefining \% on input line 1916.
+ [92
+
+] (memoria.bbl [93
 
 ])
-LaTeX Info: Redefining \. on input line 1891.
-LaTeX Info: Redefining \% on input line 1891.
- [90]
+LaTeX Info: Redefining \. on input line 1932.
+LaTeX Info: Redefining \% on input line 1932.
+ [94]
 Ap\'endice A.
-[91
+[95
 
 
 ]
-<Imagenes/UART_funcionamiento.png, id=393, 425.33907pt x 232.61906pt>
+<Imagenes/UART_funcionamiento.png, id=406, 425.33907pt x 232.61906pt>
 File: Imagenes/UART_funcionamiento.png Graphic file (type png)
 <use Imagenes/UART_funcionamiento.png>
 Package pdftex.def Info: Imagenes/UART_funcionamiento.png  used on input line 1
-908.
+949.
 (pdftex.def)             Requested size: 398.33858pt x 217.8633pt.
-<Imagenes/spi_funcionamiento.jpg, id=394, 724.95844pt x 323.70938pt>
+<Imagenes/spi_funcionamiento.jpg, id=407, 724.95844pt x 323.70938pt>
 File: Imagenes/spi_funcionamiento.jpg Graphic file (type jpg)
 <use Imagenes/spi_funcionamiento.jpg>
 Package pdftex.def Info: Imagenes/spi_funcionamiento.jpg  used on input line 19
-22.
+63.
 (pdftex.def)             Requested size: 398.33858pt x 177.86783pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 1932.
-LaTeX Info: Redefining \% on input line 1932.
-[92 <./Imagenes/UART_funcionamiento.png>]
-<Imagenes/spi_esquema.png, id=398, 519.9425pt x 246.9225pt>
+LaTeX Info: Redefining \. on input line 1973.
+LaTeX Info: Redefining \% on input line 1973.
+[96 <./Imagenes/UART_funcionamiento.png>]
+<Imagenes/spi_esquema.png, id=411, 519.9425pt x 246.9225pt>
 File: Imagenes/spi_esquema.png Graphic file (type png)
 <use Imagenes/spi_esquema.png>
-Package pdftex.def Info: Imagenes/spi_esquema.png  used on input line 1942.
+Package pdftex.def Info: Imagenes/spi_esquema.png  used on input line 1983.
 (pdftex.def)             Requested size: 398.33858pt x 189.17012pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Imagenes/I2C_Arq.png, id=399, 351.3125pt x 124.465pt>
+<Imagenes/I2C_Arq.png, id=412, 351.3125pt x 124.465pt>
 File: Imagenes/I2C_Arq.png Graphic file (type png)
 <use Imagenes/I2C_Arq.png>
-Package pdftex.def Info: Imagenes/I2C_Arq.png  used on input line 1955.
+Package pdftex.def Info: Imagenes/I2C_Arq.png  used on input line 1996.
 (pdftex.def)             Requested size: 284.52756pt x 100.81229pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 1961.
-LaTeX Info: Redefining \% on input line 1961.
-[93 <./Imagenes/spi_funcionamiento.jpg>]
-<Imagenes/I2C_Frame_Format.jpg, id=403, 289.8027pt x 71.7882pt>
+LaTeX Info: Redefining \. on input line 2002.
+LaTeX Info: Redefining \% on input line 2002.
+[97 <./Imagenes/spi_funcionamiento.jpg>]
+<Imagenes/I2C_Frame_Format.jpg, id=416, 289.8027pt x 71.7882pt>
 File: Imagenes/I2C_Frame_Format.jpg Graphic file (type jpg)
 <use Imagenes/I2C_Frame_Format.jpg>
-Package pdftex.def Info: Imagenes/I2C_Frame_Format.jpg  used on input line 1964
+Package pdftex.def Info: Imagenes/I2C_Frame_Format.jpg  used on input line 2005
 .
 (pdftex.def)             Requested size: 398.33858pt x 98.68001pt.
 
@@ -1219,68 +1232,68 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Underfull \vbox (badness 1881) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1974.
-LaTeX Info: Redefining \% on input line 1974.
- [94 <./Imagenes/spi_esquema.png> <./Imagenes/I2C_Arq.png>]
-<Imagenes/Mod_PPM.png, id=409, 472.76625pt x 121.95563pt>
+LaTeX Info: Redefining \. on input line 2015.
+LaTeX Info: Redefining \% on input line 2015.
+ [98 <./Imagenes/spi_esquema.png> <./Imagenes/I2C_Arq.png>]
+<Imagenes/Mod_PPM.png, id=422, 472.76625pt x 121.95563pt>
 File: Imagenes/Mod_PPM.png Graphic file (type png)
 <use Imagenes/Mod_PPM.png>
-Package pdftex.def Info: Imagenes/Mod_PPM.png  used on input line 1977.
+Package pdftex.def Info: Imagenes/Mod_PPM.png  used on input line 2018.
 (pdftex.def)             Requested size: 398.33858pt x 102.75836pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 1985.
-LaTeX Info: Redefining \% on input line 1985.
-[95 <./Imagenes/I2C_Frame_Format.jpg>]
-LaTeX Info: Redefining \. on input line 1985.
-LaTeX Info: Redefining \% on input line 1985.
- [96 <./Imagenes/Mod_PPM.png>]
+LaTeX Info: Redefining \. on input line 2026.
+LaTeX Info: Redefining \% on input line 2026.
+[99 <./Imagenes/I2C_Frame_Format.jpg>]
+LaTeX Info: Redefining \. on input line 2026.
+LaTeX Info: Redefining \% on input line 2026.
+ [100 <./Imagenes/Mod_PPM.png>]
 Ap\'endice B.
-<Imagenes/Open_loop_Controller.png, id=417, 488.57532pt x 198.7425pt>
+<Imagenes/Open_loop_Controller.png, id=429, 488.57532pt x 198.7425pt>
 File: Imagenes/Open_loop_Controller.png Graphic file (type png)
 <use Imagenes/Open_loop_Controller.png>
 Package pdftex.def Info: Imagenes/Open_loop_Controller.png  used on input line 
-2000.
+2041.
 (pdftex.def)             Requested size: 455.24408pt x 185.18645pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[97
+[101
 
 ]
-<Imagenes/Closed_Loop_Controller.png, id=421, 510.40688pt x 271.76532pt>
+<Imagenes/Closed_Loop_Controller.png, id=434, 510.40688pt x 271.76532pt>
 File: Imagenes/Closed_Loop_Controller.png Graphic file (type png)
 <use Imagenes/Closed_Loop_Controller.png>
 Package pdftex.def Info: Imagenes/Closed_Loop_Controller.png  used on input lin
-e 2018.
+e 2059.
 (pdftex.def)             Requested size: 455.24408pt x 242.4053pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 2025.
-LaTeX Info: Redefining \% on input line 2025.
-[98 <./Imagenes/Open_loop_Controller.png>]
-LaTeX Info: Redefining \. on input line 2040.
-LaTeX Info: Redefining \% on input line 2040.
- [99 <./Imagenes/Closed_Loop_Controller.png>]
-<Imagenes/PID_Figure.png, id=431, 225.84375pt x 150.5625pt>
+LaTeX Info: Redefining \. on input line 2066.
+LaTeX Info: Redefining \% on input line 2066.
+[102 <./Imagenes/Open_loop_Controller.png>]
+LaTeX Info: Redefining \. on input line 2081.
+LaTeX Info: Redefining \% on input line 2081.
+ [103 <./Imagenes/Closed_Loop_Controller.png>]
+<Imagenes/PID_Figure.png, id=444, 225.84375pt x 150.5625pt>
 File: Imagenes/PID_Figure.png Graphic file (type png)
 <use Imagenes/PID_Figure.png>
-Package pdftex.def Info: Imagenes/PID_Figure.png  used on input line 2057.
+Package pdftex.def Info: Imagenes/PID_Figure.png  used on input line 2098.
 (pdftex.def)             Requested size: 225.84319pt x 150.56212pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 2068.
-LaTeX Info: Redefining \% on input line 2068.
-[100]
-LaTeX Info: Redefining \. on input line 2135.
-LaTeX Info: Redefining \% on input line 2135.
- [101 <./Imagenes/PID_Figure.png>] (memoria.aux
+LaTeX Info: Redefining \. on input line 2109.
+LaTeX Info: Redefining \% on input line 2109.
+[104]
+LaTeX Info: Redefining \. on input line 2176.
+LaTeX Info: Redefining \% on input line 2176.
+ [105 <./Imagenes/PID_Figure.png>] (memoria.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 )
@@ -1292,10 +1305,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4933 strings out of 492895
- 71218 string characters out of 3133470
- 149943 words of memory out of 3000000
- 8670 multiletter control sequences out of 15000+200000
+ 4935 strings out of 492895
+ 71246 string characters out of 3133470
+ 148977 words of memory out of 3000000
+ 8672 multiletter control sequences out of 15000+200000
  42257 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,13n,31p,2993b,619s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1310,9 +1323,9 @@ ram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8
 a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on memoria.pdf (115 pages, 6758755 bytes).
+Output written on memoria.pdf (119 pages, 6766813 bytes).
 PDF statistics:
- 486 PDF objects out of 1000 (max. 8388607)
+ 498 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  211 words of extra memory for PDF output out of 10000 (max. 10000000)
 

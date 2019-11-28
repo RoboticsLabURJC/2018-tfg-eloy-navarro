@@ -784,20 +784,13 @@ El módulo se compone de una radio NRF24L01 conectada por puerto SPI al procesado
 
 En este apartado se comentan los interfaces de la rama superior de la arquitectura definida anteriormente en \ref{subsec:OB_Desc}. Estos se limitan a comunicar información, dentro de la electrónica adicional instalada en el vehículo.
 
-\subsubsection{I2C\_Alt}
-\label{subsubsec:OB_II_I2C}
-
-Comunica por puerto serie I2C, el sensor de medida de altura, VL53L0x del módulo 2, con el procesador del módulo 1. Porta las medidas de distancia entre la zona media del dron y el suelo bajo él, consideradas como la altura del dron.
-
-\subsubsection{SPI\_XY}
-\label{subsubsec:OB_II_SPIXY}
-
-Comunica por puerto serie SPI, el sensor de flujo, PMW3901, del módulo 2 con el procesador del módulo 1. Porta las medidas de velocidad de desplazamiento sobre el plano horizontal en ambos ejes, derivadas del desplazamiento del suelo bajo el sensor.
-
-\subsubsection{SPI\_Radio}
-\label{subsubsec:OB_II_SPIRadio}
-
-Puerto serie SPI utilizado para la configuración inicial de la radio NRF24L01, y para la indicación de tramas a enviar. Estas contendrán las medidas de posición ya procesadas. La configuración inicial se realiza de la misma manera que para el módulo receptor en la estación de tierra. En la cual se esperan recibir las tramas enviadas desde esta electrónica a bordo del vehículo, por tanto, la configuración de ambas y el formato de las tramas, deberá ser compatible, según lo especificado en el apartado~\ref{sec: Interfaz radio}.
+\begin{itemize}
+  \item I2C\_Alt: Comunica por puerto serie I2C, el sensor de medida de altura, VL53L0x del módulo 2, con el procesador del módulo 1. Porta las medidas de distancia entre la zona media del dron y el suelo bajo él, consideradas como la altura del dron.
+  
+  \item SPI\_XY: Comunica por puerto serie SPI, el sensor de flujo, PMW3901, del módulo 2 con el procesador del módulo 1. Porta las medidas de velocidad de desplazamiento sobre el plano horizontal en ambos ejes, derivadas del desplazamiento del suelo bajo el sensor.
+  
+  \item SPI\_Radio: Puerto serie SPI utilizado para la configuración inicial de la radio NRF24L01, y para la indicación de tramas a enviar. Estas contendrán las medidas de posición ya procesadas. La configuración inicial se realiza de la misma manera que para el módulo receptor en la estación de tierra. En la cual se esperan recibir las tramas enviadas desde esta electrónica a bordo del vehículo, por tanto, la configuración de ambas y el formato de las tramas, deberá ser compatible, según lo especificado en el apartado~\ref{sec: Interfaz radio}.
+\end{itemize}
 
 
 \subsection{Interfaces externos}
@@ -841,7 +834,7 @@ Este módulo, hace posible que el vehículo escogido, obedezca las instrucciones e
 Para cubrir este conjunto de tareas, se converge en la siguiente arquitectura.
 
 \subsection{Arquitectura de la estación}
-\label{subsec:OB_Desc}
+\label{subsec:GS_Desc}
 
 La estación de tierra se estructura de manera que sea capaz de realizar las tareas comentadas. Hace uso de una FPGA de Lattice ubicada en la tarjeta de desarrollo escogida (\ref{sec:ICE40 UltraPlus Breakout Board}), dos módulos radio (\ref{sec:NRF24L01}) y un módulo de adquisición para depurar señales digitales (\ref{sec:Logic Analizer}). Estos elementos le permiten, no solo dirigir el dron, sino además facilitar tareas de ensayo y error, permitiendo ajustar los controladores. En la Figura~\ref{fig:ETArq} se exponen los módulos y relaciones entre ellos, que intervienen para cumplir dichas tareas.
 
@@ -854,22 +847,21 @@ La estación de tierra se estructura de manera que sea capaz de realizar las tare
 
 A continuación se explican los módulos que hacen posible los cometidos desempeñados por la estación de tierra.
 
-
 \subsection{Módulos de la estación}
-\label{subsec:OB_Mod}
+\label{subsec:GS_Mod}
 
 Para el control y depuración del vuelo del dron, la estación se equipa con los siguientes módulos:
 
 \begin{itemize}
-  \item Módulo 1: Concentrador USB, como enlace hacia el PC.
+  \item Módulo 1: Concentrador USB (HUB USB), como enlace hacia el PC.
   
-  \item Módulo 2: Tarjeta de procesamiento basada en FPGA.
+  \item Módulo 2: Tarjeta de procesamiento basada en FPGA (FPGA), para ejecución de algoritmos de control.
   
-  \item Módulo 3: Receptor radio, de medidas de posición del dron.
+  \item Módulo 3: Receptor radio (Módulo RX), de las medidas de posición del dron.
   
-  \item Módulo 4: Transmisor radio, de órdenes de movimiento hacia el dron.
+  \item Módulo 4: Transmisor radio (Módulo TX), de las órdenes de movimiento hacia el dron.
   
-  \item Módulo 5: Depuración, para adquisición de señales digitales.
+  \item Módulo 5: Módulo de Depuración, para adquisición de señales digitales.
 \end{itemize}
 
 Cada módulo de la estación, se compone de una o varias tarjetas mostradas en el montaje de la Figura~\ref{fig:GS_desc}. Cada módulo ejecuta con una función concreta y necesaria para cumplir algún sub-objetivo, permitir a las demás cumplir con el suyo, o facilitar las tareas de depuración.
@@ -894,23 +886,72 @@ Centraliza las comunicaciones USB, permitiendo tener un único puerto ocupado en 
 Se trata de la tarjeta que integra la FPGA utilizada como procesador principal del sistema. Incluye la Lattice comentada en el Apartado~\ref{sec:ICE40 UltraPlus Breakout Board} junto a demás elementos periféricos y auxiliares. Se conecta con el ordenador de mando mediante el interfaz USB integrado en el chip FT232HL, cuyo canal B se encuentra libre. Este convierte de USB a UART, para comunicar las instrucciones de mando desde el PC hacia la FPGA.\\
 La FPGA de este módulo es la encargada de atender las instrucciones de mando y las medidas de los sensores de a bordo del dron. Además se encarga de ejecutar los bucles de control, generando las órdenes de movimiento que corregirán la trayectoria del vehículo. Estas las modula mediante modulación por posición de pulso, sobre el interfaz Tramas\_PPM, hacia el módulo transmisor. Más adelante se describen los algoritmos de control utilizados (Apartado~\ref{sec:Algoritmos de control sobre la FPGA}).
 
-
 \subsubsection{Módulo 3: Receptor radio de medidas de posición}
 \label{subsubsec:GS_Mod3}
 
-Se compone de una radio NRF24L01 conectada por puerto SPI a un procesador de Atmel integrado en la tarjeta Arduino Uno. La radio se alimenta desde la tarjeta del procesador, el cual se alimenta a su vez por USB. También se tiene acceso por USB a la reprogramación del procesador y a su salida de puerto serie para depuración.\\
-Este módulo se encarga de recibir las medidas de posición desde los sensores a bordo del dron. Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas de posición desde el vehículo. Una vez recibidas, las entrama y las dirige hacia la FPGA del módulo 2 mediante la interfaz UART\_Sensores del Apartado~\ref{subsubsec:GS_UART_Sensores}.
+Se compone de una radio NRF24L01 conectada por puerto SPI a un procesador de Atmel integrado en la tarjeta Arduino Uno. La radio se alimenta desde la tarjeta del procesador, el cual se alimenta a su vez por USB. También se tiene acceso por dicho USB a la reprogramación del procesador y a su salida de puerto serie para depuración.\\
+Este módulo se encarga de recibir las medidas de posición desde los sensores a bordo del dron. Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas de posición desde el vehículo. Una vez recibidas, las entrama y las dirige (Byte a Byte mediante protocolo UART) hacia la FPGA del módulo 2 mediante la interfaz UART\_Sensores del Apartado~\ref{subsubsec:GS_UART_Sensores}.
 
 \subsubsection{Módulo 4: Transmisor radio de órdenes de movimiento}
 \label{subsubsec:GS_Mod4}
 
 Este módulo se encarga de demodular el interfaz Tramas\_PPM, contenedor de las órdenes de movimiento indicadas por la FPGA. Convierte dicha modulación en una transmisión radio hacia el dron. Consta de un procesador de Atmel integrado en una tarjeta Arduino Nano, junto con una radio NRF24L01. La tarjeta Arduino Nano, incluye también regulador de tensión e interfaz USB para cubrir las mismas tareas que en el caso del módulo 3, alimentación, depuración y programación. El procesador configura la radio como transmisor y la enlaza con la electrónica original del dron (Rama inferior de la arquitectura de la Figura~\ref{fig:Drone_arq}). Tras el enlace, comienza a transmitir periódicamente hacia el dron, las órdenes de movimiento demoduladas de la trama PPM recibida desde la FPGA.
 
-
 \subsubsection{Módulo 5: Depuración}
 \label{subsubsec:GS_Mod5}
 
-Se trata de un sistema de adquisición digital diseñado por Saleae, para ser usado como analizador lógico. Dispone de una conexión de masa como referencia y ocho canales. Estos se conectan de tal manera que se tiene acceso a la información de los interfaces: UART_Mando (Órdenes de movimiento recibidas desde el ordenador), UART\_Sensorses (Medidas de posición recibidas desde la electrónica de sensorización del dron), Tramas\_PPM (tramas PPM moduladas por la FPGA, resultado de sus bucles de control) y algunas señales internas de la FPGA. De esta manera, se puede depurar el sistema completo una vez en funcionamiento. Ya que el sistema de adquisición de Saleae permite capturas predefinidas en tiempo, se configuran adquisiciones de 5 o 10 segundos y se asocia el disparo de captura a la recepción de una nueva trama desde el ordenador de mando. De esta manera, se realizan capturas de todos los eventos que se producen en el entorno de la orden enviada. Esto ha hecho posible gran parte de la depuración de errores y fallos en la estabilidad del sistema o en su ejecución, junto con ajuste de parámetros PID.
+Se trata de un sistema de adquisición digital diseñado por Saleae, para ser usado como analizador lógico. Dispone de una conexión de masa como referencia y ocho canales. Estos se conectan de tal manera que se tiene acceso a la información de los interfaces: UART\_Mando (Órdenes de movimiento recibidas desde el ordenador), UART\_Sensorses (Medidas de posición recibidas desde la electrónica de sensorización del dron), Tramas\_PPM (tramas con modulación PPM generadas por la FPGA, encapsulando los resultados de sus bucles de control) y algunas señales internas de la FPGA. De esta manera, se puede depurar el sistema completo una vez en funcionamiento. Ya que el sistema de adquisición de Saleae permite capturas predefinidas en tiempo, se configuran adquisiciones de 5 o 10 segundos y se asocia el disparo de captura a la recepción de una nueva trama desde el ordenador de mando. De esta manera, se realizan capturas de todos los eventos que se producen en el entorno de la orden enviada. Esto ha hecho posible gran parte de la depuración de errores y fallos en la estabilidad del sistema o en su ejecución, junto con ajuste de parámetros PID.
+
+
+\subsection{Interfaces internos}
+\label{subsec:GS_II}
+
+Para comunicar información entre los módulos propios a la electrónica de la estación de tierra, se han definido un conjunto de interfaces mostrados en la Figura~\ref{fig:ETArq}. Estos son:
+
+\begin{itemize}
+  \item UART\_Mando: Comunica el USB del ordenador de mando, con la FPGA (mediante el intercambiador de protocolo USB a UART, FT23HL). una vez convertido a protocolo UART, se trata de una interfaz asíncrona sin paridad ni control de flujo, con 10 bits por byte y una tasa de transferencia de 500Kbps. Aquí se incluyen las instrucciones ejecutadas en el PC, que comandarán el vuelo del vehículo.
+  
+  \item UART\_Sensores: La segunda de las interfaces asíncronas utilizadas en la estación de tierra, hace uso de una UART configurada idénticamente a la utilizada en el interfaz \textit{UART\_Mando}. Esta, porta las medidas de posición recibidas desde el dron, por el módulo receptor, con destino en la FPGA.
+  
+  \item Tramas\_PPM: Esta interfaz comunica las órdenes de movimiento, enviadas por la FPGA, con el módulo transmisor (el cual se hará responsable de hacerlas llegar a su destino final, el dron). Para ello hace uso de un único hilo, con modulación por posición de pulso. En una única trama de esta interfaz se encapsulan los cuatro canales que dirigirán el movimiento del dron.
+  
+  \item USB\_Depuración: Se trata del USB que conecta el módulo de adquisición de señales digitales de Logic, con el PC. Permite realizar los volcados de su memoria interna, para poder realizar posteriores tareas de depuración.
+\end{itemize}
+
+
+\subsection{Interfaces externos}
+\label{subsec:GS_IE}
+
+La estación de tierra se comunica con el resto del sistema mediante tres vías mostradas en la Figura~\ref{fig:NewSystArq}. Dos interfaces radio con el dron, uno de subida (\textit{Órdenes de movimiento}) y uno de bajada (\textit{Medidas de sensores}). Un interfaz USB para comandos de control (\textit{Instrucciones de mando}).\\
+Paralelo a estos, existe un segundo interfaz USB desde la estación de tierra hacia el PC, utilizado exclusivamente para tareas de depuración (no presente en~\ref{fig:NewSystArq}). Este segundo USB, se comunica con la aplicación de análisis de señales digitales de Saleae, \textit{Logic} (\ref{sec:Logic}).
+
+
+
+\subsection{Algoritmos de control sobre la FPGA}
+\label{sec:Algoritmos de control sobre la FPGA}
+
+La lógica construida en la FPGA se encarga procesar información procedente de dos fuentes distintas, ordenador de mando y dron. Dicha lógica se construye en base a la arquitectura software de la Figura~\ref{fig:FPGA_arq}.
+
+\begin{itemize}
+  \item Por un lado, recibe información el Interfaz USB de Mando (Figura~\ref{fig:NewSystArq}) especificado en el Apartado~\ref{sec: Interfaz USB de mando}. De cada trama entrante, se decodifica información para los tres bucles de control PID (\textit{Alt PID, Forw PID, Side PID}). La información decodificada por el módulo \textit{PC Frame Decoder} incluye información de cada PID. Esta es enviada hacia cada controlador según corresponda. A través del flujos de datos Alt Command \& Alt KpKiKd, se envía la información del comando de altura recibido, es decir, la altura deseada para el dron en ese instante, junto con los parámetros proporcional, integral y derivativo del bucle de control de altura. La misma información pero particularizada a cada uno de los dos ejes horizontales es portada por los interfaces Forward Command \& XY KpKiKd y Side Command \& XY KpKiKd. Con la particularidad de que estos dos comparten parámetros PID. De esta manera puede actualizarse casi por completo el comportamiento de los bucles de control, según lo que se reciba en cada trama de mando enviada. Adicionalmente la trama incluye información sobre la orden de giro a entregar directamente al módulo de escalado. Este parámetro, como se ha comentado anteriormente, no pasa por un PID ejecutado en la FPGA, sino que se transfiere directamente hacia el dron, por no disponer de un elemento de medida a bordo. Dicho elemento de medida no se introdujo ya que los errores de giro son suficientemente pequeños como para despreciarlos.
+  
+  \item Por otro lado se recibe información desde los sensores embarcados en el dron en el módulo UART Drone Frames \& Sync, decodificada en este caso por el módulo Drone Frame Decoder. Las medidas tomadas son entregadas a través de los flujos de datos X, Y, Z Measures, a los bucles de control correspondientes. Estos hacen referencia al desplazamiento latera (Bucle Side PID), frontal (Bucle Forw PID) y en altura (Bucle Alt PID), respectivamente. En este punto, los bucles y el módulo de escalado de giro, tienen toda la información necesaria para trabajar.
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/FPGA_Soft_arq.png}
+	\caption{Arquitectura del software programado en la FPGA}
+	\label{fig:FPGA_arq}
+\end{figure}
+
+Cada bucle de control de cada eje se diseña en base a un controlador PID. Cada uno Tendrá entonces como entrada de comando, el valor recibido desde el decodificador de tramas de PC para su eje concreto. Como entrada de retroalimentación, tendrán la medida del sensor de desplazamiento del eje acorde, recibido desde el decodificador de tramas del dron. Calculando la diferencia entre el comando y la medida del sensor, se tendrá el error a procesar por el PID de dicho eje, de manera independiente de los demás ejes. Los bucles integral y derivativo, realizan su tarea diferencial a la velocidad de cierre del bucle. Esta es de 30.3Hz. Por tanto el tiempo de derivación y el tiempo de integración serán constantes con un valor de 33ms. Por el contrario como se ha comentado anteriormente, los parámetros PID, por los que se multiplican las componentes del error proporcional, el error integrado en el tiempo y el error derivado respecto del tiempo, son variables recibidas en las tramas de mando. Dichas variables suelen modificarse en momento clave de la ejecución de las instrucciones de mando, como despegue, vuelo y aterrizaje, permitiendo cierta flexibilidad a la hora de realizar distintas tareas.
+
+
+
+
+
+
 
 
 
@@ -967,8 +1008,8 @@ De manera más concreta, dichas funciones controlarán la estación de tierra y el 
 \subsection{Interfaz externo}
 \label{subsec:OM_Int}
 
-De manera funcional, este módulo hace uso únicamente de un interfaz con el sistema. El comentado \textit{Interfaz USB de Mando}, dirigido contra la estación de tierra y mostrado en la Figura~\ref{fig:NewSystArq}.\\
-Paralelo a este, existe un segundo interfaz USB, desde la estación de tierra hacia el PC, utilizado exclusivamente para tareas de depuración (no presente en~\ref{fig:NewSystArq}). Este segundo USB, se comunica con la herramienta de depuración \textit{Logic}, comentada en \ref{sec:Logic Analizer}.
+De manera funcional, este módulo hace uso únicamente de un interfaz con el sistema. El comentado \textit{Interfaz USB de Mando}, dirigido contra la estación de tierra y mostrado en la Figura~\ref{fig:NewSystArq}, el cual contiene las instrucciones de mando enviadas hacia la estación de tierra.\\
+Como se comentó en el Apartado~\ref{subsec:GS_IE} aquí también existe un segundo interfaz USB, desde la estación de tierra hacia el PC, utilizado exclusivamente para tareas de depuración (no presente en~\ref{fig:NewSystArq}). Este segundo USB, comunica al PC con la herramienta de depuración \textit{Logic Analizer} (\ref{sec:Logic Analizer}) ubicada en la estación de tierra, cuyo uso se explica en el Apartado~\ref{subsubsec:GS_Mod5}.
 
 
 \subsection{Librería Python}

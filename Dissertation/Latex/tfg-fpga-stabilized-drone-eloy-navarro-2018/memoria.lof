@@ -18,37 +18,38 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura del dron}}{29}% 
 \contentsline {figure}{\numberline {4.4}{\ignorespaces M\'odulos 1, 2 y 3 instalados adicionalmente}}{30}% 
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Orientaci\'on de eje horizontales en M\'odulo 2}}{32}% 
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Arquitectura de la estaci\'on de tierra}}{36}% 
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Montaje de la estaci\'on de tierra}}{37}% 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Arquitectura de la estaci\'on de tierra}}{35}% 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Montaje de la estaci\'on de tierra}}{36}% 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Arquitectura del software programado en la FPGA}}{41}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Arquitectura de sistema y su bucle de control}}{44}% 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Arquitectura e interfaces de la estaci\'on de tierra}}{45}% 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Montaje de la estaci\'on de tierra}}{46}% 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Arquitectura e interfaces del sistema sensor de posici\'on ubicado en el dron}}{52}% 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Sistema de sensores embarcado}}{53}% 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Formato de trama de mando, primera mitad de la trama}}{59}% 
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Formato de trama de mando, segunda mitad de la trama}}{60}% 
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Formato de trama de downlink}}{64}% 
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Formato de trama de uplink}}{65}% 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Arquitectura de sistema y su bucle de control}}{48}% 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Arquitectura e interfaces de la estaci\'on de tierra}}{49}% 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Montaje de la estaci\'on de tierra}}{50}% 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Arquitectura e interfaces del sistema sensor de posici\'on ubicado en el dron}}{56}% 
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Sistema de sensores embarcado}}{57}% 
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Formato de trama de mando, primera mitad de la trama}}{63}% 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Formato de trama de mando, segunda mitad de la trama}}{64}% 
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Formato de trama de downlink}}{68}% 
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Formato de trama de uplink}}{69}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Arquitectura del firmware programado sobre la FPGA}}{69}% 
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Arquitectura del firmware programado sobre la FPGA}}{73}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Captura de medidas con sensores de a bordo}}{75}% 
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando}}{77}% 
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores}}{78}% 
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Simulaci\'on funcional del m\'odulo de conversi\'on de pulsaciones}}{78}% 
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{79}% 
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{80}% 
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{80}% 
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Captura de medidas con sensores de a bordo}}{79}% 
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando}}{81}% 
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores}}{82}% 
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Simulaci\'on funcional del m\'odulo de conversi\'on de pulsaciones}}{82}% 
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{83}% 
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{84}% 
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{84}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{92}% 
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{93}% 
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{94}% 
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{94}% 
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{95}% 
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{96}% 
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{96}% 
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{97}% 
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{98}% 
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{98}% 
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{99}% 
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{100}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{98}% 
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{99}% 
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{101}% 
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{102}% 
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{103}% 
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{105}% 
