@@ -63,7 +63,7 @@
 \contentsline {subsection}{\numberline {4.3.3}Interfaces internos}{38}% 
 \contentsline {subsection}{\numberline {4.3.4}Interfaces externos}{39}% 
 \contentsline {subsection}{\numberline {4.3.5}Algoritmos de control sobre la FPGA}{39}% 
-\contentsline {section}{\numberline {4.4}Ordenador de mando}{41}% 
+\contentsline {section}{\numberline {4.4}Ordenador de mando}{42}% 
 \contentsline {subsection}{\numberline {4.4.1}Objetivo}{42}% 
 \contentsline {subsection}{\numberline {4.4.2}Funciones}{42}% 
 \contentsline {subsection}{\numberline {4.4.3}Interfaz externo}{42}% 
