@@ -1025,13 +1025,170 @@ Esta función hace uso de \textit{setcontrols},  para generar puntos intermedios 
 
 
 En este punto han quedado descritos los módulos que componen el sistema, sin entrar en detalle en los interfaces que los ponen en comunicación entre ellos.
-A continuación se detallan los interfaces que conectan los cuatro módulos de nivel superior que toman partido en la arquitectura del sistema de la Figura~\ref{fig:NewSystArq}; \textit{Interfaz USB de Mando} e \textit{Interfaz Radio}. Cabe destacar que no existen interfaces que comuniquen de manera directa la electrónica propia del dron, con electrónica de sensores instalada para este TFG. Esto es debido a que se prefirió aislar dicha electrónica de la instalada originalmente en el dron, por problemas con la alimentación nativa (caídas de tensión abruptas durante aceleraciones). Además, no existe la necesidad específica de comunicar dichos módulos directamente entre ellos (quedan indiréctamente comunicados entre sí a través de la información enviada a tierra, procesada y recibida de vuelta en el dron). Dicho interfaz en cambio si podría darse para arquitecturas de sistema diferentes, como por ejemplo, aquellas propuestas más adelante en el apartado \ref{subsec:Mejoras en la arquitectura del sistema}.
+A continuación se detallan los interfaces que conectan los cuatro módulos de nivel superior que toman partido en la arquitectura del sistema de la Figura~\ref{fig:NewSystArq}; \textit{Interfaz USB de Mando} e \textit{Interfaz Radio}. Cabe destacar que no existen interfaces que comuniquen de manera directa la electrónica propia del dron, con electrónica de sensores instalada para este TFG. Esto es debido a que se prefirió aislar dicha electrónica de la instalada originalmente en el dron, por problemas con la alimentación nativa (caídas de tensión abruptas durante aceleraciones). Además, no existe la necesidad específica de comunicar dichos módulos directamente (quedan indiréctamente comunicados entre sí a través de la información enviada a tierra, procesada por esta y recibida de vuelta en el dron). Dicha comunicación directa podría darse para arquitecturas de sistema diferentes, por ejemplo, aquellas propuestas más adelante en el apartado \ref{subsec:Mejoras en la arquitectura del sistema}.
 
 \section{Interfaz USB de mando}
 \label{sec: Interfaz USB de mando}
 
+Para conseguir la programación de la trayectoria de vuelo del dron, desde un PC, es necesario comunicar este PC con el elemento encargado del control. En este caso, la FPGA de la estación de tierra. Esta interfaz comunica ambos elementos mediante tramas enviadas por puerto serie. Dichas tramas portan las instrucciones de posición que guiarán al vehículo, junto con los parámetros de configuración de los PIDs, utilizados por los algoritmos de control de la FPGA, según se indica en el Apartado~\ref{sec:Algoritmos de control sobre la FPGA}.
+Estas tramas facilitan realizar múltiples ensayos de vuelo consecutivos, con mucha diferencia en el comportamiento de cada uno de ellos, facilitando a su vez corrección de errores y ajustes de parámetros.
+
+\subsection{Características}
+\label{subsec:Características}
+
+Se trata de una comunicación unidireccional con origen en el ordenador de mando y destino en la estación de tierra. La comunicación se realiza por puerto serie, y se basa en el uso de los estándares USB 2.0, UART y RS232. Para la conversión del estándar eléctrico existente en el PC (USB) al utilizado por la FPGA (RS232), se hace uso de un driver de USB, diseño de FTDI Chip. El cual también convierte del protocolo de comunicaciones desde el PC al esperado en la FPGA (USB a UART). Concretamente es el canal B del integrado FT232HL el encargado de realizar dichas tareas, quedando el canal A reservado. Este se encuentra integrado en la misma placa de desarrollo que la FPGA (ICE40 UltraPlus Breakout Board~\ref{sec:ICE40 UltraPlus Breakout Board}).\\
+El puerto de comunicaciones (USB a UART) se configura en tiempo de ejecución por la herramienta software ejecutada en el ordenador de mando (Apartado~\ref{sec:Librería Python}). En ella se indica el número del puerto, el cual depende de la asignación que realice el ordenador en uso y la velocidad de transferencia, fijada en 500Kbps.
+Una vez abierto el puerto con esta configuración, se fragmentan las tramas y se envían byte a byte sin control de flujo, ni paridad. Se hace uso de diez bits por byte. Bit de inicio, 8 bits de datos y bit de parada.
+
+
+\subsection{Formato de tramas}
+\label{subsec:Formato de tramas}
+
+Se hace uso de un formato de tramas fijas. La longitud es conocida y siempre la misma, 16 bytes. Y la posición de cada valor tampoco varía durante toda la ejecución, lo que facilita las tareas de decodificación y sincronía. A lo largo del trabajo, se han ido añadiendo o modificando campos de la información transmitida por este interfaz, según las necesidades puntuales de ensayos, o mejoras en el sistema.\\
+Cada trama es enviada en el instante de ejecución de cada instrucción en el ordenador de mando. Cada instrucción se ejecuta durante un tiempo concreto, indicado al ejecutarla. De esta manera, cada trama aquí descrita será enviada, hacia la FPGA, tras el tiempo de ejecución de cada instrucción. En su versión final, las tramas componen sus 16 bytes con la construcción prefijada de las Figuras~\ref{fig:tramam1} y \ref{fig:tramam2}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_1.png}
+	\caption{Formato de trama de mando, primera mitad de la trama}
+	\label{fig:tramam1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_2.png}
+	\caption{Formato de trama de mando, segunda mitad de la trama}
+	\label{fig:tramam2}
+\end{figure}
+
+Se comienza la transmisión por el byte de la posición 1, terminando el envío con el byte 16. A continuación se describe cada campo de la trama:
+
+\begin{itemize}
+  \item Los dos primeros se usan de etapa de sincronía. Campos Stx1 y Stx2. Tienen los valores fijos 255 y 90 en base decimal. Siempre son transmitidos de esta manera. Así, el ordenador de mando, siempre comienza sus tramas con esta secuencia y la etapa receptora en la FPGA, espera por una secuencia de dos bytes consecutivos con valores 255 y 90 para sincronizar con la trama entrante. Tras esto, el receptor comenzará a decodificar los valores de los siguientes 14 bytes en el orden indicado para esta trama. De esta manera, el equipo receptor asociará cada valor con su campo correctamente. 
+  
+  \item Cmd\_ALT: Comando de altura. Representa el valor de la consigna de posición de altura deseada para el dron. Este valor, será posteriormente decodificado por la estación de tierra y enviado al bucle de control de altura como su consigna.
+  
+  \item Cmd\_L/R: Comando de desplazamiento lateral. Representa el valor de la consigna de posición lateral deseada para el vehículo. Este valor será decodificado por la estación de tierra y enviado al bucle de control de desplazamiento lateral, como su valor de consigna. Se trata del eje de libertad asociado al alabeo.
+  
+  \item  Cmd\_F/B: Comando de avance. Representa el valor de la consigna de posición frontal deseada para el dron. Este valor será decodificado por la estación de tierra y enviado al bucle de control de avance, como su valor de consigna. Se trata del eje de libertad asociado al cabeceo.
+  
+  \item Cmd\_T\_CW: Comando de giro en sentido horario. Representa el valor deseado de la velocidad de giro del dron, sobre sí mismo. Este valor será decodificado por la estación de tierra y enviado directamente al escalador, ya que este grado de libertad no se controla con un bucle cerrado. Se le deja su control exclusivamente a la electrónica propia del dron y su giróscopo interno. Se trata del eje de libertad asociado a la guiñada.
+  
+  \item PID\_Alt\_Kp: Parámetro de la constante proporcional de altura. Representa el valor deseado para la constante proporcional del bucle de control PID de altura. La diferencia  entre el valor de consigna de altura, Cmd\_ALT, y valor de altura medido por los sensores de a bordo, genera el valor de error de altura, componente del vector de error. Esta componente del error se multiplicará por el valor recibido en este campo para conseguir así la componente ``P'' del bucle de control de altura.
+  
+  \item  PID\_XY\_Kp: Parámetro de la constante proporcional de los ejes horizontales (desplazamiento lateral y avance). Representa el valor deseado para las constantes proporcionales de ambos bucles de control PID, avance y desplazamiento lateral. Ya que el dron es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica la misma tensión a ambos bucles de control. La diferencia entre los valores de las consignas Cmd\_L/R y Cmd\_F/B y sus respectivas medidas por los sensores de posición de a bordo, generan los errores de posición horizontales. Estos errores se multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``P'' de los bucles de control de los ejes horizontales: Avance y desplazamiento lateral.
+  
+  \item RSV: Los bytes de las posiciones 9, 15 y 16 están reservados para posibles usos futuros. Tienen valores constantes a cero.
+  
+  \item T\_CW\_Trimm: Parámetro de corrección de giro del dron sobre sí mismo. Representa el valor del offset a añadir al valor del comando ``Cmd\_T\_CW'' a enviar hacia el dron. El objetivo de este parámetro es corregir de manera constante el valor de la velocidad de giro sobré si mismo enviado hacia el dron. Ya que este valor se encuentra controlado por un bucle abierto en la electrónica de la estación de tierra, si la electrónica propia del dron tiene un error constante de giro, que no pueda corregir con su giróscopo, se aplicará la corrección necesaria a través del valor de este parámetro.
+  
+  \item  PID\_Alt\_Ki: Parámetro de la constante integral de altura. Representa el valor deseado para la constante integral del bucle de control PID de altura. El valor del error de altura comentado anteriormente, se integra y multiplica por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``I'' del bucle de control de altura.
+  
+  \item PID\_Alt\_Kd: Parámetro de la constante derivativa de altura. Representa el valor deseado para la constante derivativa del bucle de control PID de altura. El error de altura comentado anteriormente, se derivará y multiplicará por el valor recibido en este campo de la trama. De esta manera se consigue la componente ``D'' del  bucle de control de altura. Este campo junto con los valores de los campos de las posiciones 7 y 11, completan los valores de los parámetros PID para el bucle de control de la altura. \textit{PID ALTURA} de la arquitectura mostrada en la Figura~\ref{fig:FPGA_New_arq}.
+  
+  \item PID\_XY\_Ki: Parámetro de la constante integral de los ejes horizontales. Representa el valor deseado para las constantes integrales de ambos bucles de control PID de posición horizontal. El control de posición del avance y el control de posición del desplazamiento lateral. Ya que el dron es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes integrales de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente, se integran y multiplican por el valor recibido en este campo, para conseguir así las componentes ``I'' de los bucles de control de los ejes horizontales: Avance y desplazamiento lateral.
+  
+  \item PID\_XY\_Kd: Parámetro de la constante derivativa de los ejes horizontales. Representa el valor deseado para las constantes derivativas de ambos bucles de control PID de posición horizontal. El control de posición del avance y el control de posición del desplazamiento lateral. Ya que el dron es simétrico respecto de sus ejes de desplazamiento horizontal, se aplica el mismo peso a las componentes derivativas de ambos bucles de control. Los valores de los errores de posición horizontales comentados anteriormente se derivarán y multiplicarán por el valor recibido en este campo, para conseguir así las componentes ``D'' de los bucles de control de los ejes horizontales: Frontal y latera. Este campo junto con los valores de los campos de las posiciones 8 y 13, completan los valores de los parámetros PID para los bucles de control del plano horizontal. \textit{PID AVANCE} y \textit{PID DESP. LATERAL} de la arquitectura mostrada en la Figura~\ref{fig:FPGA_New_arq}.
+\end{itemize}
+
+
+
 \section{Interfaz radio}
 \label{sec: Interfaz radio}
+
+Para el control del vehículo en vuelo, mediante un PC, es necesario establecer comunicación con él desde tierra. Dicha comunicación se realiza exclusivamente por radio, mediante dos canales independientes como se muestra en la sección \textit{Módulo en Vuelo} de la Figura~\ref{fig:NewSystArq}.\\
+Esta interfaz, define ambos, el primero comunica la FPGA de la estación de tierra con la electrónica propia del dron y el segundo con los sensores instalados a bordo. Estos son los interfaces \textit{Órdenes de movimiento} y \textit{Medidas de sensores} respectivamente. Su objetivo es que la estación de tierra conozca la posición del dron y en base a esta, realice el control sobre el mismo. En su conjunto se trata de un enlace radio bidireccional entre la estación de tierra y el dron, con dos canales trabajando en la banda libre de 2.4GHz, separados en frecuancia. De esta manera se consigue un enlace bidireccional, full-duplex, mediante separación en frecuencia (FDM). Lo que permite transmisión de información de subida y de bajada simultaneas, sin colisiones. Evita también preocuparse de la complejidad y la bajada en la tasa de transferencia propia de un sistema de multiplexación por división en código (CDM), o sistemas de mayor complejidad. A continuación se explican ambos canales:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Órdenes de movimiento}
+\label{subsec:Downlink}
+
+Se encarga de enlazar por radio los sensores de posición a bordo del dron con la estación de tierra. Porta la información medida por dichos sensores. Esta información se compone de una medida de distancia al suelo, o altura, tomada desde la parte media del dron. Una medida del desplazamiento frontal relativa al punto de despegue. Y una medida del desplazamiento lateral relativa también al punto de despegue.\\
+Las tres medidas se miden y transmiten por el interfaz radio en milímetros, considerando como origen de coordenadas, tanto para la altura como para los desplazamientos horizontales, la posición de despegue inicial.
+
+\subsubsection{Características}
+\label{subsubsec:Down_Car}
+
+Ocupa el canal 0x66 dentro de la banda libre de 2.4GHz utilizada por el transceptor NRF24L01. Se trata de una transmisión de baja potencia, con un alcance de unos 30 metros, transmitiendo a 1Mbps.
+
+\subsubsection{Formato de trama}
+\label{subsubsec:Down_FT}
+
+Se hace uso de un formato de tramas fijas, como para el caso de las tramas de mando. En este caso la longitud de la trama es de seis bytes. Y la posición de cada valor tampoco varía durante toda la ejecución.
+Cada trama es enviada en el instante inmediatamente posterior a la ejecución de las tres medidas de posición; altura, desplazamiento frontal y desplazamiento lateral. El formato de las tramas se muestra en la Figura~\ref{fig:down_frame}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Downlink.png}
+	\caption{Formato de trama de downlink}
+	\label{fig:down_frame}
+\end{figure}
+
+En estas tramas la sincronía está garantizada como parte del diseño de la transmisión realizada por la radio NRF24L01 y la forma en que esta se comunica con la electrónica de la estación de tierra, que se detallará más adelante. Por tanto los seis bytes de la trama son tres campos útiles de dos bytes cada uno.
+
+\begin{itemize}
+  \item H\_Pos\_F/B: Valor de la medida del desplazamiento frontal. Representa los milímetros de desplazamiento frontal desde el origen de coordenadas definido anteriormente. Se almacena en 16 bits consecutivos, y se codifica en complemento a dos.
+  
+  \item H\_Pos\_L/R: Homólogo al campo ``H\_Pos\_F/B'' con la salvedad de que este representa los milímetros de desplazamiento lateral desde el origen de coordenadas. Codificado también de la misma manera.
+  
+  \item Alt: Valor de la medida de altura. Representa los milímetros de desplazamiento vertical desde el origen de coordenadas. Se almacena en 16 bits consecutivos, y se codifica en binario plano, ya que no se contemplan alturas negativas para el marco de este TFG.
+  
+\end{itemize}
+
+Con estas tres medidas, la estación de tierra puede ubicar de manera relativa el dron, generando así el vector de posición necesario para realizar posteriormente las correcciones de posición respecto de las órdenes comandadas.
+
+\subsection{Medidas de sensores}
+\label{subsec:Uplink}
+
+Se encarga de enlazar por radio la estación de tierra con la electrónica del dron. Comunica las indicaciones de velocidad para cada eje, junto con canales auxiliares cuya función depende de cada dron. En este TFG no se hará uso de dichos canales auxiliares. 
+
+\subsubsection{Características}
+\label{subsubsec:Up_Car}
+
+De igual  manera que el interfaz de bajada, hace uso de una radio NRF24L01 en la banda de 2.4GHz. El módulo que gestiona este interfaz, controla la radio NRF24L01. Este módulo está diseñado para recibir los canales a codificar en la trama radio, desde una señal modulada por posición de pulso, PPM. Dicha modulación y sus características se describen más adelante en el apartado de interfaces de la estación de tierra, junto con el módulo que gestiona la radio del uplink. 
+
+\subsubsection{Formato de trama}
+\label{subsubsec:Up_FT}
+
+Este interfaz se compone de una transmisión de doce canales, de los cuales se hará uso exclusivamente de los cuatro primeros. Los ocho canales restantes portan comandos auxiliares, como la velocidad de reacción deseada para el dron, la cual se mantiene en su valor por defecto, y dependiendo del modelo exacto del dron utilizado, a veces se utilizan para disparar fotografías o video de la cámara instalada. El subsistema radio se encarga de transmitir la información contenida en la trama de la Figura~\ref{fig:up_frame} por radio hacia la electrónica del dron.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Uplink.png}
+	\caption{Formato de trama de uplink}
+	\label{fig:up_frame}
+\end{figure}
+
+\begin{itemize}
+  \item Cmd\_THR: Valor de velocidad de altura. Ocupa la primera posición en la trama. Representa el impulso deseado para el eje vertical del dron. Un valor de cero no tiene por qué implicar el apagado de los motores, depende de los valores de los siguientes dos canales. 
+  
+  \item Cmd\_R/L: Valor de velocidad de desplazamiento latera. Representa la velocidad de desplazamiento lateral deseada para el dron. Está asociado al grado de libertad del alabeo.
+  
+  \item Cmd\_F/B: Valor de velocidad de desplazamiento frontal. Representa la velocidad de desplazamiento frontal deseada para el dron. Está asociado al grado de libertad del cabeceo.
+  
+  \item Cmd\_T\_CW: Valor de velocidad de giro. Representa la velocidad de giro sobre sí mismo deseada para el dron. Está asociado al grado de libertad de la guiñada. 
+  
+  \item Aux: Algunos de los ocho canales adicionales tienen valores fijos y otros variables, dependiendo de su funcionalidad y del dron utilizado. Para este trabajo, estos canales se mantendrán con su valor por defecto.
+\end{itemize}
+
+
+
+
+
+
+
 
 
 
