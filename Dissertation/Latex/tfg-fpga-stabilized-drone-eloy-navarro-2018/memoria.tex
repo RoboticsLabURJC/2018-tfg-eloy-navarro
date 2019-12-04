@@ -890,7 +890,7 @@ La FPGA de este módulo es la encargada de atender las instrucciones de mando y l
 \label{subsubsec:GS_Mod3}
 
 Se compone de una radio NRF24L01 conectada por puerto SPI a un procesador de Atmel integrado en la tarjeta Arduino Uno. La radio se alimenta desde la tarjeta del procesador, el cual se alimenta a su vez por USB. También se tiene acceso por dicho USB a la reprogramación del procesador y a su salida de puerto serie para depuración.\\
-Este módulo se encarga de recibir las medidas de posición desde los sensores a bordo del dron. Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas de posición desde el vehículo. Una vez recibidas, las entrama y las dirige (Byte a Byte mediante protocolo UART) hacia la FPGA del módulo 2 mediante la interfaz UART\_Sensores del Apartado~\ref{subsubsec:GS_UART_Sensores}.
+Este módulo se encarga de recibir las medidas de posición desde los sensores a bordo del dron. Configura la radio como receptora y se mantiene atento por pollin, a la espera de recibir nuevas medidas de posición desde el vehículo. Una vez recibidas, las entrama y las dirige (Byte a Byte mediante protocolo UART) hacia la FPGA del módulo 2 mediante la interfaz UART\_Sensores del Apartado~\ref{subsec:GS_II}.
 
 \subsubsection{Módulo 4: Transmisor radio de órdenes de movimiento}
 \label{subsubsec:GS_Mod4}
@@ -913,7 +913,7 @@ Para comunicar información entre los módulos propios a la electrónica de la esta
   
   \item UART\_Sensores: La segunda de las interfaces asíncronas utilizadas en la estación de tierra, hace uso de una UART configurada idénticamente a la utilizada en el interfaz \textit{UART\_Mando}. Esta, porta las medidas de posición recibidas desde el dron, por el módulo receptor, con destino en la FPGA.
   
-  \item Tramas\_PPM: Esta interfaz comunica las órdenes de movimiento, enviadas por la FPGA, con el módulo transmisor (el cual se hará responsable de hacerlas llegar a su destino final, el dron). Para ello hace uso de un único hilo, con modulación por posición de pulso. En una única trama de esta interfaz se encapsulan los cuatro canales que dirigirán el movimiento del dron.
+  \item Tramas\_PPM: Esta interfaz comunica las órdenes de movimiento, enviadas por la FPGA, con el módulo transmisor (el cual se hará responsable de hacerlas llegar a su destino final, el dron). Para ello, hace uso de un único hilo con modulación por posición de pulso. En una única trama de esta interfaz se encapsulan los cuatro canales que dirigirán el movimiento del dron.
   
   \item USB\_Depuración: Se trata del USB que conecta el módulo de adquisición de señales digitales de Logic, con el PC. Permite realizar los volcados de su memoria interna, para poder realizar posteriores tareas de depuración.
 \end{itemize}
@@ -1045,21 +1045,36 @@ Una vez abierto el puerto con esta configuración, se fragmentan las tramas y se 
 \label{subsec:Formato de tramas}
 
 Se hace uso de un formato de tramas fijas. La longitud es conocida y siempre la misma, 16 bytes. Y la posición de cada valor tampoco varía durante toda la ejecución, lo que facilita las tareas de decodificación y sincronía. A lo largo del trabajo, se han ido añadiendo o modificando campos de la información transmitida por este interfaz, según las necesidades puntuales de ensayos, o mejoras en el sistema.\\
-Cada trama es enviada en el instante de ejecución de cada instrucción en el ordenador de mando. Cada instrucción se ejecuta durante un tiempo concreto, indicado al ejecutarla. De esta manera, cada trama aquí descrita será enviada, hacia la FPGA, tras el tiempo de ejecución de cada instrucción. En su versión final, las tramas componen sus 16 bytes con la construcción prefijada de las Figuras~\ref{fig:tramam1} y \ref{fig:tramam2}.
+Cada trama es enviada en el instante de ejecución de cada instrucción en el ordenador de mando. Cada instrucción se ejecuta durante un tiempo concreto, indicado al ejecutarla. De esta manera, cada trama aquí descrita será enviada, hacia la FPGA, tras el tiempo de ejecución de cada instrucción. En su versión final, las tramas componen sus 16 bytes con la construcción prefijada de las Tablas~\ref{fig:tramam1} y \ref{fig:tramam2}.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_1.png}
-	\caption{Formato de trama de mando, primera mitad de la trama}
-	\label{fig:tramam1}
-\end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_mando_2.png}
-	\caption{Formato de trama de mando, segunda mitad de la trama}
-	\label{fig:tramam2}
-\end{figure}
+\begin{table}[h]
+\footnotesize
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Field Name}     & STx1 & STx1 & Cmd\_ALT & Cmd\_L/R & Cmd\_F/B & Cmd\_T\_CW & PID\_Alt\_Kp & PID\_XY\_Kp \\ \hline
+\textbf{Value}          & 0xFF & 0x5A & Variable & Variable & Variable & Variable   & Variable     & Variable    \\ \hline
+\textbf{Length (Bytes)} & 1    & 1    & 1        & 1        & 1        & 1          & 1            & 1           \\ \hline
+\textbf{Byte Position}  & 1    & 2    & 3        & 4        & 5        & 6          & 7            & 8           \\ \hline
+\end{tabular}
+\caption{Formato de tramas de mando, primera mitad}
+\label{fig:tramam1}
+\end{table}
+
+\begin{table}[h]
+\footnotesize
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Field Name}     & RSV & T\_CW\_Trimm & PID\_Alt\_Ki & PID\_Alt\_Kd & PID\_XY\_Ki & PID\_XY\_Kd & RSV & RSV \\ \hline
+\textbf{Value}          & 0   & Variable     & Variable     & Variable     & Variable    & Variable    & 0   & 0   \\ \hline
+\textbf{Length (Bytes)} & 1   & 1            & 1            & 1            & 1           & 1           & 1   & 1   \\ \hline
+\textbf{Byte Position}  & 9   & 10           & 11           & 12           & 13          & 14          & 15  & 16  \\ \hline
+\end{tabular}
+\caption{Formato de tramas de mando, segunda mitad}
+\label{fig:tramam2}
+\end{table}
 
 Se comienza la transmisión por el byte de la posición 1, terminando el envío con el byte 16. A continuación se describe cada campo de la trama:
 
@@ -1096,89 +1111,98 @@ Se comienza la transmisión por el byte de la posición 1, terminando el envío con
 \section{Interfaz radio}
 \label{sec: Interfaz radio}
 
-Para el control del vehículo en vuelo, mediante un PC, es necesario establecer comunicación con él desde tierra. Dicha comunicación se realiza exclusivamente por radio, mediante dos canales independientes como se muestra en la sección \textit{Módulo en Vuelo} de la Figura~\ref{fig:NewSystArq}.\\
-Esta interfaz, define ambos, el primero comunica la FPGA de la estación de tierra con la electrónica propia del dron y el segundo con los sensores instalados a bordo. Estos son los interfaces \textit{Órdenes de movimiento} y \textit{Medidas de sensores} respectivamente. Su objetivo es que la estación de tierra conozca la posición del dron y en base a esta, realice el control sobre el mismo. En su conjunto se trata de un enlace radio bidireccional entre la estación de tierra y el dron, con dos canales trabajando en la banda libre de 2.4GHz, separados en frecuancia. De esta manera se consigue un enlace bidireccional, full-duplex, mediante separación en frecuencia (FDM). Lo que permite transmisión de información de subida y de bajada simultaneas, sin colisiones. Evita también preocuparse de la complejidad y la bajada en la tasa de transferencia propia de un sistema de multiplexación por división en código (CDM), o sistemas de mayor complejidad. A continuación se explican ambos canales:
+Para ejecutar el control de vuelo del vehículo, mediante un PC, es necesario establecer comunicación con él desde tierra. Dicha comunicación se realiza exclusivamente por radio, mediante dos canales independientes como se muestra en la sección \textit{Módulo en Vuelo} de la Figura~\ref{fig:NewSystArq}.\\
+La interfaz radio incluye ambos, el primero comunica la FPGA de la estación de tierra con los sensores instalados a bordo y el segundo con la electrónica propia del dron. Estos son los interfaces \textit{Medidas de sensores} y \textit{Órdenes de movimiento} respectivamente. Su objetivo es que la estación de tierra conozca la posición del dron y en base a esta, realice el control sobre el mismo. En su conjunto se trata de un enlace radio bidireccional entre la estación de tierra y el dron, con dos canales trabajando en la banda libre de 2.4GHz, separados en frecuencia. De esta manera se consigue un enlace bidireccional, full-duplex, mediante separación en frecuencia (FDM). Lo que permite transmisión simultanea de información de subida (órdenes) y bajada (medidas), sin colisiones. Existen otras opciones de multiplexación de canal, como radios basadas en separación temporal (TDM), código (CDM) o frecuencias ortogonales (OFDM). Cada una con sus dificultades, como bajada en tasa de transferencia, sincronización y sobre todo, complejidad de implementación. A continuación se explican ambos canales de comunicación entre la estación de tierra y el vehículo:
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Órdenes de movimiento}
+\subsection{Medidas de sensores}
 \label{subsec:Downlink}
 
-Se encarga de enlazar por radio los sensores de posición a bordo del dron con la estación de tierra. Porta la información medida por dichos sensores. Esta información se compone de una medida de distancia al suelo, o altura, tomada desde la parte media del dron. Una medida del desplazamiento frontal relativa al punto de despegue. Y una medida del desplazamiento lateral relativa también al punto de despegue.\\
-Las tres medidas se miden y transmiten por el interfaz radio en milímetros, considerando como origen de coordenadas, tanto para la altura como para los desplazamientos horizontales, la posición de despegue inicial.
+Esta interfaz, define el canal de enlace de bajada, es decir, la conexión radio unidireccional, con origen en el dron y destino en la estación de tierra. Se utiliza para comunicar las medidas de los sensores de posición tomadas a bordo del vehículo, con la FPGA en tierra, cuyos bucles de control, requieren de dicha información.
+Esta información se compone de; una medida de distancia al suelo, o altura, tomada desde la parte media del dron, una medida del desplazamiento frontal, o avance, y una medida del desplazamiento lateral. Todas ellas se entregan en milímetros y referidas al punto de despegue.
 
 \subsubsection{Características}
 \label{subsubsec:Down_Car}
 
-Ocupa el canal 0x66 dentro de la banda libre de 2.4GHz utilizada por el transceptor NRF24L01. Se trata de una transmisión de baja potencia, con un alcance de unos 30 metros, transmitiendo a 1Mbps.
+La separación en canales, entre subida y bajada, se configura durante la programación inicial de la radio. Este enlace ocupa el canal 102, asociado a una frecuencia concreta en la banda disponible por el transceptor NRF24L01. Se trata de una transmisión de baja potencia, con un alcance de unos 30 metros, transmitiendo a 1Mbps.
 
 \subsubsection{Formato de trama}
 \label{subsubsec:Down_FT}
 
-Se hace uso de un formato de tramas fijas, como para el caso de las tramas de mando. En este caso la longitud de la trama es de seis bytes. Y la posición de cada valor tampoco varía durante toda la ejecución.
-Cada trama es enviada en el instante inmediatamente posterior a la ejecución de las tres medidas de posición; altura, desplazamiento frontal y desplazamiento lateral. El formato de las tramas se muestra en la Figura~\ref{fig:down_frame}.
+Se hace uso de un formato de tramas fijas, como para el caso de las tramas de mando. En este caso la longitud de la trama es de seis bytes. Y la posición de cada valor tampoco varía durante toda la ejecución, siendo la que se muestra en la Figura~\ref{fig:down_frame}.
+Cada trama es enviada en el instante posterior a la ejecución de las tres medidas de posición: altura, desplazamiento frontal y desplazamiento lateral.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Downlink.png}
-	\caption{Formato de trama de downlink}
-	\label{fig:down_frame}
-\end{figure}
+\begin{table}[h]
+%\footnotesize
+\small
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Field Name}     & H\_Pos\_F/B & H\_Pos\_L/R & Alt      \\ \hline
+\textbf{Value}          & Variable    & Variable    & Variable \\ \hline
+\textbf{Length (Bytes)} & 2           & 2           & 2        \\ \hline
+\textbf{Byte Position}  & 1           & 3           & 5        \\ \hline
+\end{tabular}
+\caption{Formato de tramas de bajada}
+\label{fig:down_frame}
+\end{table}
 
-En estas tramas la sincronía está garantizada como parte del diseño de la transmisión realizada por la radio NRF24L01 y la forma en que esta se comunica con la electrónica de la estación de tierra, que se detallará más adelante. Por tanto los seis bytes de la trama son tres campos útiles de dos bytes cada uno.
+
+En estas tramas la sincronía está garantizada como parte del diseño de la transmisión realizada por la radio NRF24L01, por tanto no se hace uso de bytes de sincronía. Los seis bytes incluidos en la trama son tres campos con información útil, de dos bytes cada uno. Estos son:
 
 \begin{itemize}
-  \item H\_Pos\_F/B: Valor de la medida del desplazamiento frontal. Representa los milímetros de desplazamiento frontal desde el origen de coordenadas definido anteriormente. Se almacena en 16 bits consecutivos, y se codifica en complemento a dos.
+  \item H\_Pos\_F/B: Valor de la medida de avance. Representa los milímetros de desplazamiento frontal desde el origen de coordenadas definido anteriormente. Se almacena en 16 bits consecutivos, y se codifica en complemento a dos.
   
-  \item H\_Pos\_L/R: Homólogo al campo ``H\_Pos\_F/B'' con la salvedad de que este representa los milímetros de desplazamiento lateral desde el origen de coordenadas. Codificado también de la misma manera.
+  \item H\_Pos\_L/R: Homólogo al campo ``H\_Pos\_F/B'', representando este caso los milímetros de desplazamiento lateral.
   
-  \item Alt: Valor de la medida de altura. Representa los milímetros de desplazamiento vertical desde el origen de coordenadas. Se almacena en 16 bits consecutivos, y se codifica en binario plano, ya que no se contemplan alturas negativas para el marco de este TFG.
+  \item Alt: Valor de la medida de altura. Representa los milímetros de desplazamiento vertical desde el estado ``aterrizado''. Se almacena en 16 bits consecutivos, y se codifica en binario plano, ya que no se contemplan alturas negativas para el marco de este TFG.
   
 \end{itemize}
 
 Con estas tres medidas, la estación de tierra puede ubicar de manera relativa el dron, generando así el vector de posición necesario para realizar posteriormente las correcciones de posición respecto de las órdenes comandadas.
 
-\subsection{Medidas de sensores}
+
+\subsection{Órdenes de movimiento}
 \label{subsec:Uplink}
 
-Se encarga de enlazar por radio la estación de tierra con la electrónica del dron. Comunica las indicaciones de velocidad para cada eje, junto con canales auxiliares cuya función depende de cada dron. En este TFG no se hará uso de dichos canales auxiliares. 
+Las órdenes de movimiento, con origen en el ordenador de mando y destino en el vehículo, componen el enlace de subida. Se trata de una conexión radio unidireccional, para compartir con el dron las instrucciones de movimiento que este deberá ejecutar. Además incluye canales auxiliares, de cuya función no se hará uso en este TFG.
+
 
 \subsubsection{Características}
 \label{subsubsec:Up_Car}
 
-De igual  manera que el interfaz de bajada, hace uso de una radio NRF24L01 en la banda de 2.4GHz. El módulo que gestiona este interfaz, controla la radio NRF24L01. Este módulo está diseñado para recibir los canales a codificar en la trama radio, desde una señal modulada por posición de pulso, PPM. Dicha modulación y sus características se describen más adelante en el apartado de interfaces de la estación de tierra, junto con el módulo que gestiona la radio del uplink. 
+Se utiliza una radio NRF24L01 en la banda de 2.4GHz. Esta interfaz, empaqueta las órdenes proveniente de las tramas PPM, enviadas desde la FPGA a través de \textit{Tramas\_PPM} (Apartado~\ref{subsec:GS_II}), en una única trama radio. Dicha trama es entonces enviada hacia el modulo de recepción del dron.
+
 
 \subsubsection{Formato de trama}
 \label{subsubsec:Up_FT}
 
-Este interfaz se compone de una transmisión de doce canales, de los cuales se hará uso exclusivamente de los cuatro primeros. Los ocho canales restantes portan comandos auxiliares, como la velocidad de reacción deseada para el dron, la cual se mantiene en su valor por defecto, y dependiendo del modelo exacto del dron utilizado, a veces se utilizan para disparar fotografías o video de la cámara instalada. El subsistema radio se encarga de transmitir la información contenida en la trama de la Figura~\ref{fig:up_frame} por radio hacia la electrónica del dron.
+Este interfaz se compone de una transmisión de doce canales, de los cuales se hará uso exclusivamente de los cuatro primeros. Los ocho canales restantes portan comandos auxiliares; como la velocidad de reacción deseada para el dron, la cual se mantiene en su valor por defecto y dependiendo del modelo del dron utilizado, a veces disparan fotografías o vídeo de cámaras instaladas. El \textit{Transmisor radio de órdenes de movimiento} (Apartado~\ref{subsubsec:GS_Mod4}), se encarga de transmitir la información contenida en la trama de la Figura~\ref{fig:up_frame}, por radio, hasta la electrónica del dron.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Tramas_de_Uplink.png}
-	\caption{Formato de trama de uplink}
-	\label{fig:up_frame}
-\end{figure}
+\begin{table}[h]
+\small
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\textbf{Field Name}       & Cmd\_THR & Cmd\_R/L & Cmd\_F/B & Cmd\_T\_CW & Aux      \\ \hline
+\textbf{Value}            & Variable & Variable & Variable & Variable   & Variable \\ \hline
+\textbf{Length (ms)}      & 1 to 2   & 1 to 2   & 1 to 2   & 1 to 2     & 8 to 16  \\ \hline
+\textbf{Channel Position} & 1        & 2        & 3        & 4          & 5 to 12  \\ \hline
+\end{tabular}
+\label{fig:up_frame}
+\end{table}
+
+
+El vehículo, entonces, realizará movimientos en base a los valores contenidos en dicha trama. Sus campos se comentan a continuación:
 
 \begin{itemize}
-  \item Cmd\_THR: Valor de velocidad de altura. Ocupa la primera posición en la trama. Representa el impulso deseado para el eje vertical del dron. Un valor de cero no tiene por qué implicar el apagado de los motores, depende de los valores de los siguientes dos canales. 
+  \item Cmd\_THR: Valor de velocidad de altura. Ocupa la primera posición en la trama. Representa el impulso deseado para el eje vertical del dron. Un valor de cero no tiene por qué implicar el apagado de los motores, depende de los valores de los siguientes dos canales.
   
-  \item Cmd\_R/L: Valor de velocidad de desplazamiento latera. Representa la velocidad de desplazamiento lateral deseada para el dron. Está asociado al grado de libertad del alabeo.
+  \item Cmd\_R/L: Valor de velocidad de desplazamiento lateral. Representa la velocidad de desplazamiento asociada al grado de libertad del alabeo.
   
-  \item Cmd\_F/B: Valor de velocidad de desplazamiento frontal. Representa la velocidad de desplazamiento frontal deseada para el dron. Está asociado al grado de libertad del cabeceo.
+  \item Cmd\_F/B: Valor de velocidad de avance. Representa la velocidad de desplazamiento frontal deseada para el dron. Está asociado al grado de libertad del cabeceo.
   
-  \item Cmd\_T\_CW: Valor de velocidad de giro. Representa la velocidad de giro sobre sí mismo deseada para el dron. Está asociado al grado de libertad de la guiñada. 
+  \item Cmd\_T\_CW: Valor de velocidad de giro. Representa la velocidad de giro sobre sí mismo en el plano horizontal. Controla la guiñada del vehículo.
   
   \item Aux: Algunos de los ocho canales adicionales tienen valores fijos y otros variables, dependiendo de su funcionalidad y del dron utilizado. Para este trabajo, estos canales se mantendrán con su valor por defecto.
 \end{itemize}

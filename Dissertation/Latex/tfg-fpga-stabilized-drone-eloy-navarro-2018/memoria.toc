@@ -72,10 +72,10 @@
 \contentsline {subsection}{\numberline {4.5.1}Caracter\IeC {\'\i }sticas}{45}% 
 \contentsline {subsection}{\numberline {4.5.2}Formato de tramas}{46}% 
 \contentsline {section}{\numberline {4.6}Interfaz radio}{49}% 
-\contentsline {subsection}{\numberline {4.6.1}\'Ordenes de movimiento}{50}% 
+\contentsline {subsection}{\numberline {4.6.1}Medidas de sensores}{50}% 
 \contentsline {subsubsection}{Caracter\IeC {\'\i }sticas}{50}% 
 \contentsline {subsubsection}{Formato de trama}{50}% 
-\contentsline {subsection}{\numberline {4.6.2}Medidas de sensores}{51}% 
+\contentsline {subsection}{\numberline {4.6.2}\'Ordenes de movimiento}{51}% 
 \contentsline {subsubsection}{Caracter\IeC {\'\i }sticas}{51}% 
 \contentsline {subsubsection}{Formato de trama}{52}% 
 \contentsline {chapter}{\numberline {5}Dron enriquecido controlado por FPGA}{53}% 
