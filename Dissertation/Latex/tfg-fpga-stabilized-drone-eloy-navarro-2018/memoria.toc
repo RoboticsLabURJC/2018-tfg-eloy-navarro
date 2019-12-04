@@ -99,13 +99,13 @@
 \contentsline {subsection}{\numberline {6.1.1}Mejoras en la arquitectura del sistema}{64}% 
 \contentsline {subsection}{\numberline {6.1.2}Mejoras hardware}{65}% 
 \contentsline {subsection}{\numberline {6.1.3}Mejoras software}{65}% 
-\contentsline {chapter}{Bibliograf\'{\i }a}{69}% 
-\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{71}% 
-\contentsline {section}{\numberline {A.1}UART}{71}% 
-\contentsline {section}{\numberline {A.2}SPI}{72}% 
-\contentsline {section}{\numberline {A.3}I2C}{73}% 
-\contentsline {section}{\numberline {A.4}PPM}{75}% 
-\contentsline {chapter}{\numberline {B}Sistemas de control}{77}% 
-\contentsline {section}{\numberline {B.1}Bucle abierto}{77}% 
-\contentsline {section}{\numberline {B.2}Bucle cerrado}{78}% 
-\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{79}% 
+\contentsline {chapter}{Bibliograf\'{\i }a}{67}% 
+\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{69}% 
+\contentsline {section}{\numberline {A.1}UART}{69}% 
+\contentsline {section}{\numberline {A.2}SPI}{70}% 
+\contentsline {section}{\numberline {A.3}I2C}{71}% 
+\contentsline {section}{\numberline {A.4}PPM}{73}% 
+\contentsline {chapter}{\numberline {B}Sistemas de control}{75}% 
+\contentsline {section}{\numberline {B.1}Bucle abierto}{75}% 
+\contentsline {section}{\numberline {B.2}Bucle cerrado}{76}% 
+\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{77}% 

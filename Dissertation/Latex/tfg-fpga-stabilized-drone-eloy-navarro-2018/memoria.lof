@@ -31,13 +31,13 @@
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{61}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{72}% 
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{73}% 
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{74}% 
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{74}% 
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{75}% 
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{76}% 
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{70}% 
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{71}% 
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{72}% 
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{72}% 
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{73}% 
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{74}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{78}% 
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{79}% 
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{81}% 
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{76}% 
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{77}% 
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{79}% 
