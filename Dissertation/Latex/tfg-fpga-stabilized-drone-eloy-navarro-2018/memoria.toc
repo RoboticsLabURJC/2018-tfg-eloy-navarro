@@ -80,32 +80,32 @@
 \contentsline {subsubsection}{Formato de trama}{52}% 
 \contentsline {chapter}{\numberline {5}Validaci\'on experimental}{53}% 
 \contentsline {section}{\numberline {5.1}Eachine E010}{53}% 
-\contentsline {section}{\numberline {5.2}Syma X5C en Bucle abierto}{53}% 
+\contentsline {section}{\numberline {5.2}Syma X5C en Bucle abierto}{54}% 
 \contentsline {section}{\numberline {5.3}Pruebas Unitarias}{55}% 
-\contentsline {subsection}{\numberline {5.3.1}Pruebas del m\'odulo de bajada}{55}% 
-\contentsline {subsection}{\numberline {5.3.2}Pruebas del m\'odulo de subida}{56}% 
-\contentsline {subsection}{\numberline {5.3.3}Pruebas de m\'odulos software}{56}% 
-\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas de mando}{56}% 
-\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas desde drone}{57}% 
+\contentsline {subsection}{\numberline {5.3.1}Pruebas del subsistema de bajada}{55}% 
+\contentsline {subsection}{\numberline {5.3.2}Pruebas del subsistema de subida}{56}% 
+\contentsline {subsection}{\numberline {5.3.3}Pruebas de m\'odulos software}{57}% 
+\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas PC}{57}% 
+\contentsline {subsubsection}{Prueba de m\'odulo decodificador de tramas drone}{57}% 
 \contentsline {subsubsection}{Prueba de m\'odulo conversor de pulsaciones}{58}% 
 \contentsline {subsubsection}{Prueba de m\'odulos PID}{59}% 
-\contentsline {subsubsection}{Prueba de m\'odulo de comunicaciones UART}{59}% 
-\contentsline {subsubsection}{Prueba de m\'odulo de modulaci\'on PPM}{59}% 
-\contentsline {section}{\numberline {5.4}Condiciones de los bucles de control}{60}% 
-\contentsline {subsection}{\numberline {5.4.1}Ancho de banda}{61}% 
-\contentsline {subsection}{\numberline {5.4.2}Retardo}{61}% 
-\contentsline {chapter}{\numberline {6}Conclusiones}{63}% 
-\contentsline {section}{\numberline {6.1}Trabajo futuro}{64}% 
-\contentsline {subsection}{\numberline {6.1.1}Mejoras en la arquitectura del sistema}{64}% 
-\contentsline {subsection}{\numberline {6.1.2}Mejoras hardware}{65}% 
-\contentsline {subsection}{\numberline {6.1.3}Mejoras software}{65}% 
-\contentsline {chapter}{Bibliograf\'{\i }a}{67}% 
-\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{69}% 
-\contentsline {section}{\numberline {A.1}UART}{69}% 
-\contentsline {section}{\numberline {A.2}SPI}{70}% 
-\contentsline {section}{\numberline {A.3}I2C}{71}% 
-\contentsline {section}{\numberline {A.4}PPM}{73}% 
-\contentsline {chapter}{\numberline {B}Sistemas de control}{75}% 
-\contentsline {section}{\numberline {B.1}Bucle abierto}{75}% 
-\contentsline {section}{\numberline {B.2}Bucle cerrado}{76}% 
-\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{77}% 
+\contentsline {subsubsection}{Prueba de m\'odulo de comunicaciones UART}{60}% 
+\contentsline {subsubsection}{Prueba de m\'odulo de modulaci\'on PPM}{61}% 
+\contentsline {section}{\numberline {5.4}Condiciones de los bucles de control}{61}% 
+\contentsline {subsection}{\numberline {5.4.1}Ancho de banda}{62}% 
+\contentsline {subsection}{\numberline {5.4.2}Retardo}{62}% 
+\contentsline {chapter}{\numberline {6}Conclusiones}{65}% 
+\contentsline {section}{\numberline {6.1}Trabajo futuro}{66}% 
+\contentsline {subsection}{\numberline {6.1.1}Mejoras en la arquitectura del sistema}{66}% 
+\contentsline {subsection}{\numberline {6.1.2}Mejoras hardware}{67}% 
+\contentsline {subsection}{\numberline {6.1.3}Mejoras software}{67}% 
+\contentsline {chapter}{Bibliograf\'{\i }a}{69}% 
+\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{71}% 
+\contentsline {section}{\numberline {A.1}UART}{71}% 
+\contentsline {section}{\numberline {A.2}SPI}{72}% 
+\contentsline {section}{\numberline {A.3}I2C}{73}% 
+\contentsline {section}{\numberline {A.4}PPM}{75}% 
+\contentsline {chapter}{\numberline {B}Sistemas de control}{77}% 
+\contentsline {section}{\numberline {B.1}Bucle abierto}{77}% 
+\contentsline {section}{\numberline {B.2}Bucle cerrado}{78}% 
+\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{79}% 

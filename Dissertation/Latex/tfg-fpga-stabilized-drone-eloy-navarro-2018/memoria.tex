@@ -1214,80 +1214,84 @@ El vehículo, entonces, realizará movimientos en base a los valores contenidos en
 \chapter{Validación experimental}
 \label{chap:Validación experimental}
 
+Este apartado desarrolla los experimentos y pruebas realizadas durante el trabajo, que permitieron realizar la selección de los componentes finales a utilizar, corrección de errores y configuración de parámetros. Comenzamos con la selección del vehículo para el proyecto.
+
 \section{Eachine E010}
 \label{sec:Eachine E010}
 
-En principio se hizo uso del dron Eachine E010. Se trata de un pequeño cuadricóptero, ligero y de reacciones nerviosas. Cuenta con 8cm de ancho y 8 cm de largo, conductores en las aspas, para minimizar vórtices, batería de litio y 30 metros de alcance con su radio de 2.4GHz. Sobre él se hicieron pruebas de control en bucle abierto. Se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el dron y se probaron despegues con aterrizajes y vuelos cortos de ida y vuelta en línea recta.\\
-El dron mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas de bucle abierto con algo de pre-énfasis. El dron, presentaba derivas erráticas en uno de sus ejes horizontales, y grandes derivas en el eje vertical, dependientes, entre otras cosas, del nivel de batería. Estas dificultades hicieron de los vuelos largos en bucle abierto, una tarea imposibles. Por tanto se intentó instalar el controlador de vuelo de bucle cerrado en dicho dron. Desgraciadamente el peso de la electrónica disponible era excesivo y hubo que abortar los intentos y buscar una plataforma de mayor potencia. Por este motivo se seleccionó el dron Syma X5C finalmente, frente al pequeño E010.
+En principio se hizo uso del dron Eachine E010. Se trata de un pequeño cuadricóptero, ligero y de reacciones nerviosas. Cuenta con 8cm de ancho y 8 cm de largo, conductores en las aspas para minimizar vórtices, batería de litio y 30 metros de alcance con su radio de 2.4GHz. Sobre él se hicieron pruebas de control en bucle abierto. Se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el dron y se probaron despegues con aterrizajes y vuelos cortos de ida y vuelta en línea recta.\\
+El dron mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas de bucle abierto, aplicando algo de pre-énfasis. Desgraciadamente, el vehículo presentaba derivas erráticas en sus planos horizontales (avance y desplazamiento lateral), y grandes derivas en el eje vertical (altura), dependientes, entre otras cosas, del nivel de carga restante en la batería. Estas dificultades hicieron de los vuelos largos en bucle abierto, una tarea imposible. Por tanto, se planteó instalar el controlador de vuelo de bucle cerrado en dicho dron. Este controlador requiere de los elementos comentados anteriormente en el apartado~\ref{subsec:OB_Mod}. Desgraciadamente, el peso de la electrónica disponible era excesivo, por tanto se decidió abortar esta vía y buscar una plataforma de mayor potencia. Por este motivo se seleccionó el dron Syma X5C finalmente, frente al pequeño E010.
 
 
 \section{Syma X5C en Bucle abierto}
 \label{sec:Syma X5C en Bucle abierto}
 
-Tras las pruebas con el E010, inicialmente se tuvo que conseguir el mismo control sobre el X5C. Para ellos se modificó el código de enlace con el dron, ejecutado en el módulo de uplink, para conseguir control básico sobre el X5C. Una vez enlazado se hicieron pruebas de control en bucle abierto de igual manera que con el E010. El dron Syma, resulto también difícil de controlar en bucle abierto para vuelos de más de 10 o 15 segundos. A parte de sus desvíos poco previsibles en cada eje, lo cual dificultaba ejecutar correcciones en base a ?trimado?, este dron presentaba una degradación considerablemente notable en la potencia de los motores a medida que se gastaba la batería. Posiblemente debido a la baja calidad de las baterías y de los controladores de los motores, junto a la inexistencia de reguladores de tensión, este problema dificultaba extremadamente su control en altura, haciéndolo casi imposible en bucle abierto. Se procedió por tanto rápidamente a instalarle el sistema de medida de posición. El X5C si era capaz de levantar la electrónica embarcada, pero sus motores quedaban encendidos casi al máximo de su potencia para mantener el vuelo. Esto continuaba dificultando el correcto control en altura, generando oscilaciones de una amplitud imposible de corregir para el PID de altura. En este punto, al menos existía un mínimo de control sobre el dron, con escasa estabilidad. Por tanto se procedió a aligerar la electrónica con cambios menores, y aligerar el dron, con modificaciones mayores. Básicamente se libró al dron de todo aquello estrictamente innecesario para el vuelo. Se acortaron cables, se eliminaron luces de indicación de frente, soporte de cámara, amarre de batería, topes de motores, protecciones de aspas, tornillos, y media estructura de plástico del dron. Algunos elementos retirados se sustituyeron por puntos de soldadura o pegamento, en pro de aligerar todo lo posible. Al retirar media estructura, la resultante pecaba de exceso de flexibilidad y falta de rigidez, lo que eliminó parte de la independencia de ejes, pero permitió a los controladores, ganar bastante en cuanto a estabilización del dron. En este punto el trabajo pendiente se centró en mejorar los parámetros PID de los controladores diseñados para el dron previo al cambio de peso, ya que los anteriores no eran correctos con el nuevo sistema. Además se trabajó rotando dos baterías y controlando rigurosamente su nivel de carga, ya que aunque los bucles de control PID corrigen parte de la disminución de potencia en los motores debido a la descarga de las baterías, llegado un nivel de carga bajo, los parámetros de control mismos, dejaban de ser igual de efectivos, y la velocidad de respuesta también disminuía, lo que al final se traducía en el mismo efecto, parámetros PID inadecuados. Procurando trabajar con baterías en un rango de carga concreto, se minimizo lo suficiente este efecto como para poder mejorar la estabilidad y control sobre el dron.
+Tras las pruebas con el E010, se comenzó por conseguir el mismo nivel de control sobre el X5C. Para ellos se modificó el código de enlace con el dron, ejecutado en el módulo 4 de la estación de tierra (Transmisor radio de órdenes de movimiento del apartado~\ref{subsubsec:GS_Mod4}), para conseguir control básico sobre el X5C. Una vez enlazado se hicieron pruebas de control en bucle abierto de igual manera que con el E010. El dron Syma, resulto también difícil de controlar en bucle abierto para vuelos de más de 5 o 10 segundos. Este dron presentaba varios problemas. Por un lado, adolecía de las típicas derivas constantes, las cuales se podían disminuir mediante correcciones prefijadas. Sufría también desvíos poco previsibles en su vuelo, lo cual dificultaba las tareas de corrección previas como el pre-énfasis utilizado en el E010. Además, el nivel de carga en sus baterías se degradaba rápidamente, lo que se traducía en una caída de tensión progresiva, lo que a su vez suponía una degradación notable y poco previsible, en la potencia de los motores durante la duración de cada vuelo. Esto último, sería posiblemente debido a la baja calidad de las baterías y de los controladores de los motores, junto a la inexistencia de reguladores de tensión. Este problema dificultaba extremadamente su control en altura, haciéndolo casi imposible mediante técnicas de bucle abierto. Se procedió por tanto a instalar el sistema de medida de posición, que por exceso de peso no toleraba el E010. El X5C si era capaz de levantar la electrónica embarcada, pero debido al peso adicional sus motores quedaban encendidos casi al máximo de su potencia para mantener el vuelo. En este punto ya se contaba con el bucle cerrado tratando de controlar el dron, pero el exceso de peso continuaba dificultando el correcto control en altura del vehículo, generando grandes oscilaciones de una amplitud, imposible de corregir por el sistema en este estado. Por tanto se procedió a aligerar la electrónica embarcada, eliminando elementos innecesarios de las tarjetas disponibles y aligerar el dron, con modificaciones mayores. Básicamente se libró al dron de todo aquello estrictamente innecesario para el vuelo. Se acortaron cables, se eliminaron luces de indicación de frente, soporte de cámara, amarre de batería, topes de motores, protecciones de aspas, tornillos, y media estructura de plástico del dron. Algunos elementos retirados se sustituyeron por puntos de soldadura o pegamento, en pro de aligerar todo lo posible. Al retirar media estructura, la resultante pecaba de exceso de flexibilidad y falta de rigidez, lo que eliminó parte de la independencia de ejes, pero a su vez, permitió a los controladores y motores, tener más margen de potencia disponible para realizar correcciones. De esta manera, se ganó bastante en cuanto a estabilización del dron. En este punto el trabajo pendiente se centró en mejorar los parámetros PID de los controladores ubicados en la FPGA de la estación de tierra, ya que fueron diseñados para el dron, previo al cambio de peso. Además, se trabajó rotando dos baterías y controlando rigurosamente su nivel de carga. Ya que, aunque los bucles de control PID corrigen parte del error debido a la descarga, llegados a un nivel excesivamente bajo de batería, los parámetros de control mismos dejaban de ser igualmente efectivos. Entonces, la velocidad de respuesta sobre el error de posición, también disminuía, lo que al final se traducía en el mismo efecto, parámetros PID inadecuados. Procurando trabajar con baterías en un rango de carga concreto, se minimizó lo suficiente este efecto, como para garantizar repetitividad entre vuelos.
 
 
 \section{Pruebas Unitarias}
 \label{sec:Pruebas Unitarias}
 
-En este apartado se describen las pruebas realizadas sobre los distintos módulos del sistema, previas a su integración.
+A continuación se describen las pruebas realizadas sobre distintos módulos del sistema, previas a su integración. Se comienza describiendo los ensayos de enlace radio para el subsistema de bajada. Este abarca desde la electrónica de sensorización y transmisión instalada en el dron, hasta el módulo \textit{Receptor radio de medidas de posición} de la estación de tierra (módulo 3 del apartado~\ref{subsubsec:GS_Mod3}). Se continua con el subsistema de subida, que comprende el módulo \textit{Transmisor radio de órdenes de movimiento} de la estación de tierra (módulo 4 del apartado~\ref{subsubsec:GS_Mod4}), y la electrónica original de cada vehículo ensayado. Y se termina con los ensayos unitarios de módulos software.
 
 
-\subsection{Pruebas del módulo de bajada}
+\subsection{Pruebas del subsistema de bajada}
 \label{subsec:Pruebas en modulos de downlink}
 
-Los softwares ejecutados en los módulos, downlink embarcado y downlink en la estación de tierra, se probaron inicialmente a través de sus interfaces de salida USB.\\
-Para el código del módulo de downlink embarcado, se preparó la lectura de los sensores y la transmisión por radio de los datos leídos, simultáneamente al envío por USB de los mismos. de esta manera se pudo verificar visualmente que los sensores medían de manera adecuada a través del USB. En la Figura~\ref{fig:DownDroneCap} se muestra una captura con las medidas extraídas por USB de los sensores de embarcados.
+Para ensayar el conjunto de módulos que componen este subsistema, se hizo uso del USB del \textit{Receptor radio de medidas de posición} de la estación de tierra. Este se programó para comunicar, hacia la consola de depuración de Arduino, las medidas de recibidas en cada trama radio.
+Con esto hecho y la electrónica de sensorización y transmisión del vehículo programada para medir periódicamente y transmitir, se procedió a encender el conjunto y observar la consola del puerto USB, mostrada en la Figura~\ref{fig:DownDroneCap}. De esta manera se pudo verificar visualmente que el enlace radio se había producido. 
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Drone_Sensors_Cap.png}
-	\caption{Captura de medidas con sensores de a bordo}
+	\caption{Medidas de sensores, capturadas en estación de tierra}
 	\label{fig:DownDroneCap}
 \end{figure}
 
-Para la comprobación del correcto funcionamiento del módulo receptor radio de medidas de posición, de la estación de tierra y su enlace radio con el trasmisor de bajada hacia FPGA, embarcado en el vehículo, se procedió a encender ambos módulos y realizar lecturas en el interfaz UART\_Sensores de la estación de tierra (Figura~\ref{fig:ETArq}), tal como se realizó para el módulo de downlink embarcado. Contrastando estas medidas con las de la Figura~\ref{fig:DownDroneCap} se pudo comprobar la correcta medida de los sensores, empaquetado, transmisión y recepción en tierra de dichas medidas.
+Para comprobar la correcta medida de los sensores y la calidad del enlace, se observaron las medidas realizadas por la electrónica instalada en el dron, previas a su transmisión. El método escogido fue el mismo, observando esta vez, la consola USB del procesador Atmel embarcado (módulo 1 del apartado~\ref{subsec:OB_Mod}). Al contrastar dicha observación con la tomada anteriormente en la Figura~\ref{fig:DownDroneCap}, se verificó que no existía pérdida ni corrupción de paquetes en el enlace radio de bajada.
 
 
-\subsection{Pruebas del módulo de subida}
+
+\subsection{Pruebas del subsistema de subida}
 \label{subsec:Pruebas en modulo de uplink}
 
-Este módulo se verificó a través de las pruebas de enlace con los distintos drones utilizados durante el desarrollo del TFG. Estas se realizaron en el punto de partida del proyecto, durante la creación del código de la tarea \textit{Enlace con el dron} del Apartado~\ref{sec:Plan de trabajo}. Durante el establecimiento del enlace entre el módulo de uplink y el dron, las luces de indicación de frente del dron cambian su patrón de parpadeo. En caso de un correcto enlace, dichas luces quedan fijas. Esta comprobación visual es suficiente para verificar el enlace, y de paso la correcta construcción y programación del módulo de uplink.
+Este módulo se verificó a través de las pruebas de enlace con los distintos drones utilizados durante el desarrollo del TFG. Estas se realizaron en el punto de partida del proyecto, tras la creación del código de la tarea \textit{Enlace con el dron} del Apartado~\ref{sec:Plan de trabajo}.\\
+Durante el establecimiento del enlace entre el módulo \textit{Transmisor radio de órdenes de movimiento} de la estación de tierra y el dron, las luces de indicación de frente del dron cambian su patrón de parpadeo. En caso de un correcto enlace, dichas luces quedan fijas. Esta comprobación visual es suficiente para verificar el enlace, y de paso la correcta construcción y programación del módulo 4 de la estación.
 
 
 \subsection{Pruebas de módulos software}
 \label{subsec:Pruebas de modulos software}
 
-El módulo dos de la estación de tierra (Procesado y comunicaciones en~\ref{subsubsec:GS_Mod2}, mostrado en el apartado~\ref{subsec:GS_Desc}) ejecuta el software principal del sistema, compuesto de múltiples módulos diseñados en Verilog. Los módulos más sencillos se instanciaron tras la codificación, directamente sobre el sistema final. Los módulos restantes, debido a su complejidad o impacto en la seguridad del sistema, se verificaron de manera individual a través de simulaciones lógicas, previa su integración.
+El \textit{Procesador basado en FPGA} de la estación de tierra (módulo 2 del apartado~\ref{subsubsec:GS_Mod2}), ejecuta el software principal del sistema, compuesto de múltiples módulos diseñados en Verilog. Los módulos más sencillos se instanciaron tras la codificación, directamente sobre el sistema final. Los módulos restantes, debido a su complejidad o impacto en la seguridad del vuelo del vehículo, se verificaron de manera individual a través de simulaciones lógicas, previa su integración. A continuación se describen estas simulaciones para los módulos del apartado~\ref{sec:Algoritmos de control sobre la FPGA}.
 
-\subsubsection{Prueba de módulo decodificador de tramas de mando}
+\subsubsection{Prueba de módulo decodificador de tramas PC}
 \label{subsubsec:Prueba de modulo decodificador de tramas desde PC}
 
-El test consiste en enviar hacia el decodificador una trama completa para comprobar su correcta decodificación. Los valores incluidos en la trama van de 1 a 14 con valores crecientes. En la Figura~\ref{fig:FrameDecoderCap} se observa la trama enviada en la señal \textit{sink\_data} y su correcta decodificación junto a la señal de datos válidos asertada en el instante de recepción del último byte con valor 0x0E. El test solo captura en sus salidas los ocho primeros bytes ya que el módulo se diseñó originalmente para la recepción de tramas orientadas al control del dron en bucle abierto. Una vez comprobada la correcta decodificación de la trama, su funcionalidad de aumentó durante el desarrollo del trabajo para decodificar tramas completas, incluyendo los valores de los parámetros de los PIDs.
+El test consiste en enviar hacia el decodificador una trama completa para comprobar su correcta decodificación. La trama dispone de los catorce campos definidos en el apartado~\ref{subsec:Formato de tramas}. Los valores incluidos en la trama van de 1 a 14 con valores crecientes. En la Figura~\ref{fig:FrameDecoderCap} se observa la trama enviada en la señal \textit{sink\_data} y su correcta decodificación en las señales de nombre source\_* junto a la señal de datos válidos (\textit{source\_data\_valid}) asertada en el instante de recepción del último byte (con valor 0x0E). El test solo captura en sus salidas los ocho primeros bytes. Esto se debe a que el módulo se diseñó originalmente para la recepción de tramas orientadas al control del dron en bucle abierto, usando solo ocho bytes por trama. Una vez comprobada la correcta decodificación de la trama para ocho bytes, su funcionalidad de aumentó, durante el desarrollo del trabajo, para decodificar tramas de catorce bytes. Estas, incluirían adicionalmente los valores de los parámetros para los PIDs ejecutados en la FPGA.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=17cm, keepaspectratio]{Imagenes/Cap_Mod_frame_decoder_SP13PI1.png}
-	\caption{Simulación funcional del módulo decodificador de tramas de mando}
+	\caption{Simulación funcional del módulo decodificador de tramas de mando desde PC}
 	\label{fig:FrameDecoderCap}
 \end{figure}
 
-\subsubsection{Prueba de módulo decodificador de tramas desde drone}
+\subsubsection{Prueba de módulo decodificador de tramas drone}
 \label{subsubsec:Prueba de modulo decodificador de tramas desde drone}
 
-De manera similar al test ejecutado para el módulo decodificador de tramas desde PC, este módulo se ensayó bajo recepción de una trama completa y posterior comprobación de su decodificación. En este caso, las señales recibidas son valores enteros de dieciséis bits en complemento a dos, separados en grupos de dos bytes. Por tanto el ensayo envía un valor negativo (-2) como desplazamiento frontal, un valor positivo mayor que 255 como desplazamiento lateral (400) y un valor positivo menor que 255 como altura (31). El resultado de la decodificación se muestra en la Figura~\ref{fig:FrameDroneDecoderCap}, de manera síncrona al pulso en la señal \textit{source\_data\_valid} en las tres señales posteriores.
+De manera similar al test ejecutado para el módulo decodificador de tramas desde PC, este módulo se ensayó bajo recepción de una trama completa y posterior comprobación de su decodificación. En este caso, las señales recibidas son valores enteros de dieciséis bits en complemento a dos, separados en grupos de dos bytes. Por tanto, el ensayo envía un valor negativo (-2) como avance, un valor positivo mayor que 255 como desplazamiento lateral (400) y un valor positivo menor que 255 como altura (31). El resultado de la decodificación se muestra en la Figura~\ref{fig:FrameDroneDecoderCap}, de manera síncrona al pulso en la señal \textit{source\_data\_valid} en las tres señales posteriores. Observando el -2 del avance en la señal \textit{source\_H\_disp\_front}, el 400 en \textit{source\_H\_disp\_side} y el 31 en \textit{source\_altitude}, se verifica el correcto funcionamiento del módulo.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=17cm, keepaspectratio]{Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png}
-	\caption{Simulación funcional del módulo decodificador de tramas de sensores}
+	\caption{Simulación funcional del módulo decodificador de tramas de sensores desde dron}
 	\label{fig:FrameDroneDecoderCap}
 \end{figure}
 
 \subsubsection{Prueba de módulo conversor de pulsaciones}
 \label{subsubsec:Prueba de modulo conversor de pulsaciones}
 
-Este módulo fue ensayado como parte de las pruebas previas al diseño de la arquitectura final para el TFG. Durante la fase de control de bucle abierto se hizo uso de un módulo en la FPGA que recibía la pulsación de ciertas teclas en el PC y las codificaba como parte del proceso de identificación de tecla pulsada. La secuencia enviada en la señal \textit{sink\_data} de la Figura~\ref{fig:KeyPressCap} simula las pulsaciones ``w'', ``a'', ``w'', ``s'', ``d'', caracter desconocido, shift izquierdo, espacio y ``b''. Dichas pulsaciones se codifican con distintos valores de 0 a 6. Ignorando la entrada de una pulsación en un carácter desconocido.
+Este módulo fue ensayado como parte de las pruebas previas al diseño de la arquitectura final para el TFG. Durante la fase de control de bucle abierto se hizo uso de un módulo en la FPGA que recibía la pulsación de ciertas teclas en el PC y las codificaba como parte del proceso de identificación de tecla pulsada. La secuencia enviada en la señal \textit{sink\_data} de la Figura~\ref{fig:KeyPressCap} simula las pulsaciones ``w'', ``a'', ``w'', ``s'', ``d'', caracter desconocido, shift izquierdo, espacio y ``b''. Dichas pulsaciones se codifican con distintos valores de 0 a 6. Ignorando la entrada de una pulsación en un carácter desconocido. Este módulo no se utiliza en la versión final del trabajo, con los controladores en bucle cerrado. No obstante, se verificó su correcto funcionamiento en la secuencia 0, 1, 0, 1, 2, 3, 4, 5, 6, de la señal \textit{source\_data}. Se observa también, en instante de rececpción del valor desconocido (decimal 54 de la señal \textit{sink\_data}), su omisión por parte del módulo en la señal \textit{source\_data\_ready}, sígno de buen funcionamiento.
 
 \begin{figure}[h]
 	\centering
@@ -1299,7 +1303,7 @@ Este módulo fue ensayado como parte de las pruebas previas al diseño de la arqui
 \subsubsection{Prueba de módulos PID}
 \label{subsubsec:Prueba de modulos PID}
 
-Los módulos PID que controlan altura y desplazamientos frontal y lateral hacen uso de una lógica similar, salvando diferencias menores como el truncamiento de valores negativos para el caso del PID de altura y el ajuste de salida a los rangos esperados para la generación de las señales PPM. Los ensayos se realizaron en cuatro escenarios distintos, para comprobar el correcto funcionamiento de las distintas componentes:
+Los módulos PID que controlan altura y desplazamientos frontal y lateral hacen uso de una lógica similar, salvando diferencias menores, como el truncamiento de valores negativos para el caso del PID de altura y el ajuste de salida a los rangos esperados para la generación de las señales PPM. Los ensayos se realizaron en cuatro escenarios distintos, para comprobar el correcto funcionamiento de las distintas componentes:
 
 \begin{itemize}
   \item TEST\_1: Ensaya la componente proporcional en sentido negativo. El resultado del bucle en negativo se observa en la señal \textit{pid\_prereg} de la Figura~\ref{fig:PIDAltCap}. Dicho valor es capado posteriormente a cero en el registro de salida del módulo PID \textit{source\_pid}.
@@ -1321,7 +1325,8 @@ Los módulos PID que controlan altura y desplazamientos frontal y lateral hacen u
 \subsubsection{Prueba de módulo de comunicaciones UART}
 \label{subsubsec:Prueba de modulo de comunicaciones UART}
 
-El objetivo de este ensayo es comprobar que el módulo UART, responde al baud rate programdo y que la decodificación del byte entrante se realiza en el orden adecuado, a efectos de bit más y menos significativos. Se inyecta un cero, seguido de un uno a través de la señal \textit{sdin}, en orden de bit menos significativo primero. El resultado se puede observar en la señal data, síncrona con la señal data\_rdy de la Figura~\ref{fig:UARTCap}, sin errores de trama para ninguno de los dos casos ensayados.
+Este módulo es utilizado como receptor de puerto serie de las tramas desde el PC y desde el dron.
+El objetivo de este ensayo es comprobar que el módulo UART, responde al baud rate programdo y que la decodificación del byte entrante se realiza en el orden adecuado, a efectos de bit más y menos significativos. Se inyecta un byte de valor cero seguido de uno con valor uno, a través de la señal \textit{sdin}, con el bit menos significativo primero. El resultado se puede observar en la señal \textit{data}, síncrona con la señal \textit{data\_rdy} de la Figura~\ref{fig:UARTCap}, sin errores de trama para ninguno de los dos casos ensayados.
 
 \begin{figure}[h]
 	\centering
@@ -1334,7 +1339,7 @@ El objetivo de este ensayo es comprobar que el módulo UART, responde al baud rat
 \subsubsection{Prueba de módulo de modulación PPM}
 \label{subsubsec:Prueba de modulo de modulación PPM}
 
-Este ensayo permite verificar las correctas transiciones entre los estados de cada canal y entre los 12 canales. En la Figura~\ref{fig:PPMCap} se observa el registro \textit{PPM\_STATE}, que almacena el estado encargado de contabilizar el tiempo a cero de cada pulso de bajada. Por otro lado el estado \textit{CHOOSE\_CHANNEL} se encarga de gestionar las transiciones para cada canal.
+Este ensayo permite verificar las correctas transiciones entre los estados de cada canal y entre los 12 canales. En la Figura~\ref{fig:PPMCap} se observa el registro \textit{PPM\_STATE}, que almacena el estado encargado de contabilizar el tiempo a cero de cada pulso de bajada. Por otro lado, el estado \textit{CHOOSE\_CHANNEL} se encarga de gestionar las transiciones para cada canal.
 
 \begin{figure}[h]
 	\centering
@@ -1343,7 +1348,7 @@ Este ensayo permite verificar las correctas transiciones entre los estados de ca
 	\label{fig:PPMCap}
 \end{figure}
 
-Este ensayo permitió corregir errores en las transiciones entre estados, que producían saltos inadecuados.
+Este ensayo permitió corregir errores en las transiciones entre estados, que producían saltos inadecuados, hasta llegar, finalmente, a las transiciones observadas en la Figura~\ref{fig:PPMCap}.
 
 
 \section{Condiciones de los bucles de control}
@@ -1354,28 +1359,28 @@ Desde un punto de vista alejado de los parámetros PID de los bucles de control, 
 \subsection{Ancho de banda}
 \label{subsec:Ancho de banda}
 
-El ancho de banda se vio limitado por las velocidades de ejecución más lentas dentro del sistema, estas son la velocidad de recepción de tramas de la electrónica propia del dron, la cual limita cuantas órdenes puede atender por segundo, y la lectura de los sensores, limitada por la electrónica embarcada y las especificaciones de los propios sensores. Finalmente se estableció una velocidad de lectura de 30.3 hercios, que permitía a los sensores ser leídos adecuadamente, y a la electrónica propia del dron, atender todas las tramas entrantes. Esto limita la brusquedad de las reacciones del dron, en caso de correcciones necesarias, y la suavidad del mismo durante su vuelo.
+El ancho de banda se vio limitado por la velocidad de ejecución del elemento más lento dentro del sistema. Esta se debate entre dos similares; la velocidad de muestreo de órdenes de movimiento, por parte de la electrónica propia del dron, que limita cuantas correcciones de posición puede atender por segundo y la lectura de los sensores de posición, limitada por la electrónica embarcada y las especificaciones de los propios sensores. Finalmente se estableció una velocidad de lectura máxima de 30.3 hercios, que permitía a los sensores ser leídos adecuadamente (sin errores en las muestras leidas), y a la electrónica propia del dron, atender todas las tramas entrantes. Esto limita la agilidad en las reacciones del dron, en caso de correcciones bruscas necesarias y la suavidad del mismo durante ciertos movimientos.
 
 \subsection{Retardo}
 \label{subsec:Retardo}
 
-Aunque el ancho de banda es un parámetro fundamental en el control de un sistema, para el caso de este TFG, la mayor cantidad de problemas durante el desarrollo y pruebas del sistema, fueron originados por falta de estabilidad. Esta se pone en riesgo por múltiples factores, algunos ya comentados, pero principalmente por los retardos en la ejecución de los bucles de control. El tiempo que transcurre desde que se realiza la medida de posición de un eje, hasta que se actúa en consecuencia para corregir el error, es fundamental para estabilizar correctamente el vehículo.\\
-En este aspecto, hay varias fuentes de retardo en el sistema, algunas inherentes a algún componente, como los retardos de medida de los sensores, y otras, fruto de la arquitectura escogida. Por ejemplo el hecho de que el proceso de control sea ejecutado en tierra y no a bordo del dron, genera retardos asociados a la transmisión de los valores. Las medidas no son procesadas a bordo sino que se transmiten hacia tierra, donde se procesan para obtener una respuesta, y dicha respuesta se devuelve al dron. Este proceso de transmisión a tierra añade retardos indeseados, pero necesarios para el funcionamiento del sistema.\\
-Si tratamos de contabilizar a groso modo los retardos existentes, tenemos:
+Aunque el ancho de banda es un parámetro fundamental en el control de un sistema, para el caso de este TFG, la mayor cantidad de problemas durante el desarrollo y pruebas del sistema, fueron originados por falta de estabilidad. Esta se pone en riesgo por múltiples factores, algunos ya comentados, siendo de especial importancia los retardos en la ejecución de los bucles de control. El tiempo que transcurre desde que se realiza la medida de posición de un eje, hasta que se actúa en consecuencia para corregir el error, es fundamental para estabilizar correctamente el vehículo.\\
+En este aspecto, hay varias fuentes de retardo en el sistema, algunas inherentes a algún componente, como los retardos de medida de los sensores, y otras, fruto de la arquitectura escogida. Por ejemplo el hecho de que el proceso de control sea ejecutado en tierra y no a bordo del dron, genera retardos asociados a la transmisión de las medidas de posición. Estas no son procesadas a bordo, sino que se transmiten hacia tierra donde se procesan en la FPGA, obteniendo las instrucciones de movimiento como respuesta, que se envía al dron. Este proceso de transmisión a tierra añade retardos indeseados, pero necesarios para el funcionamiento del sistema.\\
+Si tratamos de contabilizar aproximadamente los retardos existentes, tenemos:
 
 \begin{itemize}
-  \item 30ms del sensor de medida de altura, ToF.
+  \item Sensores: 30ms del sensor de medida de altura, ToF.
   
-  \item Retardo máximo añadido por la sincronía entre la trama PPM  enviada desde la FPGA, y la lectura realizada por la electrónica de uplink, 33ms.
+  \item Enlace radio de subida: 33ms de retardo máximo añadido por la sincronía entre la trama PPM enviada desde la FPGA y su lectura realizada por la electrónica propia del vehículo.
   
-  \item Enlaces radio, no más de 120uS sin contar preámbulos.
+  \item Enlaces radio de bajada: no más de 120uS sin contar preámbulos ni retransmisiones.
   
-  \item Tres comunicaciones SPI, unos 144us.
+  \item Puertos serie síncronos: Tres comunicaciones SPI, unos 144us en total.
   
-  \item Dos transmisiones UART de no más de 240uS.
+  \item Puertos serie asíncronos: Dos transmisiones UART de no más de 240uS.
 \end{itemize}
 
-A falta de contabilizar de manera más fina los retardos, es sabido que existe un mínimo de 63.5ms de retardo entre medida de la posición y reacción. Esto, sin ser una cifra catastrófica, si es cierto que implica ciertas limitaciones a la hora de conseguir una suavidad de vuelo concreta.
+A falta de contabilizar de manera más fina los retardos, es sabido que existe un mínimo de 63.5ms de retardo entre medida de posición y reacción del vehículo. Esto, sin ser una cifra catastrófica, si es cierto que implica ciertas limitaciones a la hora de conseguir una suavidad de vuelo concreta. En el siguiente apartado se concluyen ciertos aspectos, en relación con lo aquí comentado.
 
 
 
