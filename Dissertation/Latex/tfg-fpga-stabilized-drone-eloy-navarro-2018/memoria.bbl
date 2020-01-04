@@ -22,6 +22,11 @@ S.~Centum~research \&~technology.
 Charlie.
 \newblock Modeling vehicle dynamics, quadcopter equations of motion, 2019.
 
+\bibitem{dronserv2019}
+dirigentesdigital.
+\newblock Una empresa espa{\~n}ola entre los mayores fabricantes de drones,
+  2019.
+
 \bibitem{PPM_adv}
 J.~Francisco Mart\'inez~Lendech.
 \newblock Datos anal\'ogicos, transmisi\'on digital.
@@ -29,6 +34,10 @@ J.~Francisco Mart\'inez~Lendech.
 \bibitem{ganssle2012designer}
 J.~Ganssle.
 \newblock A designer's guide to mems sensors, 2012.
+
+\bibitem{goebish_multi}
+goebish.
+\newblock {nRF24L01 multi-protocol RC transmitter}, Feb. 2019.
 
 \bibitem{PIDs}
 Jero.
@@ -67,6 +76,11 @@ V.~Philavanh.
 \bibitem{motion_module}
 pixart.
 \newblock Optical motion tracking, 2019.
+
+\bibitem{DronRescate}
+E.~P. S.L.
+\newblock El emocionante rescate gracias a un dron de un escalador dado por
+  muerto en el himalaya, 2018.
 
 \bibitem{uart_adv}
 solitontech.

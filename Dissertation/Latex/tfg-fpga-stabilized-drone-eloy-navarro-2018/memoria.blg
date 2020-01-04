@@ -1,8 +1,10 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: memoria.aux
 The style file: abbrv.bst
 Database file #1: memoria.bib
-Warning--to sort, need author or key in Infi_Motors
+Warning--entry type for "goebish_multi" isn't style-file defined
+--line 199 of file memoria.bib
 Warning--to sort, need author or key in Lifeseeker_Noticia
+Warning--to sort, need author or key in Infi_Motors
 Warning--empty journal in ordonez2018tfg
 Warning--empty journal in DroneImagen
-(There were 4 warnings)
+(There were 5 warnings)

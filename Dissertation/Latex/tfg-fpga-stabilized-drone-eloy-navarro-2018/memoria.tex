@@ -233,17 +233,81 @@ As it is the translation of the ``Resumen'', which is supposed to be written at 
 \label{chap:Introducción} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-El desarrollo de este trabajo fin de grado está orientado a crear la infraestructura necesaria para comandar un dron mediante un conjunto de instrucciones. El sistema lo compondrán un dron, una estación de tierra y un PC. Como se ha hecho en diseños previos \cite{ordonez2019control}, se ha escogido una FPGA para el núcleo de procesamiento, ubicado en la estación de tierra.
+El desarrollo de este trabajo fin de grado está orientado a hacer programable y estable un dron comercial usando una FPGA.
 \\
-En la actualidad se ha extendido con rapidez el uso de drones y FPGAs más allá del entorno militar, en distintas áreas como vigilancia, cine, ocio, sistemas industriales, etc... Ambos dispositivos se han popularizado debido a su potencia y versatilidad de uso. La capacidad de control y guiado sobre el vehículo y su carga útil resultan tareas fundamentales, llevadas a cabo habitualmente de diversas maneras. Guiado mediante imagen \cite{DroneImagen}, tele-dirección, ubicación global y controles abiertos o por posición son algunos métodos comunes. Este trabajo se centra en el control por posición del vehículo y su guiado mediante instrucciones prefijadas. Dicho sistema ejecutará bucles de control que puede realizarse mediante distintos dispositivos, entre ellos, FPGAs \cite{ordonez2018tfg}. Ciertas características las convierten en una elección sólida como núcleo del sistema de estabilización y dirección para los múltiples grados de libertad del drone. En este TFG se hace uso de un cuadricóptero comercial como dron y FPGAs libres para cubrir las tareas de control y estabilización, fomentando además el uso y propagación de código abierto.\\
-A continuación, se introducen algunas características de ambos dispositivos.
+En la actualidad se ha extendido con rapidez el uso de drones y FPGAs \cite{ordonez2019control} más allá del entorno militar, en distintas áreas como vigilancia, cine, ocio, sistemas industriales, etc... Ambos dispositivos se han popularizado debido a su potencia y versatilidad de uso. Esto es gracias a que podemos controlar y guiar al dron con su carga útil. Estas tareas se llevan a cabo habitualmente de diversas maneras. Guiado mediante imagen \cite{DroneImagen}, tele-dirección, ubicación global y controles abiertos o por posición son algunos métodos comunes. En este TFG se hace uso de un cuadricóptero comercial y FPGAs libres para cubrir las tareas de control y estabilización\cite{ordonez2018tfg}, fomentando además el uso y propagación de código abierto.\\
+A continuación, se introducen algunas características de ambos dispositivos, proporcionando así el contexto genérico en el que se encuadra este trabajo.
 
 
 \section{Drones}
 \label{sec:Sistemas básicos del drone}
 
-Un dron hace referencia a una aeronave voladora no tripulada. Estas pueden ser pilotadas de manera remota, o mediante controles automáticos, dotándolas de distintos elementos según el mecanismo de control escogido y la tarea a cubrir.\\
-Este trabajo hace uso de un cuadricóptero comercial X5C del fabricante Syma. Por tanto se mencionan algunos sistemas propios de los cuadricópteros que no se encuentran presentes necesariamente en otros tipos de drones. Algunos sistemas son específicos de cada aplicación, como puedan ser los estabilizadores de cámara usados en aplicaciones de grabación de video. Otros, por el contrario, son comunes a todos los cuadricópteros, como la estructura, sensores, electrónica de control, drivers de motores, motores y sistemas de gestión y almacenamiento de energía (baterías y reguladores). Además existen sistemas que si bien no son estrictamente necesarios para todas las aplicaciones, rara vez se ven excluidos, como son los sistemas de comunicaciones. Procedemos a comentar algunos de estos componentes del dron a continuación.
+Un dron es a una aeronave voladora no tripulada. Pueden ser pilotadas de manera remota o mediante controles automáticos, dotándolas de distintos elementos según el mecanismo de control escogido y la tarea a cubrir.\\
+Este trabajo hace uso de un cuadricóptero comercial X5C del fabricante Syma. Por tanto se mencionan algunos sistemas propios de los cuadricópteros que no se encuentran presentes necesariamente en otros tipos de drones. Algunos sistemas son específicos de cada aplicación, como los estabilizadores de cámara usados en aplicaciones de grabación de video. Otros, por el contrario, son comunes a todos los cuadricópteros, como la estructura, sensores, electrónica de control, drivers de motores, motores y sistemas de gestión y almacenamiento de energía (baterías y reguladores). Además existen sistemas que si bien no son estrictamente necesarios para todas las aplicaciones, rara vez se ven excluidos, como los sistemas de comunicaciones.
+
+\subsection{Aplicaciones de vehículos aéreos no tripulados}
+\label{sec:Aplicaciones}
+
+Las aplicaciones de los drones son muchas, desde su inicio en el sector militar, como muchas otras tecnologías, se ha extendido su utilización a otros sectores civiles para cubrir tareas variadas.
+
+%\subsection{Agricultura}
+%\label{subsec:Agricultura}
+
+Una de las áreas con mayor impacto en el desarrollo y aplicación está siendo el sector agrícola. Con hectáreas de cultivos que controlar y cada vez más tipos de sensores, se utilizan desde control de plagas (vehículo fumigando en la Figura~\ref{fig:DronFumi}), hasta por ejemplo, exploración de viñedos para determinar el mejor momento para la vendimia. A menudo hacen uso de controladores basados en ubicación global a través de GPS para el control de posición y trayectoria del dron, y de sensores ópticos y multiespectrales para determinar parámetros como la actividad clorofílica o su estrés hídrico. Este es el caso del sensor Sequoia+ de Parrot \cite{parrot2019parrot} de la Figura~\ref{fig:Sequo}. Dicho sensor se monta a bordo del dron que va a realizar la misión.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm, keepaspectratio]{Imagenes/drones-fumigacion-agricola.png}
+	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
+	\caption{Dron aplicando fitosanitarios desde el aire}
+	\label{fig:DronFumi}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm, keepaspectratio]{Imagenes/Parrot_Sequoia.jpg}
+	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
+	\caption{Sensor óptico Sequoia+}
+	\label{fig:Sequo}
+\end{figure}
+De esta manera se analiza desde el cielo, por ejemplo, cuánta luz absorben y reflejan las plantas, permitiendo optimizar la producción del agricultor.
+
+
+%\subsubsection{Seguridad y rescate}
+%\label{subsec:Seguridad y rescate}
+
+Debido a la ventaja de volar a alturas inferiores que las de un helicóptero, el uso de los drones se ha extendido también al rescate de personas. Como en el caso del montañero Rick Allen, avistado en el Himalaya gracias al uso de un dron (Figura~\ref{fig:FRickRescue}), por parte de otros dos escaladores \cite{DronRescate}. Integrando cámaras de alta resolución en los mismos, y sistemas de localización de desaparecidos, como es el caso del proyecto de seguridad ``LifeSeeker'' \cite{Lifeseeker} de Centum se podría ubicar a personas desaparecidas. El dispositivo de la Figura~\ref{fig:Lifeseeker} ha sido diseñado para instalarse en aviones no tripulados \cite{Lifeseeker_Noticia}. El sistema embarcado hace uso de los móviles de los desaparecidos, aun fuera de las zonas de cobertura, como si se tratasen de radiobalizas, permitiendo así su localización.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=11cm, keepaspectratio]{Imagenes/RickRescue.png}
+	\caption{Imagen tomada desde el dron utilizado durante el rescate de Rick Allen}
+	\label{fig:FRickRescue}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm, keepaspectratio]{Imagenes/LifeSeeker.png}
+	\caption{Módulo LifeSeeker de Centum}
+	\label{fig:Lifeseeker}
+\end{figure}
+
+Otros ejemplos utilización de drones en sistemas de seguridad y rescate, son el reparto masivo de medicamentos e incluso envíos urgentes de sangre para transfusiones \cite{Envio_Sangre_drone}.
+
+%\subsubsection{Envíos}
+%\label{subsec:Envios}
+
+También ha habido controversia relacionada con el control aéreo en la aplicación de drones para envíos. La legislación actual dificulta el desarrollo en esta industria a la misma velocidad que se han expandido los drones en otras áreas. No obstante empresas como DHL o Amazon han desarrollado tecnologías y prototipos al respecto \cite{Drone_env} y las han probado e implantado en zonas en las que no existen dichas limitaciones. A través de este servicio, Amazon envían paquetes en tiempo inferiores a los 30 minutos usando drones como el de la Figura~\ref{fig:AmaDrone}. Son sistemas híbridos con despegue vertical y vuelo horizontal. Gozan de navegación autónoma guiada por GPS y controlan el espacio aéreo a su alrededor mediante visión artificial, para evitar obstáculos y localizar su área de aterrizaje.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{Imagenes/prime-air_04.jpg}
+	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
+	\caption{dron de Amazon en prueba real de envío}
+	\label{fig:AmaDrone}
+\end{figure}
+
+\subsection{Fabricantes}
+\label{subsec:drone_Fabricantes}
+
+Las empresas más importantes en el desarrollo y la venta de drones comerciales son principalmente chinas, como Dji, Xiaomi, Hover o Syma junto con la francesa Parrot. En 2019, el fabricante español Hemav, se hizo un hueco, resultando elegida como la cuarta empresa más importante dentro del sector de drones no militares, gracias a sus tareas de inspección y creación de mapas \cite{dronserv2019}.
 
 
 \subsection{Estructura}
@@ -258,7 +322,7 @@ La estructura base o marco de un dron es donde apoyan y montan el resto de compo
 	\label{fig:Drone}
 \end{figure}
 
-En caso de que la estructura no resulte idealmente rígida; durante el empuje ascendente, se producirían momentos idénticos (M1, M2, M3 y M4 de la Figura \ref{fig:Drone_error}) sobre los cuatro motores, pero los ejes que unen dichos motores al marco sufrirían torsiones desiguales, lo que forzaría al dron a girar sobre sí mismo.
+En caso de que la estructura no resulte idealmente rígida durante el empuje ascendente, se producirían momentos idénticos (M1, M2, M3 y M4 de la Figura \ref{fig:Drone_error}) sobre los cuatro motores, pero los ejes que unen dichos motores al marco sufrirían torsiones desiguales, lo que forzaría al dron a girar sobre sí mismo. Dicho error de rotación podría ser corregido por otros sistemas del dron, pudiendo llegar a saturarlos, dificultándoles realizar su tarea adecuadamente.
 
 \begin{figure}[h]
 	\centering
@@ -267,13 +331,11 @@ En caso de que la estructura no resulte idealmente rígida; durante el empuje asc
 	\label{fig:Drone_error}
 \end{figure}
 
-Dicho error de rotación podría ser corregido por otros sistemas del dron, pero solo pueden corregirse hasta cierto punto, además de ocupar dichos sistemas en corregir errores que la propia estructura puede paliar si se construye adecuadamente, pudiendo llegar a saturarlos e impedirles realizar su tarea adecuadamente.
-
 
 \subsection{Sensores}
 \label{subsec:Sensores}
 
-Parte fundamental de todo cuadricóptero es un conjunto de sensores capaz de medir aceleraciones y giros. Para la mayoría de los drones comerciales, incluido el utilizado en este TFG, se hace uso de acelerómetros y giróscopos MEMS \cite{ganssle2012designer}, es decir elementos mecánicos y electromecánicos miniaturizados e integrados en solo chip. Por ejemplo un giróscopo y acelerómetro MEMS es en realidad un capacímetro diferencial conectado a un conjunto de láminas intercaladas, unas fijas al sustrato y otras libres como se muestra continuación en la Figura~\ref{fig:Masa_ST}.
+Parte fundamental de todo cuadricóptero es un conjunto de sensores capaz de medir aceleraciones y giros. Para la mayoría de los drones comerciales, se hace uso de acelerómetros y giróscopos MEMS \cite{ganssle2012designer}, es decir, elementos mecánicos y electromecánicos miniaturizados e integrados en solo chip. Por ejemplo un giróscopo y acelerómetro MEMS son en realidad un capacímetro diferencial conectado a un conjunto de láminas intercaladas, unas fijas al sustrato y otras libres como muestra la Figura~\ref{fig:Masa_ST}.
 
 \begin{figure}[h]
 	\centering
@@ -282,22 +344,23 @@ Parte fundamental de todo cuadricóptero es un conjunto de sensores capaz de medi
 	\label{fig:Masa_ST}
 \end{figure}
 
-Cuando se produce una aceleración sobre el chip, las láminas fijas al sustrato se desplazan con él, acercándose a ciertas láminas libres y alejándose de las demás, viendo por tanto su medida diferencial de capacidad alterada de manera proporcional a la aceleración, en base a la segunda ley de Newton. Esta construcción se realiza para cada eje y se integra en un solo chip, a menudo llamada plataforma inercial de tres ejes. De esta manera se facilita su integración en el sistema y se abaratan costes.\\
-Como en todo, hay calidades que definen las capacidades finales de un sistema. Para el caso de una plataforma inercial la resolución es un parámetro fundamental, tanto en la medida de las aceleraciones como de los giros.\\
-Podemos ilustrar el error de desplazamiento asociado a dichos sensores, cuando el sistema de control de dron se basa, por ejemplo, en un giróscopo incapaz de detectar cierto nivel de giro. Es decir, una velocidad de giro suficientemente lenta y constante como para quedar por debajo del salto mínimo de velocidad angular que el sensor es capaz de resolver, produciría un giro indetectable y por tanto incorregible para el dron. Como para el caso de la estructura, dicho error también podría ser corregido por otro tipo de sensor, pero a menudo estos no se instalan, debido al incremento del coste. Para esta situación, por ejemplo, un sensor que aplicase una posible solución sería un magnetómetro a modo de brújula, corrigiendo errores de giro mediante orientación global. Ningún dron de los utilizados en este TFG integra sistema adicional para la corrección del giro, además del propio giróscopo.
+Cuando se produce una aceleración sobre el chip, este es capaz de cuantificarla. A menudo se integran acelerómetros y giróscopos de tres ejes en un solo dispositivo, llamado plataforma inercial. De esta manera se facilita su integración en el sistema y se abaratan costes. Esta plataforma mide las aceleraciones y giros respecto de sus ejes de referencia y pone esta información a disposición del dron.\\
+La resolución y precisión son parámetros fundamentales de la calidad del sensor, tanto en la medida de aceleraciones, como en los giros.\\
+Hay un error de desplazamiento asociado a dichos sensores, un giróscopo es incapaz de detectar todo nivel de giro que quede por debajo de su resolución. 
+Es decir, una velocidad de giro suficientemente lenta y constante, por debajo del salto mínimo de velocidad angular que el sensor es capaz de resolver, produciría un giro indetectable y por tanto incorregible para el dron. Dicho error también podría ser corregido por otro tipo de sensor, pero a menudo estos no se instalan, debido al incremento del coste. Por ejemplo, un magnetómetro a modo de brújula, corrigiendo errores de giro mediante orientación global.
 
 
 \subsection{Electrónica de Control}
 \label{subsec:Electrónica de Control}
 
-Este módulo es el encargado de procesar las señales de los sensores, entregando las respuestas necesarias para cubrir dos tareas; estabilizar el dron en giro y plano horizontal y en caso de recibir comandos por radio u otro mecanismo, modificar las órdenes a entregar a los sistemas de actuación, para obedecer. Para el caso de los cuadricópteros objeto de este trabajo, los elementos de actuación son cuatro motores, y esta electrónica deberá cubrir ambas tareas, estabilización y modificación del comportamiento en base a comandos radio recibidos desde la estación de tierra.\\
-En una situación de vuelo estable, el objetivo de esta electrónica es corregir las aceleraciones y giros con las órdenes adecuadas a los motores. Por ejemplo, si un sensor detecta una aceleración a izquierdas, esta electrónica deberá responder generando una fuerza en sentido contrario, para este caso, consistirá en inclinar el dron ligera y proporcionalmente a derechas. Para ello entregará mayor indicación de velocidad de giro a los drivers de los motores izquierdos, y menor a los derechos. Con esto el dron se inclinaría, corrigiendo la aceleración que de otro modo le hubiera desplazado hacia la izquierda. Este es un caso muy simplificado a modo de ejemplo. La electrónica a bordo computa las ecuaciones de movimiento para el cuadricóptero \cite{Quad_ecuations} a la frecuencia que le permite su capacidad de proceso, junto con los tiempos de adquisición de los sensores y respuesta de los drivers y motores.
+Este módulo es el encargado de procesar las señales de los sensores, entregando las respuestas necesarias para cubrir (a) estabilizar el dron en giro y plano horizontal y (b) en caso de recibir comandos por radio u otro mecanismo, modificar las órdenes a entregar a los sistemas de actuación, para obedecer.\\
+En una situación de vuelo estable el objetivo de esta electrónica es corregir las aceleraciones y giros con las órdenes adecuadas sobre los motores. Por ejemplo, si un sensor detecta una aceleración a izquierdas, esta electrónica deberá responder generando una fuerza en sentido contrario, para este caso, consistirá en inclinar el dron ligera y proporcionalmente a derechas. Para ello entregará mayor indicación de velocidad de giro a los drivers de los motores izquierdos, y menor a los derechos. Con esto el dron se inclinaría, corrigiendo la aceleración que de otro modo le hubiera desplazado hacia la izquierda. Este es un caso muy simplificado a modo de ejemplo. La electrónica a bordo computa las ecuaciones de movimiento para el cuadricóptero \cite{Quad_ecuations} a la frecuencia que le permite su capacidad de proceso, junto con los tiempos de adquisición de los sensores y respuesta de los drivers y motores.
 
 
 \subsection{Drivers y motores}
 \label{subsec:Drivers y motores}
 
-Este hardware es el encargado de convertir las órdenes de velocidad de giro, en giro real de las aspas conectadas a los motores. Cubren la función de transductores, instrucción a fuerza, a través de etapas de potencia que dependen de la construcción de los motores. La estructura general desde el controlador, hasta los motores, se muestra en la Figura~\ref{fig:Drivers_gen}.
+Este hardware es el encargado de convertir las órdenes de velocidad de giro en giro real de las aspas conectadas a los motores. Cubren la función de transductores de instrucción a fuerza, a través de etapas de potencia que dependen de la construcción de los motores. La estructura general desde el controlador, hasta los motores, se muestra en la Figura~\ref{fig:Drivers_gen}.
 
 \begin{figure}[h]
 	\centering
@@ -307,14 +370,14 @@ Este hardware es el encargado de convertir las órdenes de velocidad de giro, en 
 	\label{fig:Drivers_gen}
 \end{figure}
 
-Los motores pueden ser basados en escobillas, o libres de ellas. Cada tipo de motor tiene una forma concreta de ser controlado \cite{Infi_Motors}. Los que disponen de escobillas, se manejan mediante métodos de control de motores de corriente continua. Por tanto las etapas de potencia de los drivers se despreocupan de la posición del rotor respecto del estator y transmiten mayor o menor cantidad de corriente al bobinado, a través de puentes en H controlados por PWM. Para el caso de un motor sin escobillas, hay múltiples métodos de control para producir el giro. La dificultad reside en saber en qué instante y a qué velocidad se puede variar el campo magnético en las tres fases del motor. Para ello hay algunos sistemas basados en conocer la posición relativa entre el rotor y el estator mediante sensores de efecto hall. Otros sistemas en cambio, trabajan sin dichos sensores. A efectos de este TFG, todos los motores son de corriente continua.
+Los motores pueden ser basados en escobillas, o libres de ellas. Cada tipo de motor tiene una forma concreta de ser controlado \cite{Infi_Motors}. Los que disponen de escobillas se manejan mediante métodos de control de motores de corriente continua. Por tanto las etapas de potencia de los drivers se despreocupan de la posición del rotor respecto del estator y transmiten mayor o menor cantidad de corriente al bobinado, a través de puentes en H controlados por PWM. Para el caso de un motor sin escobillas hay múltiples métodos de control para producir el giro. La dificultad reside en saber en qué instante y a qué velocidad se puede variar el campo magnético en las tres fases del motor. Para ello hay algunos sistemas basados en conocer la posición relativa entre el rotor y el estator mediante sensores de efecto hall. Otros sistemas en cambio, trabajan sin dichos sensores.
 
 
 \subsection{Comunicaciones}
 \label{subsec:Comunicaciones}
 
-Dependiendo del tipo de dron, no es estrictamente necesario disponer de un sistema de comunicaciones radio, ya que puede ser sustituido por un conjunto de instrucciones a ejecutar a bordo del dron, sin necesidad de ver su comportamiento modificado durante el vuelo. Pero tanto para el caso de drones teledirigidos, como para el de este TFG, la radio es un componente fundamental, encargada de comunicar la electrónica del dron, con la electrónica en tierra que tiene por objetivo dirigir el dron.
-Aquí rigen múltiples tipos de sistemas y estándares, el más común se encuentra en banda libre de 2.4Ghz y es en el que se apoya este TFG. Se envían comandos radio digitales en forma de tramas de doce paquetes, siendo cada paquete un canal del dron. Los cuatro canales comunes a todo dron, y utilizados en esta trabajo son: Altura (-Uz), cabeceo (pitch), guiñada (yaw) y alabeo (roll) ordenados como se muestra en la Figura~\ref{fig:YawPitchRoll}.
+Dependiendo del tipo de dron, no es estrictamente necesario disponer de un sistema de comunicaciones radio, ya que puede ser sustituido por un conjunto de instrucciones a ejecutar a bordo del dron, sin necesidad de modificar su comportamiento durante el vuelo. Pero tanto para drones teledirigidos, como para el de este TFG, la radio es un componente fundamental, encargada de comunicar la electrónica del dron con la electrónica en tierra que tiene por objetivo dirigir el dron.
+Aquí rigen múltiples tipos de sistemas y estándares, el más común se encuentra en banda libre de 2.4Ghz y es en el que se apoya este TFG. Se envían comandos radio digitales en forma de tramas de doce paquetes, siendo cada paquete un canal del dron. Los cuatro canales comunes a todo dron, son: Altura (-Uz), cabeceo (pitch), guiñada (yaw) y alabeo (roll) ordenados como se muestra en la Figura~\ref{fig:YawPitchRoll}.
 
 \begin{figure}[h]
 	\centering
@@ -322,56 +385,6 @@ Aquí rigen múltiples tipos de sistemas y estándares, el más común se encuentra e
 	\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
 	\caption{Altura (Uz), cabeceo (pitch), guiñada (yaw) y alabeo (roll)}
 	\label{fig:YawPitchRoll}
-\end{figure}
-
-
-\section{Aplicaciones de vehículos aéreos no tripulados}
-\label{sec:Aplicaciones}
-
-Un dron tal y como lo conocemos actualmente es una aeronave que vuela sin tripulación. Las aplicaciones de los drones son muchas, desde su inicio en el sector militar, como muchas otras tecnologías, se ha extendido su utilización a áreas de otros sectores para cubrir tareas variadas. A continuación se mencionan algunos casos interesantes.
-
-
-\subsection{Agricultura}
-\label{subsec:Agricultura}
-
-Una de las áreas con mayor impacto en el desarrollo y aplicación esta siendo el sector agrícola. Con hectáreas de cultivos que controlar, y cada vez más tipos de sensores, se utilizan desde control de plagas, hasta por ejemplo, exploración de viñedos para determinar el mejor momento para la vendimia. A menudo hacen uso de controladores basados en ubicación global a través de GPS para el control de posición y trayectoria del dron, y de sensores ópticos y multiespectrales para determinar parámetros como la actividad clorofílica o su estrés hídrico. Este es el caso del sensor Sequoia+ de Parrot \cite{parrot2019parrot} de la Figura~\ref{fig:Sequo}. Dicho sensor se monta a bordo del dron que vaya a realizar la misión.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=10cm, keepaspectratio]{Imagenes/Parrot_Sequoia.jpg}
-	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{Sensor óptico Sequoia+}
-	\label{fig:Sequo}
-\end{figure}
-De esta manera se analiza desde el cielo, por ejemplo, cuanta luz absorben y reflejan las plantas, permitiendo optimizar la producción del agricultor.
-
-
-\subsection{Seguridad y rescate}
-\label{subsec:Seguridad y rescate}
-
-Debido a la ventaja de volar a alturas inferiores que las de un helicóptero, se ha extendido el uso de los drones al rescate de personas. Integrando cámaras de alta resolución en los mismos, y sistemas de localización de desaparecidos, como es el caso del proyecto de seguridad ``LifeSeeker'' \cite{Lifeseeker} de Centum se podría ubicar a personas desaparecidas. El dispositivo de la Figura~\ref{fig:Lifeseeker} ha sido diseñado para instalarse en aviones no tripulados \cite{Lifeseeker_Noticia}. El sistema embarcado hace uso de los móviles de los desaparecidos, aun fuera de las zonas de cobertura, como si se tratasen de radiobalizas, permitiendo así su localización.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=10cm, keepaspectratio]{Imagenes/LifeSeeker.png}
-	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{Módulo LifeSeeker de Centum}
-	\label{fig:Lifeseeker}
-\end{figure}
-
-Otros ejemplos de sistemas basados en drones, los han utilizado para reparto masivo de medicamentos o incluso envíos de sangre para transfusiones \cite{Envio_Sangre_drone}.
-
-
-\subsection{Envíos}
-\label{subsec:Envios}
-
-En esta aplicación, ha habido controversia relacionada con el control aéreo. La legislación actual dificulta el desarrollo en esta industria a la misma velocidad que se han expandido los drones en otras áreas. No obstante empresas como DHL o Amazon han desarrollado tecnologías al respecto \cite{Drone_env} y las han probado e implantado en zonas en las que dichas limitaciones no funcionan de la misma manera. A través de este servicio, Amazon envían paquetes en tiempo inferiores a los 30 minutos usando drones como el de la Figura~\ref{fig:AmaDrone}. Son sistemas híbridos con despegue vertical y vuelo horizontal. Gozan de navegación autónoma guiada por GPS y controlan el espacio aéreo a su alrededor mediante visión artificial, para evitar obstáculos y localizar su área de aterrizaje.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=12cm, keepaspectratio]{Imagenes/prime-air_04.jpg}
-	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
-	\caption{dron de Amazon en prueba real de envío}
-	\label{fig:AmaDrone}
 \end{figure}
 
 
@@ -384,39 +397,47 @@ Una FPGA es un dispositivo que agrupa elementos capaces de realizar pequeñas ope
 \subsection{Características}
 \label{subsec:Características}
 
-Una FPGA dispone de ciertas características que le ofrecen ventaja sobre opciones programables más tradicionales, como procesadores secuenciales. Estas pueden ser programadas de tal manera que ejecuten un conjunto de instrucciones concreto varias veces en paralelo, sin ver disminuido su rendimiento global, ni impactar en otros módulos pre-programados. Para un procesador secuencial, realizar la misma tarea dos veces, supone esperar a que la primera acabe para ejecutar la segunda, o disponer de hardware dedicado por duplicado, construido sobre el mismo silicio, opción no siempre disponible. Una FPGA, en cambio, es capaz de construir el mismo sistema hardware tantas veces como recursos hardware disponga, permitiendo que todos ellos ejecuten en paralelo, con un detrimento del rendimiento mínimo y controlable. Esta ventaja es de especial importancia en procesos de control cuya tarea puede dividirse en muchas, como en procesamiento de imágenes, o sistemas de procesado digital de señales. El segundo caso está muy relacionado con este TFG, debido a la ejecución simultanea de múltiples sistemas de comunicaciones, junto con cuatro bucles de control PID paralelos.\\
+Una FPGA dispone de ciertas características que le ofrecen ventaja sobre opciones programables más tradicionales, como los procesadores secuenciales. Estas pueden ser programadas de tal manera que ejecuten un conjunto de instrucciones concreto varias veces en paralelo, sin ver disminuido su rendimiento global, ni impactar en otros módulos pre-programados. Para un procesador secuencial realizar la misma tarea dos veces supone esperar a que la primera acabe para ejecutar la segunda, o disponer de hardware dedicado por duplicado, construido sobre el mismo silicio, opción no siempre disponible. Una FPGA, en cambio, es capaz de construir el mismo sistema hardware tantas veces como recursos hardware disponga, permitiendo que todos ellos ejecuten en paralelo, con un detrimento del rendimiento muy pequeño y controlable. Esta ventaja es de especial importancia en procesos de control cuya tarea puede dividirse en muchas subtareas, como en procesamiento de imágenes, o sistemas de procesado digital de señales.\\
 Otra potente característica es su capacidad de re-configuración dinámica. Esta les ha otorgado popularidad en aplicaciones en las que se requiere rediseñar por completo el sistema de procesado, sin necesidad de un cambio físico sobre el hardware. Permiten modificar, por ejemplo, un filtro completo, no solo el valor de sus coeficientes; o reordenar los módulos de un sistema de telecomunicaciones, dotándolo de funciones completamente diferentes en base a una arquitectura radicalmente nueva. Características como esta hacen que estos dispositivos se popularicen para nuevas aplicaciones.
 
 \subsection{Aplicaciones}
 \label{subsec:Aplicaciones}
 
-Como se ha mencionado antes, las FPGAs cubren un espectro muy grande de aplicaciones, ya que van desde las típicas sustituciones de sistemas digitales combinacionales, a núcleo de sistemas paralelos, en ocasiones inabordables para un procesador secuencial estándar.\\
-Algunas aplicaciones potentes a día de hoy para FPGAs son, por ejemplo, la visión artificial, procesos industriales o procesador de redes neuronales \cite{FPGAs_Neurals}. Estos últimos a menudo se han llevado a cabo por procesadores gráficos que, en su esencia, son una mezcla de muchos pequeños procesadores pensados para realizar cómputos geométricos simples. En ocasiones se están sustituyendo por FPGAs debido a la flexibilidad, potencia y capacidad de re-configuración de las mismas \cite{zhu2003fpga}. Los avances en unidades de procesamiento gráfico, a menudo no alcanzan a cubrir las necesidades de dichas redes y  dispositivos FPGA equivalentes en potencia, suelen disponer de mayor eficiencia energética y facilidad para el clustering.\\
+Las FPGAs cubren un espectro muy grande de aplicaciones, ya que van desde las típicas sustituciones de sistemas digitales combinacionales a núcleo de sistemas paralelos, en ocasiones inabordables para un procesador secuencial estándar.\\
+Algunas aplicaciones potentes a día de hoy para FPGAs son, por ejemplo, la visión artificial, procesos industriales o procesador de redes neuronales \cite{FPGAs_Neurals}. Estas últimas a menudo se han llevado a cabo por procesadores gráficos que, en su esencia, son una mezcla de muchos pequeños procesadores pensados para realizar cómputos geométricos simples. En ocasiones se están sustituyendo por FPGAs debido a la flexibilidad, potencia y capacidad de re-configuración de las mismas \cite{zhu2003fpga}. Los avances en unidades de procesamiento gráfico, a menudo no alcanzan a cubrir las necesidades de dichas redes y  dispositivos FPGA equivalentes en potencia suelen disponer de mayor eficiencia energética y facilidad para el clustering.\\
 Gracias a su robustez son también utilizadas en entornos de seguridad como los ferroviarios, e incluso comienzan a invadir entornos menos comunes, como el espacial.
 
+
+\subsection{Desarrollo con FPGAs}
+\label{subsec:Desarrollo con FPGAs}
+
+Para el desarrollo de sistemas basados en FPGAs, se hace uso de herramientas software generalmente distribuidas por el propio fabricante de la FPGA. Suele tratarse de entornos integrados de desarrollo que incluyen la mayor cantidad de comodidades, módulos IP pre-compilados y herramientas posibles. Este es el caso de Quartus, distribuido por Intel, que incluye una versión gratuita muy limitada en prestaciones y capacidades y versiones de pago con todas las utilidades disponibles. Un caso similar ocurre con otros fabricantes, como Xilinx o Atmel.
+El proceso parte desde la generación del código de descripción de hardware que definirá el comportamiento del sistema. Este se compila, sintetiza y analiza, en busca de errores de sintaxis (problemas en el uso del lenguaje), construcciones imposibles de generar (hardware lógicamente funcional, pero sin posibilidad de ser construido en la FPGA destino) o problemas de temporización (incumplimientos en tiempos relacionados con la velocidad de ejecución de los bloques lógicos). Una vez hecho esto se puede proceder a ubicar y conectar los elementos sintetizados, en los bloques de la FPGA (comprobando disponibilidad y viabilidad). El proceso finaliza con la generación de la trama de bits a programar en la FPGA.
 
 \subsection{FPGAs Libres}
 \label{subsec:FPGAs Libres}
 
-Son aquellas en las que se encuentra disponible toda la información de su diseño interno, formatos de almacenamiento de datos (BitStream) y en general todo aquello necesario para que un diseñador sea capaz de crear las herramientas de software necesarias para programar dichos dispositivos.\\
-En la actualidad muchas de las herramientas de diseño software para FPGAs son software propietario con un elevado coste de adquisición. Sobre todo aquellas versiones de los entornos integrados de desarrollo que incluyen la mayor cantidad de comodidades, módulos IP pre-compilados y herramientas posibles. Este es el caso de Quartus, distribuido por Intel para sus FPGAs, que incluye una versión gratuita, muy limitada de prestaciones y capacidades, o Vivado de Xilinx, en una situación similar. En contraposición a este tipo de software se encuentra el software libre, o abierto, en general englobado bajo licencias GPL (General Public License) que tienen por objetivo defender su libre distribución sin necesidad de adquirir licencias de pago. Bajo este tipo de licencias se encuentra software como Icestudio (Figuras~\ref{fig:icelogo}), orientado al diseño de software para FPGAs de Lattice, en entornos gráficos con editor de texto, o esquemas de bloques como en la Figura \ref{fig:icestudio}, en constante crecimiento. Una de las familias de FPGAs recientemente cubiertas por este software son las ICE40 UltraPlus, concretamente la ICE40UP5K. Esta FPGA es la utilizada para desarrollar el procesador de la estación de tierra durante el desarrollo de este TFG, que se detallará más adelante en este informe.
+Son aquellas en las que se encuentra disponible toda la información de su diseño interno, formatos de almacenamiento de datos (BitStream) y en general todo aquello necesario para que un diseñador sea capaz de crear las herramientas de software necesarias para programar dichos dispositivos. En la actualidad muchas de las herramientas de diseño software para FPGAs son software propietario con un elevado coste de adquisición. En contraposición a este tipo de software se encuentra el software libre, o abierto, en general englobado bajo licencias GPL (General Public License) que tienen por objetivo defender su libre distribución sin necesidad de adquirir licencias de pago. Bajo este tipo de licencias se encuentra software como Icestudio (Figuras~\ref{fig:icelogo}), orientado al diseño de software para FPGAs de Lattice. 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=12cm]{Imagenes/Ice_Studio_Logo.png}
+	\includegraphics[width=6cm]{Imagenes/Ice_Studio_Logo.png}
 	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
 	\caption{Logo de Icestudio, IDE para desarrollo de software en FPGAs libres}
 	\label{fig:icelogo}
 \end{figure}
 
+Esta herramienta, dispone de un entorno gráfico para la programación del hardware mediante el uso de bloques como muestra la Figura~\ref{fig:icestudio}. También ofrece soporte para la programación de las FPGAs abiertas, mediante código abierto.
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=12cm]{Imagenes/Ice_Studio_IDE.png}
+	\includegraphics[width=11cm]{Imagenes/Ice_Studio_IDE.png}
 	%\includegraphics[width=12cm, keepaspectratio]{Imagenes/Yaw-pitch-roll-Quadcopter.png}
 	\caption{Captura del entorno Icestudio}
 	\label{fig:icestudio}
 \end{figure}
 
+Se trata de una herramienta en constante crecimiento. Una de las familias de FPGAs recientemente cubiertas por este software es la ICE40 UltraPlus, concretamente el integrado ICE40UP5K.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -430,85 +451,97 @@ En la actualidad muchas de las herramientas de diseño software para FPGAs son so
 \chapter{Objetivos}
 \label{chap:objetivos}
 
-Habiendo ubicado los elementos principales con los que se trabajará durante este desarrollo, procedemos a concretar y comentar el objetivo del TFG. Adicionalmente, los subobjetivos pretenden desgranar el objetivo principal en logros más concretos, que juntos, permitirán alcanzar el objetivo principal.
+Habiendo ubicado en el capítulo anterior, el contexto y los elementos principales con los que se trabajará durante este desarrollo, en este capítulo fijamos el problema concreto que se aborda este TFG y los requisitos que la solución a desarrollar tiene también que satisfacer.
 
 \section{Objetivo principal}
 \label{sec:objetivo-ppal}
 
-En este trabajo, se pretende estabilizar y programar el control de un dron comercial de bajo coste haciendo uso de FPGAs libres. El sistema; deberá ser capaz de estabilizar el vehículo de manera autónoma, haciendo uso de electrónica de sensorización embarcada en el dron y computación sobre la FPGA en tierra. Adicionalmente, el dron deberá obedecer las instrucciones de movimiento ejecutadas en el PC, en comunicación con la FPGA.
+En este trabajo se pretende hacer estable y programable el vuelo de un dron comercial de bajo coste haciendo uso de FPGAs libres. El sistema deberá ser capaz de estabilizar el vuelo del vehículo de manera autónoma, haciendo uso de electrónica de sensorización embarcada en el dron y computación sobre la FPGA en tierra. Adicionalmente, el dron deberá obedecer las instrucciones de movimiento ejecutadas en el PC, en comunicación con la FPGA de modo que se puedan ejecutar en el ordenador programas que gobiernen el movimiento estable del drone.
 
+%\section{Sub-objetivos}
+%\label{sec:Sub-objetivos}
 
-\section{Sub-objetivos}
-\label{sec:Sub-objetivos}
+Este objetivo principal lo hemos articulado en tres subobjetivos cuyas funcionalidades, en conjunto, permitirán alcanzar el objetivo principal.
 
-A continuación se enumeran los tres objetivos cuyas funcionalidades, en conjunto, permitirán alcanzar el objetivo principal.
+\begin{itemize}
+%\subsection{Enriquecer dron comercial}
+%\label{subsec:Enriquecer dron comercial}
 
-\subsection{Enriquecer dron comercial}
-\label{subsec:Enriquecer dron comercial}
+	\item Se incorporarán al vehículo los elementos de sensorización y comunicación adecuados a la tarea. Estos permitirán conocer su ubicación de manera local y establecer una comunicación con la estación de tierra, donde se ubicará la FPGA que computará y comunicará las correcciones pertinentes de vuelta.
 
-Se deberá nutrir al vehículo con los elementos de sensorización y comunicación adecuados a la tarea. Estos deberán permitirle conocer su ubicación de manera local y establecer una comunicación con la estación de tierra, donde se ubicará la FPGA que computará y comunicará las correcciones pertinentes de vuelta.
+%\subsection{Estabilizar dron mediante FPGA en tierra}
+%\label{subsec:Estabilizar dron mediante FPGA en tierra}
 
-\subsection{Estabilizar dron mediante FPGA en tierra}
-\label{subsec:Estabilizar dron mediante FPGA en tierra}
+	\item Se diseñará una la estación de tierra que establezca la comunicación con el drone. Esta FPGA recibirá
+continuamente los datos de los sensores embarcados en el drone, ejecutará los controladores de vuelo y le enviará continuamente las órdenes de movimiento a la plataforma voladora. En este subobjetivo se creará el software necesario para conseguir un vuelo estacionario y estable del vehículo.
 
-Una vez diseñada la estación de tierra y establecida la comunicación con los controladores y sensores a bordo del dron, se procederá a construir el software necesario para conseguir un vuelo estacionario y estable del vehículo.
+%\subsection{Programar dron desde PC}
+%\label{subsec:Programar dron desde PC}
 
-\subsection{Programar dron desde PC}
-\label{subsec:Programar dron desde PC}
+	\item La estación de tierra deberá también comunicarse con el PC, permitiendo que programas ejecutando en el
+ordenador modulen a los controladores ejecutados en la FPGA de la estación. De esta manera, el PC se convertirá en el ordenador de mando indirectamente. Este ejecutará las instrucciones que comandarán los movimientos del dron, siendo la FPGA en la estación de tierra, la encargada de que el vehículo obedezca dichas órdenes de manera estable.
 
-La estación de tierra deberá comunicarse con el PC, permitiendo a este último ejecutar instrucciones que afecten a los controladores ejecutados en la FPGA de la estación. De esta manera, el PC se convertirá en el ordenador de mando indirectamente. Este ejecutará las instrucciones que comandarán los movimientos del dron, siendo la FPGA en la estación de tierra, la encarga de que el vehículo obedezca dichas ordenes de manera estable.
-
+\end{itemize}
 
 \section{Requisitos}
 \label{sec:Requisitos}
 
-Los objetivos del trabajo se deberán cubrir con unos requisitos mínimos. Estos permitirán discernir cuando una tarea se ha cumplido adecuadamente para avanzar a la siguiente. Para ello se listan a continuación.
+Además de resolver los objetivos planteados, la solución desarrollada se deberá cubrir también unos requisitos mínimos.
 
 \begin{itemize}
-  \item El sistema deberá ser capaz de estabilizar el dron con al menos tres grados de libertad; cabeceo, alabeo y altitud.
+  \item El sistema deberá ser capaz de estabilizar el dron en al menos tres grados de libertad; cabeceo, alabeo y altitud.
   
   \item Cada grado de libertad controlado deberá implementar un bucle cerrado, retroalimentado, con controlador PID.
   
   \item Dichos controladores deberán obedecer a consignas radio que permitan el control en tiempo real desde la plataforma en tierra.
   
-  \item Para facilitar las tareas de estabilización y otorgar flexibilidad al sistema, los controladores PID deberán disponer de parámetros re-configurables también desde la estación de tierra.
+  \item El sistema desarrollado será reconfigurable. Para facilitar las tareas de estabilización y otorgar flexibilidad al sistema, los controladores deberán disponer de parámetros reconfigurables desde la estación de tierra que permitan variar la respuesta de comportamiento del dron.
+  
+  \item El control desde el ordenador funcionará en tiempo real, de modo ágil computacionalmente, con poco retardo desde la ejecución de una instrucción en el ordenador hasta que se materializa en la plataforma voladora.
+  
+  \item El sistema funcionará en un ordenador con Ubuntu 11.10, kernel 3.0.0-19.
 \end{itemize}
-
-Para cubrir estos requisitos, se han planteado una metodología y un plan de trabajo a seguir, comentados a continuación.
 
 \section{Metodología}
 \label{sec:Metodología}
 
-Para realizar el seguimiento del trabajo, se intentarán tener reuniones semanales por conferencia, informando de los avances y posibles problemas. También se informará por correo u otros medios en caso de resultar útil. En estas reuniones se comentará el avance y problemas y se propondrán posibles soluciones y siguientes tareas a abordar.\\
-El trabajo se organizará segmentando el objetivo semanal en tareas más simples. Se diseñarán soluciones para dichas tareas y posteriormente se implementarán y testearán. Según los resultados de los ensayos, se corregirán errores, se buscarán y aplicarán soluciones alternativas y se volverá a ensayar. En caso de resultado positivo, se preparará el resultado para informar adecuadamente en la reunión, y recibir información de vuelta.
+Para realizar el seguimiento del trabajo, se mantendrán reuniones semanales por videoconferencia con los tutores, informando de los avances y posibles problemas. También se informará por correo u otros medios en caso de resultar útil. En estas reuniones se comentarán los avances realizados, los problemas encontrados y se propondrán posibles soluciones y las siguientes tareas a abordar.\\
+El trabajo se organizará segmentando el objetivo semanal en tareas más simples. Se diseñarán soluciones para dichas tareas y posteriormente se implementarán y testearán. Según los resultados de los ensayos, se corregirán errores, se buscarán y aplicarán soluciones alternativas y se volverá a ensayar. En caso de resultado positivo, se preparará el resultado para informar adecuadamente en la reunión, y recibir información de vuelta. El desarrollo completo, en su descomposición en módulos, se subirá a un repositorio en github con nombre "SP", bajo "FPGA-robotics/Projects/Basic-Drone/". El informe se subirá al repositorio "2018-tfg-eloy-navarro", bajo "RoboticsLabURJC". También se hará uso del canal de YouTube "JdeRobot" para subir vídeos.
 
 
 \section{Plan de trabajo}
 \label{sec:Plan de trabajo}
 
-Para conseguir alcanzar el objetivo final, cubriendo los requisitos mínimos, se procederá a abordar el trabajo con la siguiente ordenación de tareas:
+Para alcanzar el objetivo final, cubriendo los requisitos mínimos, se procederá a abordar el trabajo con la siguiente ordenación de tareas:
 
 \begin{itemize}
+%	\item Enlace con el dron: Se trata del punto de partida del proyecto. Pasa por ser capaces de realizar una comunicación radio entre un ordenador y el propio dron. Para esta tarea se hará uso del software libre provisto por \textit{goebish} en su repositorio nrf24\_multipro \cite{goebish_multi}. Habrá que conseguir enlazar el software ejecutado en un procesador de Atmel, con la electrónica propia del dron.
 
-  \item Enlace con el dron: Se trara del punto de partida del proyecto. Pasa por ser capaces de realizar una comunicación radio entre un ordenador y el propio dron. Para esta tarea se hará uso del software libre provisto por goebish en su repositorio nrf24\_multipro. Habrá que conseguir enlazar el software ejecutado en un procesador de Atmel, con la electrónica propia del dron.
+  \item Enlace con el dron: Se trata del punto de partida del proyecto. Pasa por ser capaces de realizar un enlace radio entre un ordenador y el propio dron. Para esta tarea se hará uso del software libre provisto por \textit{goebish} en su repositorio nrf24\_multipro \cite{goebish_multi}. Una vez establecido el enlace es el momento de generar el software necesario en la FPGA de tierra para probar instrucciones simples hacia el dron.
   
-  \item Comunicación de órdenes fijas al drone: Una vez establecida la comunicación es el momento de generar el software necesario tanto para el procesador de Atmel como para la FPGA. Con esto se podrán probar instrucciones fijas, simples hacia el dron, por ejemplo una prueba de arranque, enciende y apaga motores.
+%  \item Comunicación de órdenes fijas al drone: Una vez establecido el enlace es el momento de generar el software necesario tanto para el procesador a bordo del dron como para la FPGA. Con esto se podrán probar instrucciones fijas, simples hacia el dron, por ejemplo una prueba de arranque, enciende y apaga motores.
   
-  \item Diseño de librerías de control para PC: El objetivo de las librerías, es facilitar el uso del dron y la repetitividad de los ensayos a través de abstraerse de la capa más baja del control del dron. Esto permite pasar de instrucciones simples e independientes, a instrucciones complejas, compuestas a su vez de secuencias de instrucciones simples. Por ejemplo, despegue y aterrizaje, giros o desplazamientos. Esto facilitará las siguientes tareas.
+%  \item Diseño de librerías de control para PC: Que faciliten el uso del dron y la repetitividad de los ensayos a través de abstraerse de la capa más baja del control del dron. Esto permite pasar de instrucciones simples e independientes, a instrucciones complejas, compuestas a su vez de secuencias de instrucciones simples. Por ejemplo, despegue y aterrizaje, giros o desplazamientos. Facilitarán las siguientes tareas.
   
-  \item Comando del dron en bucle abierto: En este punto ya se dispone del software para realizar ensayos de vuelo con el dron en bucle abierto. Se encadenarán varias instrucciones de vuelo construidas en la librería previa, con el objetivo de probar el dron en trazados más complejos. Como despegue, avance, retorno y aterrizaje, o estabilidad en vuelo estático.
+%  \item Comando del dron en bucle abierto: En este punto ya se dispone del software para realizar ensayos de vuelo con el dron en bucle abierto. Se encadenarán varias instrucciones de vuelo construidas en la librería previa, con el objetivo de probar el dron en trazados más complejos. Como despegue, avance, retorno y aterrizaje, o estabilidad en vuelo estático.
+
+  \item Diseño de librerías de control para PC: Que faciliten el uso del dron y la repetitividad de los ensayos a través de abstraerse de la capa más baja del control del dron. Esto permite realizar ensayos en bucle abierto en trazados más complejos, mediante secuencias de instrucciones simples (despegue y aterrizaje, giros o desplazamientos) facilitarán además las siguientes tareas.
   
-  \item Diseño de electrónica de a bordo: Para poder corregir el comportamiento en vuelo del dron, será necesario que este disponga de información relativa a su posición local. Para cubrir esta tarea, se instalará en el dron electrónica capaz de medir parámetros de posición y transmitirlos a la estación de tierra para ser procesados.
+%  \item Diseño de electrónica a bordo: Para corregir el comportamiento en vuelo del dron será necesario que éste disponga de información relativa a su posición local. Para cubrir esta tarea, se instalará en el dron la electrónica capaz de medir parámetros de posición y transmitirlos a la estación de tierra para ser procesados.
+
+  \item Diseño de electrónica a bordo: Para corregir el comportamiento en vuelo del dron será necesario que éste disponga de información relativa a su posición local. Para cubrir esta tarea, se instalarán en el dron sensores y sistemas de comunicación capaces de medir parámetros de posición y transmitirlos a la FPGA de la estación de tierra para ser procesados.
   
-  \item Diseño de la estación de tierra: Para proceder a realizar ensayos de bucle cerrado, será necesario tener disponible una electrónica en tierra capaz de recibir las medidas de los sensores de a bordo. Deberá entonces poder procesarlas y transmitir la respuesta hacia el vehículo. Dicha respuesta dependerá tanto de las medidas de los sensores del dron, como de las indicaciones recibidas desde el ordenador de mando.
+  \item Diseño de la estación de tierra: Para realizar ensayos de bucle cerrado será necesario tener disponible una electrónica en tierra capaz de recibir medidas de los sensores a bordo e instrucciones desde el PC. Deberá entonces poder procesarlas y transmitir la respuesta hacia el vehículo. Dicha respuesta dependerá tanto de las medidas de los sensores del dron como de las indicaciones recibidas desde el ordenador de mando.
   
-  \item Cierre de bucles para cada eje: Se deberán diseñar bucles de control independientes para cada eje en la FPGA de la estación de tierra. Esto permitirá la estabilización y manejo completo del dron.
+%  \item Cierre de bucles para cada eje: Se diseñarán bucles de control independientes para cada eje en la FPGA de la estación de tierra. Esto permitirá la estabilización y manejo completo del dron.
   
-  \item Experimentación y parches: Este punto cubre una necesidad presente en cada tarea. Tras aplicar cambios software y/o hardware se testeará el trabajo. Según el resultado, se avanzará a la siguiente fase del desarrollo, o se iterará entre la fase de origen y esta, hasta corregir adecuadamente los posibles errores.
+%  \item Experimentación y parches: Tras aplicar cambios software y/o hardware se testeará el trabajo. Según el resultado se avanzará a la siguiente fase del desarrollo, o se iterará entre la fase de origen y esta, hasta corregir adecuadamente los posibles errores.
+  
+  \item Cierre de bucles para cada eje y experimentación: Se diseñarán bucles de control independientes para cada eje en la FPGA de la estación de tierra. Esto permitirá la estabilización y manejo completo del dron. Tras aplicar cambios en cada controlador se pondrá a prueba el trabajo. Según el resultado se procederá con otro o se iterará sobre el mismo hasta corregir adecuadamente los posibles errores.
   
 \end{itemize}
 
-Estas tareas se llevarán a cabo en gran medida los fines de semana, añadiendo horas tras el horario laboral, dependiendo de la disponibilidad. Para cubrir las tareas, se hará uso de las herramientas de desarrollo disponibles, comentadas a continuación en el Capítulo~\ref{chap:Infraestructura utilizada}. En base a estas, se planteará una arquitectura de sistema, definida más adelante en la Sección~\ref{chap: Módulos del sistema}.
+%Estas tareas se llevarán a cabo en gran medida los fines de semana, añadiendo horas tras el horario laboral, dependiendo de la disponibilidad. Para cubrir las tareas, se hará uso de las herramientas de desarrollo disponibles, comentadas a continuación en el Capítulo~\ref{chap:Infraestructura utilizada}. En base a estas, se planteará una arquitectura de sistema, definida más adelante en la Sección~\ref{chap: Módulos del sistema}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -520,7 +553,7 @@ Estas tareas se llevarán a cabo en gran medida los fines de semana, añadiendo ho
 \chapter{Infraestructura utilizada}
 \label{chap:Infraestructura utilizada}
 
-Para alcanzar los objetivos, desarrollando las tareas comentadas anteriormente, hemos utilizado un amplio conjunto de herramientas software y hardware. Estas nos han permitido realizar diseños software en distintos lenguajes, compilar, programar y ejecutar, en las plataformas disponibles. Posteriormente, mediante el uso de herramientas adicionales, se han podido simular y evaluar los resultados, permitiendo avanzar a través de tareas de depuración y corrección de errores. A continuación se describen dichas herramientas y su uso durante este trabajo.
+Para alcanzar los objetivos, hemos utilizado un amplio conjunto de herramientas software y hardware. Estas han permitido realizar diseños software en distintos lenguajes, compilar, programar y ejecutar, en las plataformas disponibles. Posteriormente, mediante herramientas adicionales, se han podido simular y evaluar los resultados, permitiendo avanzar a través de tareas de depuración y corrección de errores. A continuación se describen dichas herramientas y su uso durante este trabajo.
 
 
 \section{Entornos de desarrollo}
@@ -542,20 +575,20 @@ Versión 15.1.0 Build 185. Herramienta de diseño, test, depuración y programación
 \label{sec:Arduino IDE}
 
 Versión 1.8.8. Entorno de desarrollo integrado de Arduino para procesadores Atmel compatibles. Adicionalmente al editor de texto, compilador, enlazador y programador, suministra algunas herramientas adicionales de utilidad:
-Instalador de librerías integrado. Utilizado en el TFG para facilitar la instalación de paquetes de comunicación por puerto serie y manejo de dispositivos desde librerías en Github. Entre los incluidos, se hace uso en este trabajo de las librerías para puertos serie SPI, I2C y UART y librerías para manejo de sensores.
-Además incluye un monitor de puerto serie ya configurado para el dispositivo concreto a programar. Realiza la lectura por el mismo puerto USB utilizado para programar el dispositivo, ahorrando tiempo y disminuyendo el peso necesario en la electrónica de a bordo para realizar tareas de diagnóstico. Este entorno se ha utilizado mayoritariamente para el desarrollo, depuración y programación de los programas ejecutados en los procesadores Atmel ubicados a bordo del dron (comunicación y sensores) y en la estación de tierra (comunicación por radio).
+Instalador de librerías integrado. Se ha utilizado en el TFG para facilitar la instalación de paquetes de comunicación por puerto serie y manejo de dispositivos desde librerías en Github. Entre los incluidos, se hace uso en este trabajo de las librerías para puertos serie SPI, I2C y UART y librerías para manejo de sensores.
+Además incluye un monitor de puerto serie ya configurado para el dispositivo concreto a programar. Realiza la lectura por el mismo puerto USB utilizado para programar el dispositivo, ahorrando tiempo y disminuyendo el peso necesario en la electrónica a bordo para realizar tareas de diagnóstico. Este entorno se ha utilizado mayoritariamente para el desarrollo, depuración y programación de los programas ejecutados en los procesadores Atmel ubicados a bordo del dron (comunicación y sensores) y en la estación de tierra (comunicación por radio).
 
 
-\section{Herramientas de Simulación}
+\section{Herramienta de Simulación ModelSim}
 \label{sec:Herramientas de Simulación}
 
-En este apartado se comenta la única herramienta de simulación utilizada en el proyecto, ModelSim. Versión 10.4b. Herramienta para la simulación de lenguajes de descripción de hardware en general. Compatible con Verilog 2001, permite la comprobación de sintaxis del lenguaje, compilación e instanciación de múltiples módulos. En cuanto a la simulación utilizada, es una herramienta flexible en la creación de cronogramas y selección de señales a observar. Ofrece también completa configuración de resoluciones y tiempos de simulación, junto con la posibilidad de realizar análisis dinámicos del hardware definido. Gracias a su uso, se ha ahorrado tiempo a la hora de realizar tareas de limpieza de código y pruebas fuera del vehículo, disminuyendo el tiempo de desarrollo y la cantidad de choques por errores de diseño en los controles de vuelo.
+Versión 10.4b. Herramienta para la simulación de lenguajes de descripción de hardware en general. Compatible con Verilog 2001, permite la comprobación de sintaxis del lenguaje, compilación e instanciación de múltiples módulos. Es una herramienta flexible en la creación de cronogramas y selección de señales a observar. Ofrece también completa configuración de resoluciones y tiempos de simulación, junto con la posibilidad de realizar análisis dinámicos del hardware definido. Gracias a su uso, se ha ahorrado tiempo a la hora de realizar tareas de limpieza de código y pruebas fuera del vehículo, disminuyendo el tiempo de desarrollo y la cantidad de choques por errores de diseño en los controles de vuelo.
 
 
 \section{Herramientas de programación}
 \label{sec:Herramientas de programación}
 
-Una vez generados y simulados los códigos, estos deben ser programados en los distintos dispositivos que componen el sistema. La programación de los procesadores de Atmel se realiza a través del propio entorno de desarrollo comentado anteriormente en el apartado \ref{sec:Arduino IDE}, el resto de herramientas necesarias para programación se comentan a continuación.
+Una vez generados y simulados los códigos, éstos deben ser programados en los distintos dispositivos que componen el sistema. La programación de los procesadores de Atmel se realiza a través del propio entorno de desarrollo comentado en el apartado \ref{sec:Arduino IDE}, el resto de herramientas necesarias para programación se comentan a continuación.
 
 \subsection{FT\_Prog}
 \label{sec:FT_Prog}
@@ -571,57 +604,99 @@ Se trata de la herramienta de programación distribuida por Lattice. Versión 3.10
 \section{Herramientas de depuración}
 \label{sec:Herramientas de depuración}
 
-Para facilitar la detección y corrección de errores, se ha utilizado una herramienta de análisis de señales digitales, compuesta de un elemento hardware y otro software. A continuación se describen ambos.
+Para facilitar la detección y corrección de errores se ha utilizado una herramienta de análisis de señales digitales, compuesta de un elemento hardware y otro software. A continuación se describen ambos.
 
 \subsection{Logic Analizer}
 \label{sec:Logic Analizer}
-
-Tarjeta de adquisición de Saleae. Trabaja como analizador lógico de ocho canales, con muestreo hasta 24MSPS, permite la adquisición y análisis de señales de hasta 12MHz. Sus ocho canales son reconfigurables como señales de entrada y señales de disparo, facilitando la sincronía con tramas y eventos. Esta herramienta trabaja en conjunto con la interfaz de usuario ``Logic'' \ref{sec:Logic}. Sus ocho conexiones se han realizado en distintos puntos de la estación de tierra. Su función durante el desarrollo ha sido poder obtener las capturas más representativas posibles de lo que estaba ocurriendo en cada momento. Para ello, se han capturando tramas desde el PC de mando hacia la estación de tierra, medidas de los sensores desde el dron hacia la estación de tierra, señales internas de la FPGA y órdenes desde la estación de tierra al dron. Este set de sondas, ha facilitado tanto el debug en vuelo, como la corrección de distintos parámetros de los controladores. Sin ellas, hubiera resultado imposible avanzar adecuadamente entre las etapas de desarrollo del TFG.
+%\ref{sec:Logic}
+Tarjeta de adquisición de Saleae. Trabaja como analizador lógico de ocho canales, con muestreo hasta 24MSPS, permite la adquisición y análisis de señales de hasta 12MHz. Sus ocho canales son reconfigurables como señales de entrada y señales de disparo, facilitando la sincronía con tramas y eventos. Esta herramienta trabaja en conjunto con la interfaz de usuario ``Logic''. Sus ocho conexiones se han realizado en distintos puntos de la estación de tierra. Su función durante el desarrollo ha sido poder obtener las capturas más representativas posibles de lo que estaba ocurriendo en cada momento. Para ello, se han capturando tramas desde el PC de mando hacia la estación de tierra, medidas de los sensores desde el dron hacia la estación de tierra, señales internas de la FPGA y órdenes desde la estación de tierra al dron. Este conjunto de sondas, ha facilitado tanto la depuración en vuelo, como la corrección de distintos parámetros de los controladores. Sin ellas, hubiera resultado imposible avanzar adecuadamente entre las etapas de desarrollo del TFG.
 
 \subsection{Logic}
 \label{sec:Logic}
 
-Versión 1.2.10. Esta utilidad de Saleae es su interfaz para almacenamiento y visualización de señales, tomadas con sus herramientas hardware de análisis digital. En nuestro caso, la hemos utilizado junto con el analizador lógico ``Logic Analizer'', cubriendo las tareas comentadas anteriormente (apartado \ref{sec:Logic Analizer}). Para el caso de un puerto serie, permite el análisis de la información de un protocolo concreto, decodificando los bits de cada canal y mostrando el resultado en relación al instante de llegada. Esto hace posible tareas de depuración, basadas en observar el efecto concreto de un cambio en el código. Se pueden nombrar y configurar distintos protocolos para cada canal, de esta manera se ha utilizado también para comprobar el comportamiento de puertos UART, SPI y señales internas de la FPGA, analizando los datos transferidos entre dispositivos. 
+Versión 1.2.10. Esta utilidad de Saleae es su interfaz para almacenamiento y visualización de señales, tomadas con sus herramientas hardware de análisis digital. En nuestro caso, la hemos utilizado junto con el analizador lógico ``Logic Analizer''. Para el caso de un puerto serie, permite el análisis de la información de un protocolo concreto, decodificando los bits de cada canal y mostrando el resultado en relación al instante de llegada. Esto hace posible tareas de depuración, basadas en observar el efecto concreto de un cambio en el código. Se pueden nombrar y configurar distintos protocolos para cada canal, de esta manera se ha utilizado también para comprobar el comportamiento de puertos UART, SPI y señales internas de la FPGA, analizando los datos transferidos entre dispositivos. 
 
 
 \section{Plataformas hardware}
 \label{sec:Plataformas hardware}
 
-La arquitectura escogida para el desarrollo de este trabajo, requiere del uso de múltiples tarjetas con distintas capacidades. Estas, trabajan juntas para cumplir un mismo objetivo. Tanto en la estación de tierra, como a bordo del vehículo, se han instalado varios elementos hardware descritos a continuación.
+La arquitectura escogida para el desarrollo de este trabajo, requiere del uso de múltiples tarjetas con distintas capacidades. Estas trabajan juntas para cumplir un mismo objetivo. Tanto en la estación de tierra, como a bordo del vehículo, se han instalado varios elementos hardware descritos a continuación.
 
 \subsection{Arduino Uno y Nano}
 \label{sec:Arduino Uno y Nano}
 
-Como procesadores auxiliares, se han utilizado tarjetas de desarrollo, que integran un procesador de Atmel de 8 bits modelos ATMEGA8U2-MU y ATMEGA328P-AU, un interfaz de UART a USB para comunicaciones, programación y alimentación, conectores hacia las GPIOs de los procesadores y un regulador de 5 a 3,3 voltios. Se pueden alimentar de manera externa sobre la entrada del regulador, o directamente mediante el USB. Se dispone de acceso para programación y comunicaciones a través del mismo USB en ambas tarjetas. La tarjeta ``Nano'' la hemos utilizado a bordo del dron por una cuestión de dimensión y peso, mientras que la tarjeta ``Uno'', significativamente más grande y pesada, se ha quedado en la estación de tierra, junto a la FPGA.
+Como procesadores auxiliares, se han utilizado tarjetas de desarrollo que integran un procesador de Atmel de 8 bits modelos ATMEGA8U2-MU (Arduino Uno en la Figura~\ref{fig:ard_uno}) y ATMEGA328P-AU (Arduino Nano en la Figura~\ref{fig:ard_nano}), un interfaz de UART a USB para comunicaciones, programación y alimentación, conectores hacia las GPIOs de los procesadores y un regulador de 5 a 3,3 voltios. Se pueden alimentar de manera externa sobre la entrada del regulador, o directamente mediante el USB. Se dispone de acceso para programación y comunicaciones a través del mismo USB en ambas tarjetas. La tarjeta ``Nano'' la hemos utilizado a bordo del dron por una cuestión de dimensión y peso, mientras que la tarjeta ``Uno'', significativamente más grande y pesada, se ha quedado en la estación de tierra, junto a la FPGA.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=8cm]{Imagenes/arduino_uno.png}
+	\caption{Tarjeta de desarrollo Arduino Uno}
+	\label{fig:ard_uno}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{Imagenes/arduino_nano.png}
+	\caption{Tarjeta de desarrollo Arduino Nano}
+	\label{fig:ard_nano}
+\end{figure}
 
 \subsection{ICE40 UltraPlus Breakout Board}
 \label{sec:ICE40 UltraPlus Breakout Board}
 
-Tarjeta de desarrollo para la familia UltraPlus de los modelos ICE40 de Lattice. Incluye un regulador de tensión, elementos varios de interfaz humana; como Leds, interruptores, jumpers y conexiones de propósito general. También incluye un interfaz USB reprogramable de FTDI Chip y doble canal, FT232HL, con el canal A configurado para convertir de USB a SPI, ocupado en la programación y el canal B libre de uso. Como procesador dispone de una FPGA ICE40UP5K-SG48 en su encapsulado QFN de 48 pines, con 5280 celdas lógicas, 120Kbits de RAM embebida y 1024kbits de RAM estática, una PLL y 8 bloques DSP (multiplicadores de 16 bits). 
+Tarjeta de desarrollo para la familia UltraPlus de los modelos ICE40 de Lattice (Figura~\ref{fig:ultra_bb}). Incluye un regulador de tensión, elementos varios de interfaz humana; como Leds, interruptores, jumpers y conexiones de propósito general. También incluye un interfaz USB reprogramable de FTDI Chip y doble canal, FT232HL, con el canal A configurado para convertir de USB a SPI, ocupado en la programación y el canal B libre de uso.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{Imagenes/ICE40_bb.png}
+	\caption{Tarjeta de desarrollo ICE40 de Lattice}
+	\label{fig:ultra_bb}
+\end{figure}
+
+Como procesador dispone de una FPGA ICE40UP5K-SG48 en su encapsulado QFN de 48 pines, con 5280 celdas lógicas, 120Kbits de RAM embebida y 1024kbits de RAM estática, una PLL y 8 bloques DSP (multiplicadores de 16 bits). 
 Se trata de una FPGA basada en RAM, por tanto, dispone de una memoria interna de configuración basada en RAM (bancos de memoria que determinan el hardware que se construirá dentro de la FPGA) y una memoria flash externa (instalada en esta tarjeta). Esto permite:
 \begin{itemize}
-  \item Configurar un programa volátil, directamente en la memoria RAM de configuración de la FPGA. Este, sobrescribirá cualquier configuración existente y desaparecerá en caso de apagado.
+  \item Configurar un programa volátil, directamente en la memoria RAM de configuración de la FPGA. Este sobrescribirá cualquier configuración existente y desaparecerá en caso de apagado.
   
   \item Almacenar un programa en memoria flash externa, el cual será cargado en la memoria de configuración RAM, durante el arranque.
 \end{itemize}
 Esta plataforma se ha usado como núcleo de la estación de tierra, conectándose con periféricos radio y el PC de mando.
 
 
-\subsection{SYMA X5C}
+\subsection{Dron SYMA X5C}
 \label{sec:SYMA X5C}
 
-Dron cuadricóptero teledirigido fabricado por Syma. Escogido por ser un dron ligero (100gr) para su tamaño (31cm de ancho y largo), con una estructura robusta. Idóneo para aprendizaje y experimentación, gracias a su importante resistencia mecánica. Su electrónica de recepción radio alcanza 50 metros en la banda de 2.4GHz, cuenta con cuatro canales de control y batería de litio. Además incluye varios elementos que han sido descartado en este TFG, para ganar relación potencia a peso. Como cámara con almacenamiento en SD-Card, iluminación y protecciones de aspas.
+Dron cuadricóptero teledirigido fabricado por Syma. Escogido por ser un dron barato y ligero (100gr) para su tamaño (31cm de ancho y largo), con una estructura robusta. Idóneo para aprendizaje y experimentación, gracias a su importante resistencia mecánica. Su electrónica de recepción radio alcanza 50 metros en la banda de 2.4GHz, cuenta con cuatro canales de control, motores de continua y batería de litio. No dispone de sistemas adicional para la corrección del giro, además del propio giróscopo (como podría ser un magnetómetro). Además incluye varios elementos que han sido descartado en este TFG para aliviar peso. Por ejemplo la cámara con almacenamiento en SD-Card, elementos de iluminación y protecciones de aspas. La Figura~\ref{fig:syma_dron} muestra su configuración original y en la Figura~\ref{fig:OB_desc} se observa el resultado tras aligerar y añadir elementos adicionales.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{Imagenes/Syma_pre.png}
+	\caption{Cuadricoptero comercial de bajo coste de Syma}
+	\label{fig:syma_dron}
+\end{figure}
 
 \subsection{NRF24L01}
 \label{sec:NRF24L01}
 
-Este módulo, integra el chip de mismo código, junto a condensadores de desacoplo necesarios para su utilización, una antena integrada en la propia PCB y pines de acceso a su interfaz SPI. Su utilización durante el trabajo ha facilitado la implementación radio, gracias a la integración en una pequeña PCB de todo lo necesario para establecer la conexión. Ocupa la banda de 2.4GHz, con 125 posibles canales de 1 MHz de ancho de banda cada uno (disponibles para multiplexación en frecuencia). Al trabajar hasta los 3.6 voltios, es perfecto para su utilización junto con las tarjetas Arduino Uno y Nano, que integran reguladores a dicha tensión. Dispone de tasas de transferencia de hasta 2Mbps y alcances de hasta 30 metros.
+Este módulo integra el chip de mismo código, junto a condensadores de desacoplo necesarios para su utilización, una antena integrada en la propia PCB y pines de acceso a su interfaz SPI como se muestra en la Figura~\ref{fig:nrf_rad}. Su utilización durante el trabajo ha facilitado la implementación radio, gracias a la integración en una pequeña PCB de todo lo necesario para establecer la conexión. Ocupa la banda de 2.4GHz, con 125 posibles canales de 1 MHz de ancho de banda cada uno (disponibles para multiplexación en frecuencia). Al trabajar hasta los 3.6 voltios, es perfecto para su utilización junto con las tarjetas Arduino Uno y Nano, que integran reguladores a dicha tensión. Dispone de tasas de transferencia de hasta 2Mbps y alcances de hasta 30 metros.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{Imagenes/NRF24L01.png}
+	\caption{Módulo integrado NRF24L01 para enlace radio}
+	\label{fig:nrf_rad}
+\end{figure}
 
 \subsection{Flow breakout board}
 \label{sec:Flow breakout board}
 
-Se trata de un módulo de BitCraze \cite{sensor_module}, que integra un sensor de medida de distancias por tiempo de vuelo VL53L0x, accesible por I2C, junto a un sensor de flujo óptico PMW3901, accesible por SPI. Incluye la óptica, electrónica periférica para hacerlos funcionar y un cabezal para las conexiones eléctricas. Funciona a 3.6 voltios, por lo que lo alimentamos directamente desde la salida del regulador de la tarjeta Nano, a bordo del dron. Esto también nos permite realizar el interfaz eléctrico directamente entre los procesadores y el módulo. Usamos este conjunto de sensores, ya que nos ofrece medidas del desplazamiento horizontal y vertical, en una sola tarjeta de peso y tamaño adecuados al vehículo escogido.
+Se trata de un módulo de BitCraze \cite{sensor_module}, que integra un sensor de medida de distancias por tiempo de vuelo VL53L0x, accesible por I2C, junto a un sensor de flujo óptico PMW3901, accesible por SPI (Figura~\ref{fig:Flow_bo}). Incluye la óptica, electrónica periférica para hacerlos funcionar y un cabezal para las conexiones eléctricas. Funciona a 3.6 voltios, por lo que se alimenta directamente desde la salida del regulador de la tarjeta Nano, a bordo del dron. Esto también permite realizar el interfaz eléctrico directamente entre los procesadores y el módulo. Usamos este conjunto de sensores, ya que ofrece medidas del desplazamiento horizontal y vertical, en una sola tarjeta de peso y tamaño adecuados al vehículo escogido.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{Imagenes/Flow_bo.png}
+	\caption{Módulo con sensores de medida de distancia y desplazamiento}
+	\label{fig:Flow_bo}
+\end{figure}
 
 
 
@@ -631,56 +706,59 @@ Se trata de un módulo de BitCraze \cite{sensor_module}, que integra un sensor de
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage % empezamos en página impar
-\chapter{Arquitectura del sistema}
+%\chapter{Arquitectura del sistema}
+\chapter{Sistema con dron comercial estable y programable}
 \label{chap: Módulos del sistema}
 
-A continuación se expresa la arquitectura del sistema, en su conjunto de tres módulos principales; PC, dron y estación de tierra. Estos módulos se descomponen en elementos adicionales, explicados más adelante en sus respectivas secciones. También se detallan los interfaces que comunican dichos módulos.
+% El sistema lo compondrán un dron, una estación de tierra y un PC
+A continuación se describe la arquitectura del sistema diseñado e implementado. Consta de tres módulos principales; PC, dron y estación de tierra. Estos módulos se descomponen en elementos adicionales, explicados más adelante en sus respectivas secciones. También se detallan los interfaces que comunican dichos módulos.
 
-\section{Estructura utilizada}
+%\section{Estructura utilizada}
+\section{Diseño del sistema}
 \label{sec:Arquitectura}
 
-La estructura planteada en este TFG, pretende cubrir los objetivos propuestos en el Capítulo~\ref{chap:objetivos}, haciendo uso de la infraestructura indicada en el Capítulo~\ref{chap:Infraestructura utilizada}. Para realizar sus tareas, el sistema se compone de tres módulos principales y dos interfaces de alto nivel. La arquitectura planteada, junto con la relación entre dichos elementos, se muestran en la Figura~\ref{fig:NewSystArq}.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Arquitectura_del_Sistema.png}
-	\caption{Arquitectura de sistema}
-	\label{fig:NewSystArq}
-\end{figure}
+El sistema creado en este TFG pretende cubrir los objetivos propuestos en el Capítulo~\ref{chap:objetivos} y hace uso de la infraestructura indicada en el Capítulo~\ref{chap:Infraestructura utilizada}. Para realizar sus tareas, el sistema se compone de tres módulos principales y dos interfaces de alto nivel. El diseño elegido, junto con la relación entre dichos elementos, se muestra en la Figura~\ref{fig:NewSystArq}.
 
 Los tres módulos principales que lo componen son:
 
 \begin{itemize}
-  \item Ordenador de mando: PC utilizado para enviar hacia la estación de tierra, las instrucciones que comandarán el dron.
+  \item Ordenador de mando: PC utilizado para enviar hacia la estación de tierra las instrucciones que comandarán el dron.
   
-  \item Dron: Se trata del cuadricóptero que deberá obedecer las instrucciones de movimiento, indicadas por el ordenador de mando. Irá cargado de electrónica propia y sensores adicionales.
+  \item Dron: Cuadricóptero que obedece las instrucciones de movimiento indicadas por el ordenador de mando. Va cargado de electrónica propia y de sensores adicionales que mejoran su estabilidad de vuelo.
   
-  \item Estación de tierra: Este módulo actuará como centro neurálgico del sistema, mediante el uso de una FPGA como núcleo. Presta atención a las instrucciones indicadas por el ordenador de mando y deberá encargarse de que el vehículo escogido, ejecute adecuadamente dichas instrucciones.
+  \item Estación de tierra: Actúa como centro neurálgico del sistema mediante el uso de una FPGA como núcleo. Presta atención a las instrucciones indicadas por el ordenador de mando y se encarga de que el vehículo escogido ejecute adecuadamente dichas instrucciones.
 \end{itemize}
 
-Estos elementos, se comunican entre sí gracias a dos grupos de interfaces de sistema:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, keepaspectratio]{Imagenes/Arquitectura_del_Sistema.png}
+	\caption{Diseño de sistema}
+	\label{fig:NewSystArq}
+\end{figure}
+
+Estos elementos se comunican entre sí gracias a dos interfaces (cuyas componentes se marcan en rojo en la Figura~\ref{fig:NewSystArq}):
 
 \begin{itemize}
-  \item Interfaz USB de mando: Conexión unidireccional encargada de portar el flujo de instrucciones desde el ordenador de mando, hacia la estación de tierra, mediante USB 2.0. Contiene las instrucciones de mando, que la estación de tierra deberá hacer efectivas.
+  \item Interfaz USB de mando: Conexión unidireccional encargada de portar el flujo de instrucciones desde el ordenador de mando hacia la estación de tierra, mediante USB 2.0. Contiene las instrucciones de movimiento, que la estación de tierra deberá hacer efectivas.
   
   \item Interfaz radio: Enlace bidireccional que permite comunicar el dron con la estación de tierra y viceversa. Contiene las medidas de los sensores de a bordo y las órdenes de movimiento hacia el dron.
 \end{itemize}
 
 
-La arquitectura, del sistema propuesto, basa su funcionamiento en las siguientes premisas:
+La arquitectura del sistema propuesto basa su funcionamiento en las siguientes premisas:
 
 \begin{itemize}
-  \item La estación de tierra, atiende los comandos que puedan llegar desde el ordenador de mando.
+  \item La estación de tierra atiende los comandos que puedan llegar desde el ordenador de mando.
   
   \item El dron, cargado de sensores, transmitirá periódicamente medidas de posición hacia la estación de tierra.
   
   \item La estación de tierra, gracias a las medidas de los sensores recibidas desde el dron, es capaz de ubicar de manera local la posición del vehículo. Dicha ubicación será relativa al punto de despegue.
   
-  \item La estación de tierra, generará un vector de error de posición para el vehículo en vuelo, mediante la diferencia entre las medidas de posición indicadas por los sensores del vehículo y las órdenes recibidas desde el ordenador de mando.
+  \item La estación de tierra genera un vector de error de posición para el vehículo en vuelo mediante la diferencia entre las medidas de posición indicadas por los sensores del vehículo y las órdenes recibidas desde el ordenador de mando.
   
-  \item La estación de tierra, transmitirá al vehículo en vuelo, ordenes de movimiento para corregir el posible error de posición existente.
+  \item La estación de tierra transmitirá al vehículo en vuelo órdenes de movimiento para corregir el posible error de posición existente.
   
-  \item El dron, realizará cambios en su posición, en base a las ordenes de movimiento recibidas.
+  \item El dron realizará cambios en su posición en base a las órdenes de movimiento recibidas.
 \end{itemize}
 
 De manera general, este conjunto de afirmaciones es llevado a cabo, a través del flujo de control expresado en la Figura~\ref{fig:System_Flow}.
@@ -692,13 +770,13 @@ De manera general, este conjunto de afirmaciones es llevado a cabo, a través del
 	\label{fig:System_Flow}
 \end{figure}
 
-Para cubrir la funcionalidad de dicho bucle, el sistema hace uso de los tres módulos indicados anteriormente (Figura~\ref{fig:NewSystArq}), comentados en los siguientes apartados.
+%Para cubrir la funcionalidad de dicho bucle, el sistema hace uso de los tres módulos indicados anteriormente (Figura~\ref{fig:NewSystArq}), comentados en los siguientes apartados.
 
 
 \section{Dron enriquecido}
 \label{sec:Sistema embarcado}
 
-Se trata de la plataforma utilizada como vehículo volador. Finalmente, para el desarrollo de este TFG, se ha optado por el X5C de Syma (Comentado en~\ref{sec:SYMA X5C}), sobre el que se han realizado modificaciones en su estructura y añadidos a sus capacidades originales.\\ 
+Se trata de la plataforma utilizada como vehículo volador. Para el desarrollo de este TFG se ha optado por el X5C de Syma (descrito en la sección~\ref{sec:SYMA X5C}), sobre el que se han realizado modificaciones en su estructura y añadidos a sus capacidades originales.\\ 
 Estos añadidos le permiten:
 
 \begin{itemize}
@@ -715,7 +793,7 @@ A continuación se comenta la arquitectura que permite la comunicación de estas m
 \subsection{Arquitectura del dron}
 \label{subsec:OB_Desc}
 
-Para controlar el vuelo del dron, desde la estación de tierra, es necesario nutrirla de información sobre el vehículo, que este no tenía a su disposición en origen. Resulta imprescindible, tanto que la FPGA de la estación, conozca la posición del dron; como que este sea capaz de moverse según se lo indiquen en cada instante. Esto último ya se encontraba presente entre las capacidades originales del dron, por tanto, se ha instalado electrónica adicional en el vehículo que le permite cubrir la primera necesidad, conocer su ubicación. La arquitectura final del dron se muestra en la Figura~\ref{fig:Drone_arq}.
+Para controlar el vuelo del dron desde la estación de tierra es necesario nutrirla de información sobre el vehículo, que este no tenía a su disposición tal y como lo vende el fabricante. Resulta imprescindible tanto que la FPGA de la estación conozca la posición del dron, como que este sea capaz de moverse según se lo indiquen en cada instante. Esto último ya se encontraba presente entre las capacidades originales del dron (módulos verdes de la Figura~\ref{fig:Drone_arq}). Se ha instalado electrónica adicional en el vehículo que le permite cubrir la primera necesidad, conocer su ubicación. La arquitectura final del dron se muestra en la Figura~\ref{fig:Drone_arq}. Los módulos azules indican los elementos instalados adicionalmente sobre el vehículo.
 
 \begin{figure}[h]
 	\centering
@@ -724,7 +802,7 @@ Para controlar el vuelo del dron, desde la estación de tierra, es necesario nutr
 	\label{fig:Drone_arq}
 \end{figure}
 
-Esta arquitectura hace uso de múltiples elementos, como sensores, actuadores, procesadores y radios. La radio de recepción, electrónica de control y actuadores, mostrados en la rama inferior de la Figura~\ref{fig:Drone_arq}, son los elementos propios del vehículo. Estos le permiten obedecer ordenes de movimiento, dirigidas a él a través del interfaz radio de subida (Apartado~\ref{subsec:Uplink}), detallado más adelante en este informe. Los módulos de la rama superior de la arquitectura son los que dotan al vehículo en cuestión, de la capacidad de conocer su posición en tiempo real y transmitírsela a la FPGA de la estación de tierra. Estos se comentan a continuación.
+Esta arquitectura hace uso de múltiples elementos como sensores, actuadores, procesadores y radios. La radio de recepción, electrónica de control y actuadores, mostrados en la rama inferior de la Figura~\ref{fig:Drone_arq} son los elementos propios del vehículo. Estos le permiten obedecer órdenes de movimiento, dirigidas a él a través del interfaz radio de subida (Apartado~\ref{subsec:Uplink}), detallado más adelante en este informe. Los módulos de la rama superior de la arquitectura son los añadidos durante este TFG y que dotan al vehículo, de la capacidad de conocer su posición en tiempo real y transmitírsela a la FPGA de la estación de tierra. Se detallan a continuación.
 
 
 \subsection{Módulos del dron}
@@ -739,7 +817,7 @@ El vehículo se equipa con los siguientes módulos adicionales, utilizados para co
   \item Módulo 3: Transmisor radio de enlace con la FPGA.
 \end{itemize}
 
-La instalación final de estos módulos sobre el X5C, se muestra en la Figura~\ref{fig:OB_desc}.
+La instalación final de estos módulos sobre el X5C, se muestra en la Figura~\ref{fig:OB_desc}. Se alimentan desde un pack de batería de 3.6V de Litio, independiente de la electrónica de control propia del vehículo. Esto es debido a que a pesar del peso adicional que supone una batería separada, los drivers de motores del dron exigen picos de corriente considerables a las baterías. Estas, que no siempre tienen capacidad de descarga suficiente debido al diseño precario del dron, caen en tensión. Estas caídas llegaban a producir apagados eventuales en la electrónica de los sensores, lo que dificulta el control, volviendo el sistema inestable en la mayor parte de los casos. Por este motivo, se optó por un conjunto separado de baterías para alimentar los tres módulos adicionales.
 
 \begin{figure}[h]
 	\centering
@@ -748,23 +826,21 @@ La instalación final de estos módulos sobre el X5C, se muestra en la Figura~\ref
 	\label{fig:OB_desc}
 \end{figure}
 
-Estos módulos se alimentan desde un pack de batería de 3.6V de Litio, independiente de la electrónica de control propia del vehículo. Esto es debido a que a pesar del peso adicional que supone una batería separada, los drivers de motores del dron exigen picos de corriente considerables a las baterías. Estas, que no siempre tienen capacidad de descarga suficiente, debido al diseño precario del dron, caen en tensión. Estas caídas, llegaban a producir apagados eventuales en la electrónica de los sensores, lo que dificulta el control, volviendo el sistema inestable en la mayor parte de los casos. Por este motivo, se optó por un conjunto separado de baterías para alimentar los tres módulos adicionales, comentados a continuación.
-
 \subsubsection{Módulo 1: Procesador}
 \label{subsubsec:OB_Mod1}
 
-Este módulo se encarga de inicializar los dos sensores, altura y desplazamiento y realizar lecturas de sus medidas por los interfaces I2C\_Alt y SPI\_XY respectivamente. Una vez tomadas las medidas, se realizan ciertos procesos sobre los datos. El sensor de medida de altura por tiempo de vuelo (ToF) \cite{sensor_tof} sufre errores por debajo de los 3 cm, por tanto este módulo se encarga de filtrar dichos valores erróneos, entregando una medida ficticia de 3 cm para toda altura igual o inferior. Esto provoca que el dron, una vez aterrizado, siga indicando una altura de 3 cm, lo cual no supone un problema ya que llegado el momento del aterrizaje, la altura ficticia de 3 cm medidos, ayuda a descargar el bucle integral, apagando los motores por completo. También realiza las lecturas del sensor de velocidad de desplazamiento horizontal (Flow). El procesador se encarga de convertir estas, en medidas de posición. Para ello integra en el tiempo las medidas de velocidad de desplazamiento, leídas del interfaz SPI\_XY. Además, el sensor de flujo no mide correctamente para alturas inferiores a 4 cm, por tanto, para un rango inferior a este, no se  modifican las medidas de posición.\\
+Este módulo se encarga de inicializar los dos sensores, altura y desplazamiento, y realizar lecturas de sus medidas por los interfaces I2C\_Alt y SPI\_XY respectivamente. Una vez tomadas las medidas, se realizan ciertos procesos sobre los datos. El sensor de medida de altura por tiempo de vuelo (ToF) \cite{sensor_tof} sufre errores por debajo de los 3 cm, por tanto este módulo se encarga de filtrar dichos valores erróneos, entregando una medida ficticia de 3 cm para toda altura igual o inferior. Esto provoca que el dron, una vez aterrizado, siga indicando una altura de 3 cm, lo cual no supone un problema ya que llegado el momento del aterrizaje, la altura ficticia de 3 cm medidos, ayuda a descargar el bucle integral, apagando los motores por completo. También realiza las lecturas del sensor de velocidad de desplazamiento horizontal (Flow). El procesador se encarga de convertir éstas en medidas de posición. Para ello integra en el tiempo las medidas de velocidad de desplazamiento, leídas del interfaz SPI\_XY. Además, el sensor de flujo no mide correctamente para alturas inferiores a 4 cm, por tanto, para un rango inferior a éste no se  modifican las medidas de posición.\\
 Una vez filtradas e integradas, el procesador entrama dichas medidas y las envía hacia la FPGA en tierra, a través de la radio del módulo 3, haciendo uso del interfaz SPI\_Radio.
 
 \subsubsection{Módulo 2: Tarjeta de Sensores}
 \label{subsubsec:OB_Mod2}
 
-Este módulo se compone de una sola tarjeta que integra dos sensores. Juntos ofrecen lo necesario para llegar a conocer la ubicación en tiempo real del dron, relativa al punto de despegue. Incluye electrónica auxiliar y conexiones, además de los módulos de medida de distancia por tiempo de vuelo (Sensor ToF) y medida de velocidad de desplazamiento en dos ejes (Sensor de flujo).
+Este módulo se compone de una sola tarjeta que integra dos sensores. Juntos ofrecen lo necesario para llegar a conocer la ubicación en tiempo real del dron relativa al punto de despegue. Incluye electrónica auxiliar y conexiones, además de los módulos de medida de distancia por tiempo de vuelo (Sensor ToF) y medida de velocidad de desplazamiento en dos ejes (Sensor de flujo).
 
 \begin{itemize}
-  \item Sensor ToF: Se trata del sensor VL53L0x, el cual mide la distancia entre su encapsulado y un objeto enfrentado a él, a través de la medida del tiempo de vuelo de una señal laser. El procesador del módulo 1, accede a sus medidas a través del interfaz I2C\_Alt, un puerto serie I2C. Tiene un rango de trabajo de entre tres centímetros y dos metros. Este sensor se apunta hacia el suelo, desde su soporte en el dron, con la intención de medir la distancia al suelo desde el punto medio del dron. De esta manera una vez aterrizado, la distancia de medida, es ligeramente superior a 3cm, lo cual minimiza la necesidad de filtrado en el procesador (esta última se mantiene igualmente, ya que los apoyos del dron son flexibles, y el sensor tiene tolerancias de medida). Este sensor tiene un retardo de medida de hasta 30ms, el cual, limita en cierta medida la estabilidad del bucle de control de altura ejecutado en la FPGA.
+  \item Sensor ToF: Se trata del sensor VL53L0x, el cual mide la distancia entre su encapsulado y un objeto enfrentado a él, a través de la medida del tiempo de vuelo de una señal laser. El procesador del módulo 1 accede a sus medidas a través del interfaz I2C\_Alt, un puerto serie I2C. Tiene un rango de trabajo de entre tres centímetros y dos metros. Este sensor se apunta hacia el suelo, desde su soporte en el dron, con la intención de medir la distancia al suelo desde el punto medio del dron. De esta manera una vez aterrizado, la distancia de medida, es ligeramente superior a 3cm, lo cual minimiza la necesidad de filtrado en el procesador (esta última se mantiene igualmente, ya que los apoyos del dron son flexibles, y el sensor tiene tolerancias de medida). Este sensor tiene un retardo de medida de hasta 30ms, el cual limita en cierta medida la estabilidad del bucle de control de altura ejecutado en la FPGA.
   
-  \item Sensor  de flujo: Como sensor de desplazamiento horizontal se hace uso del PMW3901 \cite{motion_module}. Este sensor de movimiento, tiene una óptica diseñada para enfocar a distancias superiores a 8cm. Aunque funciona bien hasta los 4cm si se dispone de buena iluminación. Sus medidas son filtradas como se indica en el proceso del módulo 1 para mitigar errores de medida. Entrega medidas de velocidad de desplazamiento en dos ejes, para el plano captado por su óptica. En el montaje, el sensor se apunta hacia el suelo, desde el mismo soporte que para el sensor de tiempo de vuelo. De esta manera se conocerá la velocidad de desplazamiento horizontal del dron respecto del suelo. Es el módulo 1 el encargado de convertir estas medidas de velocidad de desplazamiento en posición relativa horizontal. La orientación de medida del sensor se muestra en la Figura~\ref{fig:BC_XY}. Desde el punto de vista del vehículo, el avance es acorde al eje \textit{-X} y el desplazamiento a izquierdas \textit{+Y}. El sensor tiene un puerto de comunicaciones SPI para inicialización y lectura, sus medidas son leídas por el procesador del módulo 1 a través del interfaz SPI\_XY.
+  \item Sensor  de flujo: Como sensor de desplazamiento horizontal se hace uso del PMW3901 \cite{motion_module}. Este sensor de movimiento tiene una óptica diseñada para enfocar a distancias superiores a 8cm. Aunque funciona bien hasta los 4cm si se dispone de buena iluminación. Sus medidas son filtradas como se indica en el proceso del módulo 1 para mitigar errores de medida. Entrega medidas de velocidad de desplazamiento en dos ejes, para el plano captado por su óptica. En el montaje, el sensor se apunta hacia el suelo, desde el mismo soporte que para el sensor de tiempo de vuelo. De esta manera se conocerá la velocidad de desplazamiento horizontal del dron respecto del suelo. Es el módulo 1 el encargado de convertir estas medidas de velocidad de desplazamiento en posición relativa horizontal. La orientación de medida del sensor se muestra en la Figura~\ref{fig:BC_XY}. Desde el punto de vista del vehículo, el avance es acorde al eje \textit{-X} y el desplazamiento a izquierdas \textit{+Y}. El sensor tiene un puerto de comunicaciones SPI para inicialización y lectura, sus medidas son leídas por el procesador del módulo 1 a través del interfaz SPI\_XY.
 \end{itemize}
 
 \begin{figure}[h]
@@ -778,17 +854,17 @@ Este módulo se compone de una sola tarjeta que integra dos sensores. Juntos ofre
 \subsubsection{Módulo 3: Transmisor de bajada hacia FPGA}
 \label{subsubsec:OB_Mod3}
 
-El módulo se compone de una radio NRF24L01 conectada por puerto SPI al procesador del módulo 1, a través del interfaz SPI\_Radio. Esta interfaz permite tanto la configuración del dispositivo, como su uso para transmitir tramas. El integrado NRF24L01, se configura como transmisor para enviar las medidas de posición, ya procesadas y entramadas por el procesador del módulo 1, hacia la estación de tierra. Dicha transmisión ocurre de manera periódica, después de realizar cada medida de posición.
+El módulo se compone de una radio NRF24L01 conectada por puerto SPI al procesador del módulo 1, a través del interfaz SPI\_Radio. Esta interfaz permite tanto la configuración del dispositivo, como su uso para transmitir tramas. El integrado NRF24L01 se configura como transmisor para enviar las medidas de posición, ya procesadas y entramadas por el procesador del módulo 1, hacia la estación de tierra. Dicha transmisión ocurre de manera periódica, después de realizar cada medida de posición.
 
 \subsection{Interfaces internos}
 \label{subsec:OB_II}
 
-En este apartado se comentan los interfaces de la rama superior de la arquitectura definida anteriormente en \ref{subsec:OB_Desc}. Estos se limitan a comunicar información, dentro de la electrónica adicional instalada en el vehículo.
+En este apartado se comentan los interfaces de la rama superior de la arquitectura definida anteriormente en \ref{subsec:OB_Desc}, pintados de negro en la Figura 4.3. Estos se limitan a comunicar información dentro de la electrónica adicional instalada en el vehículo.
 
 \begin{itemize}
-  \item I2C\_Alt: Comunica por puerto serie I2C, el sensor de medida de altura, VL53L0x del módulo 2, con el procesador del módulo 1. Porta las medidas de distancia entre la zona media del dron y el suelo bajo él, consideradas como la altura del dron.
+  \item I2C\_Alt: Comunica por puerto serie I2C el sensor de medida de altura VL53L0x del módulo 2 con el procesador del módulo 1. Porta las medidas de distancia entre la zona media del dron y el suelo bajo él, consideradas como la altura del dron.
   
-  \item SPI\_XY: Comunica por puerto serie SPI, el sensor de flujo, PMW3901, del módulo 2 con el procesador del módulo 1. Porta las medidas de velocidad de desplazamiento sobre el plano horizontal en ambos ejes, derivadas del desplazamiento del suelo bajo el sensor.
+  \item SPI\_XY: Comunica por puerto serie SPI el sensor de flujo PMW3901 del módulo 2 con el procesador del módulo 1. Porta las medidas de velocidad de desplazamiento sobre el plano horizontal en ambos ejes, derivadas del desplazamiento del suelo bajo el sensor.
   
   \item SPI\_Radio: Puerto serie SPI utilizado para la configuración inicial de la radio NRF24L01, y para la indicación de tramas a enviar. Estas contendrán las medidas de posición ya procesadas. La configuración inicial se realiza de la misma manera que para el módulo receptor en la estación de tierra. En la cual se esperan recibir las tramas enviadas desde esta electrónica a bordo del vehículo, por tanto, la configuración de ambas y el formato de las tramas, deberá ser compatible, según lo especificado en el apartado~\ref{sec: Interfaz radio}.
 \end{itemize}
@@ -797,14 +873,14 @@ En este apartado se comentan los interfaces de la rama superior de la arquitectu
 \subsection{Interfaces externos}
 \label{subsec:OB_IE}
 
-El vehículo solo se comunica con el resto del sistema mediante enlace radio (comentado en el apartado~\ref{sec: Interfaz radio}), a través del \textit{Interfaz Radio} de la Figura~\ref{fig:NewSystArq}, que lo conecta contra la estación de tierra. Esto permite llegar las medidas de posición a la FPGA y las órdenes de movimiento, de vuelta hacai el dron.\\
-También dispone de conexión USB, exclusiva para reprogramación del procesador y extracción de medidas por puerto serie en tareas de depuración. Este no se muestra en la arquitectura del sistema del apartado~\ref{sec:Arquitectura}.
+El vehículo aéreo solo se comunica con el resto del sistema mediante dos enlaces radio (comentados en el apartado~\ref{sec: Interfaz radio}), a través del \textit{Interfaz Radio} de la Figura~\ref{fig:NewSystArq}, que lo conecta contra la estación de tierra. Esto permite llegar las medidas de posición a la FPGA y las órdenes de movimiento de vuelta hacia el dron.\\
+Adicionalmente, el dron dispone de conexión USB, exclusiva para reprogramación del procesador y extracción de medidas por puerto serie en tareas de depuración. Por ser sólo auxiliar y de desarrollo no se muestra en la arquitectura del sistema del apartado~\ref{sec:Arquitectura}.
 
 
 \subsection{Software a bordo del dron}
 \label{sec:Software en el módulo de Downlink embarcado}
 
-El software planteado para el dron, se ejecuta en el procesador Atmel del módulo 1. A través de los interfaces internos (apartado~\ref{subsec:OB_II}) se encarga de configurar radio y sensores, para posteriormente realizar una medida de cada sensor y transmitirlas por radio. El objetivo es mantener informada a la estación de tierra, de la posición del vehículo. Este software se diseñó para cubrir ciertos requisitos como: Consumir la menor cantidad de energía posible, realizar su función rápidamente (permite aumentar el ancho de banda), entreteniéndose lo menor posible en tareas secundarias (intentando minimizar latencias), y transmitir cada medidas rápida e íntegramente. Para cubrir estos objetivos, el software se ha diseñado de manera sencilla. Se comienza iniciando los sensores y la radio, sin modificar sus parámetros durante la ejecución y se prepara una estructura de datos en la que quepa la trama entera a transmitir por radio, en grupos de dos bytes:\\
+El software desarrollado para el dron se ejecuta en el procesador Atmel del módulo 1. A través de los interfaces internos (apartado~\ref{subsec:OB_II}) se encarga de configurar radio y sensores, para posteriormente realizar una medida de cada sensor y transmitirlas por radio. El objetivo es mantener continuamente informada a la estación de tierra de la posición del vehículo. Este software se diseñó para cubrir ciertos requisitos como: Consumir la menor cantidad de energía posible, realizar su función rápidamente (permite aumentar el ancho de banda), entreteniéndose lo menor posible en tareas secundarias (intentando minimizar latencias), y transmitir cada medida rápida e íntegramente. Para cubrir estos objetivos el software se ha diseñado de manera sencilla. Se comienza iniciando los sensores y la radio, sin modificar sus parámetros durante la ejecución y se prepara una estructura de datos en la que quepa la trama entera a transmitir por radio, en grupos de dos bytes:\\
 \begin{verbatim}
 struct TxFrame{
   int16_t H_disp_front;	// Frontal displacement counter
@@ -813,13 +889,13 @@ struct TxFrame{
 };
 \end{verbatim}
 
-Esto permite realizar una medida de cada sensor, filtrarlas y almacenar el resultado sobre su respectiva ubicación en la variable tipo \textit{TxFrame}. Esta entonces, puede transmitirse inmediatamente por radio, minimizando retardos e iterando esta lógica en bucle, hasta el apagado de la electrónica.
+Esto permite realizar una medida de cada sensor, filtrarla y almacenar el resultado sobre su respectiva ubicación en la variable tipo \textit{TxFrame}. Ésta entonces puede transmitirse inmediatamente por radio, minimizando retardos e iterando esta lógica en bucle, hasta el apagado de la electrónica.
 
 
 \section{Estación de tierra basada en FPGA}
 \label{sec: Estación de tierra}
 
-Este módulo, hace posible que el vehículo escogido, obedezca las instrucciones ejecutadas en el ordenador de mando (apartado~\ref{sec: Ordenador de mando}). Además resulta fundamental poder realizar capturas de información en tiempo real, para el ajuste de los distintos parámetros que intervienen en el control del vuelo del vehículo. Por tanto, se instala un conjunto de electrónica que otorgue suficientes capacidades a la estación de tierra:
+Este módulo hace posible que el vehículo escogido obedezca las instrucciones ejecutadas en el ordenador de mando (apartado~\ref{sec: Ordenador de mando}) y materializa los algoritmos de control que dan estabilidad al vuelo del dron. Su computador principal es una FPGA y está en comunicación tanto con el ordenador de mando como con el dron volador. Para el ajuste de los distintos parámetros que intervienen en el control del vuelo del vehículo resulta fundamental poder realizar capturas de información en tiempo real. Por tanto, se instala un conjunto de electrónica que otorgue suficientes capacidades a la estación de tierra:
 
 \begin{itemize}
   \item Atender las tramas de mando enviadas desde PC por USB.
