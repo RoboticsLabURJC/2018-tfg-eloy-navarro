@@ -50,38 +50,36 @@
 \BOOKMARK [2][-]{subsection.4.3.4}{Interfaces externos}{section.4.3}% 50
 \BOOKMARK [2][-]{subsection.4.3.5}{Algoritmos de control sobre la FPGA}{section.4.3}% 51
 \BOOKMARK [1][-]{section.4.4}{Ordenador de mando}{chapter.4}% 52
-\BOOKMARK [2][-]{subsection.4.4.1}{Objetivo}{section.4.4}% 53
-\BOOKMARK [2][-]{subsection.4.4.2}{Funciones}{section.4.4}% 54
-\BOOKMARK [2][-]{subsection.4.4.3}{Interfaz externo}{section.4.4}% 55
-\BOOKMARK [2][-]{subsection.4.4.4}{Librer\355a Python}{section.4.4}% 56
-\BOOKMARK [1][-]{section.4.5}{Interfaz USB de mando}{chapter.4}% 57
-\BOOKMARK [2][-]{subsection.4.5.1}{Caracter\355sticas}{section.4.5}% 58
-\BOOKMARK [2][-]{subsection.4.5.2}{Formato de tramas}{section.4.5}% 59
-\BOOKMARK [1][-]{section.4.6}{Interfaz radio}{chapter.4}% 60
-\BOOKMARK [2][-]{subsection.4.6.1}{Medidas de sensores}{section.4.6}% 61
-\BOOKMARK [2][-]{subsection.4.6.2}{\323rdenes de movimiento}{section.4.6}% 62
-\BOOKMARK [0][-]{chapter.5}{Validaci\363n experimental}{}% 63
-\BOOKMARK [1][-]{section.5.1}{Eachine E010}{chapter.5}% 64
-\BOOKMARK [1][-]{section.5.2}{Syma X5C en Bucle abierto}{chapter.5}% 65
-\BOOKMARK [1][-]{section.5.3}{Pruebas Unitarias}{chapter.5}% 66
-\BOOKMARK [2][-]{subsection.5.3.1}{Pruebas del subsistema de bajada}{section.5.3}% 67
-\BOOKMARK [2][-]{subsection.5.3.2}{Pruebas del subsistema de subida}{section.5.3}% 68
-\BOOKMARK [2][-]{subsection.5.3.3}{Pruebas de m\363dulos software}{section.5.3}% 69
-\BOOKMARK [1][-]{section.5.4}{Condiciones de los bucles de control}{chapter.5}% 70
-\BOOKMARK [2][-]{subsection.5.4.1}{Ancho de banda}{section.5.4}% 71
-\BOOKMARK [2][-]{subsection.5.4.2}{Retardo}{section.5.4}% 72
-\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 73
-\BOOKMARK [1][-]{section.6.1}{Trabajo futuro}{chapter.6}% 74
-\BOOKMARK [2][-]{subsection.6.1.1}{Mejoras en la arquitectura del sistema}{section.6.1}% 75
-\BOOKMARK [2][-]{subsection.6.1.2}{Mejoras hardware}{section.6.1}% 76
-\BOOKMARK [2][-]{subsection.6.1.3}{Mejoras software}{section.6.1}% 77
-\BOOKMARK [0][-]{chapter*.23}{Bibliograf\355a}{}% 78
-\BOOKMARK [0][-]{appendix.Alph1}{Mecanismos de comunicaci\363n}{}% 79
-\BOOKMARK [1][-]{section.Alph1.1}{UART}{appendix.Alph1}% 80
-\BOOKMARK [1][-]{section.Alph1.2}{SPI}{appendix.Alph1}% 81
-\BOOKMARK [1][-]{section.Alph1.3}{I2C}{appendix.Alph1}% 82
-\BOOKMARK [1][-]{section.Alph1.4}{PPM}{appendix.Alph1}% 83
-\BOOKMARK [0][-]{appendix.Alph2}{Sistemas de control}{}% 84
-\BOOKMARK [1][-]{section.Alph2.1}{Bucle abierto}{appendix.Alph2}% 85
-\BOOKMARK [1][-]{section.Alph2.2}{Bucle cerrado}{appendix.Alph2}% 86
-\BOOKMARK [1][-]{section.Alph2.3}{Algoritmos de control PID}{appendix.Alph2}% 87
+\BOOKMARK [2][-]{subsection.4.4.1}{Interfaz externo}{section.4.4}% 53
+\BOOKMARK [2][-]{subsection.4.4.2}{Librer\355a Python}{section.4.4}% 54
+\BOOKMARK [1][-]{section.4.5}{Interfaz USB entre PC de mando y estaci\363n de tierra}{chapter.4}% 55
+\BOOKMARK [2][-]{subsection.4.5.1}{Caracter\355sticas}{section.4.5}% 56
+\BOOKMARK [2][-]{subsection.4.5.2}{Formato de tramas}{section.4.5}% 57
+\BOOKMARK [1][-]{section.4.6}{Interfaz radio entre el drone y la estaci\363n de tierra}{chapter.4}% 58
+\BOOKMARK [2][-]{subsection.4.6.1}{Transmisi\363n de Medidas de sensores}{section.4.6}% 59
+\BOOKMARK [2][-]{subsection.4.6.2}{Transmisi\363n de \323rdenes de movimiento}{section.4.6}% 60
+\BOOKMARK [0][-]{chapter.5}{Validaci\363n experimental}{}% 61
+\BOOKMARK [1][-]{section.5.1}{Eachine E010}{chapter.5}% 62
+\BOOKMARK [1][-]{section.5.2}{Syma X5C en Bucle abierto}{chapter.5}% 63
+\BOOKMARK [1][-]{section.5.3}{Pruebas Unitarias}{chapter.5}% 64
+\BOOKMARK [2][-]{subsection.5.3.1}{Pruebas del subsistema de bajada}{section.5.3}% 65
+\BOOKMARK [2][-]{subsection.5.3.2}{Pruebas del subsistema de subida}{section.5.3}% 66
+\BOOKMARK [2][-]{subsection.5.3.3}{Pruebas de m\363dulos software}{section.5.3}% 67
+\BOOKMARK [1][-]{section.5.4}{Condiciones de los bucles de control}{chapter.5}% 68
+\BOOKMARK [2][-]{subsection.5.4.1}{Ancho de banda}{section.5.4}% 69
+\BOOKMARK [2][-]{subsection.5.4.2}{Retardo}{section.5.4}% 70
+\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 71
+\BOOKMARK [1][-]{section.6.1}{Trabajo futuro}{chapter.6}% 72
+\BOOKMARK [2][-]{subsection.6.1.1}{Mejoras en la arquitectura del sistema}{section.6.1}% 73
+\BOOKMARK [2][-]{subsection.6.1.2}{Mejoras hardware}{section.6.1}% 74
+\BOOKMARK [2][-]{subsection.6.1.3}{Mejoras software}{section.6.1}% 75
+\BOOKMARK [0][-]{chapter*.23}{Bibliograf\355a}{}% 76
+\BOOKMARK [0][-]{appendix.Alph1}{Mecanismos de comunicaci\363n}{}% 77
+\BOOKMARK [1][-]{section.Alph1.1}{UART}{appendix.Alph1}% 78
+\BOOKMARK [1][-]{section.Alph1.2}{SPI}{appendix.Alph1}% 79
+\BOOKMARK [1][-]{section.Alph1.3}{I2C}{appendix.Alph1}% 80
+\BOOKMARK [1][-]{section.Alph1.4}{PPM}{appendix.Alph1}% 81
+\BOOKMARK [0][-]{appendix.Alph2}{Sistemas de control}{}% 82
+\BOOKMARK [1][-]{section.Alph2.1}{Bucle abierto}{appendix.Alph2}% 83
+\BOOKMARK [1][-]{section.Alph2.2}{Bucle cerrado}{appendix.Alph2}% 84
+\BOOKMARK [1][-]{section.Alph2.3}{Algoritmos de control PID}{appendix.Alph2}% 85

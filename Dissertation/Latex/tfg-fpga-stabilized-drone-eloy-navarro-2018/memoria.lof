@@ -26,26 +26,27 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura del dron}}{31}{figure.4.3}% 
 \contentsline {figure}{\numberline {4.4}{\ignorespaces M\'odulos 1, 2 y 3 instalados adicionalmente}}{32}{figure.4.4}% 
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Orientaci\'on de eje horizontales en M\'odulo 2}}{34}{figure.4.5}% 
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Arquitectura de la estaci\'on de tierra}}{37}{figure.4.6}% 
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Montaje de la estaci\'on de tierra}}{38}{figure.4.7}% 
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Arquitectura del software programado en la FPGA}}{42}{figure.4.8}% 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Arquitectura de la estaci\'on de tierra}}{38}{figure.4.6}% 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Montaje de la estaci\'on de tierra}}{39}{figure.4.7}% 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Arquitectura del software programado en la FPGA}}{43}{figure.4.8}% 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Estructura del ordendador de mando}}{44}{figure.4.9}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Medidas de sensores, capturadas en estaci\'on de tierra}}{58}{figure.5.1}% 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando desde PC}}{60}{figure.5.2}% 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores desde dron}}{61}{figure.5.3}% 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Simulaci\'on funcional del m\'odulo de conversi\'on de pulsaciones}}{61}{figure.5.4}% 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{62}{figure.5.5}% 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{63}{figure.5.6}% 
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{63}{figure.5.7}% 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Medidas de sensores, capturadas en estaci\'on de tierra}}{60}{figure.5.1}% 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando desde PC}}{62}{figure.5.2}% 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores desde dron}}{63}{figure.5.3}% 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Simulaci\'on funcional del m\'odulo de conversi\'on de pulsaciones}}{63}{figure.5.4}% 
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{64}{figure.5.5}% 
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{65}{figure.5.6}% 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{65}{figure.5.7}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{74}{figure.Alph1.1}% 
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{75}{figure.Alph1.2}% 
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{76}{figure.Alph1.3}% 
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{76}{figure.Alph1.4}% 
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{77}{figure.Alph1.5}% 
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{78}{figure.Alph1.6}% 
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{76}{figure.Alph1.1}% 
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{77}{figure.Alph1.2}% 
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{78}{figure.Alph1.3}% 
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{78}{figure.Alph1.4}% 
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{79}{figure.Alph1.5}% 
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{80}{figure.Alph1.6}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{80}{figure.Alph2.1}% 
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{81}{figure.Alph2.2}% 
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{83}{figure.Alph2.3}% 
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{82}{figure.Alph2.1}% 
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{83}{figure.Alph2.2}% 
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{85}{figure.Alph2.3}% 
