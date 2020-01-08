@@ -37,7 +37,8 @@ J.~Ganssle.
 
 \bibitem{goebish_multi}
 goebish.
-\newblock {nRF24L01 multi-protocol RC transmitter}, Feb. 2019.
+\newblock {nRF24L01 multi-protocol RC transmitter}.
+\newblock \url{https://github.com/goebish/nrf24_multipro}, Feb. 2019.
 
 \bibitem{PIDs}
 Jero.
@@ -54,6 +55,13 @@ L.~llamas.
 \bibitem{closed_loop_pid}
 J.~A.~C. Montes.
 \newblock First prime air delivery, 2006.
+
+\bibitem{EloyRepo}
+E.~Navarro.
+\newblock {Basic-Drone}.
+\newblock
+  \url{https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/Basic-Drone},
+  July 2019.
 
 \bibitem{ordonez2018tfg}
 J.~Ord{\'o}{\~n}ez~Cerezo.

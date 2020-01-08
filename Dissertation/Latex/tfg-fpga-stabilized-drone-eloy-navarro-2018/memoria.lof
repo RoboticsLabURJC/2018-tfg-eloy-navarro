@@ -31,13 +31,17 @@
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Arquitectura del software programado en la FPGA}}{43}{figure.4.8}% 
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Estructura del ordendador de mando}}{44}{figure.4.9}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Medidas de sensores, capturadas en estaci\'on de tierra}}{60}{figure.5.1}% 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando desde PC}}{62}{figure.5.2}% 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores desde dron}}{63}{figure.5.3}% 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Simulaci\'on funcional del m\'odulo de conversi\'on de pulsaciones}}{63}{figure.5.4}% 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{64}{figure.5.5}% 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{65}{figure.5.6}% 
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{65}{figure.5.7}% 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Dron Eachine E010}}{58}{figure.5.1}% 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Secuencia de vuelo de prueba con dron E010}}{58}{figure.5.2}% 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Dron X5C Original (izquierda) y tras modificaciones (derecha)}}{59}{figure.5.3}% 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Medidas de sensores capturadas en estaci\'on de tierra desde el enlace radio}}{61}{figure.5.4}% 
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Indicaci\'on luminosa de enlace completado satisfactoriamente}}{62}{figure.5.5}% 
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{63}{figure.5.6}% 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando desde PC}}{64}{figure.5.7}% 
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores desde dron}}{65}{figure.5.8}% 
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{65}{figure.5.9}% 
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{66}{figure.5.10}% 
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Secuencia completa de vuelo de dron X5C comandado desde PC}}{68}{figure.5.11}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{76}{figure.Alph1.1}% 

@@ -59,27 +59,29 @@
 \BOOKMARK [2][-]{subsection.4.6.1}{Transmisi\363n de Medidas de sensores}{section.4.6}% 59
 \BOOKMARK [2][-]{subsection.4.6.2}{Transmisi\363n de \323rdenes de movimiento}{section.4.6}% 60
 \BOOKMARK [0][-]{chapter.5}{Validaci\363n experimental}{}% 61
-\BOOKMARK [1][-]{section.5.1}{Eachine E010}{chapter.5}% 62
-\BOOKMARK [1][-]{section.5.2}{Syma X5C en Bucle abierto}{chapter.5}% 63
+\BOOKMARK [1][-]{section.5.1}{Dron Eachine E010}{chapter.5}% 62
+\BOOKMARK [1][-]{section.5.2}{Pruebas b\341sicas de vuelo del dron Syma X5C}{chapter.5}% 63
 \BOOKMARK [1][-]{section.5.3}{Pruebas Unitarias}{chapter.5}% 64
-\BOOKMARK [2][-]{subsection.5.3.1}{Pruebas del subsistema de bajada}{section.5.3}% 65
-\BOOKMARK [2][-]{subsection.5.3.2}{Pruebas del subsistema de subida}{section.5.3}% 66
+\BOOKMARK [2][-]{subsection.5.3.1}{Pruebas del enlace radio del subsistema de bajada}{section.5.3}% 65
+\BOOKMARK [2][-]{subsection.5.3.2}{Pruebas del enlace radio del subsistema de subida}{section.5.3}% 66
 \BOOKMARK [2][-]{subsection.5.3.3}{Pruebas de m\363dulos software}{section.5.3}% 67
-\BOOKMARK [1][-]{section.5.4}{Condiciones de los bucles de control}{chapter.5}% 68
+\BOOKMARK [1][-]{section.5.4}{Pruebas con los bucles de control}{chapter.5}% 68
 \BOOKMARK [2][-]{subsection.5.4.1}{Ancho de banda}{section.5.4}% 69
 \BOOKMARK [2][-]{subsection.5.4.2}{Retardo}{section.5.4}% 70
-\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 71
-\BOOKMARK [1][-]{section.6.1}{Trabajo futuro}{chapter.6}% 72
-\BOOKMARK [2][-]{subsection.6.1.1}{Mejoras en la arquitectura del sistema}{section.6.1}% 73
-\BOOKMARK [2][-]{subsection.6.1.2}{Mejoras hardware}{section.6.1}% 74
-\BOOKMARK [2][-]{subsection.6.1.3}{Mejoras software}{section.6.1}% 75
-\BOOKMARK [0][-]{chapter*.23}{Bibliograf\355a}{}% 76
-\BOOKMARK [0][-]{appendix.Alph1}{Mecanismos de comunicaci\363n}{}% 77
-\BOOKMARK [1][-]{section.Alph1.1}{UART}{appendix.Alph1}% 78
-\BOOKMARK [1][-]{section.Alph1.2}{SPI}{appendix.Alph1}% 79
-\BOOKMARK [1][-]{section.Alph1.3}{I2C}{appendix.Alph1}% 80
-\BOOKMARK [1][-]{section.Alph1.4}{PPM}{appendix.Alph1}% 81
-\BOOKMARK [0][-]{appendix.Alph2}{Sistemas de control}{}% 82
-\BOOKMARK [1][-]{section.Alph2.1}{Bucle abierto}{appendix.Alph2}% 83
-\BOOKMARK [1][-]{section.Alph2.2}{Bucle cerrado}{appendix.Alph2}% 84
-\BOOKMARK [1][-]{section.Alph2.3}{Algoritmos de control PID}{appendix.Alph2}% 85
+\BOOKMARK [1][-]{section.5.5}{Pruebas integrales}{chapter.5}% 71
+\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 72
+\BOOKMARK [1][-]{section.6.1}{Conclusiones}{chapter.6}% 73
+\BOOKMARK [1][-]{section.6.2}{Trabajos futuros}{chapter.6}% 74
+\BOOKMARK [2][-]{subsection.6.2.1}{Mejoras en la arquitectura del sistema}{section.6.2}% 75
+\BOOKMARK [2][-]{subsection.6.2.2}{Mejoras hardware}{section.6.2}% 76
+\BOOKMARK [2][-]{subsection.6.2.3}{Mejoras software}{section.6.2}% 77
+\BOOKMARK [0][-]{chapter*.22}{Bibliograf\355a}{}% 78
+\BOOKMARK [0][-]{appendix.Alph1}{Mecanismos de comunicaci\363n}{}% 79
+\BOOKMARK [1][-]{section.Alph1.1}{UART}{appendix.Alph1}% 80
+\BOOKMARK [1][-]{section.Alph1.2}{SPI}{appendix.Alph1}% 81
+\BOOKMARK [1][-]{section.Alph1.3}{I2C}{appendix.Alph1}% 82
+\BOOKMARK [1][-]{section.Alph1.4}{PPM}{appendix.Alph1}% 83
+\BOOKMARK [0][-]{appendix.Alph2}{Sistemas de control}{}% 84
+\BOOKMARK [1][-]{section.Alph2.1}{Bucle abierto}{appendix.Alph2}% 85
+\BOOKMARK [1][-]{section.Alph2.2}{Bucle cerrado}{appendix.Alph2}% 86
+\BOOKMARK [1][-]{section.Alph2.3}{Algoritmos de control PID}{appendix.Alph2}% 87
