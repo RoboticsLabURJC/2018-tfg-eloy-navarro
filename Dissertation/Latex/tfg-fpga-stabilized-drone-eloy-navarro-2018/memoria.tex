@@ -179,9 +179,14 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
 
-Dada la expansión de los drones en distintas tareas de la actualidad y del uso de las FPGAs como núcleos de procesamiento, resulta natural mezclar dichos dispositivos para beneficio mutuo.
-A lo largo de este proyecto se han diseñado distintos elementos software y hardware para permitirle a un conjunto de instrucciones ejecutadas en un ordenador, controlar por completo las operaciones y trayectoria de vuelo de un drone comercial. Este es capaz de obedecer las instrucciones de posición indicadas por el programa ejecutado, sin estabilización, control ni intervención humana de por medio. Para ello se han diseñado elementos tanto en tierra, como a bordo del drone, que dotan al sistema de control autónomo sobre el vehículo. El control puede realizarse desde cualquier ordenador a través de la instalación de un paquete de librerías y la posterior ejecución de un programa en java. Todo el sistema se ha diseñado en base a FPGAs y software libres, drones de bajo coste y electrónicas concretas para cubrir cada tarea. De esta manera se dispone del control completo sobre el sistema diseñado, permitiendo mejoras y modificaciones futuras sin necesidad de incurrir en elevados costes de adquisición de software o hardware.
-Tras el diseño de los distintos elementos se han realizado verificaciones de cada elemento por separado, integración y posterior verificación del sistema en su conjunto, mediante pruebas experimentales. Se han conseguido resultados especialmente satisfactorios con los sistemas en bucle cerrado, tanto en la estabilización como en el control del drone escogido.
+Dada la expansión de los drones en distintas tareas de la actualidad y del uso de las FPGAs como núcleos de procesamiento, resulta natural mezclar dichos dispositivos para beneficio mutuo. A lo largo de este proyecto se han diseñado distintos elementos software y hardware para que un programa en Python ejecutado controle por completo las operaciones y trayectoria de vuelo de un dron comercial. Este es capaz de obedecer las instrucciones de posición indicadas por el programa ejecutado sin intervención humana de por medio.\\
+Para ello se ha diseñado una estructura basada en: (a) un dron equipado con un conjunto de sensores de posición tridimensional y una radio adicional para comunicar las medidas a tierra; (b) una estación de tierra basada en FPGA que ejecuta y comunica el control de vuelo con el dron mediante un transceptor radio; y (c) un ordenador para ejecutar la aplicación en Python y conectado por USB a la estación de tierra. Estos elementos dotan al sistema de control autónomo y han sido diseñado en base a FPGAs y drones de bajo coste, junto con electrónicas concretas para cubrir cada tarea. Finalmente se escogió un dron X5C de Syma como plataforma de vuelo mejorada mediante sensores de BitCraze, junto a una FPGA de la familia ICE40 de Lattice para la estación, consiguiendo así un sistema final de bajo coste.\\
+Tras el diseño de los distintos elementos se han realizado ensayos de verificaciones de cada uno por separado e integraciones de los mismos. La solución completa diseñada y programada se ha validado experimentalmente con éxito. Se han conseguido resultados especialmente satisfactorios con los sistemas en bucle cerrado, tanto en la estabilización como en el control del dron escogido.
+
+
+%Dada la expansión de los drones en distintas tareas de la actualidad y del uso de las FPGAs como núcleos de procesamiento, resulta natural mezclar dichos dispositivos para beneficio mutuo.
+%A lo largo de este proyecto se han diseñado distintos elementos software y hardware para permitirle a un conjunto de instrucciones ejecutadas en un ordenador, controlar por completo las operaciones y trayectoria de vuelo de un drone comercial. Este es capaz de obedecer las instrucciones de posición indicadas por el programa ejecutado, sin estabilización, control ni intervención humana de por medio. Para ello se han diseñado elementos tanto en tierra, como a bordo del drone, que dotan al sistema de control autónomo sobre el vehículo. El control puede realizarse desde cualquier ordenador a través de la instalación de un paquete de librerías y la posterior ejecución de un programa en java. Todo el sistema se ha diseñado en base a FPGAs y software libres, drones de bajo coste y electrónicas concretas para cubrir cada tarea. De esta manera se dispone del control completo sobre el sistema diseñado, permitiendo mejoras y modificaciones futuras sin necesidad de incurrir en elevados costes de adquisición de software o hardware.
+%Tras el diseño de los distintos elementos se han realizado verificaciones de cada elemento por separado, integración y posterior verificación del sistema en su conjunto, mediante pruebas experimentales. Se han conseguido resultados especialmente satisfactorios con los sistemas en bucle cerrado, tanto en la estabilización como en el control del drone escogido.
 
 
 %\begin{itemize}
@@ -456,7 +461,7 @@ Habiendo ubicado en el capítulo anterior, el contexto y los elementos principale
 \section{Objetivo principal}
 \label{sec:objetivo-ppal}
 
-En este trabajo se pretende hacer estable y programable el vuelo de un dron comercial de bajo coste haciendo uso de FPGAs libres. El sistema deberá ser capaz de estabilizar el vuelo del vehículo de manera autónoma, haciendo uso de electrónica de sensorización embarcada en el dron y computación sobre la FPGA en tierra. Adicionalmente, el dron deberá obedecer las instrucciones de movimiento ejecutadas en el PC, en comunicación con la FPGA de modo que se puedan ejecutar en el ordenador programas que gobiernen el movimiento estable del drone.
+En este trabajo se pretende hacer estable y programable el vuelo de un dron comercial de bajo coste haciendo uso de FPGAs libres. El sistema deberá ser capaz de estabilizar el vuelo del vehículo de manera autónoma, haciendo uso de electrónica de sensorización embarcada en el dron y computación sobre la FPGA en tierra. Adicionalmente, el dron deberá obedecer las instrucciones de movimiento ejecutadas en el PC, en comunicación con la FPGA de modo que se puedan ejecutar en el ordenador programas que gobiernen el movimiento estable del dron.
 
 %\section{Sub-objetivos}
 %\label{sec:Sub-objetivos}
@@ -472,8 +477,8 @@ Este objetivo principal lo hemos articulado en tres subobjetivos cuyas funcional
 %\subsection{Estabilizar dron mediante FPGA en tierra}
 %\label{subsec:Estabilizar dron mediante FPGA en tierra}
 
-	\item Se diseñará una la estación de tierra que establezca la comunicación con el drone. Esta FPGA recibirá
-continuamente los datos de los sensores embarcados en el drone, ejecutará los controladores de vuelo y le enviará continuamente las órdenes de movimiento a la plataforma voladora. En este subobjetivo se creará el software necesario para conseguir un vuelo estacionario y estable del vehículo.
+	\item Se diseñará una la estación de tierra que establezca la comunicación con el dron. Esta FPGA recibirá
+continuamente los datos de los sensores embarcados en el dron, ejecutará los controladores de vuelo y le enviará continuamente las órdenes de movimiento a la plataforma voladora. En este subobjetivo se creará el software necesario para conseguir un vuelo estacionario y estable del vehículo.
 
 %\subsection{Programar dron desde PC}
 %\label{subsec:Programar dron desde PC}
@@ -1055,7 +1060,7 @@ El objetivo de este módulo es permitir el control del vehículo desde PC, ofrecie
 \end{itemize}
 
 %De manera más concreta, dichas funciones controlarán la estación de tierra y el vehículo. Para ello, las tramas transmitidas por USB incluirán información de dos elementos:
-En el ordenador se va a ejecutar la aplicación robótica (en Python) que gobierna el comportamiento del dron. Al usuario se le ofrece una biblioteca en Python que permite el control de los movimientos del drone. La implementación de esa biblioteca se comunica vía USB con la estación de tierra. Adicionalmente la biblioteca incluye también funciones para la configuración de los algoritmos de control PID que materializan el control de bajo nivel. Las tramas transmitidas por USB incluirán información de dos elementos:
+En el ordenador se va a ejecutar la aplicación robótica (en Python) que gobierna el comportamiento del dron. Al usuario se le ofrece una biblioteca en Python que permite el control de los movimientos del dron. La implementación de esa biblioteca se comunica vía USB con la estación de tierra. Adicionalmente la biblioteca incluye también funciones para la configuración de los algoritmos de control PID que materializan el control de bajo nivel. Las tramas transmitidas por USB incluirán información de dos elementos:
 \begin{itemize}
   \item Controles sobre el vehículo: órdenes de control de los cuatro grados de libertad del dron (cabeceo, alabeo, guiñada y altitud), con el objetivo de ofrecer el máximo nivel de manejo.
   
@@ -1204,7 +1209,7 @@ Se comienza la transmisión por el byte de la posición 1, terminando el envío con
 \end{itemize}
 
 
-\section{Interfaz radio entre el drone y la estación de tierra}
+\section{Interfaz radio entre el dron y la estación de tierra}
 \label{sec: Interfaz radio}
 
 Para ejecutar el control de vuelo del vehículo es necesario establecer comunicación con él desde tierra. Dicha comunicación se realiza exclusivamente por radio, mediante dos canales independientes, como se muestra en la sección \textit{Módulo en Vuelo} de la Figura~\ref{fig:NewSystArq}.\\
@@ -1437,7 +1442,7 @@ El test consiste en enviar hacia el decodificador una trama completa para compro
 	\label{fig:FrameDecoderCap}
 \end{figure}
 
-\subsubsection{Prueba del módulo decodificador de tramas desde drone}
+\subsubsection{Prueba del módulo decodificador de tramas desde dron}
 \label{subsubsec:Prueba de modulo decodificador de tramas desde drone}
 
 De manera similar al test al anterior, con este módulo se ensayó la recepción de una trama completa y posterior comprobación de su decodificación. En este caso, las señales recibidas son valores enteros de dieciséis bits en complemento a dos, separados en grupos de dos bytes. El ensayo envía un valor negativo (-2) como avance, un valor positivo mayor que 255 como desplazamiento lateral (400) y un valor positivo menor que 255 como altura (31). El resultado de la decodificación se muestra en la Figura~\ref{fig:FrameDroneDecoderCap}, de manera síncrona al pulso en la señal \textit{source\_data\_valid} en las tres señales posteriores. Observando el -2 del avance en la señal \textit{source\_H\_disp\_front}, el 400 en \textit{source\_H\_disp\_side} y el 31 en \textit{source\_altitude}, se verifica el correcto funcionamiento del módulo.
@@ -1506,7 +1511,7 @@ Este ensayo permitió corregir errores en las transiciones entre estados, que pro
 Una característica fundamental de la solución desarrollada en este TFG es que el control de vuelo se materializa en la FPGA de la estación de tierra con información de los sensores que van a bordo del dron. Las órdenes de control generadas suben vía radio desde la FPGA hasta el propio dron. Este diseño introduce latencias no despreciables que condicionan la calidad del control realizable.\\
 Además, se ha elegido una FPGA barata, de capacidad y velocidad modestas comparadas con otras FPGAs de gama alta. El motivo de elegir este modelo ICE40UP5K es que soporta la toolchain libre IceStudio y aunque en este TFG la hemos usado con entornos de desarrollo propietarios, esta elección permite continuar este trabajo con desarrollos posteriores ya utilizando entornos de desarrollo libres.
 Este diseño y la FPGA modesta, implicaron limitaciones en el ancho de banda final del sistema y sobre todo en las latencias. Ambos dos tienen relación directa con la calidad del control final.\\
-Dos prestaciones fundamentales que condicionan la calidad de los bucles de control son el ancho de banda y las latencias involucradas en un sistema concreto. A continuación se describe el análisis realizado de ellos para el bucle de control del drone desde la estación de tierra.
+Dos prestaciones fundamentales que condicionan la calidad de los bucles de control son el ancho de banda y las latencias involucradas en un sistema concreto. A continuación se describe el análisis realizado de ellos para el bucle de control del dron desde la estación de tierra.
 
 \subsection{Ancho de banda}
 \label{subsec:Ancho de banda}
