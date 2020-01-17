@@ -180,7 +180,7 @@ Además, la pareja quizás no sea para siempre, pero tu madre sí.
 \markboth{RESUMEN}{RESUMEN} % encabezado
 
 Dada la expansión de los drones en distintas tareas de la actualidad y del uso de las FPGAs como núcleos de procesamiento, resulta natural mezclar dichos dispositivos para beneficio mutuo. A lo largo de este proyecto se han diseñado distintos elementos software y hardware para que un programa en Python ejecutado controle por completo las operaciones y trayectoria de vuelo de un dron comercial. Este es capaz de obedecer las instrucciones de posición indicadas por el programa ejecutado sin intervención humana de por medio.\\
-Para ello se ha diseñado una estructura basada en: (a) un dron equipado con un conjunto de sensores de posición tridimensional y una radio adicional para comunicar las medidas a tierra; (b) una estación de tierra basada en FPGA que ejecuta y comunica el control de vuelo con el dron mediante un transceptor radio; y (c) un ordenador para ejecutar la aplicación en Python y conectado por USB a la estación de tierra. Estos elementos dotan al sistema de control autónomo y han sido diseñado en base a FPGAs y drones de bajo coste, junto con electrónicas concretas para cubrir cada tarea. Finalmente se escogió un dron X5C de Syma como plataforma de vuelo mejorada mediante sensores de BitCraze, junto a una FPGA de la familia ICE40 de Lattice para la estación, consiguiendo así un sistema final de bajo coste.\\
+Para ello se ha diseñado una estructura basada en: (a) un dron equipado con un conjunto de sensores tridimensionales de posición y una radio adicional para comunicar las medidas a tierra; (b) una estación de tierra basada en FPGA que ejecuta y comunica el control de vuelo con el dron, mediante un transceptor radio; y (c) un ordenador para ejecutar la aplicación en Python y conectado por USB a la estación de tierra. Estos elementos dotan al sistema de control autónomo y han sido diseñado en base a FPGAs y drones de bajo coste, junto con electrónicas concretas para cubrir cada tarea. Finalmente se escogió un dron X5C de Syma como plataforma de vuelo mejorada mediante sensores de BitCraze, junto a una FPGA de la familia ICE40 de Lattice para la estación y procesadores periféricos de Atmel, consiguiendo así un sistema final de bajo coste.\\
 Tras el diseño de los distintos elementos se han realizado ensayos de verificaciones de cada uno por separado e integraciones de los mismos. La solución completa diseñada y programada se ha validado experimentalmente con éxito. Se han conseguido resultados especialmente satisfactorios con los sistemas en bucle cerrado, tanto en la estabilización como en el control del dron escogido.
 
 
@@ -1325,19 +1325,19 @@ Este apartado describen los experimentos y pruebas realizadas durante el trabajo
 Antes de desembocar finalmente en el dron X5C se exploró el uso del dron Eachine E010 de la Figura~\ref{fig:E010}. Se trata de un pequeño cuadricóptero, ligero y de reacciones nerviosas. Cuenta con 8cm de ancho y 8 cm de largo, conductores en las aspas para minimizar vórtices, batería de litio y 30 metros de alcance con su radio de 2.4GHz.\\
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=8cm]{Imagenes/E010.jpg}
+	\includegraphics[width=6cm]{Imagenes/E010.jpg}
 	\caption{Dron Eachine E010}
 	\label{fig:E010}
 \end{figure}
-Sobre él se hicieron pruebas de control en bucle abierto, se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el dron y se probaron despegues, aterrizajes y vuelos cortos de ida y vuelta en línea recta como el mostrado en la secuencia de la Figura~\ref{fig:E010_test}.\\
-El dron mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas de bucle abierto, aplicando algo de pre-énfasis. Desgraciadamente, el vehículo presentaba derivas erráticas en sus planos horizontales (avance y desplazamiento lateral), y grandes derivas en el eje vertical (altura), dependientes, entre otras cosas, del nivel de carga restante en la batería. Estas dificultades hicieron de los vuelos largos en bucle abierto una tarea imposible.\\
-En una segunda fase se planteó instalar el controlador de vuelo de bucle cerrado a bordo de dicho dron. Este controlador requiere de los sensores y procesador comentados en el apartado~\ref{subsec:OB_Mod}. Desgraciadamente el peso de esa electrónica adicional era excesivo para los motores del Eachine E010, por tanto se decidió abortar esta vía y buscar otra plataforma de mayor potencia. Por este motivo se seleccionó finalmente el dron Syma X5C.
+Sobre él se hicieron pruebas de control en bucle abierto, se realizaron las tareas de enlace de comunicaciones entre la estación de tierra y el dron y se probaron despegues, aterrizajes y vuelos cortos de ida y vuelta en línea recta como el mostrado en la secuencia de imágenes de la Figura~\ref{fig:E010_test}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{Imagenes/Duno.png}
+	\includegraphics[width=16cm]{Imagenes/Secuencia_7.png}
 	\caption{Secuencia de vuelo de prueba con dron E010}
 	\label{fig:E010_test}
 \end{figure}
+\\El dron mostró buen control de vuelo en tiempo cortos, por tanto fue válido para pruebas de bucle abierto, aplicando algo de pre-énfasis. Desgraciadamente, el vehículo presentaba derivas erráticas en sus planos horizontales (avance y desplazamiento lateral), y grandes derivas en el eje vertical (altura), dependientes, entre otras cosas, del nivel de carga restante en la batería. Estas dificultades hicieron de los vuelos largos en bucle abierto una tarea imposible.\\
+En una segunda fase se planteó instalar el controlador de vuelo de bucle cerrado a bordo de dicho dron. Este controlador requiere de los sensores y procesador comentados en el apartado~\ref{subsec:OB_Mod}. Desgraciadamente el peso de esa electrónica adicional era excesivo para los motores del Eachine E010, por tanto se decidió abortar esta vía y buscar otra plataforma de mayor potencia. Por este motivo se seleccionó finalmente el dron Syma X5C.
 
 
 
