@@ -63,6 +63,21 @@ E.~Navarro.
   \url{https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/Basic-Drone},
   July 2019.
 
+\bibitem{Dron_estacionario}
+E.~Navarro.
+\newblock {Syma Closed Loop Against Interference}.
+\newblock \url{https://www.youtube.com/watch?v=V-kKepw79hg}, July 2019.
+
+\bibitem{Dron_idaVuelta}
+E.~Navarro.
+\newblock {Syma Closed Loop Forward and Reverse Movement}.
+\newblock \url{https://www.youtube.com/watch?v=EGjc1TjfpkM}, July 2019.
+
+\bibitem{Dron_Aterrizaje}
+E.~Navarro.
+\newblock {Syma Closed Loop Takeoff and Landing}.
+\newblock \url{https://www.youtube.com/watch?v=U2gZdFM8GPE}, July 2019.
+
 \bibitem{ordonez2018tfg}
 J.~Ord{\'o}{\~n}ez~Cerezo.
 \newblock Control system in open fpgas for autonomous robots.
