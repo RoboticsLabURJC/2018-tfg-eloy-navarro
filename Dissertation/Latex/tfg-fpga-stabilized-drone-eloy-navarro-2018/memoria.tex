@@ -1074,19 +1074,23 @@ En el ordenador se va a ejecutar la aplicación robótica (en Python) que gobierna
 De manera funcional, este módulo hace uso únicamente de un interfaz con el sistema. El comentado \textit{Interfaz USB de Mando}, dirigido contra la estación de tierra y mostrado en la Figura~\ref{fig:NewSystArq}, el cual contiene las instrucciones de mando enviadas hacia la estación de tierra.\\
 Como se comentó en el Apartado~\ref{subsec:GS_IE} también existe un segundo interfaz USB desde la estación de tierra hacia el PC, utilizado exclusivamente para tareas de depuración (no presente en~\ref{fig:NewSystArq}). Este segundo USB comunica al PC con la herramienta de depuración \textit{Logic Analizer} (\ref{sec:Logic Analizer}) ubicada en la estación de tierra, cuyo uso se explica en el Apartado~\ref{subsubsec:GS_Mod5}.
 
-
 \subsection{Librería Python}
 \label{sec:Librería Python}
 
 El software ejecutado en python en el ordenador de mando es el encargado de enviar las instrucciones de mando hacia la estación de tierra. El código fuente del usuario no lo hace directamente sino que se apoya en una biblioteca desarrollada en este TFG. De este modo el usuario puede pensar el comportamiento del dron en términos de CONTROL EN POSICIÓN, más abstractos que la implementación. Las funciones de esta biblioteca permiten modificar tanto los parámetros de los bucles PID, como sus consignas de posición, además de inicializar el enlace USB con la UART receptora en la FPGA.
 
 \begin{table}[H]
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|l|}
 \hline
 \texttt{setPIDValues} & Inicialización de valores de parámetros PID y ajuste de giro.                      \\ \hline
 \texttt{setcontrols}  & Permite el control directo de los 4 grados de libertad disponibles en el vehículo. \\ \hline
 \texttt{settrace}     & Dirige una trayectoria progresiva entre la posición actual y el punto indicado.    \\ \hline
+\texttt{setcircle}     & Dirige una trayectoria progresiva en forma de arco entre la posición actual y el angulo indicado.    \\ \hline
+\texttt{takeoff}     & Arranca los motores y realiza el despegue hasta la altura indicada.    \\ \hline
+\texttt{landing}     & Disminuye la altura progresivamente hasta el contacto con el suelo y apagado de motores.    \\ \hline
 \end{tabular}
+}
 \end{table}
 
 A través de la ejecución de la función \texttt{setPIDValues} se cargan los valores de las constantes para los PIDs vertical (Altura) y horizontales (cabeceo y alabeo), junto al offset para la corrección del error de giro (guiñada).
@@ -1125,6 +1129,46 @@ Adicionalmente al método de control directo, se puede hacer uso de la función \t
 
 Esta función hace uso de \texttt{setcontrols},  para generar puntos intermedios en una trayectoria larga. Los parámetros son los mismos que para \texttt{setcontrols}, salvo por el añadido de Steps, que indica el número de puntos intermedios a crear entre el punto actual y el destino indicado. Esta función es útil para recorrer distancias largas. Se debe a que en caso de, por ejemplo, despegue y vuelo a una distancia considerable del punto de despegue, se tendría un error de posición grande, lo que provoca un empuje considerable en la dirección de corrección del error. A pesar del posterior suavizado en la aceleración, debido a la componente derivativa, este empuje excesivo puede desestabilizar el control. Además, al inclinar brusca y considerablemente el vehículo se dificulta la adecuada medida de posición por parte del sensor óptico.\\
 Ocurre algo similar con el sensor de altura. Para una inclinación considerable del vehículo este mide una distancia mayor, debido al nuevo ángulo de incidencia sobre el suelo. Esto se traduce en un avance tortuoso del dron, avanzando ``a tirones'' hacia su destino. Para evitar esto se hace uso de \texttt{settrace}, que disminuye el crecimiento excesivo de los errores, minimizando este efecto.\\
+
+La función \texttt{setcircle} permite trazar arcos circulares desde la posición actual del vehículo, hasta la indicada en sus parámetros. Funciona de manera similar a \texttt{settrace} en cuanto a la generación de una trayectoria con puntos intermedios. Esta trayectoria se define a través de sus parámetros:
+
+\begin{flushleft}
+\textit{def} \texttt{setcircle (grados\_ini, grados\_fin, radio, clockwise, duracion\_grado):}
+\end{flushleft}
+
+\begin{itemize}
+  \item Los parámetros: grados\_ini, grados\_fin y radio definen el arco a trazar deseado. Dicho arco se trazará partiendo de la posición actual y terminando una vez recorrido el ángulo formado por la diferencia entre grados\_fin y grados\_ini para el radio indicado.
+  
+  \item El parámetro clockwise sirve para trazar el arco a derechas o a izquierdas.
+  
+  \item duracion\_grado permite controlar la velocidad angular a la que se trazará el arco, teniendo una relación inversamente proporcional.
+\end{itemize}
+
+La función \texttt{takeoff} realiza el despegue del vehículo hasta la posición indicada en sus parámetros:
+
+\begin{flushleft}
+\textit{def} \texttt{takeoff (height, duration):}
+\end{flushleft}
+
+\begin{itemize}
+  \item La altura de vuelo deseada se indica a través del parámetro height en centímetros.
+  
+  \item El parámetro duration controla la velocidad de ascenso del dron hasta la altura indicada previamente.
+\end{itemize}
+
+Esta función garantiza un despegue controlado limitando la corriente inicial exigida por los motores, a través de una gestión adecuada de los parámetros PID durante el ascenso. Esto resulta necesario, ya que un ascenso brusco con los parámetros PID en su valor de vuelo estable, produce un exceso de crecimiento en la derivada del error de altura (al cambiar bruscamente de cero a height), pidiendo una descarga excesiva que las baterías del dron no pueden suministrar, resultando en un apagado de la electrónica propia del vehículo. Esta función traza un ascenso suave, a la vez que minimiza estas aceleraciones inadecuadas.\\
+
+Para completar la librería la función \texttt{landing} se encarga del aterrizaje del dron hasta el contacto con el suelo, controlando la velocidad de descenso. Para ello hace uso de un solo parámetro:
+
+\begin{flushleft}
+\textit{def} \texttt{landing (duration):}
+\end{flushleft}
+
+\begin{itemize}
+  \item El parámetro duration controla el tiempo de descenso del dron hasta el contacto con el suelo.
+\end{itemize}
+
+Transcurrido el periodo de tiempo indicado en el parámetro duration, se procede al apagado de los motores y descarga de las variables diferenciales del sistema, preparando así el vehículo para un nuevo vuelo, independiente del anterior.
 
 
 %En este punto han quedado descritos los módulos que componen el sistema, sin entrar en detalle en los interfaces que los ponen en comunicación entre ellos.
