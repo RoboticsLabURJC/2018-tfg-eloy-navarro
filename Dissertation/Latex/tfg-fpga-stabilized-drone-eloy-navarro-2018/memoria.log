@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.4)  26 JAN 2020 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.4)  1 FEB 2020 21:12
 entering extended mode
 **./memoria.tex
 (memoria.tex
@@ -1074,18 +1074,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Info: Redefining \. on input line 1457.
 LaTeX Info: Redefining \% on input line 1457.
 [63]
-<Imagenes/Duno.png, id=1049, 246.1697pt x 111.41624pt>
-File: Imagenes/Duno.png Graphic file (type png)
-<use Imagenes/Duno.png>
-Package pdftex.def Info: Imagenes/Duno.png  used on input line 1460.
-(pdftex.def)             Requested size: 284.52756pt x 128.78221pt.
+<Imagenes/Led_Enlace_on.png, id=1049, 491.58656pt x 516.42938pt>
+File: Imagenes/Led_Enlace_on.png Graphic file (type png)
+<use Imagenes/Led_Enlace_on.png>
+Package pdftex.def Info: Imagenes/Led_Enlace_on.png  used on input line 1460.
+(pdftex.def)             Requested size: 170.71652pt x 179.34245pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1470.
-LaTeX Info: Redefining \% on input line 1470.
- [64 <./Imagenes/Drone_Sensors_Cap.png> <./Imagenes/Duno.png>]
-<Imagenes/Cap_Mod_uart_rx_SP8PI1.png, id=1058, 855.195pt x 159.59625pt>
+LaTeX Info: Redefining \. on input line 1475.
+LaTeX Info: Redefining \% on input line 1475.
+ [64 <./Imagenes/Drone_Sensors_Cap.png>]
+<Imagenes/Cap_Mod_uart_rx_SP8PI1.png, id=1057, 855.195pt x 159.59625pt>
 File: Imagenes/Cap_Mod_uart_rx_SP8PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_uart_rx_SP8PI1.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_uart_rx_SP8PI1.png  used on input lin
@@ -1098,8 +1102,8 @@ Overfull \hbox (56.90549pt too wide) in paragraph at lines 1478--1479
 
 LaTeX Info: Redefining \. on input line 1487.
 LaTeX Info: Redefining \% on input line 1487.
-[65 <./Imagenes/Cap_Mod_uart_rx_SP8PI1.png>]
-<Imagenes/Cap_Mod_frame_decoder_SP13PI1.png, id=1068, 587.94656pt x 293.59688pt
+[65 <./Imagenes/Led_Enlace_on.png> <./Imagenes/Cap_Mod_uart_rx_SP8PI1.png>]
+<Imagenes/Cap_Mod_frame_decoder_SP13PI1.png, id=1067, 587.94656pt x 293.59688pt
 >
 File: Imagenes/Cap_Mod_frame_decoder_SP13PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_frame_decoder_SP13PI1.png>
@@ -1111,7 +1115,10 @@ Overfull \hbox (28.45273pt too wide) in paragraph at lines 1490--1491
  [][] 
  []
 
-<Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png, id=1070, 523.9575pt x 216.057
+LaTeX Info: Redefining \. on input line 1499.
+LaTeX Info: Redefining \% on input line 1499.
+[66 <./Imagenes/Cap_Mod_frame_decoder_SP13PI1.png>]
+<Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png, id=1075, 523.9575pt x 216.057
 19pt>
 File: Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png>
@@ -1123,13 +1130,10 @@ Overfull \hbox (28.45273pt too wide) in paragraph at lines 1502--1503
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 1523.
-LaTeX Info: Redefining \% on input line 1523.
-[66 <./Imagenes/Cap_Mod_frame_decoder_SP13PI1.png>]
-<Imagenes/Cap_Mod_pid_altitude_SP19PI6.png, id=1079, 1014.79124pt x 411.03563pt
+LaTeX Info: Redefining \. on input line 1532.
+LaTeX Info: Redefining \% on input line 1532.
+[67 <./Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png>]
+<Imagenes/Cap_Mod_pid_altitude_SP19PI6.png, id=1085, 1014.79124pt x 411.03563pt
 >
 File: Imagenes/Cap_Mod_pid_altitude_SP19PI6.png Graphic file (type png)
 <use Imagenes/Cap_Mod_pid_altitude_SP19PI6.png>
@@ -1141,13 +1145,7 @@ Overfull \hbox (56.90549pt too wide) in paragraph at lines 1536--1537
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 1546.
-LaTeX Info: Redefining \% on input line 1546.
-[67 <./Imagenes/Cap_Mod_frame_dron_decoder_SP18PI1.png>]
-<Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png, id=1088, 798.73407pt x 174.6525pt>
+<Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png, id=1087, 798.73407pt x 174.6525pt>
 File: Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png Graphic file (type png)
 <use Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png>
 Package pdftex.def Info: Imagenes/Cap_Mod_ppm_encoder_SP10PI1.png  used on inpu
@@ -1158,13 +1156,10 @@ Overfull \hbox (56.90549pt too wide) in paragraph at lines 1549--1550
  [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Info: Redefining \. on input line 1565.
 LaTeX Info: Redefining \% on input line 1565.
- [68 <./Imagenes/Cap_Mod_pid_altitude_SP19PI6.png> <./Imagenes/Cap_Mod_ppm_enco
-der_SP10PI1.png>]
+[68 <./Imagenes/Cap_Mod_pid_altitude_SP19PI6.png> <./Imagenes/Cap_Mod_ppm_encod
+er_SP10PI1.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 1577.
@@ -1174,7 +1169,7 @@ LaTeX Info: Redefining \. on input line 1598.
 LaTeX Info: Redefining \% on input line 1598.
 
 [70]
-<Imagenes/X5C_Secuencia_7_Small.png, id=1109, 1385.175pt x 1083.29718pt>
+<Imagenes/X5C_Secuencia_7_Small.png, id=1108, 1385.175pt x 1083.29718pt>
 File: Imagenes/X5C_Secuencia_7_Small.png Graphic file (type png)
 <use Imagenes/X5C_Secuencia_7_Small.png>
 Package pdftex.def Info: Imagenes/X5C_Secuencia_7_Small.png  used on input line
@@ -1220,13 +1215,13 @@ Ap\'endice A.
 
 
 ]
-<Imagenes/UART_funcionamiento.png, id=1175, 425.33907pt x 232.61906pt>
+<Imagenes/UART_funcionamiento.png, id=1174, 425.33907pt x 232.61906pt>
 File: Imagenes/UART_funcionamiento.png Graphic file (type png)
 <use Imagenes/UART_funcionamiento.png>
 Package pdftex.def Info: Imagenes/UART_funcionamiento.png  used on input line 1
 741.
 (pdftex.def)             Requested size: 398.33858pt x 217.8633pt.
-<Imagenes/spi_funcionamiento.jpg, id=1179, 724.95844pt x 323.70938pt>
+<Imagenes/spi_funcionamiento.jpg, id=1178, 724.95844pt x 323.70938pt>
 File: Imagenes/spi_funcionamiento.jpg Graphic file (type jpg)
 <use Imagenes/spi_funcionamiento.jpg>
 Package pdftex.def Info: Imagenes/spi_funcionamiento.jpg  used on input line 17
@@ -1239,7 +1234,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Info: Redefining \. on input line 1765.
 LaTeX Info: Redefining \% on input line 1765.
 [80 <./Imagenes/UART_funcionamiento.png>]
-<Imagenes/spi_esquema.png, id=1185, 519.9425pt x 246.9225pt>
+<Imagenes/spi_esquema.png, id=1184, 519.9425pt x 246.9225pt>
 File: Imagenes/spi_esquema.png Graphic file (type png)
 <use Imagenes/spi_esquema.png>
 Package pdftex.def Info: Imagenes/spi_esquema.png  used on input line 1775.
@@ -1248,7 +1243,7 @@ Package pdftex.def Info: Imagenes/spi_esquema.png  used on input line 1775.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Imagenes/I2C_Arq.png, id=1188, 351.3125pt x 124.465pt>
+<Imagenes/I2C_Arq.png, id=1187, 351.3125pt x 124.465pt>
 File: Imagenes/I2C_Arq.png Graphic file (type png)
 <use Imagenes/I2C_Arq.png>
 Package pdftex.def Info: Imagenes/I2C_Arq.png  used on input line 1788.
@@ -1259,7 +1254,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Info: Redefining \. on input line 1794.
 LaTeX Info: Redefining \% on input line 1794.
 [81 <./Imagenes/spi_funcionamiento.jpg>]
-<Imagenes/I2C_Frame_Format.jpg, id=1194, 289.8027pt x 71.7882pt>
+<Imagenes/I2C_Frame_Format.jpg, id=1193, 289.8027pt x 71.7882pt>
 File: Imagenes/I2C_Frame_Format.jpg Graphic file (type jpg)
 <use Imagenes/I2C_Frame_Format.jpg>
 Package pdftex.def Info: Imagenes/I2C_Frame_Format.jpg  used on input line 1797
@@ -1275,7 +1270,7 @@ Underfull \vbox (badness 1881) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 1807.
 LaTeX Info: Redefining \% on input line 1807.
  [82 <./Imagenes/spi_esquema.png> <./Imagenes/I2C_Arq.png>]
-<Imagenes/Mod_PPM.png, id=1204, 472.76625pt x 121.95563pt>
+<Imagenes/Mod_PPM.png, id=1203, 472.76625pt x 121.95563pt>
 File: Imagenes/Mod_PPM.png Graphic file (type png)
 <use Imagenes/Mod_PPM.png>
 Package pdftex.def Info: Imagenes/Mod_PPM.png  used on input line 1810.
@@ -1291,7 +1286,7 @@ LaTeX Info: Redefining \. on input line 1818.
 LaTeX Info: Redefining \% on input line 1818.
  [84 <./Imagenes/Mod_PPM.png>]
 Ap\'endice B.
-<Imagenes/Open_loop_Controller.png, id=1215, 488.57532pt x 198.7425pt>
+<Imagenes/Open_loop_Controller.png, id=1214, 488.57532pt x 198.7425pt>
 File: Imagenes/Open_loop_Controller.png Graphic file (type png)
 <use Imagenes/Open_loop_Controller.png>
 Package pdftex.def Info: Imagenes/Open_loop_Controller.png  used on input line 
@@ -1303,7 +1298,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [85
 
 ]
-<Imagenes/Closed_Loop_Controller.png, id=1223, 510.40688pt x 271.76532pt>
+<Imagenes/Closed_Loop_Controller.png, id=1222, 510.40688pt x 271.76532pt>
 File: Imagenes/Closed_Loop_Controller.png Graphic file (type png)
 <use Imagenes/Closed_Loop_Controller.png>
 Package pdftex.def Info: Imagenes/Closed_Loop_Controller.png  used on input lin
@@ -1319,7 +1314,7 @@ LaTeX Info: Redefining \% on input line 1858.
 LaTeX Info: Redefining \. on input line 1873.
 LaTeX Info: Redefining \% on input line 1873.
  [87 <./Imagenes/Closed_Loop_Controller.png>]
-<Imagenes/PID_Figure.png, id=1242, 225.84375pt x 150.5625pt>
+<Imagenes/PID_Figure.png, id=1241, 225.84375pt x 150.5625pt>
 File: Imagenes/PID_Figure.png Graphic file (type png)
 <use Imagenes/PID_Figure.png>
 Package pdftex.def Info: Imagenes/PID_Figure.png  used on input line 1890.
@@ -1353,7 +1348,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1968.
  ) 
 Here is how much of TeX's memory you used:
  9206 strings out of 492483
- 139903 string characters out of 3122043
+ 139957 string characters out of 3122043
  237041 words of memory out of 3000000
  12990 multiletter control sequences out of 15000+200000
  56978 words of font info for 87 fonts, out of 3000000 for 9000
@@ -1374,9 +1369,9 @@ fb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8
 a.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/ut
 mr8a.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on memoria.pdf (101 pages, 37139956 bytes).
+Output written on memoria.pdf (101 pages, 38224632 bytes).
 PDF statistics:
- 1363 PDF objects out of 1440 (max. 8388607)
+ 1362 PDF objects out of 1440 (max. 8388607)
  292 named destinations out of 1000 (max. 500000)
  942 words of extra memory for PDF output out of 10000 (max. 10000000)
 
