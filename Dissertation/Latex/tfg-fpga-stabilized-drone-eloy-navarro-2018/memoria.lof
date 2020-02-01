@@ -36,7 +36,7 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Secuencia de vuelo con dron E010: (a) Comando, (b) Despegue, (c)-(f) ida y vuelta y (g) aterrizaje.}}{60}{figure.5.3}%
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Dron X5C Original (izquierda) y tras modificaciones (derecha)}}{62}{figure.5.4}%
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Medidas de sensores capturadas en estaci\'on de tierra desde el enlace radio}}{64}{figure.5.5}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Indicaci\'on luminosa de enlace completado satisfactoriamente}}{65}{figure.5.6}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Indicaci\'on luminosa de enlace radio correcto entre estaci\'on y dron}}{65}{figure.5.6}%
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{65}{figure.5.7}%
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando desde PC}}{66}{figure.5.8}%
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores desde dron}}{67}{figure.5.9}%
