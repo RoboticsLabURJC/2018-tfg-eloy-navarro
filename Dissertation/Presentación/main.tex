@@ -37,8 +37,7 @@
 	\item Introducci\'on
 	\item Objetivos
 	\item Infraestructura
-	\item Soporte del Nao en JdeRobot
-	\item VisualHFSM 4.0
+	\item ...
 	\item Conclusiones
 \end{itemize}
 \end{hslide}
@@ -98,10 +97,25 @@
 
 \begin{hslide}
 \slsect{Objetivos}
+Hacer \textbf{estable y programable} el vuelo de un dron comercial de
+bajo coste haciendo uso de FPGAs libres
 
 Sub-objetivos:
 	\begin{itemize}
-		\item 
+		\item Sensorizar veh\'iculo y enlazarlo con tierra
+		\item Dise\~nar estaci\'on de tierra y control en comunicaci\'on con dron y PC
+		\item Dise\~nar software para PC de mando en Python
+	\end{itemize}
+\end{hslide}
+
+%%--------------------------------------------------------------
+
+\begin{hslide}
+\slsubsect{Requisitos}
+	\begin{itemize}
+		\item Control en tres grados de libertad independientes
+		\item Tiempo real
+		\item ... Este apartado quiz\'as sobra?
 	\end{itemize}
 \end{hslide}
 
@@ -111,7 +125,26 @@ Sub-objetivos:
 
 \begin{hslide}
 \slsect{Infraestructura}
+\begin{minipage}{6.5cm}
+	\slsubsect{Software}
+	\begin{itemize}
+		\item IDEs: Quartus, IceCube2, ArduinoIDE
+		\item Simulaci\'on: ModelSim, FT\_Prog
+		\item Programaci\'on y depuraci\'on: Diamond, Logic
+	\end{itemize}
+	\slsubsect{Hardware}
+	\begin{itemize}
+		\item Plataformas: Arduino, ICE40, SYMA X5C
+		\item Comunicaciones: NRF24L01
+		\item Sensores: Flow breakout board
 
+	\end{itemize}
+\end{minipage} \hfill
+\begin{minipage}{4cm}
+	\begin{figure}
+		\includegraphics[width=5.2cm]{Imagenes/Infraestructura}
+	\end{figure}
+\end{minipage} \hfill
 \end{hslide}
 
 %%--------------------------------------------------------------
