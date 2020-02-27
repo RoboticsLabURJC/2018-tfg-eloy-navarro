@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.4)  27 FEB 2020 23:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.4)  28 FEB 2020 00:17
 entering extended mode
 **./main.tex
 (main.tex
@@ -696,13 +696,19 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [7
 
  <./Imagenes/Arquitectura_del_Sistema.png>]
+<Imagenes/Flujo_del_Sistema.png, id=49, 1172.88188pt x 962.09438pt>
+File: Imagenes/Flujo_del_Sistema.png Graphic file (type png)
+<use Imagenes/Flujo_del_Sistema.png>
+Package pdftex.def Info: Imagenes/Flujo_del_Sistema.png  used on input line 175
+.
+(pdftex.def)             Requested size: 227.62204pt x 186.7048pt.
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 174.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 178.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 174.
+Package pdftex.def Info: template/peloto.png  used on input line 178.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -710,14 +716,14 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
 [8
 
-]
+ <./Imagenes/Flujo_del_Sistema.png>]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 179.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 183.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 179.
+Package pdftex.def Info: template/peloto.png  used on input line 183.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -728,11 +734,11 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 ]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 184.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 188.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 184.
+Package pdftex.def Info: template/peloto.png  used on input line 188.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -741,19 +747,13 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [10
 
 ]
-
-LaTeX Font Warning: Font shape `OT1/cmtt/bx/sl' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 193.
-
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 193.
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 195.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 193.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 195.
+Package pdftex.def Info: template/peloto.png  used on input line 193.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -762,15 +762,19 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [11
 
 ]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/sl' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 198.
+
+LaTeX Font Warning: Font shape `OT1/cmtt/bx/sl' undefined
+(Font)              using `OT1/cmtt/bx/n' instead on input line 202.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 202.
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 200.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 204.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 200.
+Package pdftex.def Info: template/peloto.png  used on input line 204.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -779,13 +783,15 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [12
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/sl' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 207.
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 208.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 209.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 208.
+Package pdftex.def Info: template/peloto.png  used on input line 209.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -796,17 +802,32 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 ]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 215.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 217.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 215.
+Package pdftex.def Info: template/peloto.png  used on input line 217.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
 
 [14
+
+]
+File: template/gsyc2.jpg Graphic file (type jpg)
+<use template/gsyc2.jpg>
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 224.
+(pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
+File: template/peloto.png Graphic file (type png)
+<use template/peloto.png>
+Package pdftex.def Info: template/peloto.png  used on input line 224.
+(pdftex.def)             Requested size: 15.785pt x 19.91684pt.
+
+Overfull \vbox (0.14795pt too high) has occurred while \output is active []
+
+
+[15
 
 ]
 
@@ -822,10 +843,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 10832 strings out of 492483
- 184329 string characters out of 3122043
- 262564 words of memory out of 3000000
- 15016 multiletter control sequences out of 15000+200000
+ 10840 strings out of 492483
+ 184575 string characters out of 3122043
+ 262562 words of memory out of 3000000
+ 15023 multiletter control sequences out of 15000+200000
  7756 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  54i,10n,59p,462b,555s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -841,9 +862,9 @@ rs/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10
 ts/cm/cmssbx10.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmsy5.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/
 fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (15 pages, 2249079 bytes).
+Output written on main.pdf (16 pages, 2298052 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
+ 109 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
