@@ -1,57 +1,57 @@
 \babel@toc {spanish}{}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Dron aplicando fitosanitarios desde el aire}}{2}{figure.1.1}% 
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Sensor \'optico Sequoia+}}{3}{figure.1.2}% 
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Imagen tomada desde el dron utilizado durante el rescate de Rick Allen}}{3}{figure.1.3}% 
-\contentsline {figure}{\numberline {1.4}{\ignorespaces M\'odulo LifeSeeker de Centum}}{4}{figure.1.4}% 
-\contentsline {figure}{\numberline {1.5}{\ignorespaces dron de Amazon en prueba real de env\IeC {\'\i }o}}{5}{figure.1.5}% 
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Sentido de rotaci\'on en cuadric\'optero}}{6}{figure.1.6}% 
-\contentsline {figure}{\numberline {1.7}{\ignorespaces Fuerzas asociadas a motores en dron}}{6}{figure.1.7}% 
-\contentsline {figure}{\numberline {1.8}{\ignorespaces Masa y capac\IeC {\'\i }metros de STMicroelectronics}}{7}{figure.1.8}% 
-\contentsline {figure}{\numberline {1.9}{\ignorespaces Bloques Hardware del sistema de control y drivers de un cuadric\'optero}}{8}{figure.1.9}% 
-\contentsline {figure}{\numberline {1.10}{\ignorespaces Altura (Uz), cabeceo (pitch), gui\~nada (yaw) y alabeo (roll)}}{9}{figure.1.10}% 
-\contentsline {figure}{\numberline {1.11}{\ignorespaces Logo de Icestudio, IDE para desarrollo de software en FPGAs libres}}{12}{figure.1.11}% 
-\contentsline {figure}{\numberline {1.12}{\ignorespaces Captura del entorno Icestudio}}{12}{figure.1.12}% 
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Dron aplicando fitosanitarios desde el aire}}{2}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Sensor \'optico Sequoia+}}{3}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Imagen tomada desde el dron utilizado durante el rescate de Rick Allen}}{3}{figure.1.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces M\'odulo LifeSeeker de Centum}}{4}{figure.1.4}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces dron de Amazon en prueba real de env\IeC {\'\i }o}}{5}{figure.1.5}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Sentido de rotaci\'on en cuadric\'optero}}{6}{figure.1.6}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Fuerzas asociadas a motores en dron}}{6}{figure.1.7}%
+\contentsline {figure}{\numberline {1.8}{\ignorespaces Masa y capac\IeC {\'\i }metros de STMicroelectronics}}{7}{figure.1.8}%
+\contentsline {figure}{\numberline {1.9}{\ignorespaces Bloques Hardware del sistema de control y drivers de un cuadric\'optero}}{8}{figure.1.9}%
+\contentsline {figure}{\numberline {1.10}{\ignorespaces Altura (Uz), cabeceo (pitch), gui\~nada (yaw) y alabeo (roll)}}{9}{figure.1.10}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces Logo de Icestudio, IDE para desarrollo de software en FPGAs libres}}{12}{figure.1.11}%
+\contentsline {figure}{\numberline {1.12}{\ignorespaces Captura del entorno Icestudio}}{12}{figure.1.12}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Tarjeta de desarrollo Arduino Uno}}{23}{figure.3.1}% 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Tarjeta de desarrollo Arduino Nano}}{23}{figure.3.2}% 
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Tarjeta de desarrollo ICE40 de Lattice}}{24}{figure.3.3}% 
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Cuadricoptero comercial de bajo coste de Syma}}{25}{figure.3.4}% 
-\contentsline {figure}{\numberline {3.5}{\ignorespaces M\'odulo integrado NRF24L01 para enlace radio}}{26}{figure.3.5}% 
-\contentsline {figure}{\numberline {3.6}{\ignorespaces M\'odulo con sensores de medida de distancia y desplazamiento}}{26}{figure.3.6}% 
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Tarjeta de desarrollo Arduino Uno}}{23}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Tarjeta de desarrollo Arduino Nano}}{23}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Tarjeta de desarrollo ICE40 de Lattice}}{24}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Cuadricoptero comercial de bajo coste de Syma}}{25}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces M\'odulo integrado NRF24L01 para enlace radio}}{26}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces M\'odulo con sensores de medida de distancia y desplazamiento}}{26}{figure.3.6}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Dise\~no de sistema}}{28}{figure.4.1}% 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Flujo de control general del sistema}}{29}{figure.4.2}% 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura del dron}}{31}{figure.4.3}% 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces M\'odulos 1, 2 y 3 instalados adicionalmente}}{32}{figure.4.4}% 
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Orientaci\'on de eje horizontales en M\'odulo 2}}{34}{figure.4.5}% 
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Arquitectura de la estaci\'on de tierra}}{38}{figure.4.6}% 
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Montaje de la estaci\'on de tierra}}{39}{figure.4.7}% 
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Arquitectura del software programado en la FPGA}}{43}{figure.4.8}% 
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Estructura del ordendador de mando}}{44}{figure.4.9}% 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Dise\~no de sistema}}{28}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Flujo de control general del sistema}}{29}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Arquitectura del dron}}{31}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces M\'odulos 1, 2 y 3 instalados adicionalmente}}{32}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Orientaci\'on de eje horizontales en M\'odulo 2}}{34}{figure.4.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Arquitectura de la estaci\'on de tierra}}{38}{figure.4.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Montaje de la estaci\'on de tierra}}{39}{figure.4.7}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Arquitectura del software programado en la FPGA}}{43}{figure.4.8}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Estructura del ordendador de mando}}{44}{figure.4.9}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Dron Eachine E010}}{59}{figure.5.1}% 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Secuencia de vuelo con dron E010: (a) Comando, (b) Despegue, (c)-(f) ida y vuelta y (g) aterrizaje.}}{60}{figure.5.2}% 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Secuencia de vuelo con dron E010: (a) Comando, (b) Despegue, (c)-(f) ida y vuelta y (g) aterrizaje.}}{60}{figure.5.3}% 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Dron X5C Original (izquierda) y tras modificaciones (derecha)}}{62}{figure.5.4}% 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Medidas de sensores capturadas en estaci\'on de tierra desde el enlace radio}}{64}{figure.5.5}% 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Indicaci\'on luminosa de enlace radio correcto entre estaci\'on y dron}}{65}{figure.5.6}% 
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{65}{figure.5.7}% 
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando desde PC}}{66}{figure.5.8}% 
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores desde dron}}{67}{figure.5.9}% 
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{68}{figure.5.10}% 
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{68}{figure.5.11}% 
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Secuencia de vuelo aut\'onomo con dron X5C comandado desde PC: (a) Comando, (b) Despegue, (c)-(f) ida y vuelta y (g) aterrizaje.}}{71}{figure.5.12}% 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Dron Eachine E010}}{59}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Secuencia de vuelo con dron E010: (a) Comando, (b) Despegue, (c)-(f) ida y vuelta y (g) aterrizaje.}}{60}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Secuencia de vuelo con dron E010: (a) Comando, (b) Despegue, (c)-(f) ida y vuelta y (g) aterrizaje.}}{60}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Dron X5C Original (izquierda) y tras modificaciones (derecha)}}{62}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Medidas de sensores capturadas en estaci\'on de tierra desde el enlace radio}}{64}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Indicaci\'on luminosa de enlace radio correcto entre estaci\'on y dron}}{65}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Simulaci\'on funcional del m\'odulo UART}}{65}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de mando desde PC}}{66}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Simulaci\'on funcional del m\'odulo decodificador de tramas de sensores desde dron}}{67}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Simulaci\'on funcional del m\'odulo PID de altura}}{68}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Simulaci\'on funcional del m\'odulo PPM}}{68}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Secuencia de vuelo aut\'onomo con dron X5C comandado desde PC: (a) Comando, (b) Despegue, (c)-(f) ida y vuelta y (g) aterrizaje.}}{71}{figure.5.12}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{80}{figure.Alph1.1}% 
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{81}{figure.Alph1.2}% 
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{82}{figure.Alph1.3}% 
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{82}{figure.Alph1.4}% 
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{83}{figure.Alph1.5}% 
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{84}{figure.Alph1.6}% 
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Formato de paquete UART}}{80}{figure.Alph1.1}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Funcionamiento de una comunicaci\'on SPI}}{81}{figure.Alph1.2}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Esquema de conexi\'on para un puerto SPI}}{82}{figure.Alph1.3}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Arquitectura hardware de un bus I2C}}{82}{figure.Alph1.4}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Formato de trama I2C}}{83}{figure.Alph1.5}%
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Se\~nal PPM hacia el m\'odulo de transmisi\'on de uplink}}{84}{figure.Alph1.6}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{86}{figure.Alph2.1}% 
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{87}{figure.Alph2.2}% 
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{89}{figure.Alph2.3}% 
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Esquema b\'asico de un sistema de control de bucle abierto}}{86}{figure.Alph2.1}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Esquema b\'asico de un sistema de control de bucle cerrado}}{87}{figure.Alph2.2}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Esquema de un controlador PID}}{89}{figure.Alph2.3}%

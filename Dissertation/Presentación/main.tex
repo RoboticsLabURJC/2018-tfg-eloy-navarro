@@ -144,7 +144,7 @@ Sub-objetivos:
 
 
 %%--------------------------------------------------------------
-%% DRON COMERCIAL PROGRAMABLE
+%% SISTEMA: DRON COMERCIAL PROGRAMABLE
 %%--------------------------------------------------------------
 \begin{hslide}
 \slsect{Dron comercial programable}
@@ -178,18 +178,142 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 \end{hslide}
 %%--------------------------------------------------------------
 \begin{hslide}
-\slsubsect{Dron}
-
+\slsubsect{Dron - Arquitectura}
+\begin{minipage}{7cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=7.5cm]{Imagenes/Drone_arq}
+		\end{figure}
+	\end{center}
+\end{minipage} \hfill
+\begin{minipage}{3.9cm}
+	\begin{itemize}
+		\item Sensoriza:
+			\begin{itemize}
+				\item Distancia al suelo
+				\item Posici\'on horizontal
+			\end{itemize}
+		\item Transmite medidas
+		\item Obedece \'ordenes de movimiento
+	\end{itemize}
+\end{minipage}
 \end{hslide}
 %%--------------------------------------------------------------
 \begin{hslide}
-\slsubsect{Pc de Mando}
-
+\slsubsect{Dron - Instalaci\'on}
+\begin{minipage}{3cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=7.8cm]{Imagenes/OnBoard_System_Mod}
+		\end{figure}
+	\end{center}
+\end{minipage} \hfill
+\begin{minipage}{2.8cm}
+	M\'odulos:
+	\begin{itemize}
+		\item 1: Procesador
+		\item 2: Sensores
+		\item 3: Transmisor
+	\end{itemize}
+\end{minipage}
 \end{hslide}
 %%--------------------------------------------------------------
 \begin{hslide}
 \slsubsect{Estaci\'on de tierra basada en FPGA}
+\begin{minipage}{3cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=11.5cm]{Imagenes/ET_arq}
+		\end{figure}
+	\end{center}
+\end{minipage} \vfill
+\begin{minipage}{20cm}
+	\begin{minipage}{5.2cm}
+		\begin{itemize}
+			\item Atiende tramas de mando
+			\item Atiende tramas desde dron
+			\item Ejecuta algoritmos de control
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{6cm}
+		\begin{itemize}
+			\item Transmite \'ordenes de movimiento
+			\item Encapsula depuraci\'on por USB
+		\end{itemize}
+	\end{minipage}
+\end{minipage} \vfill
+\end{hslide}
+%%--------------------------------------------------------------
+\begin{hslide}
+\slsubsect{Estaci\'on de tierra basada en FPGA - Montaje}
+\begin{minipage}{3cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=7.8cm]{Imagenes/Ground_Station_Mod}
+		\end{figure}
+	\end{center}
+\end{minipage} \hfill
+\begin{minipage}{2.8cm}
+	M\'odulos:
+	\begin{itemize}
+		\item 1: Hub USB
+		\item 2: FPGA
+		\item 3: Receptor
+		\item 4: Transmisor
+		\item 5: Depuraci\'on
+	\end{itemize}
+\end{minipage}
+\end{hslide}
+%%--------------------------------------------------------------
+\begin{hslide}
+\slsubsect{Estaci\'on de tierra basada en FPGA - Algoritmo de control}
+\begin{center}
+	\begin{figure}
+		\includegraphics[width=12cm]{Imagenes/FPGA_New_Soft_arq}
+	\end{figure}
+\end{center}
+\end{hslide}
+%%--------------------------------------------------------------
+\begin{hslide}
+\slsubsect{Pc de Mando}
+\begin{minipage}{2cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=5.5cm]{Imagenes/Arquitectura_del_Cod_PC}
+		\end{figure}
+	\end{center}
+\end{minipage} \hfill
+\begin{minipage}{6cm}
+	\begin{itemize}
+		\item Ejecuta instrucciones en Python
+		\item Facilita el control del veh\'iculo
+		\item Se comunica con la estaci\'on de tierra mediante USB
+	\end{itemize}
+\end{minipage}
+\end{hslide}
+%%--------------------------------------------------------------
+\begin{hslide}
+\slsubsect{Pc de Mando - Funciones}
+\begin{center}
 
+
+\begin{table}[H]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|}
+\hline
+\texttt{setPIDValues} & Inicializaci\'on de valores de par\'ametros PID y ajuste de giro.                      \\ \hline
+\texttt{setcontrols}  & Permite el control directo de los 4 grados de libertad disponibles en el veh\'iculo. \\ \hline
+\texttt{settrace}     & Dirige una trayectoria progresiva entre la posici\'on actual y el punto indicado.    \\ \hline
+\texttt{setcircle}     & Dirige una trayectoria progresiva en forma de arco entre la posici\'on actual y el \'angulo indicado.    \\ \hline
+\texttt{takeoff}     & Arranca los motores y realiza el despegue hasta la altura indicada.    \\ \hline
+\texttt{landing}     & Disminuye la altura progresivamente hasta el contacto con el suelo y apagado de motores.    \\ \hline
+\end{tabular}
+}
+\end{table}
+
+
+
+\end{center}
 \end{hslide}
 
 
@@ -198,7 +322,7 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 %% EXPERIMENTOS
 %%--------------------------------------------------------------
 \begin{hslide}
-\slsect{Experimentos}
+\slsect{Validaci\'on experimental}
 \slsubsect{\texttt{Dron Eachine-E010}}
 
 \end{hslide}
