@@ -1,39 +1,34 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.4)  1 MAR 2020 18:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2020.2.25)  2 MAR 2020 18:11
 entering extended mode
 **./main.tex
 (main.tex
-LaTeX2e <2019-10-01> patch level 3
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/seminar\seminar.cls
-"
+LaTeX2e <2018-12-01>
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/seminar\seminar.cls
 Document Class: seminar 2014/01/17, 1.61
 Documentclass: `seminar' v1.61 <2014/01/17> (tvz,hv)
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pst-ovl\pst-ovl.sty
-"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/pst-ovl\pst-ovl.sty
 Package: pst-ovl 2017/10/09 v0.01 LaTeX wrapper for `pst-ovl' (HV)
 File: pst-ovl.tex 2017/10/09 v0.07a overlay macros `pst-ovl' (HV)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pstricks\pstricks.s
-ty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/pstricks\pstricks.sty"
 Package: pstricks 2018/12/21 v0.69 LaTeX wrapper for `PSTricks' (RN,HV)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\iftex.sty"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/iftex\iftex.sty
 Package: iftex 2019/11/07 v1.0c TeX engine tests
-) ("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\shellesc.st
-y"
-Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
-Package shellesc Info: Restricted shell escape enabled on input line 77.
-) ("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xcolor.sty
-"
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/tools\shellesc.sty"
+Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 69.
+)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\color.
-cfg"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdftex
-.def"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 )
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
@@ -46,30 +41,24 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\pst-xkey.
-tex"
+("C:\Program Files\MiKTeX 2.9\tex/generic/xkeyval\pst-xkey.tex"
 File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\xkeyval.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex/xkeyval\xkeyval.sty"
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkeyval.t
-ex"
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkvutils.
-tex"
+("C:\Program Files\MiKTeX 2.9\tex/generic/xkeyval\xkeyval.tex"
+("C:\Program Files\MiKTeX 2.9\tex/generic/xkeyval\xkvutils.tex"
 \XKV@toks=\toks14
 \XKV@tempa@toks=\toks15
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\keyval.te
-x"))
+("C:\Program Files\MiKTeX 2.9\tex/generic/xkeyval\keyval.tex"))
 \XKV@depth=\count80
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\pstricks
-.tex"
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\pst-fp.t
-ex" `pst-fp' v0.05, 2010/01/17 (hv)
+("C:\Program Files\MiKTeX 2.9\tex/generic/pstricks\pstricks.tex"
+("C:\Program Files\MiKTeX 2.9\tex/generic/pstricks\pst-fp.tex"
+`pst-fp' v0.05, 2010/01/17 (hv)
 \pstFP@xs=\count81
 \pstFP@xia=\count82
 \pstFP@xib=\count83
@@ -80,33 +69,33 @@ ex" `pst-fp' v0.05, 2010/01/17 (hv)
 \pstFP@regs=\count88
 \pstFP@times=\count89
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pgf
-util-common.tex"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/utilities\pgfutil
+-common.tex
 \pgfutil@everybye=\toks16
 \pgfutil@tempdima=\dimen102
 \pgfutil@tempdimb=\dimen103
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pgf
-util-common-lists.tex"))
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pgf
-keys.code.tex"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/utilities\pgfutil
+-common-lists.tex))
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/utilities\pgfkeys
+.code.tex
 \pgfkeys@pathtoks=\toks17
 \pgfkeys@temptoks=\toks18
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pgf
-keysfiltered.code.tex"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/utilities\pgfkeys
+filtered.code.tex
 \pgfkeys@tmptoks=\toks19
 ))
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pgf
-for.code.tex"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/utilities\pgffor.
+code.tex
 Loading pgffor.code.tex
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmath.
-code.tex"
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathc
-alc.code.tex"
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathu
-til.code.tex"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmath.code
+.tex
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathcalc.
+code.tex
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathutil.
+code.tex
 \pgf@x=\dimen104
 \pgf@xa=\dimen105
 \pgf@xb=\dimen106
@@ -122,8 +111,8 @@ til.code.tex"
 \pgfutil@tempcnta=\count94
 \pgfutil@tempcntb=\count95
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathp
-arser.code.tex"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathparse
+r.code.tex
 \pgfmath@dimen=\dimen112
 \pgfmath@count=\count96
 \pgfmath@box=\box27
@@ -131,26 +120,26 @@ arser.code.tex"
 \pgfmath@stack@operand=\toks21
 \pgfmath@stack@operation=\toks22
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.code.tex"
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.basic.code.tex")
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.trigonometric.code.tex")
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.random.code.tex")
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.comparison.code.tex")
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.base.code.tex")
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.round.code.tex")
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.misc.code.tex")
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-unctions.integerarithmetics.code.tex")))
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmathf
-loat.code.tex"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.code.tex
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.basic.code.tex)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.trigonometric.code.tex)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.random.code.tex)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.comparison.code.tex)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.base.code.tex)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.round.code.tex)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.misc.code.tex)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfunct
+ions.integerarithmetics.code.tex)))
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfmathfloat
+.code.tex
 \c@pgfmathroundto@lastzeros=\count97
 ))
 \pgffor@iter=\dimen113
@@ -186,9 +175,7 @@ loat.code.tex"
 \pst@cntp=\count108
 \@zero=\count109
 \pst@toks=\toks25
-
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\pstricks
-.con")
+("C:\Program Files\MiKTeX 2.9\tex/generic/pstricks\pstricks.con")
 \psunit=\dimen125
 \psxunit=\dimen126
 \psyunit=\dimen127
@@ -210,22 +197,21 @@ loat.code.tex"
 )
 File: pstricks.tex 2019/05/11 v2.97 `PSTricks' (tvz,hv)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\pst-fp.t
-ex")
+("C:\Program Files\MiKTeX 2.9\tex/generic/pstricks\pst-fp.tex")
 File: pst-fp.tex 2019/05/11 v2.97 `PST-fp' (hv)
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-ovl\pst-ovl.t
-ex" `pst-ovl' v0.07a, 2017/10/09 (tvz,hv)
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/pst-ovl\pst-ovl.tex
+`pst-ovl' v0.07a, 2017/10/09 (tvz,hv)
 \thepsoverlaybox=\box31
 ))
 \slidewidth=\dimen140
 \slideheight=\dimen141
 \footheight=\dimen142
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
-Document Class: article 2019/10/25 v1.4k Standard LaTeX document class
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size10.clo"
-File: size10.clo 2019/10/25 v1.4k Standard LaTeX file (size option)
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\size10.clo"
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 )
 \c@part=\count111
 \c@section=\count112
@@ -239,8 +225,7 @@ File: size10.clo 2019/10/25 v1.4k Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen143
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/seminar\sem-page.st
-y")
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/seminar\sem-page.sty)
 \before@document=\toks28
 \after@document=\toks29
 \before@enddocument=\toks30
@@ -262,30 +247,28 @@ y")
 \semin=\dimen146
 \semcm=\dimen147
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.sty"
-Package: babel 2019/12/08 3.37 The Babel package
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.sty"
+Package: babel 2019/07/19 3.33 The Babel package
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\switch.def"
-File: switch.def 2019/12/08 3.37 Babel switching mechanism
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\switch.def"
+File: switch.def 2019/07/19 3.33 Babel switching mechanism
 )
 *************************************
 * Local config file bblopts.cfg used
 *
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/babel-spanish\spani
-sh.ldf"
+("C:\Program Files\MiKTeX 2.9\tex/latex/babel-spanish\spanish.ldf"
 Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.def"
-File: babel.def 2019/12/08 3.37 Babel common definitions
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.def"
+File: babel.def 2019/07/19 3.33 Babel common definitions
 \babel@savecnt=\count123
 \U@D=\dimen148
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\txtbabel.de
-f")
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\txtbabel.def")
 \bbl@dirlevel=\count124
 )
 \es@quottoks=\toks35
@@ -295,37 +278,32 @@ Package babel Info: Making . an active character on input line 662.
 Package babel Info: Making < an active character on input line 707.
 Package babel Info: Making > an active character on input line 707.
 ))
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\inputenc.sty"
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks36
 \inpenc@posthook=\toks37
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\latin1.def"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\latin1.def"
 File: latin1.def 2018/08/11 v1.3c Input encoding file
-))
-(t-gsyc-6.sty
+)) (t-gsyc-6.sty
 Package: t-gsyc-6 1996/06/19, 2
-  Slides - GSyC 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\epsfig.sty
-"
+
+ Slides - GSyC  ("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\epsfig.sty"
 Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.s
-ty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.s
-ty"
-Package: graphics 2019/11/01 v1.3d Standard LaTeX Graphics (DPC,SPQR)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graphi
-cs.cfg"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 )
 \Gin@req@height=\dimen149
 \Gin@req@width=\dimen150
@@ -333,8 +311,7 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
 \epsfxsize=\dimen151
 \epsfysize=\dimen152
 ))
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancybox\fancybox.s
-ty"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/fancybox\fancybox.sty
 Package: fancybox 2010/05/15 1.4
 
 Style option: `fancybox' v1.4 <2010/05/15> (tvz)
@@ -347,13 +324,10 @@ Style option: `fancybox' v1.4 <2010/05/15> (tvz)
 \EndVerbatimTokens=\toks41
 \Verbatim@Outfile=\write3
 \Verbatim@Infile=\read1
-)
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/moreverb\moreverb.s
-ty"
+) (C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/moreverb\moreverb.sty
 Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
-
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\verbatim.sty"
-Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
+("C:\Program Files\MiKTeX 2.9\tex/latex/tools\verbatim.sty"
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks42
 \verbatim@line=\toks43
 \verbatim@in@stream=\read2
@@ -361,45 +335,45 @@ Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
 \tab@position=\count126
 \tab@size=\count127
 \listing@line=\count128
-) ("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\alltt.sty"
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\alltt.sty"
 Package: alltt 1997/06/16 v2.0g defines alltt environment
-) ("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.s
-ty"
-Package: amsmath 2019/11/16 v2.17d AMS math features
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsmath.sty"
+Package: amsmath 2018/12/01 v2.17b AMS math features
 \@mathmargin=\skip44
 
 For additional information on amsmath, use the `?' option.
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.sty
-"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amstext.sty"
 Package: amstext 2000/06/29 v2.01 AMS text
- ("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
-"
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks44
 \ex@=\dimen154
 ))
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen155
-) ("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.st
-y"
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty"
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count129
-LaTeX Info: Redefining \frac on input line 227.
+LaTeX Info: Redefining \frac on input line 223.
 \uproot@=\count130
 \leftroot@=\count131
-LaTeX Info: Redefining \overline on input line 389.
+LaTeX Info: Redefining \overline on input line 385.
 \classnum@=\count132
 \DOTSCASE@=\count133
-LaTeX Info: Redefining \ldots on input line 486.
-LaTeX Info: Redefining \dots on input line 489.
-LaTeX Info: Redefining \cdots on input line 610.
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
 \Mathstrutbox@=\box37
 \strutbox@=\box38
 \big@size=\dimen156
-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \macc@depth=\count134
 \c@MaxMatrixCols=\count135
 \dotsspace@=\muskip10
@@ -420,11 +394,10 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \multlinegap=\skip45
 \multlinetaggap=\skip46
 \mathdisplay@stack=\toks48
-LaTeX Info: Redefining \[ on input line 2858.
-LaTeX Info: Redefining \] on input line 2859.
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/subfigure\subfigure
-.sty"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/subfigure\subfigure.sty
 Package: subfigure 2002/07/30 v2.1.4 subfigure package
 \subfigtopskip=\skip47
 \subfigcapskip=\skip48
@@ -436,16 +409,15 @@ Package: subfigure 2002/07/30 v2.1.4 subfigure package
 \c@lofdepth=\count142
 \c@subtable=\count143
 \c@lotdepth=\count144
-
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/subfigure\subfigure
-.cfg")
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/subfigure\subfigure.cfg
+)
 \subfig@top=\skip51
 \subfig@bottom=\skip52
-) ("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.sty"
+) (C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/url\url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -454,8 +426,8 @@ LaTeX Warning: Unused global option(s):
     [landscpae].
 
 (main.aux
-LaTeX Info: Redefining \. on input line 7.
-LaTeX Info: Redefining \% on input line 7.
+LaTeX Info: Redefining \. on input line 6.
+LaTeX Info: Redefining \% on input line 6.
 )
 \openout1 = `main.aux'.
 
@@ -472,8 +444,8 @@ LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-pd
-f.mkii"
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/context/base/mkii\supp-pdf.mk
+ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count145
 \scratchdimen=\dimen165
@@ -486,12 +458,47 @@ f.mkii"
 \MPnumerator=\count149
 \makeMPintoPDFobject=\count150
 \everyMPtoPDFconversion=\toks50
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epstop
-df-base.sty"
-Package: epstopdf-base 2019-12-09 v2.10 Base part for package epstopdf
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvsetkeys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\etexcmds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/generic/iftex\ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+))))
+(C:\Users\Eloy_WU1\AppData\Roaming\MiKTeX\2.9\tex/latex/pdftexcmds\pdftexcmds.s
+ty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
 )
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
@@ -528,52 +535,50 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@refangle 0.  def grestore  e...
 
-{C:/Users/Eloy/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./template/l
-ogo-urjc.jpg> <./template/gsyc2.jpg> <./template/peloto.png>]
+{C:/Users/Eloy_WU1/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./templa
+te/logo-urjc.jpg> <./template/gsyc2.jpg> <./template/peloto.png>]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 42.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 43.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 42.
+Package pdftex.def Info: template/peloto.png  used on input line 43.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 4
-2.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 43.
 
-("C:\Users\Eloy\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 42.
-
-[1
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
+ [1
 
 ]
 
 LaTeX Font Warning: Font shape `OT1/cmss/bx/sl' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 51.
+(Font)              using `OT1/cmss/bx/n' instead on input line 52.
 
 <Imagenes/Intro_Drones.png, id=22, 985.43156pt x 583.42969pt>
 File: Imagenes/Intro_Drones.png Graphic file (type png)
 <use Imagenes/Intro_Drones.png>
-Package pdftex.def Info: Imagenes/Intro_Drones.png  used on input line 54.
+Package pdftex.def Info: Imagenes/Intro_Drones.png  used on input line 55.
 (pdftex.def)             Requested size: 176.407pt x 104.44305pt.
 
-Overfull \hbox (2.84502pt too wide) in paragraph at lines 54--55
+Overfull \hbox (2.84502pt too wide) in paragraph at lines 55--56
 [][] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 64.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 65.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 64.
+Package pdftex.def Info: template/peloto.png  used on input line 65.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -585,20 +590,20 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/Intro_FPGA.png, id=27, 779.91376pt x 493.0922pt>
 File: Imagenes/Intro_FPGA.png Graphic file (type png)
 <use Imagenes/Intro_FPGA.png>
-Package pdftex.def Info: Imagenes/Intro_FPGA.png  used on input line 72.
+Package pdftex.def Info: Imagenes/Intro_FPGA.png  used on input line 73.
 (pdftex.def)             Requested size: 213.39566pt x 134.91232pt.
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 72--73
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 73--74
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 84.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 85.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 84.
+Package pdftex.def Info: template/peloto.png  used on input line 85.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -609,11 +614,11 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
  <./Imagenes/Intro_FPGA.png>]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 103.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 104.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 103.
+Package pdftex.def Info: template/peloto.png  used on input line 104.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -624,11 +629,11 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 ]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 112.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 115.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 112.
+Package pdftex.def Info: template/peloto.png  used on input line 115.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -637,27 +642,27 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [5
 
 ]
-Underfull \hbox (badness 1776) in paragraph at lines 130--131
+Underfull \hbox (badness 1776) in paragraph at lines 133--134
 []\OT1/cmss/m/n/10 Plataformas: Ar-duino, ICE40, SY-MA
  []
 
 <Imagenes/Infraestructura.png, id=38, 627.84563pt x 611.28375pt>
 File: Imagenes/Infraestructura.png Graphic file (type png)
 <use Imagenes/Infraestructura.png>
-Package pdftex.def Info: Imagenes/Infraestructura.png  used on input line 138.
+Package pdftex.def Info: Imagenes/Infraestructura.png  used on input line 141.
 (pdftex.def)             Requested size: 147.95424pt x 144.04344pt.
 
-Overfull \hbox (34.14322pt too wide) in paragraph at lines 138--139
+Overfull \hbox (34.14322pt too wide) in paragraph at lines 141--142
 [][] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 141.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 144.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 141.
+Package pdftex.def Info: template/peloto.png  used on input line 144.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -666,7 +671,7 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [6
 
  <./Imagenes/Infraestructura.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
@@ -674,20 +679,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--152
 File: Imagenes/Arquitectura_del_Sistema.png Graphic file (type png)
 <use Imagenes/Arquitectura_del_Sistema.png>
 Package pdftex.def Info: Imagenes/Arquitectura_del_Sistema.png  used on input l
-ine 166.
+ine 169.
 (pdftex.def)             Requested size: 227.62204pt x 125.39908pt.
 
-Overfull \hbox (56.90552pt too wide) in paragraph at lines 166--167
+Overfull \hbox (56.90552pt too wide) in paragraph at lines 169--170
 [][] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 169.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 172.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 169.
+Package pdftex.def Info: template/peloto.png  used on input line 172.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -699,16 +704,16 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/Flujo_del_Sistema.png, id=49, 1172.88188pt x 962.09438pt>
 File: Imagenes/Flujo_del_Sistema.png Graphic file (type png)
 <use Imagenes/Flujo_del_Sistema.png>
-Package pdftex.def Info: Imagenes/Flujo_del_Sistema.png  used on input line 175
+Package pdftex.def Info: Imagenes/Flujo_del_Sistema.png  used on input line 178
 .
 (pdftex.def)             Requested size: 227.62204pt x 186.7048pt.
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 178.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 181.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 178.
+Package pdftex.def Info: template/peloto.png  used on input line 181.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -720,33 +725,33 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/Drone_arq.png, id=54, 1694.33pt x 1095.09125pt>
 File: Imagenes/Drone_arq.png Graphic file (type png)
 <use Imagenes/Drone_arq.png>
-Package pdftex.def Info: Imagenes/Drone_arq.png  used on input line 185.
+Package pdftex.def Info: Imagenes/Drone_arq.png  used on input line 188.
 (pdftex.def)             Requested size: 213.39566pt x 137.92207pt.
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 185--186
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 188--189
  [] 
  []
 
-LaTeX Font Info:    Trying to load font information for OMS+cmss on input line 
-193.
-LaTeX Font Info:    No file OMScmss.fd. on input line 193.
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 196
+.
+LaTeX Font Info:    No file OMScmss.fd. on input line 196.
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 193.
+(Font)              for symbol `textbullet' on input line 196.
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 197--198
+Underfull \hbox (badness 2285) in paragraph at lines 200--201
 []\OT1/cmss/m/n/10 Obedece orde-nes de
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 200.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 203.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 200.
+Package pdftex.def Info: template/peloto.png  used on input line 203.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -758,21 +763,21 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/OnBoard_System_Mod.jpg, id=60, 1365.1pt x 776.9025pt>
 File: Imagenes/OnBoard_System_Mod.jpg Graphic file (type jpg)
 <use Imagenes/OnBoard_System_Mod.jpg>
-Package pdftex.def Info: Imagenes/OnBoard_System_Mod.jpg  used on input line 20
-7.
+Package pdftex.def Info: Imagenes/OnBoard_System_Mod.jpg  used on input line 21
+0.
 (pdftex.def)             Requested size: 221.93158pt x 126.2985pt.
 
-Overfull \hbox (136.57332pt too wide) in paragraph at lines 207--208
+Overfull \hbox (136.57332pt too wide) in paragraph at lines 210--211
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 219.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 222.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 219.
+Package pdftex.def Info: template/peloto.png  used on input line 222.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -784,25 +789,25 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/ET_arq.png, id=64, 1792.44656pt x 581.92406pt>
 File: Imagenes/ET_arq.png Graphic file (type png)
 <use Imagenes/ET_arq.png>
-Package pdftex.def Info: Imagenes/ET_arq.png  used on input line 226.
+Package pdftex.def Info: Imagenes/ET_arq.png  used on input line 229.
 (pdftex.def)             Requested size: 327.20668pt x 106.22467pt.
 
-Overfull \hbox (241.84842pt too wide) in paragraph at lines 226--227
+Overfull \hbox (241.84842pt too wide) in paragraph at lines 229--230
  [] 
  []
 
 
-Overfull \hbox (253.53154pt too wide) in paragraph at lines 230--244
+Overfull \hbox (253.53154pt too wide) in paragraph at lines 233--247
 []$[]$ 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 245.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 248.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 245.
+Package pdftex.def Info: template/peloto.png  used on input line 248.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -815,20 +820,20 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 File: Imagenes/Ground_Station_Mod.jpg Graphic file (type jpg)
 <use Imagenes/Ground_Station_Mod.jpg>
 Package pdftex.def Info: Imagenes/Ground_Station_Mod.jpg  used on input line 25
-2.
+5.
 (pdftex.def)             Requested size: 221.93158pt x 124.81364pt.
 
-Overfull \hbox (136.57332pt too wide) in paragraph at lines 252--253
+Overfull \hbox (136.57332pt too wide) in paragraph at lines 255--256
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 266.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 269.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 266.
+Package pdftex.def Info: template/peloto.png  used on input line 269.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -840,24 +845,24 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/FPGA_New_Soft_arq.png, id=74, 2823.54875pt x 1746.525pt>
 File: Imagenes/FPGA_New_Soft_arq.png Graphic file (type png)
 <use Imagenes/FPGA_New_Soft_arq.png>
-Package pdftex.def Info: Imagenes/FPGA_New_Soft_arq.png  used on input line 272
+Package pdftex.def Info: Imagenes/FPGA_New_Soft_arq.png  used on input line 275
 .
 (pdftex.def)             Requested size: 341.43306pt x 211.17294pt.
 
-Overfull \hbox (25.90948pt too wide) in paragraph at lines 272--273
+Overfull \hbox (25.90948pt too wide) in paragraph at lines 275--276
  [] 
  []
 
 
-LaTeX Warning: Slide 13 overfull by 4.79497pt on input line 275.
+LaTeX Warning: Slide 13 overfull by 4.79497pt on input line 278.
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 275.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 278.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 275.
+Package pdftex.def Info: template/peloto.png  used on input line 278.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -870,20 +875,20 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 File: Imagenes/Arquitectura_del_Cod_PC.png Graphic file (type png)
 <use Imagenes/Arquitectura_del_Cod_PC.png>
 Package pdftex.def Info: Imagenes/Arquitectura_del_Cod_PC.png  used on input li
-ne 282.
+ne 285.
 (pdftex.def)             Requested size: 156.49014pt x 166.23pt.
 
-Overfull \hbox (99.58464pt too wide) in paragraph at lines 282--283
+Overfull \hbox (99.58464pt too wide) in paragraph at lines 285--286
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 293.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 296.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 293.
+Package pdftex.def Info: template/peloto.png  used on input line 296.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -894,11 +899,11 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
  <./Imagenes/Arquitectura_del_Cod_PC.png>]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 317.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 320.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 317.
+Package pdftex.def Info: template/peloto.png  used on input line 320.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -909,17 +914,44 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 ]
 
 LaTeX Font Warning: Font shape `OT1/cmtt/bx/sl' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 326.
+(Font)              using `OT1/cmtt/bx/n' instead on input line 329.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 326.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 329.
+<Imagenes/E010.jpg, id=88, 482.55281pt x 354.57469pt>
+File: Imagenes/E010.jpg Graphic file (type jpg)
+<use Imagenes/E010.jpg>
+Package pdftex.def Info: Imagenes/E010.jpg  used on input line 339.
+(pdftex.def)             Requested size: 51.21504pt x 37.62909pt.
+
+Overfull \hbox (253.53154pt too wide) in paragraph at lines 330--342
+$[]$ 
+ []
+
+<Imagenes/Secuencia_7_flechas_negro.png, id=89, 4324.155pt x 1629.08624pt>
+File: Imagenes/Secuencia_7_flechas_negro.png Graphic file (type png)
+<use Imagenes/Secuencia_7_flechas_negro.png>
+Package pdftex.def Info: Imagenes/Secuencia_7_flechas_negro.png  used on input 
+line 346.
+(pdftex.def)             Requested size: 327.20668pt x 123.26994pt.
+
+Overfull \hbox (270.30118pt too wide) in paragraph at lines 346--347
+ [] 
+ []
+
+
+LaTeX Warning: Slide 16 overfull by 10.555pt on input line 350.
+
+
+Overfull \vbox (5.46516pt too high) has occurred while \output is active []
+
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 328.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 350.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 328.
+Package pdftex.def Info: template/peloto.png  used on input line 350.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -927,16 +959,31 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
 [16
 
-]
+ <./Imagenes/E010.jpg> <./Imagenes/Secuencia_7_flechas_negro.png>]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/sl' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 331.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 353.
+<Imagenes/Syma_pre_post.png, id=94, 2415.0225pt x 682.04813pt>
+File: Imagenes/Syma_pre_post.png Graphic file (type png)
+<use Imagenes/Syma_pre_post.png>
+Package pdftex.def Info: Imagenes/Syma_pre_post.png  used on input line 370.
+(pdftex.def)             Requested size: 312.9803pt x 88.38837pt.
+
+Overfull \hbox (227.62204pt too wide) in paragraph at lines 370--371
+ [] 
+ []
+
+
+Overfull \hbox (253.53154pt too wide) in paragraph at lines 354--373
+$[]$
+ []
+
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 333.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 374.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 333.
+Package pdftex.def Info: template/peloto.png  used on input line 374.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -944,14 +991,27 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
 [17
 
-]
+ <./Imagenes/Syma_pre_post.png>]
+<Imagenes/X5C_Secuencia_7_Small.png, id=99, 1385.175pt x 1083.29718pt>
+File: Imagenes/X5C_Secuencia_7_Small.png Graphic file (type png)
+<use Imagenes/X5C_Secuencia_7_Small.png>
+Package pdftex.def Info: Imagenes/X5C_Secuencia_7_Small.png  used on input line
+ 380.
+(pdftex.def)             Requested size: 258.92024pt x 202.4896pt.
+
+
+LaTeX Warning: Slide 18 overfull by 11.94325pt on input line 383.
+
+
+Overfull \vbox (5.41112pt too high) has occurred while \output is active []
+
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 341.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 383.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 341.
+Package pdftex.def Info: template/peloto.png  used on input line 383.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -959,14 +1019,25 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
 [18
 
-]
+ <./Imagenes/X5C_Secuencia_7_Small.png>]
+<Imagenes/Interferencia_3_abc.jpg, id=105, 465.99094pt x 654.19406pt>
+File: Imagenes/Interferencia_3_abc.jpg Graphic file (type jpg)
+<use Imagenes/Interferencia_3_abc.jpg>
+Package pdftex.def Info: Imagenes/Interferencia_3_abc.jpg  used on input line 4
+08.
+(pdftex.def)             Requested size: 85.35826pt x 119.82614pt.
+
+Overfull \hbox (28.45276pt too wide) in paragraph at lines 408--409
+ [] 
+ []
+
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 348.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 412.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 348.
+Package pdftex.def Info: template/peloto.png  used on input line 412.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -974,43 +1045,55 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
 [19
 
+ <./Imagenes/Interferencia_3_abc.jpg>]
+File: template/gsyc2.jpg Graphic file (type jpg)
+<use template/gsyc2.jpg>
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 432.
+(pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
+File: template/peloto.png Graphic file (type png)
+<use template/peloto.png>
+Package pdftex.def Info: template/peloto.png  used on input line 432.
+(pdftex.def)             Requested size: 15.785pt x 19.91684pt.
+
+Overfull \vbox (0.14795pt too high) has occurred while \output is active []
+
+
+[20
+
 ]
 
 *******************************************************
 ***** !! PRINT THIS DOCUMENT IN LANDSCAPE MODE !! *****
 *******************************************************
 (main.aux
-LaTeX Info: Redefining \. on input line 7.
-LaTeX Info: Redefining \% on input line 7.
+LaTeX Info: Redefining \. on input line 6.
+LaTeX Info: Redefining \% on input line 6.
 )
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 10898 strings out of 492483
- 186108 string characters out of 3122043
- 262564 words of memory out of 3000000
- 15073 multiletter control sequences out of 15000+200000
+ 11195 strings out of 492895
+ 189922 string characters out of 3133470
+ 268577 words of memory out of 3000000
+ 14906 multiletter control sequences out of 15000+200000
  7756 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,10n,59p,462b,555s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmbxsl10.pfb><C:/Users/Eloy/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Eloy/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl8.pfb><C:/Use
-rs/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10
-.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmssbx10.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Eloy/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (20 pages, 7462624 bytes).
+ 50i,10n,51p,462b,547s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbxsl10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmsl8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on main.pdf (21 pages, 24504630 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
+ 147 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 

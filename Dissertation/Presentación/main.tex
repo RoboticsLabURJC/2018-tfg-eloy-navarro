@@ -36,7 +36,8 @@
 	\item Introducci\'on
 	\item Objetivos
 	\item Infraestructura
-	\item ...
+	\item Dron comercial programable
+	\item Validaci\'on experimental
 	\item Conclusiones
 \end{itemize}
 \end{hslide}
@@ -106,8 +107,10 @@ Sub-objetivos:
 \slsubsect{Requisitos}
 	\begin{itemize}
 		\item Control en tres grados de libertad independientes
-		\item Tiempo real
-		\item Incluyo m\'as requisitos... O este apartado quiz\'as sobra?
+		\item Manejo en tiempo real
+		\item Reprogramaci\'on de par\'ametros de control
+		\item Instrucciones de manejo de alto nivel
+		\item Este apartado quiz\'as sobra?
 	\end{itemize}
 \end{hslide}
 
@@ -122,8 +125,8 @@ Sub-objetivos:
 	\slsubsect{Software}
 	\begin{itemize}
 		\item IDEs: Quartus, IceCube2, ArduinoIDE
-		\item Simulaci\'on: ModelSim, FT\_Prog
-		\item Programaci\'on y depuraci\'on: Diamond, Logic
+		\item Simulaci\'on: ModelSim
+		\item Programaci\'on y depuraci\'on: Diamond, FT\_Prog, Logic
 	\end{itemize}
 	\slsubsect{Hardware}
 	\begin{itemize}
@@ -323,34 +326,157 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 %%--------------------------------------------------------------
 \begin{hslide}
 \slsect{Validaci\'on experimental}
-\slsubsect{\texttt{Dron Eachine-E010}}
-
+\slsubsect{Dron \texttt{Eachine-E010}}
+\begin{minipage}{20cm}
+	\begin{minipage}{5.2cm}
+		\begin{itemize}
+			\item Ensayos de enlace radio
+			\item Pruebas en bucle abierto
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{6cm}
+		\begin{figure}
+			\includegraphics[width=1.8cm]{Imagenes/E010}
+		\end{figure}
+	\end{minipage}
+\end{minipage} \vfill
+\begin{minipage}{2cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=11.5cm]{Imagenes/Secuencia_7_flechas_negro}
+		\end{figure}
+	\end{center}
+\end{minipage} \vfill
 \end{hslide}
 %%--------------------------------------------------------------
 \begin{hslide}
-\slsubsect{\texttt{Dron Syma-X5C}}
-
+\slsubsect{Dron \texttt{Syma-X5C}}
+\begin{minipage}{20cm}
+	\begin{minipage}{7.2cm}
+		\begin{itemize}
+			\item Modificaciones mayores
+				\begin{itemize}
+					\item Aligerado
+					\item Sensorizaci\'on
+					\item Transmisi\'on
+				\end{itemize}
+			\item Pruebas en bucle abierto y cerrado
+		\end{itemize}
+	\end{minipage}
+\end{minipage} \hfill
+\begin{minipage}{3cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=11cm]{Imagenes/Syma_pre_post}
+		\end{figure}
+	\end{center}
+\end{minipage} \vfill
 \end{hslide}
+%%--------------------------------------------------------------
+\begin{hslide}
+\slsubsect{Dron \texttt{Syma-X5C} Vuelo en Bucle Cerrado}
+\begin{center}
+	\begin{figure}
+		\includegraphics[width=9.1cm]{Imagenes/X5C_Secuencia_7_Small}
+	\end{figure} \hfill
+\end{center}
+\end{hslide}
+
+
 
 %%--------------------------------------------------------------
 %% CONCLUSIONES
 %%--------------------------------------------------------------
-
 \begin{hslide}
 \slsect{Conclusiones y l\'ineas futuras}
+\begin{minipage}{8cm}
+	\begin{itemize}
+		\item Manejo b\'asico con bucles abiertos
+		\item Resultado satisfactorio con bucles cerrados
+			\begin{itemize}
+				\item Estabilidad
+				\item Control
+				\item Repetitividad
+			\end{itemize}
+		\item Objetivos alcanzados con FPGAS y drones de muy bajo coste
+		\item Ocupaci\'on de recursos de la FPGA al l\'imite de sus posibilidades
+	\end{itemize}
+\end{minipage} \hfill
+\begin{minipage}{2cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=3cm]{Imagenes/Interferencia_3_abc}
+		\end{figure}
+	\end{center}
+\end{minipage} \hfill
 \end{hslide}
-
 %%---------------------------------------------------------------
-
 \begin{hslide}
 \slsubsect{L\'ineas futuras}
 
-\end{hslide}
+A\~nadidos de inter\'es
+\begin{itemize}
+	\item Magnet\'ometro para cierre de bucle de giro
+	\item C\'amara y procesamiento de imagen
+	\item GPS para ubicaci\'on global
+\end{itemize}
+Mejoras sobre el sistema actual
+\begin{itemize}
+	\item Mejoras software en eficiencia y disminuci\'on de latencias
+	\item Bucles superiores de control: velocidad y aceleraci\'on
+	\item Generador de trayectorias (ubicaci\'on conocida en PC de mando)
+	\item Arquitectura basada en FPGA a bordo, con acceso a sensores y drivers
+\end{itemize}
 
+
+\end{hslide}
 %%---------------------------------------------------------------
 
 \end{document}\documentclass[notes,slidesec,a4]{seminar}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%--------------------------------------------------------------
+%% Dron Syma-X5C validación experimetnal en una sola traspa
+%%--------------------------------------------------------------
+\begin{hslide}
+\slsubsect{Dron \texttt{Syma-X5C}}
+\begin{minipage}{5.5cm}
+	\begin{minipage}{5cm}
+		\begin{itemize}
+			\item Modificaciones mayores
+			\item Pruebas en bucle cerrado
+		\end{itemize}
+	\end{minipage}\vfill
+	\begin{minipage}{6cm}
+		\begin{figure}
+			\includegraphics[width=5.5cm]{Imagenes/Syma_pre_post}
+		\end{figure}
+	\end{minipage}
+\end{minipage}
+\begin{minipage}{2cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=7cm]{Imagenes/X5C_Secuencia_7_Small}
+		\end{figure}
+	\end{center}
+\end{minipage} \hfill
+\end{hslide}
 
 
 
