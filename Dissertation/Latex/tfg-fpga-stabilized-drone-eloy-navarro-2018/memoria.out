@@ -1,87 +1,86 @@
 \BOOKMARK [0][-]{chapter.1}{Introducci\363n}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Drones}{chapter.1}% 2
 \BOOKMARK [2][-]{subsection.1.1.1}{Aplicaciones de veh\355culos a\351reos no tripulados}{section.1.1}% 3
-\BOOKMARK [2][-]{subsection.1.1.2}{Fabricantes}{section.1.1}% 4
-\BOOKMARK [2][-]{subsection.1.1.3}{Estructura}{section.1.1}% 5
-\BOOKMARK [2][-]{subsection.1.1.4}{Sensores}{section.1.1}% 6
-\BOOKMARK [2][-]{subsection.1.1.5}{Electr\363nica de Control}{section.1.1}% 7
-\BOOKMARK [2][-]{subsection.1.1.6}{Drivers y motores}{section.1.1}% 8
-\BOOKMARK [2][-]{subsection.1.1.7}{Comunicaciones}{section.1.1}% 9
-\BOOKMARK [1][-]{section.1.2}{FPGA}{chapter.1}% 10
-\BOOKMARK [2][-]{subsection.1.2.1}{Caracter\355sticas}{section.1.2}% 11
-\BOOKMARK [2][-]{subsection.1.2.2}{Aplicaciones}{section.1.2}% 12
-\BOOKMARK [2][-]{subsection.1.2.3}{Desarrollo con FPGAs}{section.1.2}% 13
-\BOOKMARK [2][-]{subsection.1.2.4}{FPGAs Libres}{section.1.2}% 14
-\BOOKMARK [0][-]{chapter.2}{Objetivos}{}% 15
-\BOOKMARK [1][-]{section.2.1}{Objetivo principal}{chapter.2}% 16
-\BOOKMARK [1][-]{section.2.2}{Requisitos}{chapter.2}% 17
-\BOOKMARK [1][-]{section.2.3}{Metodolog\355a}{chapter.2}% 18
-\BOOKMARK [1][-]{section.2.4}{Plan de trabajo}{chapter.2}% 19
-\BOOKMARK [0][-]{chapter.3}{Infraestructura utilizada}{}% 20
-\BOOKMARK [1][-]{section.3.1}{Entornos de desarrollo}{chapter.3}% 21
-\BOOKMARK [2][-]{subsection.3.1.1}{IceCube2}{section.3.1}% 22
-\BOOKMARK [2][-]{subsection.3.1.2}{Quartus Prime}{section.3.1}% 23
-\BOOKMARK [2][-]{subsection.3.1.3}{Arduino IDE}{section.3.1}% 24
-\BOOKMARK [1][-]{section.3.2}{Herramienta de Simulaci\363n ModelSim}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.3}{Herramientas de programaci\363n}{chapter.3}% 26
-\BOOKMARK [2][-]{subsection.3.3.1}{FT\137Prog}{section.3.3}% 27
-\BOOKMARK [2][-]{subsection.3.3.2}{Diamond Programmer}{section.3.3}% 28
-\BOOKMARK [1][-]{section.3.4}{Herramientas de depuraci\363n}{chapter.3}% 29
-\BOOKMARK [2][-]{subsection.3.4.1}{Logic Analizer}{section.3.4}% 30
-\BOOKMARK [2][-]{subsection.3.4.2}{Logic}{section.3.4}% 31
-\BOOKMARK [1][-]{section.3.5}{Plataformas hardware}{chapter.3}% 32
-\BOOKMARK [2][-]{subsection.3.5.1}{Arduino Uno y Nano}{section.3.5}% 33
-\BOOKMARK [2][-]{subsection.3.5.2}{ICE40 UltraPlus Breakout Board}{section.3.5}% 34
-\BOOKMARK [2][-]{subsection.3.5.3}{Dron SYMA X5C}{section.3.5}% 35
-\BOOKMARK [2][-]{subsection.3.5.4}{NRF24L01}{section.3.5}% 36
-\BOOKMARK [2][-]{subsection.3.5.5}{Flow breakout board}{section.3.5}% 37
-\BOOKMARK [0][-]{chapter.4}{Sistema con dron comercial estable y programable}{}% 38
-\BOOKMARK [1][-]{section.4.1}{Dise\361o del sistema}{chapter.4}% 39
-\BOOKMARK [1][-]{section.4.2}{Dron enriquecido}{chapter.4}% 40
-\BOOKMARK [2][-]{subsection.4.2.1}{Arquitectura del dron}{section.4.2}% 41
-\BOOKMARK [2][-]{subsection.4.2.2}{M\363dulos del dron}{section.4.2}% 42
-\BOOKMARK [2][-]{subsection.4.2.3}{Interfaces internos}{section.4.2}% 43
-\BOOKMARK [2][-]{subsection.4.2.4}{Interfaces externos}{section.4.2}% 44
-\BOOKMARK [2][-]{subsection.4.2.5}{Software a bordo del dron}{section.4.2}% 45
-\BOOKMARK [1][-]{section.4.3}{Estaci\363n de tierra basada en FPGA}{chapter.4}% 46
-\BOOKMARK [2][-]{subsection.4.3.1}{Arquitectura de la estaci\363n}{section.4.3}% 47
-\BOOKMARK [2][-]{subsection.4.3.2}{M\363dulos de la estaci\363n}{section.4.3}% 48
-\BOOKMARK [2][-]{subsection.4.3.3}{Interfaces internos}{section.4.3}% 49
-\BOOKMARK [2][-]{subsection.4.3.4}{Interfaces externos}{section.4.3}% 50
-\BOOKMARK [2][-]{subsection.4.3.5}{Algoritmos de control sobre la FPGA}{section.4.3}% 51
-\BOOKMARK [1][-]{section.4.4}{Ordenador de mando}{chapter.4}% 52
-\BOOKMARK [2][-]{subsection.4.4.1}{Interfaz externo}{section.4.4}% 53
-\BOOKMARK [2][-]{subsection.4.4.2}{Librer\355a Python}{section.4.4}% 54
-\BOOKMARK [1][-]{section.4.5}{Interfaz USB entre PC de mando y estaci\363n de tierra}{chapter.4}% 55
-\BOOKMARK [2][-]{subsection.4.5.1}{Caracter\355sticas}{section.4.5}% 56
-\BOOKMARK [2][-]{subsection.4.5.2}{Formato de tramas}{section.4.5}% 57
-\BOOKMARK [1][-]{section.4.6}{Interfaz radio entre el dron y la estaci\363n de tierra}{chapter.4}% 58
-\BOOKMARK [2][-]{subsection.4.6.1}{Transmisi\363n de Medidas de sensores}{section.4.6}% 59
-\BOOKMARK [2][-]{subsection.4.6.2}{Transmisi\363n de \323rdenes de movimiento}{section.4.6}% 60
-\BOOKMARK [0][-]{chapter.5}{Validaci\363n experimental}{}% 61
-\BOOKMARK [1][-]{section.5.1}{Dron Eachine E010}{chapter.5}% 62
-\BOOKMARK [1][-]{section.5.2}{Pruebas b\341sicas de vuelo del dron Syma X5C}{chapter.5}% 63
-\BOOKMARK [1][-]{section.5.3}{Pruebas Unitarias}{chapter.5}% 64
-\BOOKMARK [2][-]{subsection.5.3.1}{Pruebas del enlace radio del subsistema de bajada}{section.5.3}% 65
-\BOOKMARK [2][-]{subsection.5.3.2}{Pruebas del enlace radio del subsistema de subida}{section.5.3}% 66
-\BOOKMARK [2][-]{subsection.5.3.3}{Pruebas de m\363dulos software}{section.5.3}% 67
-\BOOKMARK [1][-]{section.5.4}{Pruebas con los bucles de control}{chapter.5}% 68
-\BOOKMARK [2][-]{subsection.5.4.1}{Ancho de banda}{section.5.4}% 69
-\BOOKMARK [2][-]{subsection.5.4.2}{Retardo}{section.5.4}% 70
-\BOOKMARK [1][-]{section.5.5}{Pruebas integrales}{chapter.5}% 71
-\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 72
-\BOOKMARK [1][-]{section.6.1}{Conclusiones}{chapter.6}% 73
-\BOOKMARK [1][-]{section.6.2}{Trabajos futuros}{chapter.6}% 74
-\BOOKMARK [2][-]{subsection.6.2.1}{Mejoras en la arquitectura del sistema}{section.6.2}% 75
-\BOOKMARK [2][-]{subsection.6.2.2}{Mejoras hardware}{section.6.2}% 76
-\BOOKMARK [2][-]{subsection.6.2.3}{Mejoras software}{section.6.2}% 77
-\BOOKMARK [0][-]{chapter*.22}{Bibliograf\355a}{}% 78
-\BOOKMARK [0][-]{appendix.Alph1}{Mecanismos de comunicaci\363n}{}% 79
-\BOOKMARK [1][-]{section.Alph1.1}{UART}{appendix.Alph1}% 80
-\BOOKMARK [1][-]{section.Alph1.2}{SPI}{appendix.Alph1}% 81
-\BOOKMARK [1][-]{section.Alph1.3}{I2C}{appendix.Alph1}% 82
-\BOOKMARK [1][-]{section.Alph1.4}{PPM}{appendix.Alph1}% 83
-\BOOKMARK [0][-]{appendix.Alph2}{Sistemas de control}{}% 84
-\BOOKMARK [1][-]{section.Alph2.1}{Bucle abierto}{appendix.Alph2}% 85
-\BOOKMARK [1][-]{section.Alph2.2}{Bucle cerrado}{appendix.Alph2}% 86
-\BOOKMARK [1][-]{section.Alph2.3}{Algoritmos de control PID}{appendix.Alph2}% 87
+\BOOKMARK [2][-]{subsection.1.1.2}{Estructura}{section.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.3}{Sensores}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.4}{Electr\363nica de Control}{section.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.5}{Drivers y motores}{section.1.1}% 7
+\BOOKMARK [2][-]{subsection.1.1.6}{Comunicaciones}{section.1.1}% 8
+\BOOKMARK [1][-]{section.1.2}{Computaci\363n reconfigurable, FPGAs}{chapter.1}% 9
+\BOOKMARK [2][-]{subsection.1.2.1}{Aplicaciones}{section.1.2}% 10
+\BOOKMARK [2][-]{subsection.1.2.2}{Caracter\355sticas}{section.1.2}% 11
+\BOOKMARK [2][-]{subsection.1.2.3}{Desarrollo con FPGAs}{section.1.2}% 12
+\BOOKMARK [2][-]{subsection.1.2.4}{FPGAs Libres}{section.1.2}% 13
+\BOOKMARK [0][-]{chapter.2}{Objetivos}{}% 14
+\BOOKMARK [1][-]{section.2.1}{Objetivo principal}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.2}{Requisitos}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.3}{Metodolog\355a}{chapter.2}% 17
+\BOOKMARK [1][-]{section.2.4}{Plan de trabajo}{chapter.2}% 18
+\BOOKMARK [0][-]{chapter.3}{Infraestructura utilizada}{}% 19
+\BOOKMARK [1][-]{section.3.1}{Entornos de desarrollo}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.1.1}{IceCube2}{section.3.1}% 21
+\BOOKMARK [2][-]{subsection.3.1.2}{Quartus Prime}{section.3.1}% 22
+\BOOKMARK [2][-]{subsection.3.1.3}{Arduino IDE}{section.3.1}% 23
+\BOOKMARK [1][-]{section.3.2}{Herramienta de Simulaci\363n ModelSim}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.3}{Herramientas de programaci\363n}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{FT\137Prog}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Diamond Programmer}{section.3.3}% 27
+\BOOKMARK [1][-]{section.3.4}{Herramientas de depuraci\363n}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.4.1}{Logic Analizer}{section.3.4}% 29
+\BOOKMARK [2][-]{subsection.3.4.2}{Logic}{section.3.4}% 30
+\BOOKMARK [1][-]{section.3.5}{Plataformas hardware}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.5.1}{Arduino Uno y Nano}{section.3.5}% 32
+\BOOKMARK [2][-]{subsection.3.5.2}{ICE40 UltraPlus Breakout Board}{section.3.5}% 33
+\BOOKMARK [2][-]{subsection.3.5.3}{Dron SYMA X5C}{section.3.5}% 34
+\BOOKMARK [2][-]{subsection.3.5.4}{NRF24L01}{section.3.5}% 35
+\BOOKMARK [2][-]{subsection.3.5.5}{Flow breakout board}{section.3.5}% 36
+\BOOKMARK [0][-]{chapter.4}{Sistema con dron comercial estable y programable}{}% 37
+\BOOKMARK [1][-]{section.4.1}{Dise\361o del sistema}{chapter.4}% 38
+\BOOKMARK [1][-]{section.4.2}{Dron enriquecido}{chapter.4}% 39
+\BOOKMARK [2][-]{subsection.4.2.1}{Arquitectura del dron}{section.4.2}% 40
+\BOOKMARK [2][-]{subsection.4.2.2}{M\363dulos del dron}{section.4.2}% 41
+\BOOKMARK [2][-]{subsection.4.2.3}{Interfaces internos}{section.4.2}% 42
+\BOOKMARK [2][-]{subsection.4.2.4}{Interfaces externos}{section.4.2}% 43
+\BOOKMARK [2][-]{subsection.4.2.5}{Software a bordo del dron}{section.4.2}% 44
+\BOOKMARK [1][-]{section.4.3}{Estaci\363n de tierra basada en FPGA}{chapter.4}% 45
+\BOOKMARK [2][-]{subsection.4.3.1}{Arquitectura de la estaci\363n}{section.4.3}% 46
+\BOOKMARK [2][-]{subsection.4.3.2}{M\363dulos de la estaci\363n}{section.4.3}% 47
+\BOOKMARK [2][-]{subsection.4.3.3}{Interfaces internos}{section.4.3}% 48
+\BOOKMARK [2][-]{subsection.4.3.4}{Interfaces externos}{section.4.3}% 49
+\BOOKMARK [2][-]{subsection.4.3.5}{Algoritmos de control sobre la FPGA}{section.4.3}% 50
+\BOOKMARK [1][-]{section.4.4}{Ordenador de mando}{chapter.4}% 51
+\BOOKMARK [2][-]{subsection.4.4.1}{Interfaz externo}{section.4.4}% 52
+\BOOKMARK [2][-]{subsection.4.4.2}{Librer\355a Python}{section.4.4}% 53
+\BOOKMARK [1][-]{section.4.5}{Interfaz USB entre PC de mando y estaci\363n de tierra}{chapter.4}% 54
+\BOOKMARK [2][-]{subsection.4.5.1}{Caracter\355sticas}{section.4.5}% 55
+\BOOKMARK [2][-]{subsection.4.5.2}{Formato de tramas}{section.4.5}% 56
+\BOOKMARK [1][-]{section.4.6}{Interfaz radio entre el dron y la estaci\363n de tierra}{chapter.4}% 57
+\BOOKMARK [2][-]{subsection.4.6.1}{Transmisi\363n de medidas de sensores}{section.4.6}% 58
+\BOOKMARK [2][-]{subsection.4.6.2}{Transmisi\363n de \363rdenes de movimiento}{section.4.6}% 59
+\BOOKMARK [0][-]{chapter.5}{Validaci\363n experimental}{}% 60
+\BOOKMARK [1][-]{section.5.1}{Dron Eachine E010}{chapter.5}% 61
+\BOOKMARK [1][-]{section.5.2}{Pruebas Unitarias}{chapter.5}% 62
+\BOOKMARK [2][-]{subsection.5.2.1}{Pruebas del enlace radio del subsistema de bajada}{section.5.2}% 63
+\BOOKMARK [2][-]{subsection.5.2.2}{Pruebas del enlace radio del subsistema de subida}{section.5.2}% 64
+\BOOKMARK [2][-]{subsection.5.2.3}{Pruebas de m\363dulos en la estaci\363n de tierra}{section.5.2}% 65
+\BOOKMARK [1][-]{section.5.3}{Pruebas de vuelo con los bucles de control}{chapter.5}% 66
+\BOOKMARK [2][-]{subsection.5.3.1}{Pruebas b\341sicas de vuelo del dron Syma X5C}{section.5.3}% 67
+\BOOKMARK [2][-]{subsection.5.3.2}{Ancho de banda}{section.5.3}% 68
+\BOOKMARK [2][-]{subsection.5.3.3}{Retardo}{section.5.3}% 69
+\BOOKMARK [1][-]{section.5.4}{Pruebas integrales}{chapter.5}% 70
+\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 71
+\BOOKMARK [1][-]{section.6.1}{Conclusiones}{chapter.6}% 72
+\BOOKMARK [1][-]{section.6.2}{Trabajos futuros}{chapter.6}% 73
+\BOOKMARK [2][-]{subsection.6.2.1}{Mejoras en la arquitectura del sistema}{section.6.2}% 74
+\BOOKMARK [2][-]{subsection.6.2.2}{Mejoras hardware}{section.6.2}% 75
+\BOOKMARK [2][-]{subsection.6.2.3}{Mejoras software}{section.6.2}% 76
+\BOOKMARK [0][-]{chapter*.22}{Bibliograf\355a}{}% 77
+\BOOKMARK [0][-]{appendix.Alph1}{Mecanismos de comunicaci\363n}{}% 78
+\BOOKMARK [1][-]{section.Alph1.1}{UART}{appendix.Alph1}% 79
+\BOOKMARK [1][-]{section.Alph1.2}{SPI}{appendix.Alph1}% 80
+\BOOKMARK [1][-]{section.Alph1.3}{I2C}{appendix.Alph1}% 81
+\BOOKMARK [1][-]{section.Alph1.4}{PPM}{appendix.Alph1}% 82
+\BOOKMARK [0][-]{appendix.Alph2}{Sistemas de control}{}% 83
+\BOOKMARK [1][-]{section.Alph2.1}{Bucle abierto}{appendix.Alph2}% 84
+\BOOKMARK [1][-]{section.Alph2.2}{Bucle cerrado}{appendix.Alph2}% 85
+\BOOKMARK [1][-]{section.Alph2.3}{Algoritmos de control PID}{appendix.Alph2}% 86
