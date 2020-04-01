@@ -38,7 +38,10 @@
 %-------Paquete para ecuaciones---------%
 \usepackage{amsmath, amsthm, amssymb}
 
+%-------Paquete para enlaces---------%
 \usepackage{hyperref}
+%-------Paquete para moneda---------%
+\usepackage{eurosym}
 
 
 \title{Memoria del Proyecto}
@@ -1624,21 +1627,58 @@ Adicionalmente se ensayó la estabilidad del vuelo estacionario y su respuesta an
 \chapter{Conclusiones}
 \label{chap:Conclusiones}
 
-Para terminar realizaremos un repaso de los objetivos alcanzados durante el desarrollo de este trabajo, los métodos utilizados y las dificultades encontradas en el proceso. Gracias a ellas se ha sufrido y aprendido durante todo el proyecto. A cada elemento diseñado, se han encontrado mejores formas de hacerlo en un futuro, alternativas con propiedades distintas u opciones interesantes recopiladas en la sección de Trabajos futuros. En elementos sueltos o incluso en la propia arquitectura, hay cambios posibles que podrían dar resultados diferentes y en ocasiones mejores.
+Para terminar realizaremos un repaso de los objetivos alcanzados durante el desarrollo de este trabajo, los métodos utilizados y las dificultades encontradas en el proceso. Gracias a ellas se ha aprendido durante todo el proyecto. A cada elemento diseñado se han encontrado mejores formas de hacerlo en un futuro, alternativas con propiedades distintas u opciones interesantes que se recopilan en la sección de Trabajos futuros. En elementos sueltos o incluso en la propia arquitectura, hay cambios posibles que podrían dar resultados diferentes y en ocasiones mejores.
 
 
 \section{Conclusiones}
 \label{sec:Conclusiones}
-%Se ha conseguido un resultado satisfactorio que cumple el objetivo principal que se tenía, estabilizar y controlar un dron de bajo coste, desde un PC, usando FPGAs libres. %El trabajo podría dividirse en dos grandes bloques, control del dron mediante bucles abiertos y control mediante bucles cerrados, a continuación repasamos ambos mecanismos.
-
-Se ha conseguido un resultado satisfactorio que cumple el objetivo principal que se tenía, estabilizar y controlar un dron de bajo coste, desde un PC, usando FPGAs libres. Este resultado es posible gracias al diseño de una electrónica lo suficientemente compacta y ligera como para embarcarla en el dron, que le permite transmitir su ubicación hacia la estación de tierra. Además, tanto los sistemas de comunicaciones, como la FPGA instalada en la estación, permiten el control del vehículo limitando los retardos. Gracias a todo esto, el vuelo del dron obedece a los comandos ejecutados en el PC de mando.
-
-El control mediante bucles abiertos fue la primera aproximación para tener un control de los vehículos desde el ordenador. El resultado fue positivo desde el punto de vista de lo que este tipo de sistemas pueden llegar a ofrecer. Se diseñó software y hardware completamente funcional, permitiendo el enlace con el dron y su obediencia ante las instrucciones dadas desde el PC, mínimamente tratadas por la FPGA de la estación de tierra. Pero las derivas propias de los drones, especialmente notables en drones de bajo coste, dificultaron excesivamente un buen control del mismo mediante esta metodología. Los resultados conseguidos permitían controlar un dron comandándole instrucciones que éste obedecía, pero dicho control era precario, falto de precisión y repetitividad. Para un ejercicio de despegue y parada en vuelo llegaba un momento en que dichas derivas dirigían el dron contra el suelo, paredes u objetos, impredeciblemente. La problemática de este método era difícil de subsanar con la infraestructura disponible.\\
-% por este motivo se procedió a evolucionar todo el sistema, hardware y software, tanto en tierra como a bordo, dotándolo de una nueva dimensión, conocimiento en el dron de la propia ubicación relativa del dron. Esto supuso poder avanzar al siguiente tipo de control.\\
-El control mediante bucles cerrados fue la arquitectura definitiva diseñada para el control del vehículo. Se diseñó la electrónica y el software para permitir al dron medir su propia ubicación respecto del punto de despegue y transmitirla al sistema en tierra. La estación de tierra recibió añadidos hardware y una completa actualización de software para recibir, procesar y corregir la ubicación del dron satisfactoriamente. Para ello se incluyeron controladores PID y nuevos sistemas de comunicaciones, entre ellos un enlace radio adicional. El sistema, en este punto, permitió recibir instrucciones de posición desde el ordenador y controlar al vehículo en vuelo para obedecerlas, a través de la FPGA. Mediante estos cambios se consiguieron vuelos significativamente más estables y similares entre sí. También permitieron ampliar la duración de los vuelos, alcanzando los límites debidos a los niveles de carga en las baterías. Esto facilitó las tareas de ajuste de parámetros PID, experimentación y terminó ofreciendo vuelos con una calidad de control muy mejorada.
 
 
-El trabajo realizado se pone a disposición pública \cite{EloyRepo}, tanto el hardware, software como el propio diseño del sistema, listos para que cualquiera persona pueda adquirir los elementos por un bajo coste, instalarlos y ponerlos en funcionamiento. Esto abre un gran abanico de posibles modificaciones, mejoras y desarrollos futuros.
+Finalmente se han incorporado en el vehículo volador los elementos de sensorización necesarios para conocer la posición del mismo. Además se le ha dotado de un enlace radio adicional con la estación de tierra para comunicar dicha posición. En la estación una FPGA recibe periódicamente las medidas y ejecuta controladores de vuelo con los datos recibidos. Sus resultados generan órdenes de movimiento que son enviadas a la plataforma voladora, consiguiendo un vuelo estacionario y estable. El gobierno del dron se ha completado modulando dichas órdenes de movimiento a través de instrucciones en Python ejecutadas en un PC. Éste se comunica mediante USB con la FPGA de la estación. El software del PC se encarga de dirigir la posición del vehículo haciendo uso de las funciones construidas en la librería de Python, permitiendo así manejar el vuelo mediante un entorno simplificado de alto nivel, siendo la FPGA la encargada de que el vehículo obedezca órdenes de manera estable.
+
+El proceso hasta alcanzar estos objetivos ha incluido el desarrollo de controles de bucle abierto para el vehículo. El resultado es positivo desde el punto de vista de lo que este tipo de sistemas pueden llegar a ofrecer. Se ha diseñado software y hardware funcional que permiten llevar a cabo el manejo teledirigido del dron, mediante instrucciones ejecutadas en el PC mínimamente tratadas por la FPGA de la estación de tierra. Pero las derivas propias de los drones, especialmente notables en drones de bajo coste, dificultan excesivamente un buen control del mismo mediante esta metodología. Los resultados así conseguidos permiten controlar un dron comandándole instrucciones que éste obedece, pero dicho control es precario, falto de precisión y repetitividad. Para ejercicios de vuelo estacionario en los que transcurre cierto tiempo las derivas dirigen el dron contra el suelo, paredes u objetos de manera impredecible. La problemática de este método es difícil de subsanar con la infraestructura disponible. Por tanto, el control de vuelo mediante bucles cerrados ha sido la arquitectura definitiva diseñada para el control del vehículo. Ésta se ha alcanzado mediante los añadidos hardware y la actualización de software en el dron, la estación de tierra y el PC comentados anteriormente. Mediante estos cambios se consiguen vuelos significativamente más estables y similares entre sí. También permiten ampliar la duración de los vuelos, alcanzando los límites impuestos por el nivel de carga en las baterías. Esto también facilita las tareas de ajuste de parámetros PID, experimentación y ofrece vuelos con una calidad de control muy mejorada.
+
+
+
+
+
+
+
+
+% ( ^ En realidad se modulan los bucles de control, no las ordenes de movimiento directamente, pero me parecía más claro así)
+
+
+Tras el trabajo realizado se ha conseguido un resultado satisfactorio que cumple el objetivo principal que se tenía, estabilizar y controlar un dron de bajo coste, desde un PC, usando FPGAs libres. Este resultado es posible gracias al diseño de una electrónica lo suficientemente compacta y ligera como para embarcarla en el dron, que le permite transmitir su ubicación hacia la estación de tierra. Además, tanto los sistemas de comunicaciones, como la FPGA instalada en la estación, permiten el control del vehículo limitando los retardos. Gracias a todo esto, el vuelo del dron obedece a los comandos ejecutados en el PC de mando.
+
+
+
+
+%En duda, revisar o eliminar:
+
+%El control mediante bucles abiertos fue la primera aproximación para tener un control de los vehículos desde el ordenador. El resultado fue positivo desde el punto de vista de lo que este tipo de sistemas pueden llegar a ofrecer. Se diseñó software y hardware completamente funcional, permitiendo el enlace con el dron y su obediencia ante las instrucciones dadas desde el PC, mínimamente tratadas por la FPGA de la estación de tierra. Pero las derivas propias de los drones, especialmente notables en drones de bajo coste, dificultaron excesivamente un buen control del mismo mediante esta metodología. Los resultados conseguidos permitían controlar un dron comandándole instrucciones que éste obedecía, pero dicho control era precario, falto de precisión y repetitividad. Para un ejercicio de despegue y parada en vuelo llegaba un momento en que dichas derivas dirigían el dron contra el suelo, paredes u objetos, impredeciblemente. La problemática de este método era difícil de subsanar con la infraestructura disponible.\\
+%El control mediante bucles cerrados fue la arquitectura definitiva diseñada para el control del vehículo. Se diseñó la electrónica y el software para permitir al dron medir su propia ubicación respecto del punto de despegue y transmitirla al sistema en tierra. La estación de tierra recibió añadidos hardware y una completa actualización de software para recibir, procesar y corregir la ubicación del dron satisfactoriamente. Para ello se incluyeron controladores PID y nuevos sistemas de comunicaciones, entre ellos un enlace radio adicional. El sistema, en este punto, permitió recibir instrucciones de posición desde el ordenador y controlar al vehículo en vuelo para obedecerlas, a través de la FPGA. Mediante estos cambios se consiguieron vuelos significativamente más estables y similares entre sí. También permitieron ampliar la duración de los vuelos, alcanzando los límites debidos a los niveles de carga en las baterías. Esto facilitó las tareas de ajuste de parámetros PID, experimentación y terminó ofreciendo vuelos con una calidad de control muy mejorada.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+El trabajo realizado se pone a disposición pública, tanto el hardware, el software\footnote{https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/Basic-Drone} como el propio diseño del sistema\footnote{https://github.com/RoboticsLabURJC/2018-tfg-eloy-navarro}, listos para que cualquiera persona pueda adquirir los elementos por un bajo coste, instalarlos y ponerlos en funcionamiento. Esto abre un gran abanico de posibles modificaciones, mejoras y desarrollos futuros.
 
 \section{Trabajos futuros}
 \label{sec:Trabajo futuro}
@@ -1649,7 +1689,7 @@ El sistema desarrollado ofrece muchas posibilidades de mejoras y añadidos. En es
 \label{subsec:Mejoras en la arquitectura del sistema}
 
 \begin{itemize}
-  \item La arquitectura del sistema es posiblemente la consideración cuyo cambio tendría mayor impacto en el resultado final. La premisa de procesar con la FPGA en tierra tiene ventajas y desventajas. Probablemente la peor contrapartida sea los tiempos de transmisión y recepción añadidos por los distintos módulos que intervienen en la comunicación de las medidas hacia tierra y las órdenes de vuelta hacia el dron. Estos retardos añadidos empeoran la estabilidad que se puede llegar a conseguir, con el vehículo en vuelo. El cambio más significativo pasaría posiblemente por trasladar la FPGA a la electrónica embarcada, con conexión directa a los sensores y a los drivers de los motores. Esto supondría incluir una cantidad considerable de software en la FPGA, a cambio de disminuir los retardos actuales a más de la mitad. Esto ganaría principalmente, en favor de la calidad del control que se ejerce sobre el dron, aunque requeriría motores más potentes y drones más caros.
+  \item La arquitectura del sistema es posiblemente la consideración cuyo cambio tendría mayor impacto en el resultado final. La premisa de procesar con la FPGA en tierra tiene ventajas y desventajas. Probablemente la mayor contrapartida sea los tiempos de transmisión y recepción añadidos por los distintos módulos que intervienen en la comunicación de las medidas hacia tierra y las órdenes de vuelta hacia el dron. Estos retardos añadidos empeoran la estabilidad que se puede llegar a conseguir, con el vehículo en vuelo. El cambio más significativo pasaría posiblemente por trasladar la FPGA a la electrónica embarcada, con conexión directa a los sensores y a los drivers de los motores. Esto supondría incluir una cantidad considerable de software en la FPGA, a cambio de disminuir los retardos actuales a más de la mitad. De esta manera se ganaría principalmente en favor de la calidad del control que se ejerce sobre el dron, aunque requeriría motores más potentes y drones más caros. El diseño utilizado ha sido escogido no por capricho, sino tomando como restricción fundamental el objetivo de basar el sistema en drones y FPGAs de bajo coste (coste aproximado del dron 24\euro  ~y de la FPGA en torno a 5\euro). La elección de la FPGA tuvo como consideración adicional, la compatibilidad con herramientas libres para futuros diseños.
 \end{itemize}
 
 \subsection{Mejoras hardware}
@@ -1665,7 +1705,7 @@ El sistema desarrollado ofrece muchas posibilidades de mejoras y añadidos. En es
 \label{subsec:Mejoras software}
 
 \begin{itemize}
-  \item Respecto del diseño software, suelen encuentran maneras mejores, más eficientes de construir código igualmente funcional una vez terminado cada módulo. Invertir tiempo en parámetros PID más ajustados, mejoras en el software existente, compactarlo, ejecutando el máximo posible sobre la FPGA (eliminando la necesidad de procesadores periféricos) y cambios de esta índole podrían reducir los retardos de cierre de los bucles, mejorando la respuesta del control.
+  \item Respecto del diseño software, pueden encontrarse maneras mejores, más eficientes de construir código igualmente funcional una vez terminado cada módulo. Invertir tiempo en parámetros PID más ajustados, mejoras en el software existente, compactarlo, ejecutando el máximo posible sobre la FPGA (eliminando la necesidad de procesadores periféricos) y cambios de esta índole podrían reducir los retardos de cierre de los bucles, mejorando la respuesta del control.
   
   \item Ampliar la librería en python es una mejora que iría en pro de la facilidad de uso. Permitiría la repetición de ensayos con menos esfuerzo.
   

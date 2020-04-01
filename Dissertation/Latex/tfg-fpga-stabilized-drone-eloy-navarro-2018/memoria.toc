@@ -88,17 +88,17 @@
 \contentsline {section}{\numberline {5.4}Pruebas integrales}{68}{section.5.4}%
 \contentsline {chapter}{\numberline {6}Conclusiones}{71}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Conclusiones}{71}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Trabajos futuros}{72}{section.6.2}%
+\contentsline {section}{\numberline {6.2}Trabajos futuros}{73}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}Mejoras en la arquitectura del sistema}{73}{subsection.6.2.1}%
 \contentsline {subsection}{\numberline {6.2.2}Mejoras hardware}{73}{subsection.6.2.2}%
 \contentsline {subsection}{\numberline {6.2.3}Mejoras software}{74}{subsection.6.2.3}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{75}{chapter*.22}%
-\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{77}{appendix.Alph1}%
-\contentsline {section}{\numberline {A.1}UART}{77}{section.Alph1.1}%
-\contentsline {section}{\numberline {A.2}SPI}{78}{section.Alph1.2}%
-\contentsline {section}{\numberline {A.3}I2C}{79}{section.Alph1.3}%
-\contentsline {section}{\numberline {A.4}PPM}{81}{section.Alph1.4}%
-\contentsline {chapter}{\numberline {B}Sistemas de control}{83}{appendix.Alph2}%
-\contentsline {section}{\numberline {B.1}Bucle abierto}{83}{section.Alph2.1}%
-\contentsline {section}{\numberline {B.2}Bucle cerrado}{84}{section.Alph2.2}%
-\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{85}{section.Alph2.3}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{77}{chapter*.22}%
+\contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{79}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}UART}{79}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}SPI}{80}{section.Alph1.2}%
+\contentsline {section}{\numberline {A.3}I2C}{81}{section.Alph1.3}%
+\contentsline {section}{\numberline {A.4}PPM}{83}{section.Alph1.4}%
+\contentsline {chapter}{\numberline {B}Sistemas de control}{85}{appendix.Alph2}%
+\contentsline {section}{\numberline {B.1}Bucle abierto}{85}{section.Alph2.1}%
+\contentsline {section}{\numberline {B.2}Bucle cerrado}{86}{section.Alph2.2}%
+\contentsline {section}{\numberline {B.3}Algoritmos de control PID}{87}{section.Alph2.3}%
