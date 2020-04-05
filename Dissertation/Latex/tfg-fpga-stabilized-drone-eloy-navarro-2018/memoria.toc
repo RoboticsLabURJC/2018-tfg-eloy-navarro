@@ -71,7 +71,7 @@
 \contentsline {subsubsection}{Caracter\IeC {\'\i }sticas}{54}{section*.15}%
 \contentsline {subsubsection}{Formato de trama}{54}{section*.16}%
 \contentsline {chapter}{\numberline {5}Validaci\'on experimental}{57}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Dron Eachine E010}{57}{section.5.1}%
+\contentsline {section}{\numberline {5.1}Pruebas con dron Eachine E010}{57}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Pruebas Unitarias}{58}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}Pruebas del enlace radio del subsistema de bajada}{59}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}Pruebas del enlace radio del subsistema de subida}{60}{subsection.5.2.2}%
@@ -90,7 +90,7 @@
 \contentsline {section}{\numberline {6.1}Conclusiones}{71}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Trabajos futuros}{73}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}Mejoras en la arquitectura del sistema}{73}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Mejoras hardware}{73}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.2}Mejoras hardware}{74}{subsection.6.2.2}%
 \contentsline {subsection}{\numberline {6.2.3}Mejoras software}{74}{subsection.6.2.3}%
 \contentsline {chapter}{Bibliograf\'{\i }a}{77}{chapter*.22}%
 \contentsline {chapter}{\numberline {A}Mecanismos de comunicaci\'on}{79}{appendix.Alph1}%
