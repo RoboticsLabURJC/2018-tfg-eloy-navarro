@@ -77,7 +77,6 @@
 \begin{minipage}{3.5cm}
 	\begin{itemize}
 		\item Potencia paralela
-		\item Escalabilidad
 		\item Reconfiguraci\'on
 		\item Desarrollo abierto
 	\end{itemize}
@@ -98,7 +97,7 @@ bajo coste haciendo uso de FPGAs libres
 Sub-objetivos:
 	\begin{itemize}
 		\item Sensorizar veh\'iculo y enlazarlo con tierra
-		\item Dise\~nar estaci\'on de tierra y control en comunicaci\'on con dron y PC
+		\item Dise\~nar estaci\'on de tierra en comunicaci\'on con dron y PC
 		\item Dise\~nar software para PC de mando en Python
 	\end{itemize}
 \end{hslide}
@@ -106,11 +105,12 @@ Sub-objetivos:
 \begin{hslide}
 \slsubsect{Requisitos}
 	\begin{itemize}
+		\item FPGAs \textbf{libres}
 		\item Control en tres grados de libertad independientes
 		\item Manejo en tiempo real
 		\item Reprogramaci\'on de par\'ametros de control
-		\item Instrucciones de manejo de alto nivel
-		\item Este apartado quiz\'as sobra?
+		\item Instrucciones de manejo de \textbf{alto nivel}
+		\item Conjunto de \textbf{bajo coste}
 	\end{itemize}
 \end{hslide}
 
@@ -125,12 +125,12 @@ Sub-objetivos:
 	\slsubsect{Software}
 	\begin{itemize}
 		\item IDEs: Quartus, IceCube2, ArduinoIDE
-		\item Simulaci\'on: ModelSim
-		\item Programaci\'on y depuraci\'on: Diamond, FT\_Prog, Logic
+		\item Simulaci\'on: \textbf{ModelSim}
+		\item Programaci\'on y depuraci\'on: Diamond, FT\_Prog, \textbf{Logic}
 	\end{itemize}
 	\slsubsect{Hardware}
 	\begin{itemize}
-		\item Plataformas: Arduino, ICE40, SYMA X5C
+		\item Plataformas: Arduino, \textbf{ICE40}, Eachine E010, SYMA X5C
 		\item Comunicaciones: NRF24L01
 		\item Sensores: Flow breakout board
 
@@ -392,13 +392,13 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 \begin{minipage}{8cm}
 	\begin{itemize}
 		\item Manejo b\'asico con bucles abiertos
-		\item Resultado satisfactorio con bucles cerrados
+		\item Resultado satisfactorio con \textbf{bucles cerrados}
 			\begin{itemize}
 				\item Estabilidad
 				\item Control
 				\item Repetitividad
 			\end{itemize}
-		\item Objetivos alcanzados con FPGAS y drones de muy bajo coste
+		\item Objetivos alcanzados con FPGAS \textbf{libres} y drones de muy \textbf{bajo coste}
 		\item Ocupaci\'on de recursos de la FPGA al l\'imite de sus posibilidades
 	\end{itemize}
 \end{minipage} \hfill
