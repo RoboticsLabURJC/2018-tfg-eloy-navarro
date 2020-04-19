@@ -153,18 +153,21 @@ Sub-objetivos:
 \slsect{Dron comercial programable}
 Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura de control en tierra\\
 
-\begin{minipage}{4.5cm}
+%\begin{minipage}{4.5cm}
+\begin{minipage}{4.8cm}
 	\slsubsect{M\'odulo en vuelo}
 	\begin{itemize}
-		\item Dron: Cuadric\'opteros enriquecidos
+		\item Dron enriquecido
 	\end{itemize}
 	\slsubsect{M\'odulos en Tierra}
 	\begin{itemize}
 		\item PC de mando: Python para el manejo del veh\'iculo
-		\item Estaci\'on de tierra basada en FPGA: Verilog para el control
+		\item Estaci\'on de tierra con FPGA para control (Verilog)
+		%\item Estaci\'on de tierra basada en FPGA: Verilog para el control
 	\end{itemize}
 \end{minipage} \hfill
-\begin{minipage}{6cm}
+%\begin{minipage}{6cm}
+\begin{minipage}{8cm}
 	\begin{figure}
 		\includegraphics[width=8cm]{Imagenes/Arquitectura_del_Sistema}
 	\end{figure}
@@ -222,7 +225,7 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 \end{hslide}
 %%--------------------------------------------------------------
 \begin{hslide}
-\slsubsect{Estaci\'on de tierra basada en FPGA}
+\slsubsect{Estaci\'on de tierra basada en FPGA - Arquitectura}
 \begin{minipage}{3cm}
 	\begin{center}
 		\begin{figure}
@@ -231,11 +234,11 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 	\end{center}
 \end{minipage} \vfill
 \begin{minipage}{20cm}
-	\begin{minipage}{5.2cm}
+	\begin{minipage}{5.8cm}
 		\begin{itemize}
 			\item Atiende tramas de mando
 			\item Atiende tramas desde dron
-			\item Ejecuta algoritmos de control
+			\item Ejecuta algoritmos de estabilizaci\'on y control
 		\end{itemize}
 	\end{minipage}
 	\begin{minipage}{6cm}
@@ -278,25 +281,25 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 \end{hslide}
 %%--------------------------------------------------------------
 \begin{hslide}
-\slsubsect{Pc de Mando}
-\begin{minipage}{2cm}
+\slsubsect{Ordenador de Mando}
+\begin{minipage}{3cm}
 	\begin{center}
 		\begin{figure}
 			\includegraphics[width=5.5cm]{Imagenes/Arquitectura_del_Cod_PC}
 		\end{figure}
 	\end{center}
 \end{minipage} \hfill
-\begin{minipage}{6cm}
+\begin{minipage}{6.2cm}
 	\begin{itemize}
-		\item Ejecuta instrucciones en Python
-		\item Facilita el control del veh\'iculo
+		\item Biblioteca en Python
+		\item \textbf{Facilita el control} del veh\'iculo desde programas ejecutados en el ordenador
 		\item Se comunica con la estaci\'on de tierra mediante USB
 	\end{itemize}
 \end{minipage}
 \end{hslide}
 %%--------------------------------------------------------------
 \begin{hslide}
-\slsubsect{Pc de Mando - Funciones}
+\slsubsect{Ordenador de Mando - Funciones}
 \begin{center}
 
 
@@ -391,15 +394,14 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 \slsect{Conclusiones y l\'ineas futuras}
 \begin{minipage}{8cm}
 	\begin{itemize}
+		\item Cumplido el objetivo general de este TFG y sus tres subobjetivos
+			\begin{itemize}
+				\item Enriqueciendo un dron de \textbf{bajo coste}
+				\item Construyendo una estaci\'on de tierra basada en una \textbf{FPGA libre}
+				\item Programando el vuelo desde un PC
+			\end{itemize}
 		\item Manejo b\'asico con bucles abiertos
 		\item Resultado satisfactorio con \textbf{bucles cerrados}
-			\begin{itemize}
-				\item Estabilidad
-				\item Control
-				\item Repetitividad
-			\end{itemize}
-		\item Objetivos alcanzados con FPGAS \textbf{libres} y drones de muy \textbf{bajo coste}
-		\item Ocupaci\'on de recursos de la FPGA al l\'imite de sus posibilidades
 	\end{itemize}
 \end{minipage} \hfill
 \begin{minipage}{2cm}
@@ -411,6 +413,35 @@ Sistema basado en sensorizaci\'on adicional a bordo del dron e infraestructura d
 \end{minipage} \hfill
 \end{hslide}
 %%---------------------------------------------------------------
+\begin{hslide}
+\slsubsect{L\'ineas futuras}
+
+\begin{itemize}
+	%\item A\~nadidos: Visi\'on artificial, GPS...
+	%\item Mejoras: Generador de trayectorias
+	%\item Cambios: Arquitectura basada en FPGA a bordo
+	\item A\~nadir sensores: Visi\'on artificial, GPS...
+	\item Cambios en la arquitectura: FPGA a bordo
+\end{itemize}
+
+
+\end{hslide}
+%%---------------------------------------------------------------
+
+\end{document}\documentclass[notes,slidesec,a4]{seminar}
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{hslide}
 \slsubsect{L\'ineas futuras}
 
@@ -432,20 +463,31 @@ Mejoras sobre el sistema actual
 \end{hslide}
 %%---------------------------------------------------------------
 
-\end{document}\documentclass[notes,slidesec,a4]{seminar}
-
-
-
-
-
-
-
-
-
-
-
-
-
+%%---------------------------------------------------------------
+\begin{hslide}
+\slsect{Conclusiones y l\'ineas futuras}
+\begin{minipage}{8cm}
+	\begin{itemize}
+		\item Manejo b\'asico con bucles abiertos
+		\item Resultado satisfactorio con \textbf{bucles cerrados}
+			\begin{itemize}
+				\item Estabilidad
+				\item Control
+				\item Repetitividad
+			\end{itemize}
+		\item Objetivos alcanzados con FPGAS \textbf{libres} y drones de muy \textbf{bajo coste}
+		\item Ocupaci\'on de recursos de la FPGA al l\'imite de sus posibilidades
+	\end{itemize}
+\end{minipage} \hfill
+\begin{minipage}{2cm}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=3cm]{Imagenes/Interferencia_3_abc}
+		\end{figure}
+	\end{center}
+\end{minipage} \hfill
+\end{hslide}
+%%---------------------------------------------------------------
 
 
 

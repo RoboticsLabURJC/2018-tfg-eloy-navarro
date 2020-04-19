@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.4)  16 APR 2020 19:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.4)  19 APR 2020 13:05
 entering extended mode
 **./main.tex
 (main.tex
@@ -670,20 +670,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 154--155
 File: Imagenes/Arquitectura_del_Sistema.png Graphic file (type png)
 <use Imagenes/Arquitectura_del_Sistema.png>
 Package pdftex.def Info: Imagenes/Arquitectura_del_Sistema.png  used on input l
-ine 169.
+ine 172.
 (pdftex.def)             Requested size: 227.62204pt x 125.39908pt.
 
-Overfull \hbox (56.90552pt too wide) in paragraph at lines 169--170
-[][] 
+Overfull \hbox (50.89398pt too wide) in paragraph at lines 157--175
+[]$[]$  $[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--175
+
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 172.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 175.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 172.
+Package pdftex.def Info: template/peloto.png  used on input line 175.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -692,19 +697,19 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [7
 
  <./Imagenes/Arquitectura_del_Sistema.png>]
-<Imagenes/Flujo_del_Sistema.png, id=49, 1172.88188pt x 962.09438pt>
+<Imagenes/Flujo_del_Sistema.png, id=49, 1090.82532pt x 976.39781pt>
 File: Imagenes/Flujo_del_Sistema.png Graphic file (type png)
 <use Imagenes/Flujo_del_Sistema.png>
-Package pdftex.def Info: Imagenes/Flujo_del_Sistema.png  used on input line 178
+Package pdftex.def Info: Imagenes/Flujo_del_Sistema.png  used on input line 181
 .
-(pdftex.def)             Requested size: 227.62204pt x 186.7048pt.
+(pdftex.def)             Requested size: 227.62204pt x 203.73851pt.
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 181.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 184.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 181.
+Package pdftex.def Info: template/peloto.png  used on input line 184.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -716,33 +721,33 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/Drone_arq.png, id=54, 1694.33pt x 1095.09125pt>
 File: Imagenes/Drone_arq.png Graphic file (type png)
 <use Imagenes/Drone_arq.png>
-Package pdftex.def Info: Imagenes/Drone_arq.png  used on input line 188.
+Package pdftex.def Info: Imagenes/Drone_arq.png  used on input line 191.
 (pdftex.def)             Requested size: 213.39566pt x 137.92207pt.
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 188--189
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 191--192
  [] 
  []
 
 LaTeX Font Info:    Trying to load font information for OMS+cmss on input line 
-196.
-LaTeX Font Info:    No file OMScmss.fd. on input line 196.
+199.
+LaTeX Font Info:    No file OMScmss.fd. on input line 199.
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 196.
+(Font)              for symbol `textbullet' on input line 199.
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 200--201
+Underfull \hbox (badness 2285) in paragraph at lines 203--204
 []\OT1/cmss/m/n/10 Obedece orde-nes de
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 203.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 206.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 203.
+Package pdftex.def Info: template/peloto.png  used on input line 206.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -751,24 +756,24 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [9
 
  <./Imagenes/Drone_arq.png>]
-<Imagenes/OnBoard_System_Mod.jpg, id=60, 1365.1pt x 776.9025pt>
+<Imagenes/OnBoard_System_Mod.jpg, id=60, 4625.28pt x 2601.72pt>
 File: Imagenes/OnBoard_System_Mod.jpg Graphic file (type jpg)
 <use Imagenes/OnBoard_System_Mod.jpg>
 Package pdftex.def Info: Imagenes/OnBoard_System_Mod.jpg  used on input line 21
-0.
-(pdftex.def)             Requested size: 221.93158pt x 126.2985pt.
+3.
+(pdftex.def)             Requested size: 221.93158pt x 124.81364pt.
 
-Overfull \hbox (136.57332pt too wide) in paragraph at lines 210--211
+Overfull \hbox (136.57332pt too wide) in paragraph at lines 213--214
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 222.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 225.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 222.
+Package pdftex.def Info: template/peloto.png  used on input line 225.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -780,25 +785,25 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/ET_arq.png, id=64, 1837.61531pt x 606.01407pt>
 File: Imagenes/ET_arq.png Graphic file (type png)
 <use Imagenes/ET_arq.png>
-Package pdftex.def Info: Imagenes/ET_arq.png  used on input line 229.
+Package pdftex.def Info: Imagenes/ET_arq.png  used on input line 232.
 (pdftex.def)             Requested size: 327.20668pt x 107.90344pt.
 
-Overfull \hbox (241.84842pt too wide) in paragraph at lines 229--230
+Overfull \hbox (241.84842pt too wide) in paragraph at lines 232--233
  [] 
  []
 
 
-Overfull \hbox (253.53154pt too wide) in paragraph at lines 233--247
+Overfull \hbox (253.53154pt too wide) in paragraph at lines 236--250
 []$[]$ 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 248.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 251.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 248.
+Package pdftex.def Info: template/peloto.png  used on input line 251.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -807,24 +812,24 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 [11
 
  <./Imagenes/ET_arq.png>]
-<Imagenes/Ground_Station_Mod.jpg, id=69, 3468.96pt x 1951.29pt>
+<Imagenes/Ground_Station_Mod.jpg, id=69, 4135.45pt x 2601.72pt>
 File: Imagenes/Ground_Station_Mod.jpg Graphic file (type jpg)
 <use Imagenes/Ground_Station_Mod.jpg>
 Package pdftex.def Info: Imagenes/Ground_Station_Mod.jpg  used on input line 25
-5.
-(pdftex.def)             Requested size: 221.93158pt x 124.81364pt.
+8.
+(pdftex.def)             Requested size: 221.93158pt x 139.62138pt.
 
-Overfull \hbox (136.57332pt too wide) in paragraph at lines 255--256
+Overfull \hbox (136.57332pt too wide) in paragraph at lines 258--259
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 269.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 272.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 269.
+Package pdftex.def Info: template/peloto.png  used on input line 272.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -836,24 +841,24 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 <Imagenes/FPGA_New_Soft_arq.png, id=74, 2823.54875pt x 1746.525pt>
 File: Imagenes/FPGA_New_Soft_arq.png Graphic file (type png)
 <use Imagenes/FPGA_New_Soft_arq.png>
-Package pdftex.def Info: Imagenes/FPGA_New_Soft_arq.png  used on input line 275
+Package pdftex.def Info: Imagenes/FPGA_New_Soft_arq.png  used on input line 278
 .
 (pdftex.def)             Requested size: 341.43306pt x 211.17294pt.
 
-Overfull \hbox (25.90948pt too wide) in paragraph at lines 275--276
+Overfull \hbox (25.90948pt too wide) in paragraph at lines 278--279
  [] 
  []
 
 
-LaTeX Warning: Slide 13 overfull by 4.79497pt on input line 278.
+LaTeX Warning: Slide 13 overfull by 4.79497pt on input line 281.
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 278.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 281.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 278.
+Package pdftex.def Info: template/peloto.png  used on input line 281.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -866,20 +871,20 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 File: Imagenes/Arquitectura_del_Cod_PC.png Graphic file (type png)
 <use Imagenes/Arquitectura_del_Cod_PC.png>
 Package pdftex.def Info: Imagenes/Arquitectura_del_Cod_PC.png  used on input li
-ne 285.
+ne 288.
 (pdftex.def)             Requested size: 156.49014pt x 166.23pt.
 
-Overfull \hbox (99.58464pt too wide) in paragraph at lines 285--286
+Overfull \hbox (71.13188pt too wide) in paragraph at lines 288--289
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 296.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 299.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 296.
+Package pdftex.def Info: template/peloto.png  used on input line 299.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -890,11 +895,11 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
  <./Imagenes/Arquitectura_del_Cod_PC.png>]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 320.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 323.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 320.
+Package pdftex.def Info: template/peloto.png  used on input line 323.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -905,17 +910,17 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 ]
 
 LaTeX Font Warning: Font shape `OT1/cmtt/bx/sl' undefined
-(Font)              using `OT1/cmtt/bx/n' instead on input line 329.
+(Font)              using `OT1/cmtt/bx/n' instead on input line 332.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 329.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 332.
 <Imagenes/E010.jpg, id=88, 482.55281pt x 354.57469pt>
 File: Imagenes/E010.jpg Graphic file (type jpg)
 <use Imagenes/E010.jpg>
-Package pdftex.def Info: Imagenes/E010.jpg  used on input line 339.
+Package pdftex.def Info: Imagenes/E010.jpg  used on input line 342.
 (pdftex.def)             Requested size: 51.21504pt x 37.62909pt.
 
-Overfull \hbox (253.53154pt too wide) in paragraph at lines 330--342
+Overfull \hbox (253.53154pt too wide) in paragraph at lines 333--345
 $[]$ 
  []
 
@@ -923,26 +928,26 @@ $[]$
 File: Imagenes/Secuencia_7_flechas_amarillo.png Graphic file (type png)
 <use Imagenes/Secuencia_7_flechas_amarillo.png>
 Package pdftex.def Info: Imagenes/Secuencia_7_flechas_amarillo.png  used on inp
-ut line 346.
+ut line 349.
 (pdftex.def)             Requested size: 327.20668pt x 123.26994pt.
 
-Overfull \hbox (270.30118pt too wide) in paragraph at lines 346--347
+Overfull \hbox (270.30118pt too wide) in paragraph at lines 349--350
  [] 
  []
 
 
-LaTeX Warning: Slide 16 overfull by 10.555pt on input line 350.
+LaTeX Warning: Slide 16 overfull by 10.555pt on input line 353.
 
 
 Overfull \vbox (5.46516pt too high) has occurred while \output is active []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 350.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 353.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 350.
+Package pdftex.def Info: template/peloto.png  used on input line 353.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -952,29 +957,29 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 
  <./Imagenes/E010.jpg> <./Imagenes/Secuencia_7_flechas_amarillo.png>]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/sl' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 353.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 356.
 <Imagenes/Syma_pre_post.png, id=94, 2415.0225pt x 682.04813pt>
 File: Imagenes/Syma_pre_post.png Graphic file (type png)
 <use Imagenes/Syma_pre_post.png>
-Package pdftex.def Info: Imagenes/Syma_pre_post.png  used on input line 370.
+Package pdftex.def Info: Imagenes/Syma_pre_post.png  used on input line 373.
 (pdftex.def)             Requested size: 312.9803pt x 88.38837pt.
 
-Overfull \hbox (227.62204pt too wide) in paragraph at lines 370--371
+Overfull \hbox (227.62204pt too wide) in paragraph at lines 373--374
  [] 
  []
 
 
-Overfull \hbox (253.53154pt too wide) in paragraph at lines 354--373
+Overfull \hbox (253.53154pt too wide) in paragraph at lines 357--376
 $[]$
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 374.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 377.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 374.
+Package pdftex.def Info: template/peloto.png  used on input line 377.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -987,22 +992,22 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 File: Imagenes/X5C_Secuencia_7_Small.png Graphic file (type png)
 <use Imagenes/X5C_Secuencia_7_Small.png>
 Package pdftex.def Info: Imagenes/X5C_Secuencia_7_Small.png  used on input line
- 380.
+ 383.
 (pdftex.def)             Requested size: 258.92024pt x 202.4896pt.
 
 
-LaTeX Warning: Slide 18 overfull by 11.94325pt on input line 383.
+LaTeX Warning: Slide 18 overfull by 11.94325pt on input line 386.
 
 
 Overfull \vbox (5.41112pt too high) has occurred while \output is active []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 383.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 386.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 383.
+Package pdftex.def Info: template/peloto.png  used on input line 386.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -1015,20 +1020,20 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
 File: Imagenes/Interferencia_3_abc.jpg Graphic file (type jpg)
 <use Imagenes/Interferencia_3_abc.jpg>
 Package pdftex.def Info: Imagenes/Interferencia_3_abc.jpg  used on input line 4
-08.
+10.
 (pdftex.def)             Requested size: 85.35826pt x 119.82614pt.
 
-Overfull \hbox (28.45276pt too wide) in paragraph at lines 408--409
+Overfull \hbox (28.45276pt too wide) in paragraph at lines 410--411
  [] 
  []
 
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 412.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 414.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 412.
+Package pdftex.def Info: template/peloto.png  used on input line 414.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -1039,11 +1044,11 @@ Overfull \vbox (0.14795pt too high) has occurred while \output is active []
  <./Imagenes/Interferencia_3_abc.jpg>]
 File: template/gsyc2.jpg Graphic file (type jpg)
 <use template/gsyc2.jpg>
-Package pdftex.def Info: template/gsyc2.jpg  used on input line 432.
+Package pdftex.def Info: template/gsyc2.jpg  used on input line 428.
 (pdftex.def)             Requested size: 37.90598pt x 19.91684pt.
 File: template/peloto.png Graphic file (type png)
 <use template/peloto.png>
-Package pdftex.def Info: template/peloto.png  used on input line 432.
+Package pdftex.def Info: template/peloto.png  used on input line 428.
 (pdftex.def)             Requested size: 15.785pt x 19.91684pt.
 
 Overfull \vbox (0.14795pt too high) has occurred while \output is active []
@@ -1065,10 +1070,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 10941 strings out of 492483
- 187395 string characters out of 3122043
+ 10940 strings out of 492483
+ 187387 string characters out of 3122043
  262564 words of memory out of 3000000
- 15111 multiletter control sequences out of 15000+200000
+ 15110 multiletter control sequences out of 15000+200000
  7756 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  54i,10n,59p,462b,555s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1085,7 +1090,7 @@ ts/cm/cmssbx10.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmsy10.pfb><C:/Users/Eloy/AppData/Local/Programs/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Eloy/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (21 pages, 24504210 bytes).
+Output written on main.pdf (21 pages, 27235886 bytes).
 PDF statistics:
  147 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
